@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { Check } from "lucide-react";
 import { brands } from "@/data/brands";
@@ -10,6 +11,7 @@ export default function BrandsSection() {
   return (
     <section id="brands" className="py-16 md:py-24 bg-gray-light">
       <div className="section-container">
+        {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
             {t.brands?.title || "Trusted Automotive Brands"}
@@ -25,19 +27,27 @@ export default function BrandsSection() {
           <h3 className="text-2xl font-semibold text-gold-primary mb-8 text-center">
             {t.brands?.chinese || "Chinese Brands"}
           </h3>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {brands.chinese.map((brand) => (
               <div
                 key={brand.name}
                 className="bg-white p-6 rounded-xl border border-gray-200 hover:border-gold-primary hover:shadow-lg transition-all group"
               >
+                {/* Logo - Container reverted, image made larger */}
                 <div className="h-12 mb-4 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-gold-primary/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span className="text-2xl font-bold text-gold-primary">
-                      {brand.name.charAt(0)}
-                    </span>
+                  <div className="w-12 h-12 bg-gold-primary/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform overflow-visible">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={80}  // Increased from 40
+                      height={80} // Increased from 40
+                      className="object-contain scale-125" // Added scale to zoom out
+                      priority
+                    />
                   </div>
                 </div>
+
                 <h4 className="text-lg font-semibold text-black text-center mb-2">
                   {brand.name}
                 </h4>
@@ -54,19 +64,27 @@ export default function BrandsSection() {
           <h3 className="text-2xl font-semibold text-gold-primary mb-8 text-center">
             {t.brands?.international || "International Brands"}
           </h3>
+
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {brands.international.map((brand) => (
               <div
                 key={brand.name}
                 className="bg-white p-6 rounded-xl border border-gray-200 hover:border-gold-primary hover:shadow-lg transition-all group"
               >
+                {/* Logo - Container reverted, image made larger */}
                 <div className="h-12 mb-4 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-black/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span className="text-2xl font-bold text-black">
-                      {brand.name.charAt(0)}
-                    </span>
+                  <div className="w-12 h-12 bg-black/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform overflow-visible">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={80}  // Increased from 40
+                      height={80} // Increased from 40
+                      className="object-contain scale-125" // Added scale to zoom out
+                      priority
+                    />
                   </div>
                 </div>
+
                 <h4 className="text-lg font-semibold text-black text-center mb-2">
                   {brand.name}
                 </h4>
@@ -85,6 +103,7 @@ export default function BrandsSection() {
               <h3 className="text-2xl font-bold text-black mb-6">
                 {t.brands?.benefits?.title || "Why Source Through Us?"}
               </h3>
+
               <ul className="space-y-4">
                 {(
                   t.brands?.benefits?.list || [
@@ -103,6 +122,7 @@ export default function BrandsSection() {
                 ))}
               </ul>
             </div>
+
             <div className="bg-gradient-to-br from-gold-primary/5 to-transparent rounded-xl p-6">
               <h4 className="text-lg font-semibold text-black mb-4">
                 {t.brands?.catalog?.title || "Get Brand Catalog"}
@@ -111,11 +131,14 @@ export default function BrandsSection() {
                 {t.brands?.catalog?.description ||
                   "Request our complete brand catalog with specifications, pricing, and availability."}
               </p>
+
               <a
                 href="#contact"
                 className="btn-primary inline-flex items-center space-x-2"
               >
-                <span>{t.brands?.catalog?.button || "Request Catalog"}</span>
+                <span>
+                  {t.brands?.catalog?.button || "Request Catalog"}
+                </span>
               </a>
             </div>
           </div>
