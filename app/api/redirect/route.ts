@@ -1,12 +1,14 @@
 // app/api/redirect/route.ts
-import { NextResponse } from 'next/server';
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const path = searchParams.get('path') || '';
+  const locale = 'en'; // Get locale from cookie if needed
   
-  // Get locale from cookie or default to 'en'
-  const locale = 'en';
-  
-  return NextResponse.redirect(new URL(`/${locale}${path}`, request.url));
+  // Return the redirect URL as JSON
+  return Response.json({
+    redirectUrl: `/${locale}${path}`
+  });
 }
