@@ -8,5 +8,5 @@ export async function GET(request: Request) {
   // Get locale from cookie or default to 'en'
   const locale = 'en';
   
-  return NextResponse.redirect(new URL(\`/\${locale}\${path}\`, request.url));
+  return NextResponse.redirect(new URL(`/${locale}${path}`, request.url));
 }
