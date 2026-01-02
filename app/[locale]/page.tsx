@@ -1,5 +1,4 @@
-"use client";
-
+import { useTranslations } from 'next-intl';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/home/Hero';
@@ -8,10 +7,9 @@ import VehiclesSection from '@/components/sections/VehiclesSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import ContactSection from '@/components/sections/ContactSection';
-import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
-  const { t } = useLanguage();
+  const t = useTranslations();
 
   return (
     <>
@@ -24,34 +22,34 @@ export default function Home() {
           <div className="section-container">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-                {t.about?.title || "About Daqin Auto"}
+                {t('about.title')}
               </h2>
               <p className="text-xl text-gray-dark mb-8">
-                {t.about?.description || "Daqin Auto, under Xi'an Daqin Daorui International Trade Co., Ltd., is an independent automobile supplier and exporter based in China."}
+                {t('about.description')}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
                 <div className="p-6 bg-gray-light rounded-xl">
                   <h3 className="text-lg font-semibold text-black mb-3">
-                    {t.about?.mission?.title || "Our Mission"}
+                    {t('about.mission.title')}
                   </h3>
                   <p className="text-gray-dark">
-                    {t.about?.mission?.text || "To provide quality vehicles at competitive prices with exceptional service."}
+                    {t('about.mission.text')}
                   </p>
                 </div>
                 <div className="p-6 bg-gray-light rounded-xl">
                   <h3 className="text-lg font-semibold text-black mb-3">
-                    {t.about?.vision?.title || "Our Vision"}
+                    {t('about.vision.title')}
                   </h3>
                   <p className="text-gray-dark">
-                    {t.about?.vision?.text || "Become the most trusted automotive export partner from China."}
+                    {t('about.vision.text')}
                   </p>
                 </div>
                 <div className="p-6 bg-gray-light rounded-xl">
                   <h3 className="text-lg font-semibold text-black mb-3">
-                    {t.about?.values?.title || "Our Values"}
+                    {t('about.values.title')}
                   </h3>
                   <p className="text-gray-dark">
-                    {t.about?.values?.text || "Integrity, quality, customer focus, and continuous improvement."}
+                    {t('about.values.text')}
                   </p>
                 </div>
               </div>

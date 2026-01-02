@@ -1,0 +1,22 @@
+{
+  "header": {
+    "title": "Daqin Auto",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Daqin Auto",
+    "subtitle": "Premium Chinese Vehicle Exporter",
+    "about": "Xi'\''an Daqin Daorui International Trade Co., Ltd. is an independent automobile supplier and exporter based in China.",
+    "contactTitle": "Contact Us",
+    "phone": "+86-15594634955",
+    "available": "Available 24/7",
+    "brands": "Our Brands"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "vehicles": "Vehicles",
+    "brands": "Brands",
+    "contact": "Contact"
+  }
+}
