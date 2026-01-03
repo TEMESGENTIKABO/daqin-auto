@@ -1,25 +1,24 @@
 "use client";
 
-import { useLanguage } from '@/context/LanguageContext';
-import { Phone, Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import LanguageSwitcher from '../LanguageSwitcher';
+import { useLanguage } from "@/context/LanguageContext";
+import { Phone, Menu, X } from "lucide-react";
+import { useState } from "react";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 export default function Header() {
   const { t, dir } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: t.header.nav.home, href: '/' },
-    { name: t.header.nav.about, href: '#about' },
-    { name: t.header.nav.brands, href: '#brands' },
-    { name: t.header.nav.vehicles, href: '#vehicles' },
-    { name: t.header.nav.services, href: '#services' },
-    { name: t.header.nav.contact, href: '#contact' },
+    { name: t.header.nav.home, href: "/" },
+    { name: t.header.nav.about, href: "#about" },
+    { name: t.header.nav.brands, href: "#brands" },
+    { name: t.header.nav.vehicles, href: "#vehicles" },
+    { name: t.header.nav.services, href: "#services" },
+    { name: t.header.nav.contact, href: "#contact" },
   ];
-
   return (
-    <header 
+    <header
       className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm"
       dir={dir}
     >
@@ -31,7 +30,9 @@ export default function Header() {
               <span className="text-gold-primary font-bold text-2xl">DQ</span>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-black">{t.header.title}</h1>
+              <h1 className="text-2xl font-bold text-black">
+                {t.header.title}
+              </h1>
               <p className="text-sm text-gray-dark hidden md:block">
                 {t.header.company}
               </p>
@@ -49,13 +50,13 @@ export default function Header() {
                 {item.name}
               </a>
             ))}
-            
+
             {/* Language Switcher */}
             <LanguageSwitcher />
-            
+
             {/* Contact Button */}
             <a
-              href={`tel:${t.common.phone.replace(/[^0-9+]/g, '')}`}
+              href={`tel:${t.common.phone.replace(/[^0-9+]/g, "")}`}
               className="btn-primary flex items-center space-x-2 group"
             >
               <Phone className="w-4 h-4" />
@@ -96,7 +97,7 @@ export default function Header() {
                 </a>
               ))}
               <a
-                href={`tel:${t.common.phone.replace(/[^0-9+]/g, '')}`}
+                href={`tel:${t.common.phone.replace(/[^0-9+]/g, "")}`}
                 className="btn-primary flex items-center justify-center space-x-2 w-full mt-4"
                 onClick={() => setMobileMenuOpen(false)}
               >
