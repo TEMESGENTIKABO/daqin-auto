@@ -20,15 +20,7 @@ export default function Footer() {
 
   // Contact methods data
   const contactMethods = [
-    {
-      id: "phone",
-      icon: Phone,
-      title: "Call",
-      href: "tel:+86-15594634955",
-      color: "text-blue-400 hover:text-blue-300",
-      bgColor: "bg-blue-900/30 hover:bg-blue-900/50",
-      borderColor: "border-blue-700/30",
-    },
+    
     {
       id: "whatsapp",
       icon: FaWhatsapp,

@@ -211,55 +211,19 @@ export default function FeaturedModelsSection() {
                       </p>
                     </div>
 
-                    {/* Quick Specs - Smaller on mobile */}
-                    <div className="grid grid-cols-2 gap-1.5 md:gap-2 mb-3 md:mb-4">
-                      <div className="text-center p-1.5 md:p-2 bg-gray-50 rounded-lg">
-                        <div className="text-xs text-gray-500 mb-0.5 md:mb-1">
-                          Engine
-                        </div>
-                        <div className="text-xs md:text-sm font-semibold truncate">
-                          {model.specs.engine}
-                        </div>
-                      </div>
-                      <div className="text-center p-1.5 md:p-2 bg-gray-50 rounded-lg">
-                        <div className="text-xs text-gray-500 mb-0.5 md:mb-1">
-                          Power
-                        </div>
-                        <div className="text-xs md:text-sm font-semibold">
-                          {model.specs.power}
-                        </div>
-                      </div>
-                      <div className="text-center p-1.5 md:p-2 bg-gray-50 rounded-lg">
-                        <div className="text-xs text-gray-500 mb-0.5 md:mb-1">
-                          Transmission
-                        </div>
-                        <div className="text-xs md:text-sm font-semibold">
-                          {model.specs.transmission}
-                        </div>
-                      </div>
-                      <div className="text-center p-1.5 md:p-2 bg-gray-50 rounded-lg">
-                        <div className="text-xs text-gray-500 mb-0.5 md:mb-1">
-                          Fuel
-                        </div>
-                        <div className="text-xs md:text-sm font-semibold">
-                          {model.specs.fuelType}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Action Buttons - Smaller size */}
+                    {/* Action Buttons - Both buttons same size now */}
                     <div className="flex space-x-1.5 md:space-x-2">
                       <button
                         onClick={() => setSelectedModel(model)}
-                        className="flex-1 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors flex items-center justify-center space-x-1 py-1.5 md:py-2 text-xs md:text-sm"
+                        className="flex-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors flex items-center justify-center space-x-1 md:space-x-1.5 text-xs md:text-sm"
                       >
-                        <span>View Details</span>
+                        <span>Details</span>
                       </button>
                       <a
                         href={`https://wa.me/+8615594634955?text=Interested in ${model.brand} ${model.model}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-2.5 py-1.5 md:px-3 md:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-1 md:space-x-1.5 text-xs md:text-sm"
+                        className="flex-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-1 md:space-x-1.5 text-xs md:text-sm"
                       >
                         <FaWhatsapp className="w-3 h-3 md:w-3.5 md:h-3.5" />
                         <span>Inquire</span>
@@ -273,7 +237,7 @@ export default function FeaturedModelsSection() {
         </div>
       </section>
 
-      {/* Vehicle Detail Modal - Add responsive classes to make it smaller */}
+      {/* Vehicle Detail Modal */}
       {selectedModel && (
         <VehicleDetailModal
           vehicle={selectedModel}
