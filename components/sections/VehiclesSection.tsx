@@ -71,55 +71,7 @@ export default function VehiclesSection() {
         </div>
 
         {/* Additional Info */}
-        <div className="mt-16 bg-gradient-to-r from-black to-gray-dark rounded-2xl p-8 md:p-12 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gold-primary mb-6">
-                {t.vehicles?.custom?.title || "Need Custom Vehicle Solutions?"}
-              </h3>
-              <p className="text-gray-300 mb-6">
-                {t.vehicles?.custom?.description ||
-                  "We can source specific vehicle models, configurations, and modifications to meet your exact requirements and market demands."}
-              </p>
-              <a
-                href="#contact"
-                className="btn-primary bg-white text-black hover:bg-gray-100 inline-flex items-center space-x-2"
-              >
-                <span>
-                  {t.vehicles?.custom?.button || "Discuss Requirements"}
-                </span>
-              </a>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                {
-                  label:
-                    t.vehicles?.options?.handDrive || "Left/Right Hand Drive",
-                  value: "Available",
-                },
-                {
-                  label: t.vehicles?.options?.specs || "Custom Specifications",
-                  value: "Supported",
-                },
-                {
-                  label: t.vehicles?.options?.bulk || "Bulk Orders",
-                  value: "Discounts",
-                },
-                {
-                  label: t.vehicles?.options?.warranty || "Warranty",
-                  value: "Included",
-                },
-              ].map((item) => (
-                <div key={item.label} className="bg-white/10 rounded-lg p-4">
-                  <div className="text-sm text-gray-300">{item.label}</div>
-                  <div className="text-lg font-semibold text-gold-primary">
-                    {item.value}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+       
       </div>
     </section>
   );

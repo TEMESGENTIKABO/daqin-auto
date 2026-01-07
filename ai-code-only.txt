@@ -1,0 +1,4861 @@
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\next-env.d.ts =====
+
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\package.json =====
+
+{
+  "name": "daqin-auto",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "lucide-react": "^0.344.0",
+    "next": "16.1.1",
+    "next-font": "^1.2.0",
+    "next-intl": "^4.7.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.27",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.4.5"
+  }
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\postcss.config.js =====
+
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\README.md =====
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\tailwind.config.ts =====
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        gold: {
+          primary: '#D4A017',
+          dark: '#B58A12',
+        },
+        black: '#111111',
+        gray: {
+          dark: '#333333',
+          light: '#F5F5F5'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        arabic: ['Noto Sans Arabic', 'sans-serif'],
+        chinese: ['Noto Sans SC', 'sans-serif'],
+        cyrillic: ['Noto Sans', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\tsconfig.json =====
+
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "target": "ES2017"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\app\globals.css =====
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold-primary: #D4A017;
+  --gold-dark: #B58A12;
+  --black: #111111;
+  --white: #FFFFFF;
+  --gray-dark: #333333;
+  --gray-light: #F5F5F5;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  
+  body {
+    @apply text-gray-dark bg-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  ::selection {
+    @apply bg-gold-primary/30;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-gold-primary to-gold-dark text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gold-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-gold-primary text-gold-primary px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-gold-primary hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gold-primary focus:ring-offset-2;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-gold-primary to-gold-dark bg-clip-text text-transparent;
+  }
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\app\layout.tsx =====
+
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { LanguageProvider } from '@/context/LanguageContext';
+import Header from '@/components/layout/Header'; // Import Header
+import Footer from '@/components/layout/Footer'; // Import Footer if you have one
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'Daqin Auto - Premium Chinese Vehicle Exporter',
+  description: 'Xi\'an Daqin Daorui International Trade Co., Ltd. supplies quality vehicles from China.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className={inter.className}>
+        <LanguageProvider>
+          {/* Add Header here */}
+          <Header />
+          
+          {/* Main content */}
+          <main>{children}</main>
+          
+          {/* Add Footer here if you have one */}
+          <Footer /> 
+        </LanguageProvider>
+      </body>
+    </html>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\app\page.tsx =====
+
+"use client";
+
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/home/Hero";
+
+import VehiclesSection from "@/components/sections/VehiclesSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import ProcessSection from "@/components/sections/ProcessSection";
+import ContactSection from "@/components/sections/ContactSection";
+import { useLanguage } from "@/context/LanguageContext";
+import BrandsModelsSection from '@/components/sections/brand-models/BrandsModelsSection'; 
+import FeaturedModelsSection from "@/components/sections/FeaturedModelsSection";
+export default function Home() {
+  const { t } = useLanguage();
+
+  return (
+    <>
+      <main className="min-h-screen">
+        <Hero />
+       <BrandsModelsSection />
+        {/* About Section */}
+        <section id="about" className="py-16 md:py-24 bg-white">
+          <div className="section-container">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+                {t.about?.title || "About Daqin Auto"}
+              </h2>
+              <p className="text-xl text-gray-dark mb-8">
+                {t.about?.description ||
+                  "Daqin Auto, under Xi'an Daqin Daorui International Trade Co., Ltd., is an independent automobile supplier and exporter based in China."}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div className="p-6 bg-gray-light rounded-xl">
+                  <h3 className="text-lg font-semibold text-black mb-3">
+                    {t.about?.mission?.title || "Our Mission"}
+                  </h3>
+                  <p className="text-gray-dark">
+                    {t.about?.mission?.text ||
+                      "To provide quality vehicles at competitive prices with exceptional service."}
+                  </p>
+                </div>
+                <div className="p-6 bg-gray-light rounded-xl">
+                  <h3 className="text-lg font-semibold text-black mb-3">
+                    {t.about?.vision?.title || "Our Vision"}
+                  </h3>
+                  <p className="text-gray-dark">
+                    {t.about?.vision?.text ||
+                      "Become the most trusted automotive export partner from China."}
+                  </p>
+                </div>
+                <div className="p-6 bg-gray-light rounded-xl">
+                  <h3 className="text-lg font-semibold text-black mb-3">
+                    {t.about?.values?.title || "Our Values"}
+                  </h3>
+                  <p className="text-gray-dark">
+                    {t.about?.values?.text ||
+                      "Integrity, quality, customer focus, and continuous improvement."}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <VehiclesSection />
+        <FeaturedModelsSection />
+        <ServicesSection />
+        <ProcessSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\app\brands\page.tsx =====
+
+// /app/brands/page.tsx
+"use client";
+
+import BrandsModelsSection from '@/components/sections/brand-models/BrandsModelsSection';
+
+export default function BrandsPage() {
+  return (
+    <main>
+      {/* You can add a breadcrumb or additional content here if needed */}
+      <BrandsModelsSection />
+    </main>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\app\models\page.tsx =====
+
+"use client";
+
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
+import { vehicleModels, brandsList } from "@/data/models";
+import ModelsGrid from "@/components/sections/brand-models/ModelsGrid";
+import VehicleDetailModal from "@/components/sections/brand-models/VehicleDetailModal";
+import VehicleCompare from "@/components/sections/brand-models/VehicleCompare";
+import Link from "next/link";
+
+export default function ModelsPage() {
+  const { t } = useLanguage();
+  const searchParams = useSearchParams();
+
+  const brandParam = searchParams.get("brand");
+
+  const [selectedBrands, setSelectedBrands] = useState<string[]>(
+    brandParam ? [brandParam] : []
+  );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [compareList, setCompareList] = useState<string[]>([]);
+  const [selectedModel, setSelectedModel] = useState<string | null>(null);
+
+  // Filter vehicles based on selections
+  const filteredModels = useMemo(() => {
+    let filtered = vehicleModels;
+
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((model) =>
+        selectedBrands.includes(model.brand)
+      );
+    }
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (model) =>
+          model.brand.toLowerCase().includes(query) ||
+          model.model.toLowerCase().includes(query) ||
+          model.description.toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
+  }, [selectedBrands, searchQuery]);
+
+  const toggleCompare = (modelId: string) => {
+    if (compareList.includes(modelId)) {
+      setCompareList(compareList.filter((id) => id !== modelId));
+    } else if (compareList.length < 4) {
+      setCompareList([...compareList, modelId]);
+    }
+  };
+
+  const toggleBrand = (brand: string) => {
+    if (selectedBrands.includes(brand)) {
+      setSelectedBrands(selectedBrands.filter((b) => b !== brand));
+    } else {
+      setSelectedBrands([...selectedBrands, brand]);
+    }
+  };
+
+  const resetFilters = () => {
+    setSelectedBrands([]);
+    setSearchQuery("");
+    setCompareList([]);
+  };
+
+  const selectedVehicle = selectedModel
+    ? vehicleModels.find((model) => model.id === selectedModel)
+    : null;
+
+  const pageTitle = brandParam
+    ? `${brandParam} Vehicle Models`
+    : selectedBrands.length > 0
+    ? `${selectedBrands.join(", ")} Vehicle Models`
+    : "All Vehicle Models";
+
+  return (
+    <>
+      <main className="min-h-screen bg-gray-light">
+        {/* Further reduced padding: py-4 md:py-6 */}
+        <section className="py-4 md:py-6">
+          <div className="section-container">
+            {/* SIMPLIFIED FILTERS SECTION - ONLY BRANDS */}
+            <div className="mb-4 bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+              {/* Search Bar */}
+              <div className="mb-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search by brand, model, or description..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-primary"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Brands Filter Only */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Filter by Brands
+                </label>
+                <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-1">
+                  {Array.isArray(brandsList) &&
+                    brandsList.map((brand) => (
+                      <button
+                        key={brand}
+                        onClick={() => toggleBrand(brand)}
+                        className={`px-4 py-2 rounded-full border transition-colors ${
+                          selectedBrands.includes(brand)
+                            ? "bg-gold-primary text-white border-gold-primary"
+                            : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
+                        }`}
+                      >
+                        {brand}
+                      </button>
+                    ))}
+                </div>
+
+                {/* Reset Filters Button - moved to bottom of filter section */}
+                <div className="flex justify-end mt-4 pt-3 border-t border-gray-200">
+                  <button
+                    onClick={resetFilters}
+                    className="px-4 py-2 text-sm text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                    Reset All Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Page Header - Reduced further */}
+            <div className="mb-4">
+              <p className="text-gray-dark">
+                {brandParam
+                  ? `Browse all ${brandParam} vehicle models with detailed specifications, pricing, and availability.`
+                  : "Browse our complete collection of vehicle models from all brands."}
+              </p>
+            </div>
+
+            {/* Filter Summary - Only show for brands */}
+            {selectedBrands.length > 0 && (
+              <div className="mb-3 p-3 bg-white rounded-lg border border-gray-200">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-gray-dark">Active filters:</span>
+                  {selectedBrands.map((brand) => (
+                    <span
+                      key={brand}
+                      className="px-3 py-1 bg-gold-primary/10 text-gold-primary rounded-full text-sm flex items-center"
+                    >
+                      {brand}
+                      <button
+                        onClick={() => toggleBrand(brand)}
+                        className="ml-2 text-xs"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                  <button
+                    onClick={resetFilters}
+                    className="ml-2 text-sm text-red-500 hover:text-red-700"
+                  >
+                    Clear All Filters
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Results Count */}
+            <div className="mb-3">
+              <div className="flex justify-between items-center">
+                <p className="text-gray-dark">
+                  Found{" "}
+                  <span className="font-bold text-black">
+                    {filteredModels.length}
+                  </span>{" "}
+                  vehicle{filteredModels.length !== 1 ? "s" : ""}
+                  {selectedBrands.length > 0 &&
+                    ` from ${selectedBrands.join(", ")}`}
+                </p>
+                {compareList.length > 0 && (
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gold-primary font-medium text-sm">
+                      {compareList.length} selected for compare
+                    </span>
+                    <button
+                      onClick={() => setCompareList([])}
+                      className="text-sm text-red-500 hover:text-red-700"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Models Grid - Removed viewMode prop since we only use grid */}
+            <ModelsGrid
+              vehicles={filteredModels}
+              viewMode="grid"
+              compareList={compareList}
+              onToggleCompare={toggleCompare}
+              onSelectModel={setSelectedModel}
+              onClearCompare={() => setCompareList([])}
+            />
+
+            {/* Vehicle Compare Section */}
+            {compareList.length > 0 && (
+              <div className="mt-6">
+                <VehicleCompare
+                  selectedModels={compareList}
+                  onRemoveModel={toggleCompare}
+                  onClearAll={() => setCompareList([])}
+                />
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Vehicle Detail Modal */}
+        {selectedVehicle && (
+          <VehicleDetailModal
+            vehicle={selectedVehicle}
+            onClose={() => setSelectedModel(null)}
+            compareList={compareList}
+            onToggleCompare={toggleCompare}
+          />
+        )}
+      </main>
+    </>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\LanguageSwitcher.tsx =====
+
+"use client";
+
+import { useLanguage } from '@/context/LanguageContext';
+import { Globe } from 'lucide-react';
+import { useState } from 'react';
+
+const languages = [
+  { code: 'en' as const, name: 'English', flag: '🇺🇸' },
+  { code: 'ar' as const, name: 'العربية', flag: '🇸🇦' },
+  { code: 'ru' as const, name: 'Русский', flag: '🇷🇺' },
+  { code: 'zh' as const, name: '中文', flag: '🇨🇳' }
+];
+
+export default function LanguageSwitcher() {
+  const { language, setLanguage } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const currentLanguage = languages.find(lang => lang.code === language);
+
+  const handleLanguageChange = (newLanguage: 'en' | 'ar' | 'ru' | 'zh') => {
+    setLanguage(newLanguage);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-gold-primary hover:bg-gray-50 transition-colors"
+      >
+        <Globe className="w-4 h-4 text-gray-600" />
+        <span className="font-medium">
+          {currentLanguage?.flag} {currentLanguage?.name}
+        </span>
+        <svg
+          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => handleLanguageChange(lang.code)}
+              className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors flex items-center space-x-3
+                ${language === lang.code ? 'bg-gold-primary/5 text-gold-primary' : 'text-gray-700'}`}
+            >
+              <span className="text-lg">{lang.flag}</span>
+              <span>{lang.name}</span>
+              {language === lang.code && (
+                <span className="ml-auto text-gold-primary">✓</span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\VehicleCompare.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\VehicleCompare.tsx =====
+
+"use client";
+
+import { useState } from 'react';
+import { vehicleModels } from '@/data/models';
+import { X, ChevronRight } from 'lucide-react';
+
+interface VehicleCompareProps {
+  selectedModels: string[];
+  onRemoveModel: (modelId: string) => void;
+  onClearAll: () => void;
+}
+
+export default function VehicleCompare({ 
+  selectedModels, 
+  onRemoveModel, 
+  onClearAll 
+}: VehicleCompareProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const selectedVehicles = selectedModels.map(id => 
+    vehicleModels.find(model => model.id === id)
+  ).filter(Boolean) as Exclude<ReturnType<typeof vehicleModels['find']>, undefined>[];
+
+  if (selectedVehicles.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-gray-light rounded-2xl p-6">
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h3 className="text-2xl font-bold text-black">Compare Vehicles</h3>
+          <p className="text-gray-dark mt-1">Select up to 4 vehicles to compare features</p>
+        </div>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-gold-primary transition-colors"
+          >
+            <span>{isExpanded ? 'Collapse' : 'Expand'}</span>
+            <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+          </button>
+          <button
+            onClick={onClearAll}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:border-red-500 hover:text-red-500 transition-colors"
+          >
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      {/* Selected Vehicles */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {selectedVehicles.map(vehicle => (
+          <div key={vehicle.id} className="bg-white rounded-xl p-4 border border-gray-200 relative">
+            <button
+              onClick={() => onRemoveModel(vehicle.id)}
+              className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full"
+              title="Remove from comparison"
+            >
+              <X className="w-4 h-4 text-gray-500" />
+            </button>
+            
+            <div className="text-center">
+              <h4 className="font-bold text-lg text-black">{vehicle.brand} {vehicle.model}</h4>
+              <p className="text-gold-primary font-semibold">${vehicle.priceUSD.toLocaleString()}</p>
+              <p className="text-sm text-gray-dark mt-1">{vehicle.year} • {vehicle.category}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Comparison Table (only show when expanded) */}
+      {isExpanded && (
+        <div className="overflow-x-auto border border-gray-200 rounded-xl">
+          <table className="w-full">
+            <thead className="bg-white">
+              <tr>
+                <th className="text-left p-4 border-b font-semibold text-black">Specification</th>
+                {selectedVehicles.map(vehicle => (
+                  <th key={vehicle.id} className="text-left p-4 border-b">
+                    <div className="text-center">
+                      <div className="font-bold text-black">{vehicle.brand} {vehicle.model}</div>
+                      <div className="text-gold-primary font-medium">${vehicle.priceUSD.toLocaleString()}</div>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {/* Year */}
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Year</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.year}</td>
+                ))}
+              </tr>
+              
+              {/* Category */}
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Category</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.category}</td>
+                ))}
+              </tr>
+              
+              {/* Engine */}
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Engine</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.engine}</td>
+                ))}
+              </tr>
+              
+              {/* Power */}
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Power</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.power}</td>
+                ))}
+              </tr>
+              
+              {/* Transmission */}
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Transmission</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.transmission}</td>
+                ))}
+              </tr>
+              
+              {/* Fuel Type */}
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Fuel Type</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.fuelType}</td>
+                ))}
+              </tr>
+              
+              {/* Seats */}
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Seats</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.seats}</td>
+                ))}
+              </tr>
+              
+              {/* Top Features */}
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Top Features</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b">
+                    <ul className="list-disc pl-4 space-y-1 text-sm">
+                      {vehicle.features.slice(0, 3).map((feature, i) => (
+                        <li key={i}>{feature}</li>
+                      ))}
+                    </ul>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Action Buttons */}
+      <div className="flex justify-center mt-6 space-x-4">
+        <button
+          onClick={() => {
+            // Here you could implement export or share functionality
+            alert(`Comparing ${selectedVehicles.length} vehicles`);
+          }}
+          className="btn-primary"
+        >
+          Export Comparison
+        </button>
+        <a
+          href="#contact"
+          className="btn-secondary"
+        >
+          Get Quote for Selected
+        </a>
+      </div>
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\home\Hero.tsx =====
+
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+export default function Hero() {
+  const { t } = useLanguage();
+
+  return (
+    <section className="relative overflow-hidden min-h-screen">
+      {/* Background Image - Full visibility */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url("/images/bg41.png")',
+        }}
+      />
+      {/* Darker overlay for better text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40"></div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        <div className="section-container py-12 md:py-24">
+          <div className="max-w-4xl mx-auto">
+            {/* Centered Content */}
+            <div className="space-y-8 text-center">
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gold-primary mb-6">
+                  Your Trusted Automobile supplier in china
+                </h1>
+                <p className="text-xl text-white/90 mb-8 mx-auto max-w-3xl">
+                  {t.hero.description}
+                </p>
+              </div>
+
+              {/* Stats - Modified section */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+                <div className="text-center p-4">
+                  <div className="text-4xl md:text-5xl font-black text-gold-primary mb-2">
+                    50+
+                  </div>
+                  <div className="text-xl font-bold text-white tracking-wide">
+                    {t.hero.stats.brands}
+                  </div>
+                </div>
+                <div className="text-center p-4">
+                  <div className="text-4xl md:text-5xl font-black text-gold-primary mb-2">
+                    1000+
+                  </div>
+                  <div className="text-xl font-bold text-white tracking-wide">
+                    {t.hero.stats.vehicles}
+                  </div>
+                </div>
+                <div className="text-center p-4">
+                  <div className="text-4xl md:text-5xl font-black text-gold-primary mb-2">
+                    24/7
+                  </div>
+                  <div className="text-xl font-bold text-white tracking-wide">
+                    {t.hero.stats.support}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <a
+                  href="#contact"
+                  className="btn-primary flex items-center justify-center space-x-2 group bg-gold-primary hover:bg-gold-dark text-white px-8 py-3 rounded-lg"
+                >
+                  <span>{t.hero.cta.quote}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                {/* Updated: Link to /brands page */}
+                <Link
+                  href="/brands"
+                  className="btn-secondary flex items-center justify-center space-x-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30 px-8 py-3 rounded-lg"
+                >
+                  <span>Browse Brands</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\layout\Footer.tsx =====
+
+"use client";
+
+import { useLanguage } from '@/context/LanguageContext';
+import { Phone, Mail, MapPin, Globe, Shield, Clock } from 'lucide-react';
+import LanguageSwitcher from '../LanguageSwitcher';
+
+export default function Footer() {
+  const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
+  
+  return (
+    <footer className="bg-black text-white">
+      <div className="section-container py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+          {/* Company Info */}
+          <div>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 border-2 border-gold-primary rounded-lg flex items-center justify-center">
+                <span className="text-gold-primary font-bold text-lg">DQ</span>
+              </div>
+              <h3 className="text-xl font-bold text-white">{t.header.title}</h3>
+            </div>
+            <p className="text-gray-300 mb-4">
+              {t.header.company}
+            </p>
+            <p className="text-gray-400">
+              Your trusted partner for Chinese automotive exports with over a decade of experience.
+            </p>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold text-gold-primary mb-6">Contact Us</h4>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <Phone className="w-5 h-5 text-gold-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="font-medium">{t.common.phone}</p>
+                  <p className="text-sm text-gray-400">Phone / WhatsApp / Telegram</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Mail className="w-5 h-5 text-gold-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="font-medium">{t.common.email}</p>
+                  <p className="text-sm text-gray-400">Email for inquiries</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-gold-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="font-medium">{t.common.address}</p>
+                  <p className="text-sm text-gray-400">Headquarters</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold text-gold-primary mb-6">Quick Links</h4>
+            <ul className="space-y-3">
+              {(Object.values(t.header.nav) as string[]).map((item: string) => (
+                <li key={item}>
+                  <a
+                    href={item === t.header.nav.home ? '/' : `#${item.toLowerCase().replace(' ', '')}`}
+                    className="text-gray-300 hover:text-gold-primary transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Features */}
+          <div>
+            <h4 className="text-lg font-semibold text-gold-primary mb-6">Why Choose Us</h4>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <Shield className="w-5 h-5 text-gold-primary" />
+                <span className="text-gray-300">Quality Assurance</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Globe className="w-5 h-5 text-gold-primary" />
+                <span className="text-gray-300">Global Shipping</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Clock className="w-5 h-5 text-gold-primary" />
+                <span className="text-gray-300">24/7 Support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © {currentYear} {t.header.title}. All rights reserved.
+            </p>
+            <div className="flex items-center space-x-6 mt-4 md:mt-0">
+              <span className="text-sm text-gray-400">Languages:</span>
+              <LanguageSwitcher />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\layout\Header.tsx =====
+
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { Phone, Menu, X } from "lucide-react";
+import { useState } from "react";
+import LanguageSwitcher from "../LanguageSwitcher";
+import Image from "next/image";
+
+export default function Header() {
+  const { t, dir } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigation = [
+    { name: t.header.nav.home, href: "/" },
+    { name: t.header.nav.about, href: "#about" },
+    { name: t.header.nav.brands, href: "#brands" },
+    { name: t.header.nav.vehicles, href: "#vehicles" },
+    { name: t.header.nav.services, href: "#services" },
+    { name: t.header.nav.contact, href: "#contact" },
+  ];
+  
+  return (
+    <header
+      className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm"
+      dir={dir}
+    >
+      <nav className="section-container">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo with responsive sizing */}
+          <a href="/" className="flex items-center h-full">
+            <div className="relative h-12 md:h-14 w-auto flex items-center">
+              {/* Replace with your actual logo */}
+              <Image
+                src="/images/daqin-logo.png"
+                alt="Daqin Auto - Xi'an Daqin Daorui International Trade Co., Ltd."
+                width={140}  // Larger on desktop
+                height={56}  // Proportional height
+                className="object-contain h-full w-auto"
+                priority
+              />
+            </div>
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-dark hover:text-gold-primary font-medium transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
+            {/* Contact Button */}
+            <a
+              href={`tel:${t.common.phone.replace(/[^0-9+]/g, "")}`}
+              className="btn-primary flex items-center space-x-2 group"
+            >
+              <Phone className="w-4 h-4" />
+              <span>{t.header.contactBtn}</span>
+            </a>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center space-x-4">
+            <LanguageSwitcher />
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <span className="sr-only">Open main menu</span>
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 py-4">
+            <div className="space-y-4 px-2">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-dark hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+              <a
+                href={`tel:${t.common.phone.replace(/[^0-9+]/g, "")}`}
+                className="btn-primary flex items-center justify-center space-x-2 w-full mt-4"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Phone className="w-4 h-4" />
+                <span>{t.header.contactBtn}</span>
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\ContactSection.tsx =====
+
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { FaWhatsapp, FaWeixin, FaTelegram } from "react-icons/fa";
+
+export default function ContactSection() {
+  const { t } = useLanguage();
+
+  // Social media links
+  const socialLinks = {
+    whatsapp: "https://wa.me/+86-15594634955",
+    wechat: "weixin://dl/chat?yourusername",
+    telegram: "https://t.me/+86-15594634955",
+    phone: "tel:+86-15594634955",
+  };
+
+  return (
+    <section id="contact" className="py-16 md:py-24 bg-gray-light">
+      <div className="section-container">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            {t.contact?.title || "Get In Touch"}
+          </h2>
+          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+            {t.contact?.subtitle ||
+              "Contact us for vehicle inquiries, pricing, or partnership opportunities"}
+          </p>
+        </div>
+
+        {/* Get In Touch Section - All contact information */}
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-md rounded-2xl p-8 text-white shadow-2xl border border-gold-primary/20 relative overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-gold-primary/10 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-gold-primary/5 rounded-full blur-2xl"></div>
+            
+            <div className="relative z-10">
+              <div className="space-y-8">
+                {/* Contact Methods */}
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <p className="text-white/80">{t.common.available}</p>
+                    <a
+                      href={socialLinks.phone}
+                      className="text-3xl md:text-4xl font-bold text-gold-primary hover:text-gold-light transition-colors block"
+                    >
+                      {t.common.phone}
+                    </a>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gold-primary/10 rounded-lg flex items-center justify-center">
+                        <Mail className="w-5 h-5 text-gold-primary" />
+                      </div>
+                      <div>
+                        <p className="text-white/80">Email</p>
+                        <a
+                          href="mailto:contact@daqinauto.com"
+                          className="text-xl font-bold text-gold-primary hover:text-gold-light transition-colors"
+                        >
+                          {t.common.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gold-primary/10 rounded-lg flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-gold-primary" />
+                      </div>
+                      <div>
+                        <p className="text-white/80">Location</p>
+                        <p className="text-xl text-white font-medium">
+                          {t.common.address}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Messaging Apps */}
+                <div>
+                  <p className="text-white/80 mb-4">Contact via:</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <a
+                      href={socialLinks.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center space-x-2 px-4 py-3 bg-green-600/20 hover:bg-green-600/30 rounded-lg transition-all border border-green-600/30 group hover:scale-[1.02]"
+                    >
+                      <FaWhatsapp className="w-5 h-5 text-green-400" />
+                      <span className="font-medium">WhatsApp</span>
+                    </a>
+
+                    <a
+                      href={socialLinks.wechat}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center space-x-2 px-4 py-3 bg-green-700/20 hover:bg-green-700/30 rounded-lg transition-all border border-green-700/30 group hover:scale-[1.02]"
+                    >
+                      <FaWeixin className="w-5 h-5 text-green-300" />
+                      <span className="font-medium">WeChat</span>
+                    </a>
+
+                    <a
+                      href={socialLinks.telegram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center space-x-2 px-4 py-3 bg-blue-600/20 hover:bg-blue-600/30 rounded-lg transition-all border border-blue-600/30 group hover:scale-[1.02]"
+                    >
+                      <FaTelegram className="w-5 h-5 text-blue-400" />
+                      <span className="font-medium">Telegram</span>
+                    </a>
+
+                    <a
+                      href={socialLinks.phone}
+                      className="flex items-center justify-center space-x-2 px-4 py-3 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg transition-all border border-blue-500/30 group hover:scale-[1.02]"
+                    >
+                      <Phone className="w-5 h-5 text-blue-300" />
+                      <span className="font-medium">Call Now</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\FeaturedModelsSection.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\FeaturedModelsSection.tsx =====
+
+"use client";
+
+import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
+import { getFeaturedModels } from '@/data/models';
+import { ArrowRight, Clock, CheckCircle, Zap, TrendingUp } from 'lucide-react';
+import { useState } from 'react';
+
+export default function FeaturedModelsSection() {
+  const { t } = useLanguage();
+  const [activeFilter, setActiveFilter] = useState<'all' | 'new' | 'stock' | 'coming'>('all');
+  
+  const featuredModels = getFeaturedModels();
+  
+  // Filter models based on active filter
+  const filteredModels = featuredModels.filter(model => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'new') return model.status === 'New';
+    if (activeFilter === 'stock') return model.status === 'In Stock';
+    if (activeFilter === 'coming') return model.status === 'Coming Soon';
+    return true;
+  });
+  
+  // Status badge configuration
+  const statusConfig = {
+    'New': {
+      bgColor: 'bg-green-100',
+      textColor: 'text-green-800',
+      icon: <Zap className="w-3 h-3" />,
+      label: 'New Arrival'
+    },
+    'In Stock': {
+      bgColor: 'bg-blue-100',
+      textColor: 'text-blue-800',
+      icon: <CheckCircle className="w-3 h-3" />,
+      label: 'In Stock'
+    },
+    'Coming Soon': {
+      bgColor: 'bg-purple-100',
+      textColor: 'text-purple-800',
+      icon: <Clock className="w-3 h-3" />,
+      label: 'Coming Soon'
+    },
+    'Limited Edition': {
+      bgColor: 'bg-red-100',
+      textColor: 'text-red-800',
+      icon: <TrendingUp className="w-3 h-3" />,
+      label: 'Limited Edition'
+    }
+  };
+
+  return (
+    <section id="featured" className="py-16 md:py-24 bg-gray-light">
+      <div className="section-container">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center space-x-2 bg-gold-primary/10 text-gold-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <TrendingUp className="w-4 h-4" />
+            <span>Featured Models</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            {t.featuredModels?.title || "Premium Featured Vehicles"}
+          </h2>
+          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+            {t.featuredModels?.subtitle || "Explore our hand-picked selection of top-quality vehicles ready for export"}
+          </p>
+        </div>
+
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <button
+            onClick={() => setActiveFilter('all')}
+            className={`px-6 py-2 rounded-lg transition-all ${activeFilter === 'all' 
+              ? 'bg-gold-primary text-white' 
+              : 'bg-white text-gray-700 border border-gray-300 hover:border-gold-primary'}`}
+          >
+            All Models
+          </button>
+          <button
+            onClick={() => setActiveFilter('new')}
+            className={`px-6 py-2 rounded-lg transition-all flex items-center space-x-2 ${activeFilter === 'new' 
+              ? 'bg-green-600 text-white' 
+              : 'bg-white text-gray-700 border border-gray-300 hover:border-green-500'}`}
+          >
+            <Zap className="w-4 h-4" />
+            <span>New Arrivals</span>
+          </button>
+          <button
+            onClick={() => setActiveFilter('stock')}
+            className={`px-6 py-2 rounded-lg transition-all flex items-center space-x-2 ${activeFilter === 'stock' 
+              ? 'bg-blue-600 text-white' 
+              : 'bg-white text-gray-700 border border-gray-300 hover:border-blue-500'}`}
+          >
+            <CheckCircle className="w-4 h-4" />
+            <span>In Stock</span>
+          </button>
+          <button
+            onClick={() => setActiveFilter('coming')}
+            className={`px-6 py-2 rounded-lg transition-all flex items-center space-x-2 ${activeFilter === 'coming' 
+              ? 'bg-purple-600 text-white' 
+              : 'bg-white text-gray-700 border border-gray-300 hover:border-purple-500'}`}
+          >
+            <Clock className="w-4 h-4" />
+            <span>Coming Soon</span>
+          </button>
+        </div>
+
+        {/* Featured Models Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredModels.map((model) => {
+            const status = statusConfig[model.status as keyof typeof statusConfig] || statusConfig['In Stock'];
+            
+            return (
+              <div
+                key={model.id}
+                className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-xl transition-all duration-300"
+              >
+                {/* Image Section */}
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={model.images[0] || '/images/placeholder.jpg'}
+                    alt={`${model.brand} ${model.model}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  
+                  {/* Status Badge */}
+                  <div className="absolute top-4 left-4">
+                    <div className={`flex items-center space-x-1 px-3 py-1 rounded-full ${status.bgColor} ${status.textColor} text-sm font-medium`}>
+                      {status.icon}
+                      <span>{status.label}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Price Tag */}
+                  <div className="absolute bottom-4 right-4 bg-black/80 text-white px-4 py-2 rounded-lg backdrop-blur-sm">
+                    <div className="text-xl font-bold">${model.priceUSD.toLocaleString()}</div>
+                    <div className="text-xs opacity-80">FOB China</div>
+                  </div>
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm">
+                    {model.category}
+                  </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6">
+                  <div className="mb-4">
+                    <div className="flex items-baseline justify-between mb-2">
+                      <h3 className="text-xl font-bold text-black">
+                        {model.brand} {model.model}
+                      </h3>
+                      <span className="text-sm text-gray-500">{model.year}</span>
+                    </div>
+                    
+                    <p className="text-gold-primary font-medium mb-3">
+                      {model.tagline}
+                    </p>
+                    
+                    <p className="text-gray-dark text-sm line-clamp-2 mb-4">
+                      {model.description}
+                    </p>
+                  </div>
+
+                  {/* Quick Specs */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-xs text-gray-500 mb-1">Engine</div>
+                      <div className="text-sm font-semibold truncate">{model.specs.engine}</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-xs text-gray-500 mb-1">Power</div>
+                      <div className="text-sm font-semibold">{model.specs.power}</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-xs text-gray-500 mb-1">Transmission</div>
+                      <div className="text-sm font-semibold">{model.specs.transmission}</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-xs text-gray-500 mb-1">Fuel Type</div>
+                      <div className="text-sm font-semibold">{model.specs.fuelType}</div>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => {
+                        // Navigate to detailed model page or open modal
+                        window.location.hash = `models?model=${model.id}`;
+                      }}
+                      className="flex-1 btn-primary flex items-center justify-center space-x-2 py-3"
+                    >
+                      <span>View Details</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <a
+                      href={`https://wa.me/+8615594634955?text=Interested in ${model.brand} ${model.model}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 hover:text-white transition-colors flex items-center justify-center"
+                    >
+                      <span className="text-sm">Inquire Now</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* View All CTA */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex flex-col items-center space-y-4">
+            <p className="text-gray-dark text-lg">
+              Looking for more options? Browse our complete vehicle catalog
+            </p>
+            <a
+              href="#models"
+              className="btn-secondary px-8 py-3 text-lg flex items-center space-x-2 group"
+            >
+              <span>View All Vehicle Models</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\ProcessSection.tsx =====
+
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { CheckCircle, Shield, Clock, Globe } from "lucide-react";
+
+export default function ProcessSection() {
+  const { t } = useLanguage();
+
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="section-container">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+            {t.process?.title || "Simple & Transparent Process"}
+          </h2>
+          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+            {t.process?.subtitle ||
+              "We make importing vehicles from China straightforward and risk-free"}
+          </p>
+        </div>
+
+        {/* Process Steps Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {(
+            t.process?.steps || [
+              {
+                title: "Initial Consultation",
+                description:
+                  "We understand your requirements, budget, and timeline",
+              },
+              {
+                title: "Vehicle Selection",
+                description:
+                  "We source suitable vehicles and provide detailed specifications",
+              },
+              {
+                title: "Quality Inspection",
+                description:
+                  "Comprehensive pre-shipment inspection with detailed report",
+              },
+              {
+                title: "Shipping & Delivery",
+                description:
+                  "Door-to-door delivery with customs clearance support",
+              },
+            ]
+          ).map((step: any, index: number) => (
+            <div
+              key={step.title}
+              className="bg-gradient-to-br from-gray-light to-white rounded-xl p-6 border border-gray-200 hover:border-gold-primary/30 transition-all duration-300"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-gold-primary/10 rounded-full flex items-center justify-center mb-4">
+                  {index === 0 && (
+                    <Clock className="w-8 h-8 text-gold-primary" />
+                  )}
+                  {index === 1 && (
+                    <Shield className="w-8 h-8 text-gold-primary" />
+                  )}
+                  {index === 2 && (
+                    <CheckCircle className="w-8 h-8 text-gold-primary" />
+                  )}
+                  {index === 3 && (
+                    <Globe className="w-8 h-8 text-gold-primary" />
+                  )}
+                </div>
+                
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <div className="w-8 h-8 bg-gold-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    {index + 1}
+                  </div>
+                  <h4 className="text-lg font-semibold text-black">
+                    {step.title}
+                  </h4>
+                </div>
+                
+                <p className="text-gray-dark text-sm">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\ServicesSection.tsx =====
+
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { services } from "@/data/vehicles";
+import { Package, Truck, FileCheck, Headphones } from "lucide-react";
+
+export default function ServicesSection() {
+  const { t } = useLanguage();
+
+  return (
+    <section id="services" className="py-16 md:py-24 bg-gray-light">
+      <div className="section-container">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            {t.services?.title || "Comprehensive Services"}
+          </h2>
+          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+            {t.services?.subtitle ||
+              "End-to-end solutions from sourcing to after-sales support"}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-gold-primary hover:shadow-xl transition-all group"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-gold-primary/10 to-transparent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <span className="text-3xl">{service.icon}</span>
+              </div>
+
+              <h3 className="text-xl font-semibold text-black mb-4">
+                {(t.services?.items?.[index]?.title as string) || service.title}
+              </h3>
+
+              <p className="text-gray-dark mb-6">
+                {(t.services?.items?.[index]?.description as string) ||
+                  service.description}
+              </p>
+
+              <div className="pt-6 border-t border-gray-100">
+                <span className="text-sm font-medium text-gold-primary">
+                  {t.common?.learnMore || "Learn more"} →
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Process Overview */}
+        <div className="mt-16 bg-white rounded-2xl p-8 border border-gray-200">
+          <div className="text-center mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-black mb-4">
+              {t.services?.process?.title || "Our Export Process"}
+            </h3>
+            <p className="text-gray-dark max-w-2xl mx-auto">
+              {t.services?.process?.description ||
+                "Streamlined process ensuring smooth delivery from factory to your location"}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {(
+              t.services?.process?.steps || [
+                {
+                  title: "Consultation",
+                  description: "Understand your requirements",
+                },
+                {
+                  title: "Sourcing",
+                  description: "Find perfect vehicle match",
+                },
+                {
+                  title: "Inspection",
+                  description: "Quality and compliance check",
+                },
+                {
+                  title: "Delivery",
+                  description: "Shipping and customs clearance",
+                },
+              ]
+            ).map((item: any, index: number) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 bg-gold-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                  {index + 1}
+                </div>
+                <h4 className="font-semibold text-black mb-2">{item.title}</h4>
+                <p className="text-sm text-gray-dark">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\VehiclesSection.tsx =====
+
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { Zap, Battery, Fuel, Settings } from "lucide-react";
+import { vehicleTypes } from "@/data/vehicles";
+
+const icons = {
+  ev: Zap,
+  phev: Battery,
+  reev: Fuel,
+  petrol: Settings,
+};
+
+export default function VehiclesSection() {
+  const { t } = useLanguage();
+
+  return (
+    <section id="vehicles" className="py-16 md:py-24 bg-white">
+      <div className="section-container">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            {t.vehicles?.title || "Vehicle Types"}
+          </h2>
+          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+            {t.vehicles?.subtitle ||
+              "We supply all types of vehicles to meet diverse market needs"}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {vehicleTypes.map((vehicle) => {
+            const Icon = icons[vehicle.id as keyof typeof icons] || Settings;
+            return (
+              <div
+                key={vehicle.id}
+                className="group relative bg-white border border-gray-200 rounded-2xl p-8 hover:border-gold-primary hover:shadow-xl transition-all overflow-hidden"
+              >
+                {/* Decorative background */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gold-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform"></div>
+
+                {/* Icon */}
+                <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-gold-primary to-gold-dark rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Icon className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="flex items-baseline space-x-2 mb-3">
+                    <span className="text-3xl font-bold text-black">
+                      {vehicle.name}
+                    </span>
+                    <span className="text-sm text-gray-dark">
+                      {vehicle.fullName}
+                    </span>
+                  </div>
+
+                  <p className="text-gray-dark mb-6">{vehicle.description}</p>
+
+                  <ul className="space-y-2">
+                    {vehicle.features.map((feature) => (
+                      <li key={feature} className="flex items-center text-sm">
+                        <span className="w-2 h-2 bg-gold-primary rounded-full mr-3"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Additional Info */}
+       
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\BrandsGrid.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\BrandsGrid.tsx =====
+
+"use client";
+
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
+import { brands } from "@/data/brands";
+import Link from "next/link";
+
+interface BrandsGridProps {
+  showAll?: boolean;
+}
+
+export default function BrandsGrid({ showAll = false }: BrandsGridProps) {
+  // Combine Chinese and International brands into one array
+  const allBrands = [...brands.chinese, ...brands.international];
+  
+  // Sort alphabetically
+  const sortedBrands = allBrands.sort((a, b) => a.name.localeCompare(b.name));
+  
+  // Display only first 12 brands initially, or all if showAll is true
+  const displayedBrands = showAll ? sortedBrands : sortedBrands.slice(0, 12);
+
+  return (
+    <div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {displayedBrands.map((brand) => (
+          <Link
+            key={brand.name}
+            href={`/models?brand=${encodeURIComponent(brand.name)}`}
+            className="bg-white p-4 rounded-xl border border-gray-200 hover:border-gold-primary hover:shadow-lg transition-all group flex flex-col items-center justify-center h-40"
+          >
+            <div className="h-14 w-14 mb-3 flex items-center justify-center">
+              <div className="relative w-full h-full">
+                <Image
+                  src={brand.logo}
+                  alt={brand.name}
+                  fill
+                  className="object-contain group-hover:scale-110 transition-transform"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+              </div>
+            </div>
+
+            <h4 className="text-base font-semibold text-black text-center mb-1">
+              {brand.name}
+            </h4>
+            <p className="text-xs text-gray-dark text-center line-clamp-2">
+              {brand.description}
+            </p>
+            
+            <div className="mt-2 flex items-center space-x-1 text-gold-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs">View Models</span>
+              <ChevronRight className="w-3 h-3" />
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* "Browse All Models" Button */}
+      <div className="mt-8 text-center">
+        <Link
+          href="/models"
+          className="btn-primary px-8 py-3 text-lg inline-block"
+        >
+          Browse All Vehicle Models
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\BrandsModelsSection.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\BrandsModelsSection.tsx =====
+
+"use client";
+
+import { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import BrandsGrid from "./BrandsGrid";
+
+export default function BrandsModelsSection() {
+  const { t } = useLanguage();
+  const [showAllBrands, setShowAllBrands] = useState(false);
+
+  // Listen for toggle event from BrandsGrid
+  useEffect(() => {
+    const handleToggleShowAll = () => {
+      setShowAllBrands((prev) => !prev);
+    };
+
+    window.addEventListener("toggleShowAllBrands", handleToggleShowAll);
+
+    return () => {
+      window.removeEventListener("toggleShowAllBrands", handleToggleShowAll);
+    };
+  }, []);
+
+  return (
+    <section id="brands" className="py-16 md:py-24 bg-gray-light">
+      <div className="section-container">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            {t.brands?.title || "Our Automotive Partners"}
+          </h2>
+          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+            {t.brands?.subtitle || "Select a brand to view their available models"}
+          </p>
+        </div>
+
+        {/* Brands Grid */}
+        <BrandsGrid showAll={showAllBrands} />
+      </div>
+    </section>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\ModelsFilter.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\ModelsFilter.tsx =====
+
+"use client";
+
+import { useState } from "react";
+import { Search, Filter, Grid, List, ChevronDown, ChevronUp, Check } from "lucide-react";
+import { SortOption, ViewMode } from "./types";
+
+interface ModelsFilterProps {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  selectedBrands: string[];
+  onBrandToggle: (brand: string) => void;
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+  priceRange: [number, number];
+  onPriceRangeChange: (range: [number, number]) => void;
+  sortBy: SortOption;
+  onSortChange: (sort: SortOption) => void;
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
+  onResetFilters: () => void;
+  availableBrands: string[];
+  availableCategories: Array<{ id: string; name: string }>;
+}
+
+export default function ModelsFilter({
+  searchQuery,
+  onSearchChange,
+  selectedBrands,
+  onBrandToggle,
+  selectedCategory,
+  onCategoryChange,
+  priceRange,
+  onPriceRangeChange,
+  sortBy,
+  onSortChange,
+  viewMode,
+  onViewModeChange,
+  onResetFilters,
+  availableBrands,
+  availableCategories,
+}: ModelsFilterProps) {
+  const [showFilters, setShowFilters] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      {/* Search and Controls */}
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex-1">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search by brand, model, or keyword..."
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-primary focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => onViewModeChange('grid')}
+            className={`p-3 rounded-lg border ${
+              viewMode === 'grid'
+                ? 'bg-gold-primary text-white border-gold-primary'
+                : 'bg-white text-gray-700 border-gray-300 hover:border-gold-primary'
+            }`}
+          >
+            <Grid className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => onViewModeChange('list')}
+            className={`p-3 rounded-lg border ${
+              viewMode === 'list'
+                ? 'bg-gold-primary text-white border-gold-primary'
+                : 'bg-white text-gray-700 border-gray-300 hover:border-gold-primary'
+            }`}
+          >
+            <List className="w-5 h-5" />
+          </button>
+        </div>
+
+        <button
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center justify-center space-x-2 px-6 py-3 border border-gray-300 rounded-lg hover:border-gold-primary transition-colors"
+        >
+          <Filter className="w-5 h-5" />
+          <span>Filters</span>
+          {showFilters ? (
+            <ChevronUp className="w-5 h-5" />
+          ) : (
+            <ChevronDown className="w-5 h-5" />
+          )}
+        </button>
+      </div>
+
+      {/* Filter Panel */}
+      {showFilters && (
+        <div className="bg-gray-light rounded-xl p-6 space-y-6">
+          {/* Categories */}
+          <div>
+            <h3 className="font-semibold text-black mb-3">Vehicle Category</h3>
+            <div className="flex flex-wrap gap-2">
+              {availableCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => onCategoryChange(category.id)}
+                  className={`px-4 py-2 rounded-lg border transition-colors ${
+                    selectedCategory === category.id
+                      ? 'bg-gold-primary text-white border-gold-primary'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-gold-primary'
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Brands */}
+          <div>
+            <h3 className="font-semibold text-black mb-3">Brands</h3>
+            <div className="flex flex-wrap gap-2">
+              {availableBrands.map((brand) => (
+                <button
+                  key={brand}
+                  onClick={() => onBrandToggle(brand)}
+                  className={`px-4 py-2 rounded-lg border transition-colors flex items-center space-x-2 ${
+                    selectedBrands.includes(brand)
+                      ? 'bg-gold-primary/10 text-gold-primary border-gold-primary'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-gold-primary'
+                  }`}
+                >
+                  {selectedBrands.includes(brand) ? (
+                    <Check className="w-4 h-4" />
+                  ) : (
+                    <div className="w-4 h-4 border border-gray-300 rounded" />
+                  )}
+                  <span>{brand}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Price Range */}
+          <div>
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-semibold text-black">Price Range</h3>
+              <span className="text-gold-primary font-medium">
+                ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
+              </span>
+            </div>
+            <div className="space-y-4">
+              <input
+                type="range"
+                min="0"
+                max="100000"
+                step="1000"
+                value={priceRange[0]}
+                onChange={(e) => onPriceRangeChange([parseInt(e.target.value), priceRange[1]])}
+                className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+              />
+              <input
+                type="range"
+                min="0"
+                max="100000"
+                step="1000"
+                value={priceRange[1]}
+                onChange={(e) => onPriceRangeChange([priceRange[0], parseInt(e.target.value)])}
+                className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
+          </div>
+
+          {/* Sort Options */}
+          <div>
+            <h3 className="font-semibold text-black mb-3">Sort By</h3>
+            <select
+              value={sortBy}
+              onChange={(e) => onSortChange(e.target.value as SortOption)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-primary"
+            >
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="year-new">Year: Newest First</option>
+              <option value="year-old">Year: Oldest First</option>
+              <option value="name-a">Name: A to Z</option>
+              <option value="name-z">Name: Z to A</option>
+            </select>
+          </div>
+
+          {/* Reset Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={onResetFilters}
+              className="px-6 py-2 border border-gray-300 rounded-lg hover:border-red-500 hover:text-red-500 transition-colors"
+            >
+              Reset All Filters
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\ModelsGrid.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\ModelsGrid.tsx =====
+
+"use client";
+
+import Image from "next/image";
+import { Check, GitCompare } from "lucide-react";
+import { VehicleModel, ViewMode } from "./types";
+import VehicleCard from "./VehicleCard";
+
+interface ModelsGridProps {
+  vehicles: VehicleModel[];
+  viewMode: ViewMode;
+  compareList: string[];
+  onToggleCompare: (modelId: string) => void;
+  onSelectModel: (modelId: string) => void;
+  onClearCompare: () => void;
+}
+
+export default function ModelsGrid({
+  vehicles,
+  viewMode,
+  compareList,
+  onToggleCompare,
+  onSelectModel,
+  onClearCompare,
+}: ModelsGridProps) {
+  if (vehicles.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <div className="w-16 h-16 bg-gray-light rounded-full flex items-center justify-center mx-auto mb-4">
+          <span className="text-2xl">🚗</span>
+        </div>
+        <h3 className="text-xl font-semibold text-black mb-2">No vehicles found</h3>
+        <p className="text-gray-dark mb-6">Try adjusting your filters or search terms</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Results Count */}
+      <div className="flex justify-between items-center">
+        <p className="text-gray-dark">
+          Showing <span className="font-semibold text-black">{vehicles.length}</span> vehicles
+          {compareList.length > 0 && (
+            <span className="ml-4 text-gold-primary font-medium">
+              {compareList.length} selected for compare
+            </span>
+          )}
+        </p>
+        {compareList.length > 0 && (
+          <button
+            onClick={onClearCompare}
+            className="text-sm text-red-500 hover:text-red-700"
+          >
+            Clear Compare
+          </button>
+        )}
+      </div>
+
+      {/* Vehicles Grid/List */}
+      <div className={viewMode === 'grid' 
+        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
+        : 'space-y-6'
+      }>
+        {vehicles.map((vehicle) => {
+          const isInCompare = compareList.includes(vehicle.id);
+          const isCompareFull = compareList.length >= 4;
+          
+          return (
+            <VehicleCard
+              key={vehicle.id}
+              vehicle={vehicle}
+              viewMode={viewMode}
+              isInCompare={isInCompare}
+              isCompareFull={isCompareFull}
+              onToggleCompare={onToggleCompare}
+              onSelectModel={onSelectModel}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\types.ts =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\types.ts =====
+
+export type VehicleCategory = 'SUV' | 'Sedan' | 'MPV' | 'Hatchback' | 'Electric' | 'Commercial';
+export type FuelType = 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid';
+export type VehicleStatus = 'New' | 'In Stock' | 'Coming Soon' | 'Limited Edition';
+export type SortOption = 'price-low' | 'price-high' | 'year-new' | 'year-old' | 'name-a' | 'name-z';
+export type ViewMode = 'grid' | 'list';
+
+export interface VehicleModel {
+  id: string;
+  brand: string;
+  model: string;
+  category: VehicleCategory;
+  year: number;
+  priceUSD: number;
+  images: string[];
+  specs: {
+    engine: string;
+    power: string;
+    transmission: string;
+    fuelType: FuelType;
+    seats: number;
+    doors: number;
+    fuelConsumption?: string;
+    range?: string;
+  };
+  features: string[];
+  description: string;
+  available: boolean;
+  featured?: boolean;
+  status?: VehicleStatus;
+  tagline?: string;
+  detailsLink?: string;
+}
+
+// Removed Category interface since we're not using the intermediate step
+export interface FilterState {
+  selectedCategory: string;
+  selectedBrands: string[];
+  priceRange: [number, number];
+  searchQuery: string;
+  sortBy: SortOption;
+  viewMode: ViewMode;
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\VehicleCard.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\VehicleCard.tsx =====
+
+"use client";
+
+import Image from "next/image";
+import { Check, GitCompare } from "lucide-react";
+import { VehicleModel, ViewMode } from "./types";
+
+interface VehicleCardProps {
+  vehicle: VehicleModel;
+  viewMode: ViewMode;
+  isInCompare: boolean;
+  isCompareFull: boolean;
+  onToggleCompare: (modelId: string) => void;
+  onSelectModel: (modelId: string) => void;
+}
+
+export default function VehicleCard({
+  vehicle,
+  viewMode,
+  isInCompare,
+  isCompareFull,
+  onToggleCompare,
+  onSelectModel,
+}: VehicleCardProps) {
+  return (
+    <div
+      className={`bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gold-primary hover:shadow-xl transition-all relative cursor-pointer ${
+        viewMode === 'list' ? 'flex' : ''
+      } ${isInCompare ? 'ring-2 ring-gold-primary' : ''}`}
+      onClick={() => onSelectModel(vehicle.id)}
+    >
+      {/* Compare Button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggleCompare(vehicle.id);
+        }}
+        className={`absolute top-3 right-3 z-10 p-2 rounded-full transition-all ${
+          isInCompare
+            ? 'bg-gold-primary text-white'
+            : isCompareFull
+            ? 'bg-gray-400 text-white cursor-not-allowed'
+            : 'bg-white/90 text-gray-700 hover:bg-gray-100'
+        }`}
+        title={isCompareFull ? "Maximum 4 vehicles for comparison" : "Add to compare"}
+        disabled={isCompareFull && !isInCompare}
+      >
+        {isInCompare ? (
+          <Check className="w-4 h-4" />
+        ) : (
+          <GitCompare className="w-4 h-4" />
+        )}
+      </button>
+
+      {/* Image */}
+      <div className={`relative ${viewMode === 'list' ? 'w-1/3' : 'h-48'}`}>
+        <Image
+          src={vehicle.images[0] || '/images/placeholder.jpg'}
+          alt={`${vehicle.brand} ${vehicle.model}`}
+          fill
+          className="object-cover"
+          sizes={viewMode === 'list' ? '33vw' : '(max-width: 768px) 100vw, 33vw'}
+        />
+        <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-sm">
+          {vehicle.category}
+        </div>
+        {!vehicle.available && (
+          <div className="absolute top-3 right-16 bg-red-500 text-white px-2 py-1 rounded text-sm">
+            Sold Out
+          </div>
+        )}
+        {vehicle.status === 'New' && (
+          <div className="absolute top-3 right-16 bg-green-500 text-white px-2 py-1 rounded text-sm">
+            New
+          </div>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className={`p-6 ${viewMode === 'list' ? 'w-2/3' : ''}`}>
+        <div className="flex justify-between items-start mb-3">
+          <div>
+            <h3 className="text-xl font-bold text-black">
+              {vehicle.brand} {vehicle.model}
+            </h3>
+            <p className="text-gray-dark">{vehicle.year} Model</p>
+          </div>
+          <div className="text-right">
+            <div className="text-2xl font-bold text-gold-primary">
+              ${vehicle.priceUSD.toLocaleString()}
+            </div>
+            <p className="text-sm text-gray-dark">FOB China</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="text-sm">
+            <span className="text-gray-dark">Engine:</span>
+            <span className="font-medium ml-1">{vehicle.specs.engine}</span>
+          </div>
+          <div className="text-sm">
+            <span className="text-gray-dark">Power:</span>
+            <span className="font-medium ml-1">{vehicle.specs.power}</span>
+          </div>
+          <div className="text-sm">
+            <span className="text-gray-dark">Transmission:</span>
+            <span className="font-medium ml-1">{vehicle.specs.transmission}</span>
+          </div>
+          <div className="text-sm">
+            <span className="text-gray-dark">Fuel:</span>
+            <span className="font-medium ml-1">{vehicle.specs.fuelType}</span>
+          </div>
+        </div>
+
+        <p className="text-gray-dark text-sm mb-4 line-clamp-2">
+          {vehicle.description}
+        </p>
+
+        <div className="flex justify-between items-center">
+          <div className="flex flex-wrap gap-1">
+            {vehicle.features.slice(0, 3).map((feature, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 bg-gray-light text-xs rounded"
+              >
+                {feature}
+              </span>
+            ))}
+            {vehicle.features.length > 3 && (
+              <span className="px-2 py-1 bg-gray-light text-xs rounded">
+                +{vehicle.features.length - 3} more
+              </span>
+            )}
+          </div>
+          <button className="text-gold-primary hover:text-gold-dark font-medium flex items-center space-x-1">
+            <span>View Details</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\VehicleCompare.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\VehicleCompare.tsx =====
+
+"use client";
+
+import { useState } from 'react';
+import { vehicleModels } from '@/data/models';
+import { X, ChevronRight, GitCompare, Download } from 'lucide-react';
+import { VehicleModel } from './types';
+
+interface VehicleCompareProps {
+  selectedModels: string[];
+  onRemoveModel: (modelId: string) => void;
+  onClearAll: () => void;
+}
+
+export default function VehicleCompare({ 
+  selectedModels, 
+  onRemoveModel, 
+  onClearAll 
+}: VehicleCompareProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const selectedVehicles = selectedModels.map(id => 
+    vehicleModels.find(model => model.id === id)
+  ).filter((model): model is VehicleModel => model !== undefined);
+
+  if (selectedVehicles.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-gray-light rounded-2xl p-6 mt-8">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center space-x-3">
+          <GitCompare className="w-6 h-6 text-gold-primary" />
+          <div>
+            <h3 className="text-2xl font-bold text-black">Compare Vehicles</h3>
+            <p className="text-gray-dark mt-1">Select up to 4 vehicles to compare features</p>
+          </div>
+        </div>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-gold-primary transition-colors"
+          >
+            <span>{isExpanded ? 'Collapse' : 'Expand'}</span>
+            <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+          </button>
+          <button
+            onClick={onClearAll}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:border-red-500 hover:text-red-500 transition-colors"
+          >
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      {/* Selected Vehicles */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {selectedVehicles.map(vehicle => (
+          <div key={vehicle.id} className="bg-white rounded-xl p-4 border border-gray-200 relative">
+            <button
+              onClick={() => onRemoveModel(vehicle.id)}
+              className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full"
+              title="Remove from comparison"
+            >
+              <X className="w-4 h-4 text-gray-500" />
+            </button>
+            
+            <div className="text-center">
+              <h4 className="font-bold text-lg text-black">{vehicle.brand} {vehicle.model}</h4>
+              <p className="text-gold-primary font-semibold">${vehicle.priceUSD.toLocaleString()}</p>
+              <p className="text-sm text-gray-dark mt-1">{vehicle.year} • {vehicle.category}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Comparison Table (only show when expanded) */}
+      {isExpanded && (
+        <div className="overflow-x-auto border border-gray-200 rounded-xl">
+          <table className="w-full">
+            <thead className="bg-white">
+              <tr>
+                <th className="text-left p-4 border-b font-semibold text-black">Specification</th>
+                {selectedVehicles.map(vehicle => (
+                  <th key={vehicle.id} className="text-left p-4 border-b">
+                    <div className="text-center">
+                      <div className="font-bold text-black">{vehicle.brand} {vehicle.model}</div>
+                      <div className="text-gold-primary font-medium">${vehicle.priceUSD.toLocaleString()}</div>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Year</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.year}</td>
+                ))}
+              </tr>
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Category</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.category}</td>
+                ))}
+              </tr>
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Engine</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.engine}</td>
+                ))}
+              </tr>
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Power</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.power}</td>
+                ))}
+              </tr>
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Transmission</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.transmission}</td>
+                ))}
+              </tr>
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Fuel Type</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.fuelType}</td>
+                ))}
+              </tr>
+              <tr className="bg-white">
+                <td className="p-4 border-b font-medium">Seats</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b text-center">{vehicle.specs.seats}</td>
+                ))}
+              </tr>
+              <tr className="bg-gray-50">
+                <td className="p-4 border-b font-medium">Top Features</td>
+                {selectedVehicles.map(vehicle => (
+                  <td key={vehicle.id} className="p-4 border-b">
+                    <ul className="list-disc pl-4 space-y-1 text-sm">
+                      {vehicle.features.slice(0, 3).map((feature, i) => (
+                        <li key={i}>{feature}</li>
+                      ))}
+                    </ul>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Action Buttons */}
+      <div className="flex justify-center mt-6 space-x-4">
+        <button
+          onClick={() => {
+            // Export comparison as PDF or text
+            const comparisonText = selectedVehicles.map(v => 
+              `${v.brand} ${v.model}: $${v.priceUSD} - ${v.specs.engine}, ${v.specs.power}`
+            ).join('\n');
+            alert(`Comparison exported:\n\n${comparisonText}`);
+          }}
+          className="btn-primary flex items-center space-x-2"
+        >
+          <Download className="w-4 h-4" />
+          <span>Export Comparison</span>
+        </button>
+        <a
+          href="#contact"
+          className="btn-secondary"
+        >
+          Get Quote for Selected
+        </a>
+      </div>
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\VehicleDetailModal.tsx =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\components\sections\brand-models\VehicleDetailModal.tsx =====
+
+"use client";
+
+import Image from 'next/image';
+import { X, Check, GitCompare, Phone, MessageSquare } from 'lucide-react';
+import { VehicleModel } from './types';
+import { useLanguage } from '@/context/LanguageContext';
+
+interface VehicleDetailModalProps {
+  vehicle: VehicleModel;
+  onClose: () => void;
+  compareList: string[];
+  onToggleCompare: (modelId: string) => void;
+}
+
+export default function VehicleDetailModal({
+  vehicle,
+  onClose,
+  compareList,
+  onToggleCompare,
+}: VehicleDetailModalProps) {
+  const { t } = useLanguage();
+  const isInCompare = compareList.includes(vehicle.id);
+  const isCompareFull = compareList.length >= 4 && !isInCompare;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6">
+          {/* Header */}
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h2 className="text-3xl font-bold text-black">
+                {vehicle.brand} {vehicle.model}
+              </h2>
+              <p className="text-gray-dark">
+                {vehicle.year} Model • {vehicle.category}
+                {vehicle.status && (
+                  <span className={`ml-3 px-2 py-1 rounded text-sm ${
+                    vehicle.status === 'New' ? 'bg-green-100 text-green-800' :
+                    vehicle.status === 'In Stock' ? 'bg-blue-100 text-blue-800' :
+                    vehicle.status === 'Coming Soon' ? 'bg-purple-100 text-purple-800' :
+                    'bg-red-100 text-red-800'
+                  }`}>
+                    {vehicle.status}
+                  </span>
+                )}
+              </p>
+              
+              {/* Compare button */}
+              <div className="mt-4">
+                <button
+                  onClick={() => onToggleCompare(vehicle.id)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg border ${
+                    isInCompare
+                      ? 'bg-gold-primary text-white border-gold-primary'
+                      : 'border-gray-300 text-gray-700 hover:border-gold-primary hover:text-gold-primary'
+                  } ${isCompareFull ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  disabled={isCompareFull}
+                >
+                  {isInCompare ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      <span>Added to Compare</span>
+                    </>
+                  ) : (
+                    <>
+                      <GitCompare className="w-4 h-4" />
+                      <span>Add to Compare</span>
+                    </>
+                  )}
+                </button>
+                {isCompareFull && !isInCompare && (
+                  <p className="text-sm text-red-500 mt-1">
+                    Maximum 4 vehicles for comparison
+                  </p>
+                )}
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Image Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            {vehicle.images.map((image, index) => (
+              <div key={index} className="relative h-64 rounded-xl overflow-hidden">
+                <Image
+                  src={image}
+                  alt={`${vehicle.brand} ${vehicle.model} - Image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Tagline */}
+          {vehicle.tagline && (
+            <div className="mb-8 p-4 bg-gradient-to-r from-gold-primary/10 to-transparent rounded-xl">
+              <p className="text-lg font-semibold text-gold-primary">{vehicle.tagline}</p>
+            </div>
+          )}
+
+          {/* Details Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Specifications */}
+            <div>
+              <h3 className="text-xl font-semibold text-black mb-4">Specifications</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Price:</span>
+                  <span className="font-semibold text-gold-primary text-lg">
+                    ${vehicle.priceUSD.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Engine:</span>
+                  <span className="font-medium">{vehicle.specs.engine}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Power:</span>
+                  <span className="font-medium">{vehicle.specs.power}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Transmission:</span>
+                  <span className="font-medium">{vehicle.specs.transmission}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Fuel Type:</span>
+                  <span className="font-medium">{vehicle.specs.fuelType}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Seats:</span>
+                  <span className="font-medium">{vehicle.specs.seats}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Doors:</span>
+                  <span className="font-medium">{vehicle.specs.doors}</span>
+                </div>
+                {vehicle.specs.fuelConsumption && (
+                  <div className="flex justify-between py-2 border-b border-gray-100">
+                    <span className="text-gray-dark">Fuel Consumption:</span>
+                    <span className="font-medium">{vehicle.specs.fuelConsumption}</span>
+                  </div>
+                )}
+                {vehicle.specs.range && (
+                  <div className="flex justify-between py-2 border-b border-gray-100">
+                    <span className="text-gray-dark">Range:</span>
+                    <span className="font-medium">{vehicle.specs.range}</span>
+                  </div>
+                )}
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-dark">Availability:</span>
+                  <span className={`font-medium ${vehicle.available ? 'text-green-600' : 'text-red-600'}`}>
+                    {vehicle.available ? 'Available' : 'Sold Out'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Features & Description */}
+            <div>
+              <h3 className="text-xl font-semibold text-black mb-4">Features</h3>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {vehicle.features.map((feature, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-gray-light rounded-lg text-sm"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
+
+              <h3 className="text-xl font-semibold text-black mb-4">Description</h3>
+              <p className="text-gray-dark mb-6">{vehicle.description}</p>
+
+              {/* Contact CTA */}
+              <div className="bg-gradient-to-r from-gold-primary/10 to-transparent rounded-xl p-6">
+                <h4 className="font-semibold text-black mb-3">Interested in this model?</h4>
+                <p className="text-gray-dark mb-4">
+                  Contact us for pricing, availability, and shipping details.
+                </p>
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                  <a
+                    href={`tel:${t.common.phone}`}
+                    className="btn-primary flex-1 text-center flex items-center justify-center space-x-2"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span>Call Now</span>
+                  </a>
+                  <a
+                    href={`https://wa.me/+8615594634955?text=Interested in ${vehicle.brand} ${vehicle.model}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary flex-1 text-center flex items-center justify-center space-x-2"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </a>
+                  <button
+                    onClick={() => onToggleCompare(vehicle.id)}
+                    className={`flex-1 text-center px-6 py-3 rounded-lg border flex items-center justify-center space-x-2 ${
+                      isInCompare
+                        ? 'bg-gold-primary text-white border-gold-primary'
+                        : 'border-gold-primary text-gold-primary hover:bg-gold-primary hover:text-white'
+                    } transition-colors ${isCompareFull ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={isCompareFull}
+                  >
+                    <GitCompare className="w-4 h-4" />
+                    <span>{isInCompare ? '✓ In Compare' : 'Add to Compare'}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\context\LanguageContext.tsx =====
+
+"use client";
+
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { translations } from '@/data/translations';
+
+type Language = 'en' | 'ar' | 'ru' | 'zh';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: any;
+  dir: 'ltr' | 'rtl';
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguageState] = useState<Language>('en');
+  const [isInitialized, setIsInitialized] = useState(false);
+  
+  // Initialize from localStorage or default to 'en'
+  useEffect(() => {
+    const savedLang = localStorage.getItem('language') as Language;
+    if (savedLang && ['en', 'ar', 'ru', 'zh'].includes(savedLang)) {
+      setLanguageState(savedLang);
+    }
+    setIsInitialized(true);
+  }, []);
+  
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('language', lang);
+    // Update HTML dir attribute for RTL support
+    if (typeof document !== 'undefined') {
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+    }
+  };
+  
+  // Initialize HTML attributes on client side
+  useEffect(() => {
+    if (isInitialized && typeof document !== 'undefined') {
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = language;
+    }
+  }, [language, isInitialized]);
+  
+  const t = translations[language];
+  const dir = language === 'ar' ? 'rtl' : 'ltr';
+  
+  // Don't render children until initialized to avoid hydration mismatch
+  if (!isInitialized) {
+    return null;
+  }
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t, dir }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+}
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\brands.ts =====
+
+export const brands = {
+  chinese: [
+    { name: 'BYD', logo: '/images/brands/byd.png', description: 'World\'s leading EV manufacturer' },
+    { name: 'Geely', logo: '/images/brands/geely.png', description: 'Innovative automotive technology' },
+    { name: 'Chery', logo: '/images/brands/chery.png', description: 'Global automotive brand' },
+    { name: 'Jetour', logo: '/images/brands/jetour.jpg', description: 'Youth-focused SUV brand' },
+    { name: 'Zeekr', logo: '/images/brands/zeekr.jpg', description: 'Premium electric mobility' },
+    { name: 'Avatr', logo: '/images/brands/avatr.png', description: 'Huawei-backed EV brand' },
+    { name: 'Xiaomi', logo: '/images/brands/xiaomi.png', description: 'Tech giant entering EV market' },
+    { name: 'Wuling', logo: '/images/brands/wuling.png', description: 'Affordable electric vehicles' }
+  ],
+  international: [
+    { name: 'BMW', logo: '/images/brands/bmw.png', description: 'German luxury automotive' },
+    { name: 'Volkswagen', logo: '/images/brands/vw1.png', description: 'European automotive leader' },
+    { name: 'Hyundai', logo: '/images/brands/hyundai.png', description: 'Korean automotive excellence' },
+    { name: 'Kia', logo: '/images/brands/kia.png', description: 'Innovative Korean brand' },
+    { name: 'Volvo', logo: '/images/brands/volvo.jpg', description: 'Swedish safety and luxury' },
+    { name: 'Mazda', logo: '/images/brands/mazda.png', description: 'Japanese engineering excellence' }
+  ]
+};
+
+export type Brand = {
+  name: string;
+  logo: string;
+  description: string;
+};
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\company.ts =====
+
+export const companyInfo = {
+  name: 'Xi\'an Daqin Daorui International Trade Co., Ltd.',
+  brand: 'Daqin Auto',
+  tagline: 'Your Trusted Partner for Chinese Automotive Exports',
+  contact: {
+    phone: '+86-15594634955',
+    email: 'contact@daqinauto.com',
+    address: 'Xi\'an, Shaanxi Province, China',
+    hours: '24/7 Available'
+  },
+  description: 'Daqin Auto is an independent automobile supplier and exporter based in China. We specialize in supplying petrol, EV, PHEV, and REEV vehicles across leading Chinese and global brands.',
+  features: [
+    'Direct factory connections',
+    'Competitive pricing',
+    'Quality assurance',
+    'Global shipping',
+    'Multilingual support',
+    '24/7 customer service'
+  ]
+};
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\models.ts =====
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\models.ts =====
+
+export interface VehicleModel {
+  id: string;
+  brand: string;
+  model: string;
+  category: 'SUV' | 'Sedan' | 'MPV' | 'Hatchback' | 'Electric' | 'Commercial';
+  year: number;
+  priceUSD: number;
+  images: string[];
+  specs: {
+    engine: string;
+    power: string;
+    transmission: string;
+    fuelType: 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid';
+    seats: number;
+    doors: number;
+    fuelConsumption?: string;
+    range?: string; // for EVs
+  };
+  features: string[];
+  description: string;
+  available: boolean;
+  // NEW PROPERTIES:
+  featured?: boolean; // Whether to show in featured section
+  status?: 'New' | 'In Stock' | 'Coming Soon' | 'Limited Edition'; // Promotional status
+  tagline?: string; // Short promotional tag
+  detailsLink?: string; // Optional link to detailed page
+}
+
+export const vehicleModels: VehicleModel[] = [
+  {
+    id: 'byd-sealion-07',
+    brand: 'BYD',
+    model: 'Sealion 07',
+    category: 'SUV',
+    year: 2024,
+    priceUSD: 35000,
+    images: ['/images/models/byd-sealion-07-1.jpg', '/images/models/byd-sealion-07-2.jpg'],
+    specs: {
+      engine: '1.5L + Electric Motor',
+      power: '218 HP',
+      transmission: 'Automatic',
+      fuelType: 'Hybrid',
+      seats: 5,
+      doors: 5,
+      fuelConsumption: '1.8L/100km'
+    },
+    features: ['360 Camera', 'Panoramic Sunroof', 'Adaptive Cruise', 'Wireless Charging'],
+    description: 'Premium PHEV SUV with advanced technology and luxury features',
+    available: true,
+    featured: true,
+    status: 'New',
+    tagline: 'Comprehensive Guide to Models and Technologies'
+  },
+  {
+    id: 'geely-coolray',
+    brand: 'Geely',
+    model: 'Coolray',
+    category: 'SUV',
+    year: 2024,
+    priceUSD: 22000,
+    images: ['/images/models/geely-coolray-1.jpg'],
+    specs: {
+      engine: '1.5L Turbo',
+      power: '177 HP',
+      transmission: '7-Speed DCT',
+      fuelType: 'Petrol',
+      seats: 5,
+      doors: 5,
+      fuelConsumption: '6.4L/100km'
+    },
+    features: ['LED Headlights', '10.25" Touchscreen', 'Apple CarPlay', 'Keyless Entry'],
+    description: 'Compact SUV with sporty design and modern features',
+    available: true,
+    featured: false
+  },
+  {
+    id: 'chery-tiggo-8-pro',
+    brand: 'Chery',
+    model: 'Tiggo 8 Pro',
+    category: 'SUV',
+    year: 2024,
+    priceUSD: 28000,
+    images: ['/images/models/chery-tiggo-8-1.jpg'],
+    specs: {
+      engine: '1.6L Turbo',
+      power: '197 HP',
+      transmission: '7-Speed DCT',
+      fuelType: 'Petrol',
+      seats: 7,
+      doors: 5,
+      fuelConsumption: '7.2L/100km'
+    },
+    features: ['Dual Screen Display', 'Panoramic Sunroof', 'Leather Seats', 'Wireless Charging'],
+    description: '7-seater family SUV with premium interior',
+    available: true,
+    featured: false
+  },
+  {
+    id: 'jetour-x70',
+    brand: 'Jetour',
+    model: 'X70',
+    category: 'SUV',
+    year: 2024,
+    priceUSD: 21000,
+    images: ['/images/models/jetour-x70-1.jpg'],
+    specs: {
+      engine: '1.5L Turbo',
+      power: '156 HP',
+      transmission: '6-Speed DCT',
+      fuelType: 'Petrol',
+      seats: 5,
+      doors: 5,
+      fuelConsumption: '7.1L/100km'
+    },
+    features: ['10.1" Touchscreen', '360 Camera', 'Android Auto', 'Climate Control'],
+    description: 'Affordable SUV with great value for money',
+    available: true,
+    featured: false
+  },
+  {
+    id: 'byd-han-ev',
+    brand: 'BYD',
+    model: 'Han EV',
+    category: 'Sedan',
+    year: 2024,
+    priceUSD: 45000,
+    images: ['/images/models/byd-han-1.jpg'],
+    specs: {
+      engine: 'Dual Motor',
+      power: '517 HP',
+      transmission: 'Automatic',
+      fuelType: 'Electric',
+      seats: 5,
+      doors: 4,
+      range: '610 km'
+    },
+    features: ['Nappa Leather', '15.6" Rotating Screen', 'Heated Seats', 'Brembo Brakes'],
+    description: 'Luxury electric sedan with exceptional performance',
+    available: true,
+    featured: false
+  },
+  {
+    id: 'zeekr-001',
+    brand: 'Zeekr',
+    model: '001',
+    category: 'Electric',
+    year: 2024,
+    priceUSD: 52000,
+    images: ['/images/models/zeekr-001-1.jpg'],
+    specs: {
+      engine: 'Dual Motor AWD',
+      power: '536 HP',
+      transmission: 'Automatic',
+      fuelType: 'Electric',
+      seats: 5,
+      doors: 5,
+      range: '640 km'
+    },
+    features: ['Air Suspension', 'Yamaha Audio', 'Massage Seats', 'Autonomous Driving'],
+    description: 'Premium electric shooting brake with outstanding range',
+    available: true,
+    featured: true,
+    status: 'New',
+    tagline: 'Your Ultimate Guide to Premium Electric Mobility'
+  },
+  {
+    id: 'wuling-hongguang-mini-ev',
+    brand: 'Wuling',
+    model: 'Hongguang Mini EV',
+    category: 'Electric',
+    year: 2024,
+    priceUSD: 8000,
+    images: ['/images/models/wuling-mini-1.jpg'],
+    specs: {
+      engine: 'Electric Motor',
+      power: '41 HP',
+      transmission: 'Automatic',
+      fuelType: 'Electric',
+      seats: 4,
+      doors: 3,
+      range: '200 km'
+    },
+    features: ['Air Conditioning', 'Digital Display', 'Rear Camera', 'Multiple Colors'],
+    description: 'Ultra-compact city EV perfect for urban commuting',
+    available: true,
+    featured: true,
+    status: 'In Stock',
+    tagline: 'Smart & Efficient Urban Electric Vehicle'
+  },
+  {
+    id: 'changan-uni-v',
+    brand: 'Changan',
+    model: 'UNI-V',
+    category: 'Sedan',
+    year: 2024,
+    priceUSD: 23000,
+    images: ['/images/models/changan-uni-v-1.jpg'],
+    specs: {
+      engine: '1.5L Turbo',
+      power: '188 HP',
+      transmission: '7-Speed DCT',
+      fuelType: 'Petrol',
+      seats: 5,
+      doors: 4,
+      fuelConsumption: '6.2L/100km'
+    },
+    features: ['Electric Spoiler', 'Dual Screen', 'Sport Seats', 'Exhaust Sound'],
+    description: 'Sporty sedan with coupe-like design',
+    available: true,
+    featured: true,
+    status: 'Coming Soon',
+    tagline: 'Ultimate Sport Sedan Experience'
+  },
+  {
+    id: 'mg-5',
+    brand: 'MG',
+    model: 'MG 5',
+    category: 'Sedan',
+    year: 2024,
+    priceUSD: 18000,
+    images: ['/images/models/mg-5-1.jpg'],
+    specs: {
+      engine: '1.5L',
+      power: '120 HP',
+      transmission: 'CVT',
+      fuelType: 'Petrol',
+      seats: 5,
+      doors: 4,
+      fuelConsumption: '5.7L/100km'
+    },
+    features: ['10" Touchscreen', 'Apple CarPlay', 'Cruise Control', 'LED Lights'],
+    description: 'Affordable sedan with modern features',
+    available: true,
+    featured: false
+  },
+  // New featured models added for the Featured Models section
+  {
+    id: 'foton-aumark',
+    brand: 'Foton',
+    model: 'AUMARK Truck',
+    category: 'Commercial',
+    year: 2024,
+    priceUSD: 28000,
+    images: ['/images/models/foton-aumark-1.jpg'],
+    specs: {
+      engine: '2.8L Diesel',
+      power: '150 HP',
+      transmission: '6-Speed Manual',
+      fuelType: 'Diesel',
+      seats: 3,
+      doors: 2,
+      fuelConsumption: '10.5L/100km'
+    },
+    features: ['Heavy Duty Chassis', 'Power Steering', 'ABS', 'Air Conditioning'],
+    description: 'Reliable commercial truck for urban logistics and delivery',
+    available: true,
+    featured: true,
+    status: 'In Stock',
+    tagline: 'Your Ultimate Partner for Reliable Urban Logistics'
+  },
+  {
+    id: 'jetour-x70-plus',
+    brand: 'Jetour',
+    model: 'X70 Plus',
+    category: 'SUV',
+    year: 2024,
+    priceUSD: 25000,
+    images: ['/images/models/jetour-x70-plus-1.jpg'],
+    specs: {
+      engine: '1.6L Turbo',
+      power: '197 HP',
+      transmission: '7-Speed DCT',
+      fuelType: 'Petrol',
+      seats: 7,
+      doors: 5,
+      fuelConsumption: '7.5L/100km'
+    },
+    features: ['Digital Cockpit', 'Panoramic Sunroof', 'Leather Seats', '360 Camera'],
+    description: '7-seater family SUV with premium features and spacious interior',
+    available: true,
+    featured: true,
+    status: 'New',
+    tagline: 'Comprehensive Guide to Smart Family SUVs'
+  },
+  {
+    id: 'haval-h6',
+    brand: 'Great Wall',
+    model: 'Haval H6',
+    category: 'SUV',
+    year: 2024,
+    priceUSD: 26000,
+    images: ['/images/models/haval-h6-1.jpg'],
+    specs: {
+      engine: '1.5L Turbo',
+      power: '184 HP',
+      transmission: '7-Speed DCT',
+      fuelType: 'Petrol',
+      seats: 5,
+      doors: 5,
+      fuelConsumption: '7.3L/100km'
+    },
+    features: ['Intelligent AWD', 'Panoramic Sunroof', 'Leather Interior', 'Wireless Charging'],
+    description: 'Popular SUV with advanced safety features and comfortable ride',
+    available: true,
+    featured: false
+  },
+  {
+    id: 'nio-et7',
+    brand: 'NIO',
+    model: 'ET7',
+    category: 'Sedan',
+    year: 2024,
+    priceUSD: 68000,
+    images: ['/images/models/nio-et7-1.jpg'],
+    specs: {
+      engine: 'Dual Motor AWD',
+      power: '653 HP',
+      transmission: 'Automatic',
+      fuelType: 'Electric',
+      seats: 5,
+      doors: 4,
+      range: '1000 km'
+    },
+    features: ['Battery Swap Tech', 'LiDAR System', 'Air Suspension', 'Nappa Leather'],
+    description: 'Luxury electric sedan with industry-leading range and technology',
+    available: true,
+    featured: false
+  },
+  {
+    id: 'x-peng-p7',
+    brand: 'Xpeng',
+    model: 'P7',
+    category: 'Sedan',
+    year: 2024,
+    priceUSD: 42000,
+    images: ['/images/models/xpeng-p7-1.jpg'],
+    specs: {
+      engine: 'Electric Motor',
+      power: '430 HP',
+      transmission: 'Automatic',
+      fuelType: 'Electric',
+      seats: 5,
+      doors: 4,
+      range: '706 km'
+    },
+    features: ['XPILOT 3.5', 'Premium Audio', 'Panoramic Glass Roof', 'Fast Charging'],
+    description: 'High-performance electric sedan with advanced autonomous driving',
+    available: true,
+    featured: false
+  }
+];
+
+export const categories = [
+  { id: 'all', name: 'All Vehicles' },
+  { id: 'suv', name: 'SUV' },
+  { id: 'sedan', name: 'Sedan' },
+  { id: 'electric', name: 'Electric' },
+  { id: 'mpv', name: 'MPV' },
+  { id: 'hatchback', name: 'Hatchback' },
+  { id: 'commercial', name: 'Commercial' }
+];
+
+export const brandsList = [
+  'BYD', 'Geely', 'Chery', 'Jetour', 'Zeekr', 'Wuling', 
+  'Changan', 'MG', 'Great Wall', 'NIO', 'Xpeng', 'Li Auto'
+];
+
+// Helper function to get featured models
+export const getFeaturedModels = (): VehicleModel[] => {
+  return vehicleModels.filter(model => model.featured);
+};
+
+// Helper function to get models by status
+export const getModelsByStatus = (status: VehicleModel['status']): VehicleModel[] => {
+  return vehicleModels.filter(model => model.status === status);
+};
+
+// Helper function to get models by brand
+export const getModelsByBrand = (brand: string): VehicleModel[] => {
+  return vehicleModels.filter(model => model.brand === brand);
+};
+
+// Helper function to get models by category
+export const getModelsByCategory = (category: string): VehicleModel[] => {
+  return vehicleModels.filter(model => 
+    category === 'all' ? true : model.category.toLowerCase() === category.toLowerCase()
+  );
+};
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\vehicles.ts =====
+
+export interface VehicleType {
+  id: string;
+  name: string;
+  fullName: string;
+  description: string;
+  icon: string;
+  features: string[];
+}
+
+export const vehicleTypes: VehicleType[] = [
+  {
+    id: "ev",
+    name: "EV",
+    fullName: "Electric Vehicles",
+    description:
+      "Zero-emission electric vehicles with advanced battery technology",
+    icon: "⚡",
+    features: [
+      "Zero emissions",
+      "Low operating costs",
+      "Instant torque",
+      "Advanced technology",
+    ],
+  },
+  {
+    id: "phev",
+    name: "PHEV",
+    fullName: "Plug-in Hybrid Electric Vehicles",
+    description: "Combine electric and gasoline power for maximum efficiency",
+    icon: "🔌",
+    features: [
+      "Electric + Gasoline",
+      "Longer range",
+      "Flexible charging",
+      "Reduced emissions",
+    ],
+  },
+  {
+    id: "reev",
+    name: "REEV",
+    fullName: "Range Extended Electric Vehicles",
+    description: "Electric vehicles with range-extending generators",
+    icon: "🔄",
+    features: [
+      "Electric primary",
+      "Range extender",
+      "No range anxiety",
+      "Efficient",
+    ],
+  },
+  {
+    id: "petrol",
+    name: "Petrol",
+    fullName: "Traditional Fuel Vehicles",
+    description: "Reliable gasoline-powered vehicles with proven technology",
+    icon: "⛽",
+    features: [
+      "Proven technology",
+      "Wide availability",
+      "Quick refueling",
+      "Lower upfront cost",
+    ],
+  },
+];
+
+export interface Service {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export const services: Service[] = [
+  {
+    title: "Vehicle Sourcing",
+    description:
+      "Access to extensive network of manufacturers and dealers across China",
+    icon: "🔍",
+  },
+  {
+    title: "Quality Inspection",
+    description:
+      "Comprehensive pre-shipment inspection ensuring vehicle quality",
+    icon: "✅",
+  },
+  {
+    title: "Export Documentation",
+    description: "Complete handling of all export paperwork and compliance",
+    icon: "📄",
+  },
+  {
+    title: "Shipping & Logistics",
+    description: "Door-to-door shipping with tracking and insurance",
+    icon: "🚢",
+  },
+  {
+    title: "Customs Clearance",
+    description: "Assistance with customs procedures in destination country",
+    icon: "🛃",
+  },
+  {
+    title: "After-Sales Support",
+    description: "Comprehensive support including warranty and parts supply",
+    icon: "🛠️",
+  },
+];
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\translations\ar.ts =====
+
+const arTranslations = {
+  // Header
+  header: {
+    title: "دا تشين أوتو",
+    company: "شركة شيآن دا تشين داو ري للتجارة الدولية المحدودة",
+    nav: {
+      home: "الرئيسية",
+      about: "من نحن",
+      brands: "العلامات التجارية",
+      vehicles: "المركبات",
+      services: "الخدمات",
+      contact: "اتصل بنا"
+    },
+    contactBtn: "٨٦-١٥٥٩٤٦٣٤٩٥٥+"
+  },
+  
+  // Hero
+  hero: {
+    tagline: "مصدر سيارات موثوق",
+    title: "سيارات صينية فاخرة",
+    subtitle: "توصيل عالمي",
+    description: "شركة شيآن دا تشين داو ري للتجارة الدولية المحدودة توفر سيارات بنزين، كهربائية، وهجينة عالية الجودة من ماركات رائدة عالمياً.",
+    stats: {
+      brands: "ماركة",
+      vehicles: "مركبة تم تصديرها",
+      support: "دعم"
+    },
+    cta: {
+      quote: "احصل على عرض سعر مجاني",
+      brands: "عرض الماركات"
+    },
+    features: {
+      quality: "ضمان الجودة",
+      shipping: "شحن عالمي",
+      support: "دعم متخصص"
+    }
+  },
+  
+  // About
+  about: {
+    title: "عن دا تشين أوتو",
+    description: "دا تشين أوتو، التابعة لشركة شيآن دا تشين داو ري للتجارة الدولية المحدودة، هي مورد ومصدر سيارات مستقل مقرها في الصين.",
+    mission: {
+      title: "مهمتنا",
+      text: "توفير مركبات عالية الجودة بأسعار تنافسية مع خدمة استثنائية."
+    },
+    vision: {
+      title: "رؤيتنا",
+      text: "أن نصبح الشريك الأكثر ثقة في تصدير السيارات من الصين."
+    },
+    values: {
+      title: "قيمنا",
+      text: "النزاهة، الجودة، تركيز العملاء، والتحسين المستمر."
+    }
+  },
+  
+  // Common
+  common: {
+    phone: "٨٦-١٥٥٩٤٦٣٤٩٥٥+",
+    email: "contact@daqinauto.com",
+    address: "شيآن، مقاطعة شانشي، الصين",
+    available: "متوفر ٢٤/٧",
+    learnMore: "المزيد →"
+  }
+};
+
+export { arTranslations };
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\translations\en.ts =====
+
+const enTranslations = {
+  // Header
+  header: {
+    title: "Daqin Auto",
+    company: "Xi'an Daqin Daorui International Trade Co., Ltd.",
+    nav: {
+      home: "Home",
+      about: "About Us",
+      brands: "Brands",
+      vehicles: "Vehicles",
+      services: "Services",
+      contact: "Contact"
+    },
+    contactBtn: "+86-15594634955"
+  },
+  
+  // Hero
+  hero: {
+    tagline: "Trusted Automotive Exporter",
+    title: "Premium Chinese Vehicles",
+    subtitle: "Global Delivery",
+    description: "Xi'an Daqin Daorui International Trade Co., Ltd. supplies quality petrol, EV, PHEV, and REEV vehicles from leading brands worldwide.",
+    stats: {
+      brands: "Brands",
+      vehicles: "Vehicles Exported",
+      support: "Support"
+    },
+    cta: {
+      quote: "Get Free Quote",
+      brands: "View Brands"
+    },
+    features: {
+      quality: "Quality Assurance",
+      shipping: "Worldwide Shipping",
+      support: "Expert Support"
+    }
+  },
+  
+  // About
+  about: {
+    title: "About Daqin Auto",
+    description: "Daqin Auto, under Xi'an Daqin Daorui International Trade Co., Ltd., is an independent automobile supplier and exporter based in China.",
+    mission: {
+      title: "Our Mission",
+      text: "To provide quality vehicles at competitive prices with exceptional service."
+    },
+    vision: {
+      title: "Our Vision",
+      text: "Become the most trusted automotive export partner from China."
+    },
+    values: {
+      title: "Our Values",
+      text: "Integrity, quality, customer focus, and continuous improvement."
+    }
+  },
+  // Add to enTranslations object:
+models: {
+  title: "Vehicle Models",
+  subtitle: "Browse our extensive collection of Chinese vehicles",
+  searchPlaceholder: "Search by brand, model, or keyword...",
+  filters: "Filters",
+  categories: "Vehicle Category",
+  brands: "Brands",
+  priceRange: "Price Range",
+  resetFilters: "Reset All Filters",
+  showing: "Showing",
+  vehicles: "vehicles",
+  sortBy: "Sort by",
+  sortOptions: {
+    priceLow: "Price: Low to High",
+    priceHigh: "Price: High to Low",
+    yearNew: "Year: Newest First",
+    yearOld: "Year: Oldest First",
+    nameAZ: "Name: A to Z",
+    nameZA: "Name: Z to A"
+  },
+  viewDetails: "View Details",
+  specifications: "Specifications",
+  features: "Features",
+  description: "Description",
+  noResults: "No vehicles found",
+  tryAdjusting: "Try adjusting your filters or search terms",
+  interested: "Interested in this model?",
+  contactForDetails: "Contact us for pricing, availability, and shipping details."
+},
+// Add to your existing translation object:
+featuredModels: {
+  title: "Premium Featured Vehicles",
+  subtitle: "Explore our hand-picked selection of top-quality vehicles ready for export",
+  viewDetails: "View Details",
+  inquireNow: "Inquire Now",
+  viewAll: "View All Vehicle Models",
+  lookingForMore: "Looking for more options? Browse our complete vehicle catalog",
+  filters: {
+    all: "All Models",
+    new: "New Arrivals",
+    stock: "In Stock",
+    coming: "Coming Soon"
+  },
+  status: {
+    new: "New Arrival",
+    stock: "In Stock",
+    coming: "Coming Soon",
+    limited: "Limited Edition"
+  }
+},
+  // Common
+  common: {
+    phone: "+86-15594634955",
+    email: "contact@daqinauto.com",
+    address: "Xi'an, Shaanxi Province, China",
+    available: "Available 24/7",
+    learnMore: "Learn more →"
+  }
+};
+
+
+export { enTranslations };
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\translations\index.ts =====
+
+import { enTranslations } from './en';
+import { arTranslations } from './ar';
+import { ruTranslations } from './ru';
+import { zhTranslations } from './zh';
+
+export type TranslationKey = 
+  | keyof typeof enTranslations.header
+  | keyof typeof enTranslations.hero
+  | keyof typeof enTranslations.about
+  | keyof typeof enTranslations.common;
+
+export const translations = {
+  en: enTranslations,
+  ar: arTranslations,
+  ru: ruTranslations,
+  zh: zhTranslations
+};
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\translations\ru.ts =====
+
+const ruTranslations = {
+  // Header
+  header: {
+    title: "Daqin Auto",
+    company: "Торговая компания Сиань Дацинь Даоруй Интернэшнл Ко., Лтд.",
+    nav: {
+      home: "Главная",
+      about: "О нас",
+      brands: "Бренды",
+      vehicles: "Автомобили",
+      services: "Услуги",
+      contact: "Контакты"
+    },
+    contactBtn: "+86-15594634955"
+  },
+  
+  // Hero
+  hero: {
+    tagline: "Надежный экспортер автомобилей",
+    title: "Премиальные китайские автомобили",
+    subtitle: "Доставка по всему миру",
+    description: "Торговая компания Сиань Дацинь Даоруй Интернэшнл Ко., Лтд. поставляет качественные бензиновые, электрические и гибридные автомобили ведущих мировых брендов.",
+    stats: {
+      brands: "Бренды",
+      vehicles: "Автомобилей экспортировано",
+      support: "Поддержка"
+    },
+    cta: {
+      quote: "Получить бесплатное предложение",
+      brands: "Смотреть бренды"
+    },
+    features: {
+      quality: "Гарантия качества",
+      shipping: "Доставка по всему миру",
+      support: "Экспертная поддержка"
+    }
+  },
+  
+  // About
+  about: {
+    title: "О Daqin Auto",
+    description: "Daqin Auto, под торговой компанией Сиань Дацинь Даоруй Интернэшнл Ко., Лтд., является независимым поставщиком и экспортером автомобилей, базирующимся в Китае.",
+    mission: {
+      title: "Наша миссия",
+      text: "Предоставлять качественные автомобили по конкурентоспособным ценам с исключительным сервисом."
+    },
+    vision: {
+      title: "Наше видение",
+      text: "Стать самым надежным партнером по экспорту автомобилей из Китая."
+    },
+    values: {
+      title: "Наши ценности",
+      text: "Честность, качество, ориентация на клиента и постоянное улучшение."
+    }
+  },
+  
+  // Common
+  common: {
+    phone: "+86-15594634955",
+    email: "contact@daqinauto.com",
+    address: "Сиань, провинция Шэньси, Китай",
+    available: "Доступно 24/7",
+    learnMore: "Подробнее →"
+  }
+};
+
+export { ruTranslations };
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\translations\simple.ts =====
+
+export const simpleTranslations = {
+  en: {
+    // Header
+    header: {
+      title: "Daqin Auto",
+      company: "Xi'an Daqin Daorui International Trade Co., Ltd.",
+      nav: {
+        home: "Home",
+        about: "About Us",
+        brands: "Brands",
+        vehicles: "Vehicles",
+        services: "Services",
+        contact: "Contact"
+      },
+      contactBtn: "+86-15594634955"
+    },
+    
+    // Hero
+    hero: {
+      tagline: "Trusted Automotive Exporter",
+      title: "Premium Chinese Vehicles",
+      subtitle: "Global Delivery",
+      description: "Xi'an Daqin Daorui International Trade Co., Ltd. supplies quality petrol, EV, PHEV, and REEV vehicles from leading brands worldwide.",
+      stats: {
+        brands: "Brands",
+        vehicles: "Vehicles Exported",
+        support: "Support"
+      },
+      cta: {
+        quote: "Get Free Quote",
+        brands: "View Brands"
+      },
+      features: {
+        quality: "Quality Assurance",
+        shipping: "Worldwide Shipping",
+        support: "Expert Support"
+      }
+    },
+    
+    // About
+    about: {
+      title: "About Daqin Auto",
+      description: "Daqin Auto, under Xi'an Daqin Daorui International Trade Co., Ltd., is an independent automobile supplier and exporter based in China.",
+      mission: {
+        title: "Our Mission",
+        text: "To provide quality vehicles at competitive prices with exceptional service."
+      },
+      vision: {
+        title: "Our Vision",
+        text: "Become the most trusted automotive export partner from China."
+      },
+      values: {
+        title: "Our Values",
+        text: "Integrity, quality, customer focus, and continuous improvement."
+      }
+    },
+    
+    // Brands
+    brands: {
+      title: "Trusted Automotive Brands",
+      subtitle: "We partner with leading Chinese and international manufacturers",
+      chinese: "Chinese Brands",
+      international: "International Brands",
+      benefits: {
+        title: "Why Source Through Us?",
+        list: [
+          'Direct manufacturer relationships',
+          'Competitive factory prices',
+          'Quality control inspections',
+          'Export documentation handled',
+          'Customs clearance assistance',
+          'After-sales support'
+        ]
+      },
+      catalog: {
+        title: "Get Brand Catalog",
+        description: "Request our complete brand catalog with specifications, pricing, and availability.",
+        button: "Request Catalog"
+      }
+    },
+    
+    // Vehicles
+    vehicles: {
+      title: "Vehicle Types",
+      subtitle: "We supply all types of vehicles to meet diverse market needs",
+      custom: {
+        title: "Need Custom Vehicle Solutions?",
+        description: "We can source specific vehicle models, configurations, and modifications to meet your exact requirements and market demands.",
+        button: "Discuss Requirements"
+      },
+      options: {
+        handDrive: "Left/Right Hand Drive",
+        specs: "Custom Specifications",
+        bulk: "Bulk Orders",
+        warranty: "Warranty"
+      }
+    },
+    
+    // Services
+    services: {
+      title: "Comprehensive Services",
+      subtitle: "End-to-end solutions from sourcing to after-sales support",
+      items: [
+        {
+          title: "Vehicle Sourcing",
+          description: "Access to extensive network of manufacturers and dealers across China"
+        },
+        {
+          title: "Quality Inspection",
+          description: "Comprehensive pre-shipment inspection ensuring vehicle quality"
+        },
+        {
+          title: "Export Documentation",
+          description: "Complete handling of all export paperwork and compliance"
+        },
+        {
+          title: "Shipping & Logistics",
+          description: "Door-to-door shipping with tracking and insurance"
+        },
+        {
+          title: "Customs Clearance",
+          description: "Assistance with customs procedures in destination country"
+        },
+        {
+          title: "After-Sales Support",
+          description: "Comprehensive support including warranty and parts supply"
+        }
+      ],
+      process: {
+        title: "Our Export Process",
+        description: "Streamlined process ensuring smooth delivery from factory to your location",
+        steps: [
+          {
+            title: "Consultation",
+            description: "Understand your requirements"
+          },
+          {
+            title: "Sourcing",
+            description: "Find perfect vehicle match"
+          },
+          {
+            title: "Inspection",
+            description: "Quality and compliance check"
+          },
+          {
+            title: "Delivery",
+            description: "Shipping and customs clearance"
+          }
+        ]
+      }
+    },
+    
+    // Process
+    process: {
+      title: "Simple & Transparent Process",
+      subtitle: "We make importing vehicles from China straightforward and risk-free",
+      steps: [
+        {
+          title: "Initial Consultation",
+          description: "We understand your requirements, budget, and timeline"
+        },
+        {
+          title: "Vehicle Selection",
+          description: "We source suitable vehicles and provide detailed specifications"
+        },
+        {
+          title: "Quality Inspection",
+          description: "Comprehensive pre-shipment inspection with detailed report"
+        },
+        {
+          title: "Shipping & Delivery",
+          description: "Door-to-door delivery with customs clearance support"
+        }
+      ],
+      timeline: {
+        title: "Typical Timeline",
+        phases: [
+          { phase: "Consultation & Quotation", time: "1-2 days" },
+          { phase: "Vehicle Sourcing", time: "3-7 days" },
+          { phase: "Documentation & Payment", time: "2-3 days" },
+          { phase: "Shipping Preparation", time: "5-10 days" },
+          { phase: "Sea Shipping", time: "30-45 days" },
+          { phase: "Customs & Delivery", time: "5-7 days" }
+        ],
+        note: "Timeline may vary based on vehicle availability, shipping route, and destination country regulations."
+      }
+    },
+    
+    // Contact
+    contact: {
+      title: "Get In Touch",
+      subtitle: "Contact us for vehicle inquiries, pricing, or partnership opportunities",
+      methods: {
+        call: {
+          title: "Call Us",
+          available: "Available 24/7"
+        },
+        email: {
+          title: "Email",
+          purpose: "For detailed inquiries"
+        },
+        location: {
+          title: "Location",
+          purpose: "Headquarters"
+        }
+      },
+      form: {
+        title: "Send Inquiry",
+        fields: {
+          name: "Full Name",
+          email: "Email Address",
+          phone: "Phone Number",
+          country: "Country",
+          vehicleType: "Vehicle Type Interest",
+          message: "Your Message"
+        },
+        vehicleTypes: [
+          "Select vehicle type",
+          "Electric Vehicles (EV)",
+          "Plug-in Hybrid (PHEV)",
+          "Range Extended EV (REEV)",
+          "Petrol Vehicles",
+          "Multiple Types",
+          "Not Sure Yet"
+        ],
+        button: "Send Inquiry",
+        success: {
+          title: "Thank You!",
+          message: "Your inquiry has been received. Our team will contact you within 24 hours.",
+          another: "Send Another Message"
+        },
+        privacy: "By submitting this form, you agree to our Privacy Policy. We'll contact you within 24 hours."
+      },
+      info: {
+        response: "Response Time",
+        support: "Support Hours",
+        languages: "Languages"
+      }
+    },
+    
+    // Common
+    common: {
+      phone: "+86-15594634955",
+      email: "contact@daqinauto.com",
+      address: "Xi'an, Shaanxi Province, China",
+      available: "Available 24/7",
+      learnMore: "Learn more →"
+    }
+  },
+  
+  ar: {
+    header: {
+      title: "دا تشين أوتو",
+      company: "شركة شيآن دا تشين داو ري للتجارة الدولية المحدودة",
+      nav: {
+        home: "الرئيسية",
+        about: "من نحن",
+        brands: "العلامات التجارية",
+        vehicles: "المركبات",
+        services: "الخدمات",
+        contact: "اتصل بنا"
+      },
+      contactBtn: "٨٦-١٥٥٩٤٦٣٤٩٥٥+"
+    },
+    hero: {
+      tagline: "مصدر سيارات موثوق",
+      title: "سيارات صينية فاخرة",
+      subtitle: "توصيل عالمي",
+      description: "شركة شيآن دا تشين داو ري للتجارة الدولية المحدودة توفر سيارات بنزين، كهربائية، وهجينة عالية الجودة من ماركات رائدة عالمياً.",
+      stats: {
+        brands: "ماركة",
+        vehicles: "مركبة تم تصديرها",
+        support: "دعم"
+      },
+      cta: {
+        quote: "احصل على عرض سعر مجاني",
+        brands: "عرض الماركات"
+      },
+      features: {
+        quality: "ضمان الجودة",
+        shipping: "شحن عالمي",
+        support: "دعم متخصص"
+      }
+    },
+    about: {
+      title: "عن دا تشين أوتو",
+      description: "دا تشين أوتو، التابعة لشركة شيآن دا تشين داو ري للتجارة الدولية المحدودة، هي مورد ومصدر سيارات مستقل مقرها في الصين.",
+      mission: {
+        title: "مهمتنا",
+        text: "توفير مركبات عالية الجودة بأسعار تنافسية مع خدمة استثنائية."
+      },
+      vision: {
+        title: "رؤيتنا",
+        text: "أن نصبح الشريك الأكثر ثقة في تصدير السيارات من الصين."
+      },
+      values: {
+        title: "قيمنا",
+        text: "النزاهة، الجودة، تركيز العملاء، والتحسين المستمر."
+      }
+    },
+    brands: {
+      title: "علامات سيارات موثوقة",
+      subtitle: "نحن نتعاون مع مصنعي الصين والعالم الرائدين",
+      chinese: "العلامات الصينية",
+      international: "العلامات الدولية",
+      benefits: {
+        title: "لماذا تتعامل معنا؟",
+        list: [
+          "علاقات مباشرة مع المصنعين",
+          "أسعار تنافسية من المصنع",
+          "فحوصات مراقبة الجودة",
+          "معالجة وثائق التصدير",
+          "مساعدة في التخليص الجمركي",
+          "دعم ما بعد البيع"
+        ]
+      },
+      catalog: {
+        title: "احصل على كتالوج العلامات",
+        description: "اطلب كتالوجنا الكامل للماركات مع المواصفات والأسعار والتوفر.",
+        button: "طلب الكتالوج"
+      }
+    },
+    vehicles: {
+      title: "أنواع المركبات",
+      subtitle: "نوفر جميع أنواع المركبات لتلبية احتياجات السوق المتنوعة",
+      custom: {
+        title: "هل تحتاج إلى حلول مركبات مخصصة؟",
+        description: "يمكننا توريد نماذج مركبات محددة وتكوينات وتعديلات لتلبية متطلباتك واحتياجات السوق بدقة.",
+        button: "ناقش المتطلبات"
+      },
+      options: {
+        handDrive: "قيادة يسرى/يمنى",
+        specs: "مواصفات مخصصة",
+        bulk: "طلبات بالجملة",
+        warranty: "الضمان"
+      }
+    },
+    services: {
+      title: "خدمات شاملة",
+      subtitle: "حلول متكاملة من التوريد إلى دعم ما بعد البيع",
+      items: [
+        {
+          title: "توفير المركبات",
+          description: "الوصول إلى شبكة واسعة من المصنعين والتجار في جميع أنحاء الصين"
+        },
+        {
+          title: "فحص الجودة",
+          description: "فحص شامل قبل الشحن لضمان جودة المركبة"
+        },
+        {
+          title: "وثائق التصدير",
+          description: "معالجة كاملة لجميع أوراق التصدير والامتثال"
+        },
+        {
+          title: "الشحن والخدمات اللوجستية",
+          description: "شحن من الباب إلى الباب مع التتبع والتأمين"
+        },
+        {
+          title: "التخليص الجمركي",
+          description: "المساعدة في إجراءات الجمارك في البلد الوجهة"
+        },
+        {
+          title: "دعم ما بعد البيع",
+          description: "دعم شامل يشمل الضمان وتوريد قطع الغيار"
+        }
+      ],
+      process: {
+        title: "عملية التصدير لدينا",
+        description: "عملية مبسطة تضمن توصيلًا سلسًا من المصنع إلى موقعك",
+        steps: [
+          {
+            title: "استشارة",
+            description: "فهم متطلباتك"
+          },
+          {
+            title: "توفير",
+            description: "العثور على المركبة المناسبة"
+          },
+          {
+            title: "فحص",
+            description: "فحص الجودة والامتثال"
+          },
+          {
+            title: "تسليم",
+            description: "الشحن والتخليص الجمركي"
+          }
+        ]
+      }
+    },
+    process: {
+      title: "عملية بسيطة وشفافة",
+      subtitle: "نجعل استيراد المركبات من الصين مباشرة وخالية من المخاطر",
+      steps: [
+        {
+          title: "استشارة أولية",
+          description: "نفهم متطلباتك وميزانيتك وجدولك الزمني"
+        },
+        {
+          title: "اختيار المركبة",
+          description: "نوفر مركبات مناسبة ونقدم مواصفات مفصلة"
+        },
+        {
+          title: "فحص الجودة",
+          description: "فحص شامل قبل الشحن مع تقرير مفصل"
+        },
+        {
+          title: "الشحن والتسليم",
+          description: "تسليم من الباب إلى الباب مع دعم التخليص الجمركي"
+        }
+      ],
+      timeline: {
+        title: "الجدول الزمني النموذجي",
+        phases: [
+          { phase: "الاستشارة والعرض", time: "١-٢ يوم" },
+          { phase: "توفير المركبة", time: "٣-٧ أيام" },
+          { phase: "الوثائق والدفع", time: "٢-٣ أيام" },
+          { phase: "تحضير الشحن", time: "٥-١٠ أيام" },
+          { phase: "الشحن البحري", time: "٣٠-٤٥ يوم" },
+          { phase: "الجمركة والتسليم", time: "٥-٧ أيام" }
+        ],
+        note: "قد يختلف الجدول الزمني بناءً على توفر المركبة ومسار الشحن ولوائح البلد الوجهة."
+      }
+    },
+    contact: {
+      title: "تواصل معنا",
+      subtitle: "اتصل بنا لاستفسارات المركبات أو الأسعار أو فرص الشراكة",
+      methods: {
+        call: {
+          title: "اتصل بنا",
+          available: "متوفر ٢٤/٧"
+        },
+        email: {
+          title: "البريد الإلكتروني",
+          purpose: "للاستفسارات التفصيلية"
+        },
+        location: {
+          title: "الموقع",
+          purpose: "المقر الرئيسي"
+        }
+      },
+      form: {
+        title: "أرسل استفسار",
+        fields: {
+          name: "الاسم الكامل",
+          email: "البريد الإلكتروني",
+          phone: "رقم الهاتف",
+          country: "البلد",
+          vehicleType: "نوع المركبة المطلوب",
+          message: "رسالتك"
+        },
+        vehicleTypes: [
+          "اختر نوع المركبة",
+          "مركبات كهربائية (EV)",
+          "هجينة قابلة للشحن (PHEV)",
+          "مركبات كهربائية موسعة المدى (REEV)",
+          "مركبات بنزين",
+          "أنواع متعددة",
+          "لست متأكدًا بعد"
+        ],
+        button: "أرسل الاستفسار",
+        success: {
+          title: "شكرًا لك!",
+          message: "تم استلام استفسارك. سيتواصل معك فريقنا خلال 24 ساعة.",
+          another: "أرسل رسالة أخرى"
+        },
+        privacy: "بتقديم هذا النموذج، فإنك توافق على سياسة الخصوصية الخاصة بنا. سوف نتصل بك خلال 24 ساعة."
+      },
+      info: {
+        response: "وقت الاستجابة",
+        support: "ساعات الدعم",
+        languages: "اللغات"
+      }
+    },
+    common: {
+      phone: "٨٦-١٥٥٩٤٦٣٤٩٥٥+",
+      email: "contact@daqinauto.com",
+      address: "شيآن، مقاطعة شانشي، الصين",
+      available: "متوفر ٢٤/٧",
+      learnMore: "المزيد →"
+    }
+  },
+  
+  ru: {
+    header: {
+      title: "Daqin Auto",
+      company: "Торговая компания Сиань Дацинь Даоруй Интернэшнл Ко., Лтд.",
+      nav: {
+        home: "Главная",
+        about: "О нас",
+        brands: "Бренды",
+        vehicles: "Автомобили",
+        services: "Услуги",
+        contact: "Контакты"
+      },
+      contactBtn: "+86-15594634955"
+    },
+    hero: {
+      tagline: "Надежный экспортер автомобилей",
+      title: "Премиальные китайские автомобили",
+      subtitle: "Доставка по всему миру",
+      description: "Торговая компания Сиань Дацинь Даоруй Интернэшнл Ко., Лтд. поставляет качественные бензиновые, электрические и гибридные автомобили ведущих мировых брендов.",
+      stats: {
+        brands: "Бренды",
+        vehicles: "Автомобилей экспортировано",
+        support: "Поддержка"
+      },
+      cta: {
+        quote: "Получить бесплатное предложение",
+        brands: "Смотреть бренды"
+      },
+      features: {
+        quality: "Гарантия качества",
+        shipping: "Доставка по всему миру",
+        support: "Экспертная поддержка"
+      }
+    },
+    about: {
+      title: "О Daqin Auto",
+      description: "Daqin Auto, под торговой компанией Сиань Дацинь Даоруй Интернэшнл Ко., Лтд., является независимым поставщиком и экспортером автомобилей, базирующимся в Китае.",
+      mission: {
+        title: "Наша миссия",
+        text: "Предоставлять качественные автомобили по конкурентоспособным ценам с исключительным сервисом."
+      },
+      vision: {
+        title: "Наше видение",
+        text: "Стать самым надежным партнером по экспорту автомобилей из Китая."
+      },
+      values: {
+        title: "Наши ценности",
+        text: "Честность, качество, ориентация на клиента и постоянное улучшение."
+      }
+    },
+    brands: {
+      title: "Надежные автомобильные бренды",
+      subtitle: "Мы сотрудничаем с ведущими китайскими и международными производителями",
+      chinese: "Китайские бренды",
+      international: "Международные бренды",
+      benefits: {
+        title: "Почему выбирают нас?",
+        list: [
+          "Прямые отношения с производителями",
+          "Конкурентные заводские цены",
+          "Проверки контроля качества",
+          "Оформление экспортной документации",
+          "Помощь в таможенном оформлении",
+          "Поддержка после продажи"
+        ]
+      },
+      catalog: {
+        title: "Получить каталог брендов",
+        description: "Запросите наш полный каталог брендов с характеристиками, ценами и наличием.",
+        button: "Запросить каталог"
+      }
+    },
+    vehicles: {
+      title: "Типы транспортных средств",
+      subtitle: "Мы поставляем все типы транспортных средств для удовлетворения различных рыночных потребностей",
+      custom: {
+        title: "Нужны индивидуальные решения для транспортных средств?",
+        description: "Мы можем поставлять конкретные модели транспортных средств, конфигурации и модификации для удовлетворения ваших точных требований и потребностей рынка.",
+        button: "Обсудить требования"
+      },
+      options: {
+        handDrive: "Левый/правый руль",
+        specs: "Индивидуальные характеристики",
+        bulk: "Оптовые заказы",
+        warranty: "Гарантия"
+      }
+    },
+    services: {
+      title: "Комплексные услуги",
+      subtitle: "Комплексные решения от закупки до послепродажной поддержки",
+      items: [
+        {
+          title: "Поиск транспортных средств",
+          description: "Доступ к обширной сети производителей и дилеров по всему Китаю"
+        },
+        {
+          title: "Контроль качества",
+          description: "Комплексная предотгрузочная проверка обеспечения качества транспортных средств"
+        },
+        {
+          title: "Экспортная документация",
+          description: "Полное оформление всей экспортной документации и соответствия"
+        },
+        {
+          title: "Доставка и логистика",
+          description: "Доставка от двери до двери с отслеживанием и страховкой"
+        },
+        {
+          title: "Таможенное оформление",
+          description: "Помощь в таможенных процедурах в стране назначения"
+        },
+        {
+          title: "Послепродажная поддержка",
+          description: "Комплексная поддержка, включая гарантию и поставку запчастей"
+        }
+      ],
+      process: {
+        title: "Наш процесс экспорта",
+        description: "Оптимизированный процесс, обеспечивающий плавную доставку от завода до вашего местоположения",
+        steps: [
+          {
+            title: "Консультация",
+            description: "Понимаем ваши требования"
+          },
+          {
+            title: "Поиск",
+            description: "Находим идеальное транспортное средство"
+          },
+          {
+            title: "Проверка",
+            description: "Проверка качества и соответствия"
+          },
+          {
+            title: "Доставка",
+            description: "Доставка и таможенное оформление"
+          }
+        ]
+      }
+    },
+    process: {
+      title: "Простой и прозрачный процесс",
+      subtitle: "Мы делаем импорт автомобилей из Китая простым и безрисковым",
+      steps: [
+        {
+          title: "Первичная консультация",
+          description: "Мы понимаем ваши требования, бюджет и сроки"
+        },
+        {
+          title: "Выбор транспортного средства",
+          description: "Мы подбираем подходящие транспортные средства и предоставляем подробные спецификации"
+        },
+        {
+          title: "Контроль качества",
+          description: "Комплексная предотгрузочная проверка с подробным отчетом"
+        },
+        {
+          title: "Доставка и отгрузка",
+          description: "Доставка от двери до двери с поддержкой таможенного оформления"
+        }
+      ],
+      timeline: {
+        title: "Типичный график",
+        phases: [
+          { phase: "Консультация и предложение", time: "1-2 дня" },
+          { phase: "Поиск транспортного средства", time: "3-7 дней" },
+          { phase: "Документация и оплата", time: "2-3 дня" },
+          { phase: "Подготовка к отгрузке", time: "5-10 дней" },
+          { phase: "Морская перевозка", time: "30-45 дней" },
+          { phase: "Таможня и доставка", time: "5-7 дней" }
+        ],
+        note: "График может меняться в зависимости от наличия транспортных средств, маршрута доставки и правил страны назначения."
+      }
+    },
+    contact: {
+      title: "Свяжитесь с нами",
+      subtitle: "Свяжитесь с нами для запросов о транспортных средствах, ценах или возможностях партнерства",
+      methods: {
+        call: {
+          title: "Позвоните нам",
+          available: "Доступно 24/7"
+        },
+        email: {
+          title: "Электронная почта",
+          purpose: "Для подробных запросов"
+        },
+        location: {
+          title: "Местоположение",
+          purpose: "Головной офис"
+        }
+      },
+      form: {
+        title: "Отправить запрос",
+        fields: {
+          name: "Полное имя",
+          email: "Адрес электронной почты",
+          phone: "Номер телефона",
+          country: "Страна",
+          vehicleType: "Интересующий тип транспортного средства",
+          message: "Ваше сообщение"
+        },
+        vehicleTypes: [
+          "Выберите тип транспортного средства",
+          "Электрические автомобили (EV)",
+          "Подключаемые гибриды (PHEV)",
+          "Электромобили с увеличенным запасом хода (REEV)",
+          "Бензиновые автомобили",
+          "Несколько типов",
+          "Еще не уверен"
+        ],
+        button: "Отправить запрос",
+        success: {
+          title: "Спасибо!",
+          message: "Ваш запрос получен. Наша команда свяжется с вами в течение 24 часов.",
+          another: "Отправить еще одно сообщение"
+        },
+        privacy: "Отправляя эту форму, вы соглашаетесь с нашей Политикой конфиденциальности. Мы свяжемся с вами в течение 24 часов."
+      },
+      info: {
+        response: "Время ответа",
+        support: "Часы поддержки",
+        languages: "Языки"
+      }
+    },
+    common: {
+      phone: "+86-15594634955",
+      email: "contact@daqinauto.com",
+      address: "Сиань, провинция Шэньси, Китай",
+      available: "Доступно 24/7",
+      learnMore: "Подробнее →"
+    }
+  },
+  
+  zh: {
+    header: {
+      title: "大秦汽车",
+      company: "西安大秦道瑞国际贸易有限公司",
+      nav: {
+        home: "首页",
+        about: "关于我们",
+        brands: "品牌",
+        vehicles: "车辆",
+        services: "服务",
+        contact: "联系我们"
+      },
+      contactBtn: "+86-15594634955"
+    },
+    hero: {
+      tagline: "值得信赖的汽车出口商",
+      title: "优质中国汽车",
+      subtitle: "全球交付",
+      description: "西安大秦道瑞国际贸易有限公司供应全球领先品牌的优质汽油车、电动车和混合动力车。",
+      stats: {
+        brands: "品牌",
+        vehicles: "已出口车辆",
+        support: "支持"
+      },
+      cta: {
+        quote: "获取免费报价",
+        brands: "查看品牌"
+      },
+      features: {
+        quality: "质量保证",
+        shipping: "全球运输",
+        support: "专家支持"
+      }
+    },
+    about: {
+      title: "关于大秦汽车",
+      description: "大秦汽车，隶属于西安大秦道瑞国际贸易有限公司，是一家总部位于中国的独立汽车供应商和出口商。",
+      mission: {
+        title: "我们的使命",
+        text: "以具有竞争力的价格提供优质汽车，并提供卓越的服务。"
+      },
+      vision: {
+        title: "我们的愿景",
+        text: "成为中国最值得信赖的汽车出口合作伙伴。"
+      },
+      values: {
+        title: "我们的价值观",
+        text: "诚信、质量、以客户为中心和持续改进。"
+      }
+    },
+    brands: {
+      title: "值得信赖的汽车品牌",
+      subtitle: "我们与领先的中国和国际制造商合作",
+      chinese: "中国品牌",
+      international: "国际品牌",
+      benefits: {
+        title: "为什么选择我们？",
+        list: [
+          "直接与制造商建立关系",
+          "有竞争力的工厂价格",
+          "质量控制检查",
+          "处理出口文件",
+          "清关协助",
+          "售后服务支持"
+        ]
+      },
+      catalog: {
+        title: "获取品牌目录",
+        description: "请求我们完整的品牌目录，包含规格、价格和可用性。",
+        button: "请求目录"
+      }
+    },
+    vehicles: {
+      title: "车辆类型",
+      subtitle: "我们供应所有类型的车辆以满足不同的市场需求",
+      custom: {
+        title: "需要定制车辆解决方案？",
+        description: "我们可以采购特定的车辆型号、配置和改装，以满足您的确切要求和市场需求。",
+        button: "讨论要求"
+      },
+      options: {
+        handDrive: "左/右舵驾驶",
+        specs: "定制规格",
+        bulk: "批量订单",
+        warranty: "保修"
+      }
+    },
+    services: {
+      title: "综合服务",
+      subtitle: "从采购到售后支持的端到端解决方案",
+      items: [
+        {
+          title: "车辆采购",
+          description: "访问遍布中国的广泛制造商和经销商网络"
+        },
+        {
+          title: "质量检验",
+          description: "全面的装运前检验，确保车辆质量"
+        },
+        {
+          title: "出口文件",
+          description: "处理所有出口文件和合规性"
+        },
+        {
+          title: "运输与物流",
+          description: "门到门运输，含跟踪和保险"
+        },
+        {
+          title: "清关",
+          description: "协助目的国海关手续"
+        },
+        {
+          title: "售后支持",
+          description: "全面支持，包括保修和零部件供应"
+        }
+      ],
+      process: {
+        title: "我们的出口流程",
+        description: "简化的流程，确保从工厂到您所在地的顺利交付",
+        steps: [
+          {
+            title: "咨询",
+            description: "了解您的要求"
+          },
+          {
+            title: "采购",
+            description: "找到完美的车辆匹配"
+          },
+          {
+            title: "检验",
+            description: "质量和合规性检查"
+          },
+          {
+            title: "交付",
+            description: "运输和清关"
+          }
+        ]
+      }
+    },
+    process: {
+      title: "简单透明的流程",
+      subtitle: "我们让从中国进口车辆变得简单无风险",
+      steps: [
+        {
+          title: "初步咨询",
+          description: "我们了解您的需求、预算和时间表"
+        },
+        {
+          title: "车辆选择",
+          description: "我们采购合适的车辆并提供详细规格"
+        },
+        {
+          title: "质量检验",
+          description: "全面的装运前检验，提供详细报告"
+        },
+        {
+          title: "运输与交付",
+          description: "门到门交付，提供清关支持"
+        }
+      ],
+      timeline: {
+        title: "典型时间表",
+        phases: [
+          { phase: "咨询与报价", time: "1-2天" },
+          { phase: "车辆采购", time: "3-7天" },
+          { phase: "文件与付款", time: "2-3天" },
+          { phase: "运输准备", time: "5-10天" },
+          { phase: "海运", time: "30-45天" },
+          { phase: "清关与交付", time: "5-7天" }
+        ],
+        note: "时间表可能根据车辆可用性、运输路线和目的国法规而变化。"
+      }
+    },
+    contact: {
+      title: "联系我们",
+      subtitle: "联系我们了解车辆查询、价格或合作机会",
+      methods: {
+        call: {
+          title: "打电话给我们",
+          available: "全天候24/7服务"
+        },
+        email: {
+          title: "电子邮件",
+          purpose: "用于详细查询"
+        },
+        location: {
+          title: "位置",
+          purpose: "总部"
+        }
+      },
+      form: {
+        title: "发送查询",
+        fields: {
+          name: "全名",
+          email: "电子邮件地址",
+          phone: "电话号码",
+          country: "国家",
+          vehicleType: "感兴趣的车辆类型",
+          message: "您的留言"
+        },
+        vehicleTypes: [
+          "选择车辆类型",
+          "电动汽车 (EV)",
+          "插电式混合动力车 (PHEV)",
+          "增程式电动汽车 (REEV)",
+          "汽油车",
+          "多种类型",
+          "还不确定"
+        ],
+        button: "发送查询",
+        success: {
+          title: "谢谢！",
+          message: "您的查询已收到。我们的团队将在24小时内与您联系。",
+          another: "发送另一条消息"
+        },
+        privacy: "提交此表格即表示您同意我们的隐私政策。我们将在24小时内与您联系。"
+      },
+      info: {
+        response: "响应时间",
+        support: "支持时间",
+        languages: "语言"
+      }
+    },
+    common: {
+      phone: "+86-15594634955",
+      email: "contact@daqinauto.com",
+      address: "中国陕西省西安市",
+      available: "全天候24/7服务",
+      learnMore: "了解更多 →"
+    }
+  }
+};
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\data\translations\zh.ts =====
+
+const zhTranslations = {
+  // Header
+  header: {
+    title: "大秦汽车",
+    company: "西安大秦道瑞国际贸易有限公司",
+    nav: {
+      home: "首页",
+      about: "关于我们",
+      brands: "品牌",
+      vehicles: "车辆",
+      services: "服务",
+      contact: "联系我们"
+    },
+    contactBtn: "+86-15594634955"
+  },
+  
+  // Hero
+  hero: {
+    tagline: "值得信赖的汽车出口商",
+    title: "优质中国汽车",
+    subtitle: "全球交付",
+    description: "西安大秦道瑞国际贸易有限公司供应全球领先品牌的优质汽油车、电动车和混合动力车。",
+    stats: {
+      brands: "品牌",
+      vehicles: "已出口车辆",
+      support: "支持"
+    },
+    cta: {
+      quote: "获取免费报价",
+      brands: "查看品牌"
+    },
+    features: {
+      quality: "质量保证",
+      shipping: "全球运输",
+      support: "专家支持"
+    }
+  },
+  
+  // About
+  about: {
+    title: "关于大秦汽车",
+    description: "大秦汽车，隶属于西安大秦道瑞国际贸易有限公司，是一家总部位于中国的独立汽车供应商和出口商。",
+    mission: {
+      title: "我们的使命",
+      text: "以具有竞争力的价格提供优质汽车，并提供卓越的服务。"
+    },
+    vision: {
+      title: "我们的愿景",
+      text: "成为中国最值得信赖的汽车出口合作伙伴。"
+    },
+    values: {
+      title: "我们的价值观",
+      text: "诚信、质量、以客户为中心和持续改进。"
+    }
+  },
+  
+  // Common
+  common: {
+    phone: "+86-15594634955",
+    email: "contact@daqinauto.com",
+    address: "中国陕西省西安市",
+    available: "全天候24/7服务",
+    learnMore: "了解更多 →"
+  }
+};
+
+export { zhTranslations };
+
+
+// ===== FILE: C:\Users\TEMEsgen\Desktop\Boru\daqin-auto\utils\translationDebug.ts =====
+
+// utils/translationDebug.ts
+export function debugTranslations(componentName: string, locale: string, namespace: string, translations: any) {
+  console.log(`🔍 [${componentName}] Locale: ${locale}, Namespace: ${namespace}`);
+  
+  if (!translations) {
+    console.error(`❌ No translations received for ${namespace}`);
+    return false;
+  }
+  
+  console.log(`✅ Translations loaded:`, Object.keys(translations));
+  return true;
+}
+
+export function logMissingKeys(componentName: string, requiredKeys: string[], translations: any) {
+  const missingKeys = requiredKeys.filter(key => !translations[key]);
+  
+  if (missingKeys.length > 0) {
+    console.warn(`⚠️  [${componentName}] Missing keys:`, missingKeys);
+    return false;
+  }
+  
+  console.log(`✓ [${componentName}] All required keys present`);
+  return true;
+}
+
+export function getTranslationSafe(t: (namespace: string) => any, namespace: string, fallback: any = {}) {
+  try {
+    const translation = t(namespace);
+    return translation && typeof translation === 'object' && Object.keys(translation).length > 0 
+      ? translation 
+      : fallback;
+  } catch (error) {
+    console.error(`Error getting translation for ${namespace}:`, error);
+    return fallback;
+  }
+}

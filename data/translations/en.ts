@@ -53,7 +53,57 @@ const enTranslations = {
       text: "Integrity, quality, customer focus, and continuous improvement."
     }
   },
-  
+  // Add to enTranslations object:
+models: {
+  title: "Vehicle Models",
+  subtitle: "Browse our extensive collection of Chinese vehicles",
+  searchPlaceholder: "Search by brand, model, or keyword...",
+  filters: "Filters",
+  categories: "Vehicle Category",
+  brands: "Brands",
+  priceRange: "Price Range",
+  resetFilters: "Reset All Filters",
+  showing: "Showing",
+  vehicles: "vehicles",
+  sortBy: "Sort by",
+  sortOptions: {
+    priceLow: "Price: Low to High",
+    priceHigh: "Price: High to Low",
+    yearNew: "Year: Newest First",
+    yearOld: "Year: Oldest First",
+    nameAZ: "Name: A to Z",
+    nameZA: "Name: Z to A"
+  },
+  viewDetails: "View Details",
+  specifications: "Specifications",
+  features: "Features",
+  description: "Description",
+  noResults: "No vehicles found",
+  tryAdjusting: "Try adjusting your filters or search terms",
+  interested: "Interested in this model?",
+  contactForDetails: "Contact us for pricing, availability, and shipping details."
+},
+// Add to your existing translation object:
+featuredModels: {
+  title: "Premium Featured Vehicles",
+  subtitle: "Explore our hand-picked selection of top-quality vehicles ready for export",
+  viewDetails: "View Details",
+  inquireNow: "Inquire Now",
+  viewAll: "View All Vehicle Models",
+  lookingForMore: "Looking for more options? Browse our complete vehicle catalog",
+  filters: {
+    all: "All Models",
+    new: "New Arrivals",
+    stock: "In Stock",
+    coming: "Coming Soon"
+  },
+  status: {
+    new: "New Arrival",
+    stock: "In Stock",
+    coming: "Coming Soon",
+    limited: "Limited Edition"
+  }
+},
   // Common
   common: {
     phone: "+86-15594634955",
@@ -63,5 +113,6 @@ const enTranslations = {
     learnMore: "Learn more →"
   }
 };
+
 
 export { enTranslations };

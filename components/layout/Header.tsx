@@ -4,6 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "../LanguageSwitcher";
+import Image from "next/image";
 
 export default function Header() {
   const { t, dir } = useLanguage();
@@ -11,12 +12,13 @@ export default function Header() {
 
   const navigation = [
     { name: t.header.nav.home, href: "/" },
-    { name: t.header.nav.about, href: "#about" },
+    { name: t.header.nav.about, href: "/about" },
     { name: t.header.nav.brands, href: "#brands" },
     { name: t.header.nav.vehicles, href: "#vehicles" },
     { name: t.header.nav.services, href: "#services" },
-    { name: t.header.nav.contact, href: "#contact" },
+    { name: t.header.nav.contact, href: "/contact" },
   ];
+  
   return (
     <header
       className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm"
@@ -24,20 +26,20 @@ export default function Header() {
     >
       <nav className="section-container">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 border-2 border-gold-primary rounded-xl flex items-center justify-center bg-gradient-to-br from-gold-primary/10 to-transparent">
-              <span className="text-gold-primary font-bold text-2xl">DQ</span>
+          {/* Logo with responsive sizing */}
+          <a href="/" className="flex items-center h-full">
+            <div className="relative h-12 md:h-14 w-auto flex items-center">
+              {/* Replace with your actual logo */}
+              <Image
+                src="/images/daqin-logo.png"
+                alt="Daqin Auto - Xi'an Daqin Daorui International Trade Co., Ltd."
+                width={140}  // Larger on desktop
+                height={56}  // Proportional height
+                className="object-contain h-full w-auto"
+                priority
+              />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-black">
-                {t.header.title}
-              </h1>
-              <p className="text-sm text-gray-dark hidden md:block">
-                {t.header.company}
-              </p>
-            </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
