@@ -133,14 +133,14 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Announcement Bar */}
+      {/* Top Announcement Bar - Enlarged for mobile */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-black to-gray-900 text-white">
         <div className="section-container">
-          <div className="flex items-center justify-between h-9 md:h-10">
-            <div className="flex items-center gap-3 text-xs md:text-sm overflow-hidden">
+          <div className="flex items-center justify-between h-11 md:h-10"> {/* Increased from h-9 to h-11 for mobile */}
+            <div className="flex items-center gap-3 text-sm md:text-sm overflow-hidden"> {/* Increased from text-xs to text-sm for mobile */}
               <div className="flex items-center gap-2 shrink-0">
-                <div className="flex items-center gap-1.5 px-2 py-0.5 bg-gold-primary/20 rounded-full">
-                  <CheckCircle className="w-3 h-3 text-gold-primary" />
+                <div className="flex items-center gap-1.5 px-2 py-1 bg-gold-primary/20 rounded-full"> {/* Increased py from 0.5 to 1 for mobile */}
+                  <CheckCircle className="w-4 h-4 md:w-3 md:h-3 text-gold-primary" /> {/* Increased from w-3 h-3 to w-4 h-4 for mobile */}
                   <span className="font-medium opacity-90 truncate">
                     Xi'an Daqin Daorui International Trade Co., Ltd.
                   </span>
@@ -160,11 +160,11 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* Main Header - Enlarged for mobile */}
       <header
         className={`
           fixed left-0 right-0 z-40 transition-all duration-300
-          top-9 md:top-10
+          top-11 md:top-10
           ${
             scrolled
               ? "bg-gold-primary/95 backdrop-blur-lg shadow-xl py-0"
@@ -175,8 +175,8 @@ export default function Header() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
 
         <nav className="section-container relative">
-          <div className="flex items-center justify-between h-14 md:h-16 lg:h-18">
-            {/* Logo - Enlarged in main header */}
+          <div className="flex items-center justify-between h-18 md:h-16 lg:h-18"> {/* Increased from h-14 to h-18 for mobile */}
+            {/* Logo - Now appears larger due to increased header height */}
             <Link
               href="/"
               className="flex items-center group z-10"
@@ -188,7 +188,7 @@ export default function Header() {
                   alt="Daqin Auto - Premium Chinese Vehicle Exporter"
                   width={220}
                   height={70}
-                  className="h-14 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+                  className="h-16 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110" 
                   priority
                 />
                 <div className="absolute -inset-3 bg-white/0 group-hover:bg-white/10 rounded-lg blur transition-all duration-300" />
@@ -259,13 +259,13 @@ export default function Header() {
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
                   className={`
-                    p-1.5 md:p-2 rounded-full transition-all duration-200
+                    p-2 md:p-2 rounded-full transition-all duration-200
                     hover:bg-white/20 active:scale-95
                     ${searchOpen ? "bg-white/20" : ""}
                   `}
                   aria-label="Search"
                 >
-                  <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                  <Search className="w-5 h-5 md:w-5 md:h-5 text-white" /> {/* Increased from w-4 h-4 to w-5 h-5 for mobile */}
                 </button>
 
                 {searchOpen && (
@@ -406,16 +406,16 @@ export default function Header() {
                 </a>
               </div>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button - Enlarged for mobile */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 className={`
-                  lg:hidden p-1.5 md:p-2 rounded-lg transition-all duration-200
+                  lg:hidden p-2 md:p-2 rounded-lg transition-all duration-200
                   hover:bg-white/20 active:scale-95
                 `}
                 aria-label="Open menu"
               >
-                <Menu className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                <Menu className="w-6 h-6 md:w-6 md:h-6 text-white" /> {/* Increased from w-5 h-5 to w-6 h-6 for mobile */}
               </button>
             </div>
           </div>
@@ -433,8 +433,8 @@ export default function Header() {
 
           {/* Side Panel */}
           <div className="absolute right-0 top-0 h-full w-full max-w-xs bg-gold-primary shadow-2xl animate-slideInRight overflow-hidden">
-            {/* Panel Header */}
-            <div className="sticky top-0 z-10 bg-gold-primary border-b border-white/20 p-4">
+            {/* Panel Header - Enlarged for mobile */}
+            <div className="sticky top-0 z-10 bg-gold-primary border-b border-white/20 p-5"> {/* Increased from p-4 to p-5 */}
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <Link
@@ -442,13 +442,13 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-1 -m-1"
                   >
-                    {/* Decreased logo size in mobile side panel */}
+                    {/* Logo in side panel - increased size due to larger header */}
                     <Image
                       src="/images/daqin-logo.png"
                       alt="Daqin Auto"
-                      width={100} 
-                      height={30}  
-                      className="h-7 w-auto"
+                      width={120} 
+                      height={40}  
+                      className="h-9 w-auto" 
                     />
                   </Link>
                   <span className="text-sm text-white/90 font-medium truncate max-w-[150px]">
@@ -459,13 +459,13 @@ export default function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 rounded-lg hover:bg-white/20 transition-colors active:scale-95"
                 >
-                  <X className="w-5 h-5 text-white" />
+                  <X className="w-6 h-6 text-white" /> {/* Increased from w-5 h-5 to w-6 h-6 */}
                 </button>
               </div>
             </div>
 
             {/* Navigation Content */}
-            <div className="p-4 overflow-y-auto h-[calc(100vh-140px)] scrollbar-hide">
+            <div className="p-4 overflow-y-auto h-[calc(100vh-160px)] scrollbar-hide"> {/* Increased height calculation from 140px to 160px */}
               <div className="space-y-0.5">
                 {navigation.map((item) => (
                   <div key={item.id} className="mb-0.5">
@@ -591,8 +591,8 @@ export default function Header() {
         </div>
       )}
 
-      {/* Spacer */}
-      <div className="h-16 md:h-20" />
+      {/* Spacer - Increased for mobile */}
+      <div className="h-20 md:h-20" /> {/* Increased from h-16 to h-20 for mobile */}
 
       {/* Styles */}
       <style jsx global>{`
