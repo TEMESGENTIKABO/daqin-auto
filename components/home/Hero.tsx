@@ -61,24 +61,6 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <a
-                  href="#contact"
-                  className="btn-primary flex items-center justify-center space-x-2 group bg-gold-primary hover:bg-gold-dark text-white px-8 py-3 rounded-lg"
-                >
-                  <span>{t.hero.cta.quote}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                {/* Updated: Link to /brands page */}
-                <Link
-                  href="/brands"
-                  className="btn-secondary flex items-center justify-center space-x-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30 px-8 py-3 rounded-lg"
-                >
-                  <span>Browse Brands</span>
-                </Link>
-              </div>
             </div>
           </div>
         </div>

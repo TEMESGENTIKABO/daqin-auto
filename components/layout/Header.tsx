@@ -12,6 +12,7 @@ import {
   Shield,
   Car,
   ChevronDown,
+  ChevronUp,
   Globe,
   Search,
   MapPin,
@@ -115,14 +116,20 @@ export default function Header() {
     { icon: Clock, text: t.common.available },
   ];
 
-  const languageOptions: { code: 'en' | 'ar' | 'ru' | 'zh'; name: string; flag: string }[] = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'zh', name: '中文', flag: '🇨🇳' },
+  const languageOptions: {
+    code: "en" | "ar" | "ru" | "zh";
+    name: string;
+    flag: string;
+  }[] = [
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "ar", name: "العربية", flag: "🇸🇦" },
+    { code: "ru", name: "Русский", flag: "🇷🇺" },
+    { code: "zh", name: "中文", flag: "🇨🇳" },
   ];
 
-  const currentLanguage = languageOptions.find(lang => lang.code === language);
+  const currentLanguage = languageOptions.find(
+    (lang) => lang.code === language
+  );
 
   return (
     <>
@@ -169,7 +176,7 @@ export default function Header() {
 
         <nav className="section-container relative">
           <div className="flex items-center justify-between h-14 md:h-16 lg:h-18">
-            {/* Logo */}
+            {/* Logo - Enlarged in main header */}
             <Link
               href="/"
               className="flex items-center group z-10"
@@ -179,12 +186,12 @@ export default function Header() {
                 <Image
                   src="/images/daqin-logo.png"
                   alt="Daqin Auto - Premium Chinese Vehicle Exporter"
-                  width={160}
-                  height={45}
-                  className="h-8 md:h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+                  width={220}
+                  height={70}
+                  className="h-14 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
                   priority
                 />
-                <div className="absolute -inset-2 bg-white/0 group-hover:bg-white/10 rounded-lg blur transition-all duration-300" />
+                <div className="absolute -inset-3 bg-white/0 group-hover:bg-white/10 rounded-lg blur transition-all duration-300" />
               </div>
             </Link>
 
@@ -247,7 +254,7 @@ export default function Header() {
 
             {/* Right Actions */}
             <div className="flex items-center gap-2">
-              {/* Search */}
+              {/* Search - Fixed for mobile */}
               <div className="relative" ref={searchRef}>
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
@@ -262,7 +269,7 @@ export default function Header() {
                 </button>
 
                 {searchOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-[calc(100vw-2rem)] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-3 animate-fadeIn">
+                  <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-3 animate-fadeIn">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
@@ -301,7 +308,7 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Language Switcher - Popup Button */}
+              {/* Language Switcher - Desktop with ChevronDown */}
               <div className="hidden md:block relative" ref={languageRef}>
                 <button
                   onClick={() => setLanguagePopupOpen(!languagePopupOpen)}
@@ -317,6 +324,7 @@ export default function Header() {
                   <span className="text-sm font-medium text-white">
                     {currentLanguage?.code.toUpperCase()}
                   </span>
+                  {/* Desktop: ChevronDown */}
                   <ChevronDown
                     className={`w-3 h-3 text-white transition-transform duration-200 ${
                       languagePopupOpen ? "rotate-180" : ""
@@ -338,9 +346,10 @@ export default function Header() {
                           className={`
                             flex items-center justify-between w-full px-4 py-3
                             transition-all duration-200 rounded-lg
-                            ${language === lang.code 
-                              ? 'bg-gold-primary/10 text-gold-primary' 
-                              : 'text-gray-700 hover:bg-gray-50'
+                            ${
+                              language === lang.code
+                                ? "bg-gold-primary/10 text-gold-primary"
+                                : "text-gray-700 hover:bg-gray-50"
                             }
                           `}
                         >
@@ -348,13 +357,25 @@ export default function Header() {
                             <span className="text-xl">{lang.flag}</span>
                             <div className="flex flex-col items-start">
                               <span className="font-medium">{lang.name}</span>
-                              <span className="text-xs text-gray-500">{lang.code.toUpperCase()}</span>
+                              <span className="text-xs text-gray-500">
+                                {lang.code.toUpperCase()}
+                              </span>
                             </div>
                           </div>
                           {language === lang.code && (
                             <div className="w-5 h-5 rounded-full bg-gold-primary flex items-center justify-center">
-                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                              <svg
+                                className="w-3 h-3 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="3"
+                                  d="M5 13l4 4L19 7"
+                                />
                               </svg>
                             </div>
                           )}
@@ -365,8 +386,8 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Contact Button */}
-              <div className="relative group">
+              {/* Contact Button - COMPLETELY REMOVED on mobile, only show on desktop */}
+              <div className="hidden md:block relative group">
                 <a
                   href={`tel:${t.common.phone}`}
                   className={`
@@ -379,7 +400,7 @@ export default function Header() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/15 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                   <Phone className="w-3.5 h-3.5 md:w-4 md:h-4 relative z-10" />
-                  <span className="relative z-10 hidden sm:inline whitespace-nowrap">
+                  <span className="relative z-10 whitespace-nowrap">
                     Contact
                   </span>
                 </a>
@@ -421,15 +442,16 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-1 -m-1"
                   >
+                    {/* Decreased logo size in mobile side panel */}
                     <Image
                       src="/images/daqin-logo.png"
                       alt="Daqin Auto"
-                      width={100}
-                      height={30}
+                      width={100} 
+                      height={30}  
                       className="h-7 w-auto"
                     />
                   </Link>
-                  <span className="text-xs text-white/90 font-medium truncate max-w-[150px]">
+                  <span className="text-sm text-white/90 font-medium truncate max-w-[150px]">
                     Xi'an Daqin Daorui
                   </span>
                 </div>
@@ -450,18 +472,18 @@ export default function Header() {
                     <Link
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-between p-3 rounded-xl hover:bg-white/20 active:bg-white/30 transition-colors"
+                      className="flex items-center justify-between p-4 rounded-xl hover:bg-white/20 active:bg-white/30 transition-colors text-lg"
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-1.5 bg-white/20 rounded-lg">
-                          <item.icon className="w-4.5 h-4.5 text-white" />
+                          <item.icon className="w-5 h-5 text-white" />
                         </div>
                         <span className="font-medium text-white">
                           {item.name}
                         </span>
                       </div>
                       {item.dropdown && (
-                        <ChevronDown className="w-4 h-4 text-white/70" />
+                        <ChevronDown className="w-5 h-5 text-white/70" />
                       )}
                     </Link>
 
@@ -472,9 +494,9 @@ export default function Header() {
                             key={idx}
                             href={dropdownItem.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center gap-2 py-2 text-sm text-white/80 hover:text-white transition-colors"
+                            className="flex items-center gap-2 py-2 text-base text-white/80 hover:text-white transition-colors"
                           >
-                            <div className="w-1 h-1 rounded-full bg-white/50" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
                             <span>{dropdownItem.name}</span>
                           </Link>
                         ))}
@@ -484,44 +506,28 @@ export default function Header() {
                 ))}
               </div>
 
-              {/* Contact Info */}
-              <div className="mt-6 p-4 bg-white/10 rounded-xl border border-white/20">
-                <h4 className="font-semibold text-white mb-3 text-sm">
-                  Contact Info
-                </h4>
-                <div className="space-y-2.5">
-                  {contactInfo.map((info, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <info.icon className="w-4 h-4 text-white shrink-0" />
-                      <span className="text-sm text-white/90 leading-tight">
-                        {info.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mobile Language Switcher - Popup Button */}
+              {/* Mobile Language Switcher - Popup Button with ChevronUp */}
               <div className="mt-6 relative" ref={languageRef}>
                 <button
                   onClick={() => setLanguagePopupOpen(!languagePopupOpen)}
                   className={`
-                    flex items-center justify-between w-full px-4 py-3
-                    rounded-lg transition-all duration-200
+                    flex items-center justify-between w-full px-4 py-4
+                    rounded-lg transition-all duration-200 text-lg
                     bg-white/10 text-white hover:bg-white/20
                   `}
                 >
                   <div className="flex items-center gap-3">
-                    <Globe className="w-5 h-5" />
+                    <Globe className="w-6 h-6" />
                     <div className="flex flex-col items-start">
                       <span className="font-medium">Language</span>
-                      <span className="text-xs opacity-75">
+                      <span className="text-sm opacity-75">
                         {currentLanguage?.name}
                       </span>
                     </div>
                   </div>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${
+                  {/* Mobile: ChevronUp */}
+                  <ChevronUp
+                    className={`w-5 h-5 transition-transform duration-200 ${
                       languagePopupOpen ? "rotate-180" : ""
                     }`}
                   />
@@ -529,7 +535,7 @@ export default function Header() {
 
                 {/* Mobile Language Popup */}
                 {languagePopupOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn z-10">
+                  <div className="absolute bottom-full left-0 right-0 mb-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn z-10">
                     <div className="p-2">
                       {languageOptions.map((lang) => (
                         <button
@@ -540,10 +546,11 @@ export default function Header() {
                           }}
                           className={`
                             flex items-center justify-between w-full px-4 py-3
-                            transition-all duration-200 rounded-lg
-                            ${language === lang.code 
-                              ? 'bg-gold-primary/10 text-gold-primary' 
-                              : 'text-gray-700 hover:bg-gray-50'
+                            transition-all duration-200 rounded-lg text-base
+                            ${
+                              language === lang.code
+                                ? "bg-gold-primary/10 text-gold-primary"
+                                : "text-gray-700 hover:bg-gray-50"
                             }
                           `}
                         >
@@ -551,13 +558,25 @@ export default function Header() {
                             <span className="text-xl">{lang.flag}</span>
                             <div className="flex flex-col items-start">
                               <span className="font-medium">{lang.name}</span>
-                              <span className="text-xs text-gray-500">{lang.code.toUpperCase()}</span>
+                              <span className="text-xs text-gray-500">
+                                {lang.code.toUpperCase()}
+                              </span>
                             </div>
                           </div>
                           {language === lang.code && (
                             <div className="w-5 h-5 rounded-full bg-gold-primary flex items-center justify-center">
-                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                              <svg
+                                className="w-3 h-3 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="3"
+                                  d="M5 13l4 4L19 7"
+                                />
                               </svg>
                             </div>
                           )}
@@ -609,9 +628,22 @@ export default function Header() {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-        
+
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+
+        /* Mobile-specific font size increases */
+        @media (max-width: 768px) {
+          .mobile-text-lg {
+            font-size: 1.125rem !important; /* 18px */
+            line-height: 1.5 !important;
+          }
+          
+          .mobile-text-base {
+            font-size: 1rem !important; /* 16px */
+            line-height: 1.4 !important;
+          }
         }
       `}</style>
     </>

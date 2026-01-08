@@ -20,7 +20,6 @@ export default function Footer() {
 
   // Contact methods data
   const contactMethods = [
-    
     {
       id: "whatsapp",
       icon: FaWhatsapp,
