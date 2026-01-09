@@ -30,13 +30,36 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [languagePopupOpen, setLanguagePopupOpen] = useState(false);
+  const [utilityVisible, setUtilityVisible] = useState(true);
   const searchRef = useRef<HTMLDivElement>(null);
   const languageRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
+  // Handle scroll for utility title hide/show
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show/hide utility title based on scroll direction
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY.current) {
+          // Scrolling down
+          setUtilityVisible(false);
+        } else {
+          // Scrolling up
+          setUtilityVisible(true);
+        }
+      } else {
+        setUtilityVisible(true);
+      }
+      
+      // Update scrolled state for header background
+      setScrolled(currentScrollY > 10);
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -110,12 +133,6 @@ export default function Header() {
     },
   ];
 
-  const contactInfo = [
-    { icon: Phone, text: t.common.phone },
-    { icon: MapPin, text: t.common.address },
-    { icon: Clock, text: t.common.available },
-  ];
-
   const languageOptions: {
     code: "en" | "ar" | "ru" | "zh";
     name: string;
@@ -133,67 +150,74 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Announcement Bar - Enlarged for mobile */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-black to-gray-900 text-white">
-        <div className="section-container">
-          <div className="flex items-center justify-between h-11 md:h-10"> {/* Increased from h-9 to h-11 for mobile */}
-            <div className="flex items-center gap-3 text-sm md:text-sm overflow-hidden"> {/* Increased from text-xs to text-sm for mobile */}
-              <div className="flex items-center gap-2 shrink-0">
-                <div className="flex items-center gap-1.5 px-2 py-1 bg-gold-primary/20 rounded-full"> {/* Increased py from 0.5 to 1 for mobile */}
-                  <CheckCircle className="w-4 h-4 md:w-3 md:h-3 text-gold-primary" /> {/* Increased from w-3 h-3 to w-4 h-4 for mobile */}
-                  <span className="font-medium opacity-90 truncate">
-                    Xi'an Daqin Daorui International Trade Co., Ltd.
-                  </span>
-                </div>
+      {/* Top Utility Bar */}
+      <div 
+        className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-black to-gray-900 text-white transition-all duration-300 ${
+          utilityVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-12 md:h-10">
+            <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gold-primary/20 rounded-full">
+                <CheckCircle className="w-4 h-4 text-gold-primary flex-shrink-0" />
+                <span className="text-sm font-medium opacity-90 truncate text-base sm:text-sm">
+                  Xi'an Daqin Daorui International Trade Co., Ltd.
+                </span>
               </div>
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-              {contactInfo.slice(0, 1).map((info, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-xs">
-                  <info.icon className="w-3 h-3 text-gold-primary" />
-                  <span className="opacity-90 font-medium">{info.text}</span>
-                </div>
-              ))}
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-gold-primary flex-shrink-0" />
+                <span className="text-sm font-medium opacity-90 whitespace-nowrap">
+                  {t.common.phone}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Header - Enlarged for mobile */}
+      {/* Main Header */}
       <header
         className={`
-          fixed left-0 right-0 z-40 transition-all duration-300
-          top-11 md:top-10
-          ${
-            scrolled
-              ? "bg-gold-primary/95 backdrop-blur-lg shadow-xl py-0"
-              : "bg-gold-primary py-0"
-          }
+          fixed left-0 right-0 z-40 transition-all duration-300 bg-gold-primary
+          ${scrolled ? 'top-0 shadow-xl' : 'top-12 md:top-10'}
         `}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
 
-        <nav className="section-container relative">
-          <div className="flex items-center justify-between h-18 md:h-16 lg:h-18"> {/* Increased from h-14 to h-18 for mobile */}
-            {/* Logo - Now appears larger due to increased header height */}
-            <Link
-              href="/"
-              className="flex items-center group z-10"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <div className="relative">
-                <Image
-                  src="/images/daqin-logo.png"
-                  alt="Daqin Auto - Premium Chinese Vehicle Exporter"
-                  width={220}
-                  height={70}
-                  className="h-16 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110" 
-                  priority
-                />
-                <div className="absolute -inset-3 bg-white/0 group-hover:bg-white/10 rounded-lg blur transition-all duration-300" />
-              </div>
-            </Link>
+        <nav className="container mx-auto px-4 sm:px-6 relative">
+          <div className="flex items-center justify-between h-16 md:h-18">
+            {/* Logo with Company Name - Larger and moved left */}
+            <div className="flex-1 md:flex-none">
+              <Link
+                href="/"
+                className="flex items-center gap-2 md:gap-3 group z-10 flex-shrink-0"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <div className="relative">
+                  <Image
+                    src="/images/daqin-logo.png"
+                    alt="Daqin Auto - Premium Chinese Vehicle Exporter"
+                    width={220}
+                    height={70}
+                    className="h-14 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:h-12"
+                    priority
+                  />
+                </div>
+                {/* Company name visible on both mobile and desktop */}
+                <div className="flex flex-col">
+                  <span className="text-white font-bold text-base md:text-lg leading-tight tracking-tight">
+                    Xi'an Daqin Daorui
+                  </span>
+                  <span className="text-white/80 text-xs md:text-xs font-medium hidden sm:block">
+                    International Trade
+                  </span>
+                </div>
+              </Link>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-0.5">
@@ -209,15 +233,11 @@ export default function Header() {
                     className={`
                       flex items-center gap-1.5 px-3 py-2.5 rounded-lg
                       transition-all duration-200
-                      ${
-                        scrolled
-                          ? "text-white hover:text-gray-900 hover:bg-white/20"
-                          : "text-white hover:text-gray-900 hover:bg-white/20"
-                      }
+                      text-white hover:text-gray-900 hover:bg-white/20
                       ${activeDropdown === item.id ? "bg-white/15" : ""}
                     `}
                   >
-                    <item.icon className="w-3.5 h-3.5" />
+                    <item.icon className="w-4 h-4" />
                     <span className="text-sm font-medium tracking-wide">
                       {item.name}
                     </span>
@@ -254,51 +274,62 @@ export default function Header() {
 
             {/* Right Actions */}
             <div className="flex items-center gap-2">
-              {/* Search - Fixed for mobile */}
+              {/* Search with mobile icon button */}
               <div className="relative" ref={searchRef}>
+                {/* Desktop search button */}
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
-                  className={`
-                    p-2 md:p-2 rounded-full transition-all duration-200
-                    hover:bg-white/20 active:scale-95
-                    ${searchOpen ? "bg-white/20" : ""}
-                  `}
+                  className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
                   aria-label="Search"
                 >
-                  <Search className="w-5 h-5 md:w-5 md:h-5 text-white" /> {/* Increased from w-4 h-4 to w-5 h-5 for mobile */}
+                  <Search className="w-4 h-4 text-white" />
+                  <span className="text-sm font-medium text-white">Search</span>
                 </button>
 
+                {/* Mobile search icon button */}
+                <button
+                  onClick={() => setSearchOpen(!searchOpen)}
+                  className="md:hidden p-2.5 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
+                  aria-label="Search"
+                >
+                  <Search className="w-5 h-5 text-white" />
+                </button>
+
+                {/* Search dropdown */}
                 {searchOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-3 animate-fadeIn">
+                  <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-4 animate-fadeIn z-50">
                     <div className="relative">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="text"
                         placeholder="Search vehicles, brands, models..."
-                        className="w-full pl-10 pr-4 py-2.5 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm"
+                        className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
                         autoFocus
                       />
+                      <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors">
+                        Enter
+                      </button>
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-3">
                       <span className="text-xs text-gray-500 font-medium px-1">
                         Quick Links:
                       </span>
-                      <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      <div className="flex flex-wrap gap-2 mt-2">
                         <Link
                           href="/models?category=electric"
-                          className="px-2.5 py-1 bg-gold-primary/10 text-gold-primary text-xs font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
+                          className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
                         >
                           Electric
                         </Link>
                         <Link
                           href="/models?status=new"
-                          className="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-lg hover:bg-blue-100 transition-colors"
+                          className="px-3 py-1.5 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
                         >
                           New
                         </Link>
                         <Link
                           href="/brands"
-                          className="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                          className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors"
                         >
                           Brands
                         </Link>
@@ -308,23 +339,17 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Language Switcher - Desktop with ChevronDown */}
+              {/* Language Switcher - Desktop */}
               <div className="hidden md:block relative" ref={languageRef}>
                 <button
                   onClick={() => setLanguagePopupOpen(!languagePopupOpen)}
-                  className={`
-                    flex items-center gap-2 px-3 py-2 rounded-lg
-                    transition-all duration-200
-                    hover:bg-white/20 active:scale-95
-                    ${languagePopupOpen ? "bg-white/20" : ""}
-                  `}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
                   aria-label="Select language"
                 >
                   <Globe className="w-4 h-4 text-white" />
                   <span className="text-sm font-medium text-white">
                     {currentLanguage?.code.toUpperCase()}
                   </span>
-                  {/* Desktop: ChevronDown */}
                   <ChevronDown
                     className={`w-3 h-3 text-white transition-transform duration-200 ${
                       languagePopupOpen ? "rotate-180" : ""
@@ -332,7 +357,6 @@ export default function Header() {
                   />
                 </button>
 
-                {/* Language Popup */}
                 {languagePopupOpen && (
                   <div className="absolute top-full right-0 mt-2 w-56 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn z-50">
                     <div className="p-2">
@@ -356,8 +380,10 @@ export default function Header() {
                           <div className="flex items-center gap-3">
                             <span className="text-xl">{lang.flag}</span>
                             <div className="flex flex-col items-start">
-                              <span className="font-medium">{lang.name}</span>
-                              <span className="text-xs text-gray-500">
+                              <span className="font-medium text-base">
+                                {lang.name}
+                              </span>
+                              <span className="text-sm text-gray-500">
                                 {lang.code.toUpperCase()}
                               </span>
                             </div>
@@ -386,36 +412,13 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Contact Button - COMPLETELY REMOVED on mobile, only show on desktop */}
-              <div className="hidden md:block relative group">
-                <a
-                  href={`tel:${t.common.phone}`}
-                  className={`
-                    flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full
-                    text-xs md:text-sm font-bold transition-all duration-200
-                    bg-black text-white shadow-lg hover:shadow-xl hover:shadow-black/30
-                    hover:scale-105 active:scale-95
-                    relative overflow-hidden
-                  `}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/15 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                  <Phone className="w-3.5 h-3.5 md:w-4 md:h-4 relative z-10" />
-                  <span className="relative z-10 whitespace-nowrap">
-                    Contact
-                  </span>
-                </a>
-              </div>
-
-              {/* Mobile Menu Button - Enlarged for mobile */}
+              {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className={`
-                  lg:hidden p-2 md:p-2 rounded-lg transition-all duration-200
-                  hover:bg-white/20 active:scale-95
-                `}
+                className="lg:hidden p-2.5 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
                 aria-label="Open menu"
               >
-                <Menu className="w-6 h-6 md:w-6 md:h-6 text-white" /> {/* Increased from w-5 h-5 to w-6 h-6 for mobile */}
+                <Menu className="w-6 h-6 text-white" />
               </button>
             </div>
           </div>
@@ -427,172 +430,197 @@ export default function Header() {
         <div className="fixed inset-0 z-[60] lg:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-gold-primary/90 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          {/* Side Panel */}
-          <div className="absolute right-0 top-0 h-full w-full max-w-xs bg-gold-primary shadow-2xl animate-slideInRight overflow-hidden">
-            {/* Panel Header - Enlarged for mobile */}
-            <div className="sticky top-0 z-10 bg-gold-primary border-b border-white/20 p-5"> {/* Increased from p-4 to p-5 */}
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <Link
-                    href="/"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-1 -m-1"
-                  >
-                    {/* Logo in side panel - increased size due to larger header */}
+          {/* Side Panel - Restored gold-primary background */}
+          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-gold-primary shadow-2xl animate-slideInRight overflow-hidden">
+            {/* Panel Header */}
+            <div className="sticky top-0 z-10 bg-gold-primary p-5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
                     <Image
                       src="/images/daqin-logo.png"
                       alt="Daqin Auto"
-                      width={120} 
-                      height={40}  
-                      className="h-9 w-auto" 
+                      width={180}
+                      height={55}
+                      className="h-11 w-auto"
                     />
-                  </Link>
-                  <span className="text-sm text-white/90 font-medium truncate max-w-[150px]">
-                    Xi'an Daqin Daorui
-                  </span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-white font-bold text-lg leading-tight">
+                      Xi'an Daqin Daorui
+                    </span>
+                    <span className="text-white/80 text-xs">
+                      International Trade
+                    </span>
+                  </div>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 rounded-lg hover:bg-white/20 transition-colors active:scale-95"
+                  className="p-2.5 rounded-lg hover:bg-white/20 transition-colors active:scale-95"
                 >
-                  <X className="w-6 h-6 text-white" /> {/* Increased from w-5 h-5 to w-6 h-6 */}
+                  <X className="w-6 h-6 text-white" />
                 </button>
               </div>
             </div>
 
-            {/* Navigation Content */}
-            <div className="p-4 overflow-y-auto h-[calc(100vh-160px)] scrollbar-hide"> {/* Increased height calculation from 140px to 160px */}
-              <div className="space-y-0.5">
-                {navigation.map((item) => (
-                  <div key={item.id} className="mb-0.5">
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-between p-4 rounded-xl hover:bg-white/20 active:bg-white/30 transition-colors text-lg"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-1.5 bg-white/20 rounded-lg">
-                          <item.icon className="w-5 h-5 text-white" />
-                        </div>
-                        <span className="font-medium text-white">
-                          {item.name}
-                        </span>
-                      </div>
-                      {item.dropdown && (
-                        <ChevronDown className="w-5 h-5 text-white/70" />
-                      )}
-                    </Link>
-
-                    {item.dropdown && (
-                      <div className="ml-11 pl-4 border-l border-white/30 space-y-1 mt-0.5">
-                        {item.dropdown.map((dropdownItem, idx) => (
-                          <Link
-                            key={idx}
-                            href={dropdownItem.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center gap-2 py-2 text-base text-white/80 hover:text-white transition-colors"
-                          >
-                            <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
-                            <span>{dropdownItem.name}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Mobile Language Switcher - Popup Button with ChevronUp */}
-              <div className="mt-6 relative" ref={languageRef}>
-                <button
-                  onClick={() => setLanguagePopupOpen(!languagePopupOpen)}
-                  className={`
-                    flex items-center justify-between w-full px-4 py-4
-                    rounded-lg transition-all duration-200 text-lg
-                    bg-white/10 text-white hover:bg-white/20
-                  `}
-                >
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-6 h-6" />
-                    <div className="flex flex-col items-start">
-                      <span className="font-medium">Language</span>
-                      <span className="text-sm opacity-75">
-                        {currentLanguage?.name}
-                      </span>
-                    </div>
-                  </div>
-                  {/* Mobile: ChevronUp */}
-                  <ChevronUp
-                    className={`w-5 h-5 transition-transform duration-200 ${
-                      languagePopupOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {/* Mobile Language Popup */}
-                {languagePopupOpen && (
-                  <div className="absolute bottom-full left-0 right-0 mb-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn z-10">
-                    <div className="p-2">
-                      {languageOptions.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => {
-                            setLanguage(lang.code);
-                            setLanguagePopupOpen(false);
-                          }}
-                          className={`
-                            flex items-center justify-between w-full px-4 py-3
-                            transition-all duration-200 rounded-lg text-base
-                            ${
-                              language === lang.code
-                                ? "bg-gold-primary/10 text-gold-primary"
-                                : "text-gray-700 hover:bg-gray-50"
-                            }
-                          `}
-                        >
-                          <div className="flex items-center gap-3">
-                            <span className="text-xl">{lang.flag}</span>
-                            <div className="flex flex-col items-start">
-                              <span className="font-medium">{lang.name}</span>
-                              <span className="text-xs text-gray-500">
-                                {lang.code.toUpperCase()}
-                              </span>
-                            </div>
+            {/* Navigation Content - Gold Primary Background */}
+            <div className="overflow-y-auto h-[calc(100vh-80px)] bg-gold-primary">
+              <div className="p-5">
+                <div className="space-y-1">
+                  {/* Home, Services, About, Contact */}
+                  {navigation.slice(0, 4).map((item) => (
+                    <div key={item.id} className="mb-1">
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-between p-4 rounded-xl hover:bg-white/20 active:bg-white/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-white/20 rounded-lg">
+                            <item.icon className="w-5 h-5 text-white" />
                           </div>
-                          {language === lang.code && (
-                            <div className="w-5 h-5 rounded-full bg-gold-primary flex items-center justify-center">
-                              <svg
-                                className="w-3 h-3 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
+                          <span className="font-medium text-white text-base">
+                            {item.name}
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
+
+                  {/* Language Switcher - Above Brands Section */}
+                  <div className="my-4 pt-4 border-t border-white/20">
+                    <div className="relative" ref={languageRef}>
+                      <button
+                        onClick={() => setLanguagePopupOpen(!languagePopupOpen)}
+                        className="flex items-center justify-between w-full px-4 py-4 rounded-lg transition-all duration-200 bg-white/10 hover:bg-white/20"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Globe className="w-6 h-6 text-white" />
+                          <div className="flex flex-col items-start">
+                            <span className="font-bold text-white text-base">
+                              Language
+                            </span>
+                            <span className="text-sm text-white/80">
+                              {currentLanguage?.name}
+                            </span>
+                          </div>
+                        </div>
+                        <ChevronUp
+                          className={`w-5 h-5 text-white transition-transform duration-200 ${
+                            languagePopupOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {languagePopupOpen && (
+                        <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn">
+                          <div className="p-2">
+                            {languageOptions.map((lang) => (
+                              <button
+                                key={lang.code}
+                                onClick={() => {
+                                  setLanguage(lang.code);
+                                  setLanguagePopupOpen(false);
+                                }}
+                                className={`
+                                  flex items-center justify-between w-full px-4 py-3
+                                  transition-all duration-200 rounded-lg
+                                  ${
+                                    language === lang.code
+                                      ? "bg-gold-primary/10 text-gold-primary"
+                                      : "text-gray-700 hover:bg-gray-50"
+                                  }
+                                `}
                               >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="3"
-                                  d="M5 13l4 4L19 7"
-                                />
-                              </svg>
-                            </div>
-                          )}
-                        </button>
-                      ))}
+                                <div className="flex items-center gap-3">
+                                  <span className="text-2xl">{lang.flag}</span>
+                                  <div className="flex flex-col items-start">
+                                    <span className="font-medium text-base">
+                                      {lang.name}
+                                    </span>
+                                    <span className="text-sm text-gray-500">
+                                      {lang.code.toUpperCase()}
+                                    </span>
+                                  </div>
+                                </div>
+                                {language === lang.code && (
+                                  <div className="w-6 h-6 rounded-full bg-gold-primary flex items-center justify-center">
+                                    <svg
+                                      className="w-3.5 h-3.5 text-white"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="3"
+                                        d="M5 13l4 4L19 7"
+                                      />
+                                    </svg>
+                                  </div>
+                                )}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                )}
+
+                  {/* Brands & Models Sections */}
+                  {navigation.slice(4).map((item) => (
+                    <div key={item.id} className="mb-1">
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-between p-4 rounded-xl hover:bg-white/20 active:bg-white/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-white/20 rounded-lg">
+                            <item.icon className="w-5 h-5 text-white" />
+                          </div>
+                          <span className="font-medium text-white text-base">
+                            {item.name}
+                          </span>
+                        </div>
+                        {item.dropdown && (
+                          <ChevronDown className="w-5 h-5 text-white/70" />
+                        )}
+                      </Link>
+
+                      {item.dropdown && (
+                        <div className="ml-14 pl-4 border-l border-white/30 space-y-1 mt-1">
+                          {item.dropdown.map((dropdownItem, idx) => (
+                            <Link
+                              key={idx}
+                              href={dropdownItem.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="flex items-center gap-2 py-3 text-white/80 hover:text-white transition-colors text-sm"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                              <span className="font-medium">{dropdownItem.name}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Spacer - Increased for mobile */}
-      <div className="h-20 md:h-20" /> {/* Increased from h-16 to h-20 for mobile */}
+      {/* Spacer */}
+      <div className={`h-20 md:h-20 transition-all duration-300 ${
+        utilityVisible ? '' : 'mt-0'
+      }`} />
 
       {/* Styles */}
       <style jsx global>{`
@@ -624,25 +652,54 @@ export default function Header() {
           animation: slideInRight 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+        /* Improved responsive typography */
+        html {
+          font-size: 16px;
         }
 
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-
-        /* Mobile-specific font size increases */
-        @media (max-width: 768px) {
-          .mobile-text-lg {
-            font-size: 1.125rem !important; /* 18px */
-            line-height: 1.5 !important;
+        @media (min-width: 640px) {
+          html {
+            font-size: 16px;
           }
-          
-          .mobile-text-base {
-            font-size: 1rem !important; /* 16px */
-            line-height: 1.4 !important;
+        }
+
+        @media (min-width: 768px) {
+          html {
+            font-size: 16px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          html {
+            font-size: 17px;
+          }
+        }
+
+        @media (min-width: 1280px) {
+          html {
+            font-size: 18px;
+          }
+        }
+
+        /* Mobile-optimized touch targets */
+        button, 
+        a {
+          touch-action: manipulation;
+        }
+
+        /* Prevent zoom on mobile inputs */
+        @media (max-width: 768px) {
+          input,
+          textarea,
+          select {
+            font-size: 16px !important;
+          }
+        }
+
+        /* Enhanced logo visibility on mobile */
+        @media (max-width: 768px) {
+          header .logo-container {
+            min-width: 180px;
           }
         }
       `}</style>
