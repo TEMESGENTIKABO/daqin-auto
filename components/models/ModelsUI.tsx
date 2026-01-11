@@ -23,22 +23,14 @@ import {
   Check
 } from "lucide-react";
 
-// Define proper types for vehicle data
-type VehicleModel = {
-  id: string;
-  brand: string;
-  model: string;
-  description?: string;
-  year?: number;
-  category?: string;
+// Import the shared VehicleModel type from the appropriate location
+import type { VehicleModel as SharedVehicleModel } from "@/components/sections/brand-models/types";
+import type { VehicleCategory } from "@/components/sections/brand-models/types";
+
+// Extend the shared VehicleModel type to include price properties
+type VehicleModel = SharedVehicleModel & {
   price?: number;
   priceUSD?: number;
-  popularity?: number;
-  features?: string[];
-  image?: string;
-  images?: string[];
-  specs?: Record<string, string | number>;
-  available?: boolean;
 };
 
 type ViewMode = "grid" | "list";
@@ -74,13 +66,13 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
   const [showSortSheet, setShowSortSheet] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  // Price presets
+  // Price presets - Fixed: use tuple type [number, number] instead of number[]
   const pricePresets = useMemo(() => [
-    { id: "all" as PricePreset, label: "All Prices", range: [0, 200000] },
-    { id: "under-30k" as PricePreset, label: "Under $30k", range: [0, 30000] },
-    { id: "30k-60k" as PricePreset, label: "$30k - $60k", range: [30000, 60000] },
-    { id: "60k-100k" as PricePreset, label: "$60k - $100k", range: [60000, 100000] },
-    { id: "100k-plus" as PricePreset, label: "$100k+", range: [100000, 200000] },
+    { id: "all" as PricePreset, label: "All Prices", range: [0, 200000] as [number, number] },
+    { id: "under-30k" as PricePreset, label: "Under $30k", range: [0, 30000] as [number, number] },
+    { id: "30k-60k" as PricePreset, label: "$30k - $60k", range: [30000, 60000] as [number, number] },
+    { id: "60k-100k" as PricePreset, label: "$60k - $100k", range: [60000, 100000] as [number, number] },
+    { id: "100k-plus" as PricePreset, label: "$100k+", range: [100000, 200000] as [number, number] },
   ], []);
 
   // Handle price preset changes
@@ -103,6 +95,11 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
         setPriceRange([0, 200000]);
         break;
     }
+  }, []);
+
+  // Fix: Add proper type for onSelectCategory callback
+  const handleSelectCategory = useCallback((category: string) => {
+    setSelectedCategory(category);
   }, []);
 
   // Enhanced vehicle filtering with safe property access
@@ -378,7 +375,7 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
               selectedBrands={selectedBrands}
               onToggleBrand={toggleBrand}
               selectedCategory={selectedCategory}
-              onSelectCategory={setSelectedCategory}
+              onSelectCategory={handleSelectCategory}
               pricePreset={pricePreset}
               onPricePresetChange={handlePricePreset}
               pricePresets={pricePresets}
@@ -530,7 +527,7 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
           selectedBrands={selectedBrands}
           onToggleBrand={toggleBrand}
           selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
+          onSelectCategory={handleSelectCategory}
           pricePreset={pricePreset}
           onPricePresetChange={handlePricePreset}
           pricePresets={pricePresets}
