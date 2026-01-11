@@ -10,13 +10,26 @@ import {
   Clock,
   Car,
   Users,
+  ChevronUp,
+  Truck,
+  Home,
+  Building,
+  Server,
+  ChevronDown,
 } from "lucide-react";
 import { FaWhatsapp, FaTelegram, FaWeixin } from "react-icons/fa";
 import LanguageSwitcher from "../LanguageSwitcher";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Footer() {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
 
   // Contact methods data
   const contactMethods = [
@@ -25,121 +38,118 @@ export default function Footer() {
       icon: FaWhatsapp,
       title: "WhatsApp",
       href: "https://wa.me/+8615594634955",
-      color: "text-green-400 hover:text-green-300",
-      bgColor: "bg-green-900/30 hover:bg-green-900/50",
-      borderColor: "border-green-700/30",
+      color: "text-green-400",
+      bgColor: "bg-green-900/20",
     },
     {
       id: "telegram",
       icon: FaTelegram,
       title: "Telegram",
       href: "https://t.me/+8615594634955",
-      color: "text-sky-400 hover:text-sky-300",
-      bgColor: "bg-sky-900/30 hover:bg-sky-900/50",
-      borderColor: "border-sky-700/30",
+      color: "text-sky-400",
+      bgColor: "bg-sky-900/20",
     },
     {
       id: "wechat",
       icon: FaWeixin,
       title: "WeChat",
       href: "weixin://dl/chat?daqinauto",
-      color: "text-emerald-400 hover:text-emerald-300",
-      bgColor: "bg-emerald-900/30 hover:bg-emerald-900/50",
-      borderColor: "border-emerald-700/30",
+      color: "text-emerald-400",
+      bgColor: "bg-emerald-900/20",
     },
     {
       id: "email",
       icon: Mail,
       title: "Email",
       href: "mailto:contact@daqinauto.com",
-      color: "text-gold-primary hover:text-gold-light",
-      bgColor: "bg-yellow-900/30 hover:bg-yellow-900/50",
-      borderColor: "border-yellow-700/30",
+      color: "text-gold-primary",
+      bgColor: "bg-yellow-900/20",
     },
   ];
 
-  // Navigation items with icons for mobile
-  const navItems = [
+  // Quick Links - Two columns (2x3)
+  const quickLinks = [
+    { label: "Home", href: "/", icon: Home },
+    { label: "About Us", href: "/about", icon: Users },
+    { label: "Brands", href: "/brands", icon: Building },
+    { label: "Vehicles", href: "/models", icon: Car },
+    { label: "Services", href: "/services", icon: Server },
+    { label: "Contact", href: "/contact", icon: Phone },
+  ];
+
+  // Why Choose Us features
+  const features = [
     {
-      key: "home",
-      label: t.header.nav.home,
-      icon: null,
-      href: "/",
+      id: "quality",
+      icon: Shield,
+      title: "Quality Assurance",
     },
     {
-      key: "models",
-      label: t.header.nav.models,
-      icon: Car,
-      href: "#models",
+      id: "shipping",
+      icon: Truck,
+      title: "Global Shipping",
     },
     {
-      key: "about",
-      label: t.header.nav.about,
-      icon: Users,
-      href: "#about",
+      id: "support",
+      icon: Clock,
+      title: "24/7 Support",
     },
     {
-      key: "contact",
-      label: t.header.nav.contact,
-      icon: Phone,
-      href: "/contact",
+      id: "experience",
+      icon: Globe,
+      title: "10+ Years",
     },
   ];
 
   return (
-    <footer className="bg-black text-white">
-      <div className="section-container px-4 py-8 md:py-16">
-        {/* Desktop: Original 4-column grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
-          {/* Company Info - Desktop Original */}
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 border-2 border-gold-primary rounded-lg flex items-center justify-center">
-                <span className="text-gold-primary font-bold text-lg">DQ</span>
-              </div>
-              <h3 className="text-xl font-bold text-white">{t.header.title}</h3>
-            </div>
-            <p className="text-gray-300 mb-4">{t.header.company}</p>
-            <p className="text-gray-400 mb-6">
-              Your trusted partner for Chinese automotive exports with over a
-              decade of experience.
-            </p>
-
-            {/* Contact Icons - Desktop */}
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-sm text-gray-400 mr-2">Contact:</span>
-              <div className="flex items-center space-x-2">
-                {contactMethods.map((method) => {
-                  const Icon = method.icon;
-                  return (
-                    <a
-                      key={method.id}
-                      href={method.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`p-2 rounded-lg ${method.bgColor} border ${method.borderColor} transition-all hover:scale-110`}
-                      title={method.title}
-                    >
-                      <Icon className={`w-4 h-4 ${method.color}`} />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Info - Desktop Updated with Icons */}
-          <div>
-            <h4 className="text-lg font-semibold text-gold-primary mb-6">
-              Contact Us
-            </h4>
-            <div className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Phone className="w-5 h-5 text-gold-primary flex-shrink-0" />
-                  <span className="text-sm text-gray-400">Direct Contact</span>
+    <footer className="bg-gray-900 text-white">
+      {/* Desktop version - unchanged */}
+      <div className="hidden md:block">
+        <div className="section-container px-4 py-6 md:py-8">
+          {/* Desktop: 4-column layout */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            {/* Company Info */}
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 mb-3">
+                <div className="w-9 h-9 rounded-lg border border-gold-primary/30 flex items-center justify-center">
+                  <div className="relative w-6 h-6">
+                    <Image
+                      src="/favicon.ico"
+                      alt="Da Qin Logo"
+                      fill
+                      className="object-contain"
+                      sizes="24px"
+                    />
+                  </div>
                 </div>
-                {/* Horizontal contact icons */}
+                <div>
+                  <h3 className="text-sm font-bold text-white">{t.header.title}</h3>
+                  <p className="text-xs text-gray-400">{t.header.company}</p>
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-300 leading-relaxed mb-2">
+                Your trusted partner for Chinese automotive exports.
+              </p>
+
+              <div className="flex items-start space-x-1">
+                <MapPin className="w-3 h-3 text-gold-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-[10px] text-gray-400">
+                    Xi'an, Shaanxi Province, China
+                  </p>
+                  <p className="text-[9px] text-gray-500">Headquarters</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-sm font-semibold text-gold-primary mb-3">
+                Contact Us
+              </h4>
+              
+              <div className="space-y-2">
                 <div className="flex items-center space-x-2">
                   {contactMethods.map((method) => {
                     const Icon = method.icon;
@@ -149,221 +159,276 @@ export default function Footer() {
                         href={method.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`p-2 rounded-lg ${method.bgColor} border ${method.borderColor} transition-all hover:scale-105`}
+                        className={`p-1.5 rounded ${method.bgColor} border border-gray-700/20 hover:scale-110 transition-transform`}
                         title={method.title}
                       >
-                        <Icon className={`w-4 h-4 ${method.color}`} />
+                        <Icon className={`w-3.5 h-3.5 ${method.color}`} />
                       </a>
                     );
                   })}
                 </div>
-                <p className="text-xs text-gray-500 pt-1">
+                <p className="text-[10px] text-gray-500">
                   Click any icon to contact instantly
                 </p>
               </div>
-
-              <div className="flex items-start space-x-3 pt-4 border-t border-gray-800">
-                <MapPin className="w-5 h-5 text-gold-primary mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="font-medium">{t.common.address}</p>
-                  <p className="text-sm text-gray-400">Headquarters</p>
-                </div>
-              </div>
             </div>
-          </div>
 
-          {/* Quick Links - Desktop Original */}
-          <div>
-            <h4 className="text-lg font-semibold text-gold-primary mb-6">
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              {(Object.values(t.header.nav) as string[]).map((item: string) => (
-                <li key={item}>
+            {/* Quick Links - Two Columns */}
+            <div>
+              <h4 className="text-sm font-semibold text-gold-primary mb-3">
+                Quick Links
+              </h4>
+              
+              <div className="grid grid-cols-2 gap-x-3 gap-y-1">
+                {quickLinks.map((item) => (
                   <a
-                    href={
-                      item === t.header.nav.home
-                        ? "/"
-                        : `#${item.toLowerCase().replace(" ", "")}`
-                    }
-                    className="text-gray-300 hover:text-gold-primary transition-colors"
+                    key={item.label}
+                    href={item.href}
+                    className="text-xs text-gray-300 hover:text-gold-primary transition-colors flex items-center space-x-1"
                   >
-                    {item}
+                    {item.icon && <item.icon className="w-3 h-3" />}
+                    <span>{item.label}</span>
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Features - Desktop Original */}
-          <div>
-            <h4 className="text-lg font-semibold text-gold-primary mb-6">
-              Why Choose Us
-            </h4>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Shield className="w-5 h-5 text-gold-primary" />
-                <span className="text-gray-300">Quality Assurance</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Globe className="w-5 h-5 text-gold-primary" />
-                <span className="text-gray-300">Global Shipping</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-gold-primary" />
-                <span className="text-gray-300">24/7 Support</span>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile: Improved layout */}
-        <div className="md:hidden">
-          {/* Company Info - Mobile Improved */}
-          <div className="mb-8">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 border-2 border-gold-primary rounded-lg flex items-center justify-center">
-                <span className="text-gold-primary font-bold text-lg">DQ</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white">
-                  {t.header.title}
-                </h3>
-                <p className="text-xs text-gray-400 mt-1">{t.header.company}</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-300 mb-4">
-              Your trusted partner for Chinese automotive exports with over a
-              decade of experience.
-            </p>
-
-            {/* Contact Icons - Horizontal on mobile */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm text-gray-400">Contact via:</span>
-                <span className="text-xs text-gray-500">Tap to contact</span>
-              </div>
-              <div className="flex items-center justify-between space-x-2">
-                {contactMethods.map((method) => {
-                  const Icon = method.icon;
+            {/* Features */}
+            <div>
+              <h4 className="text-sm font-semibold text-gold-primary mb-3">
+                Why Choose Us
+              </h4>
+              
+              <div className="space-y-2">
+                {features.map((feature) => {
+                  const Icon = feature.icon;
                   return (
-                    <a
-                      key={method.id}
-                      href={method.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex-1 flex flex-col items-center justify-center p-3 rounded-xl ${method.bgColor} border ${method.borderColor} transition-all active:scale-95`}
-                      title={method.title}
-                    >
-                      <Icon className={`w-5 h-5 mb-1 ${method.color}`} />
-                      <span className="text-xs text-gray-300 truncate w-full text-center">
-                        {method.title}
-                      </span>
-                    </a>
+                    <div key={feature.id} className="flex items-center space-x-2">
+                      <Icon className="w-3.5 h-3.5 text-gold-primary flex-shrink-0" />
+                      <span className="text-xs text-gray-300">{feature.title}</span>
+                    </div>
                   );
                 })}
               </div>
             </div>
-
-            {/* Address - Mobile */}
-            <div className="flex items-start space-x-3 p-3 bg-gray-900/30 rounded-lg">
-              <MapPin className="w-4 h-4 text-gold-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm font-medium">{t.common.address}</p>
-                <p className="text-xs text-gray-400">Headquarters</p>
-              </div>
-            </div>
           </div>
 
-          {/* Quick Links - Horizontal scroll on mobile */}
-          <div className="mb-8">
-            <h4 className="text-base font-semibold text-gold-primary mb-4">
-              Quick Links
-            </h4>
-            <div className="flex overflow-x-auto pb-4 -mx-4 px-4 space-x-4 no-scrollbar">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={item.key}
-                    href={item.href}
-                    className="flex-shrink-0 flex flex-col items-center space-y-2 p-3 min-w-[80px] bg-gray-900/50 hover:bg-gray-800 rounded-xl transition-colors group"
-                  >
-                    {Icon && (
-                      <div className="p-2 bg-gold-primary/10 rounded-lg group-hover:bg-gold-primary/20 transition-colors">
-                        <Icon className="w-4 h-4 text-gold-primary" />
-                      </div>
-                    )}
-                    <span className="text-xs font-medium text-center">
-                      {item.label}
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Features Grid - Mobile Improved */}
-          <div className="mb-8">
-            <h4 className="text-base font-semibold text-gold-primary mb-4">
-              Why Choose Us
-            </h4>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="flex items-center space-x-3 p-3 bg-gray-900/30 rounded-lg">
-                <div className="p-2 bg-gold-primary/10 rounded-lg">
-                  <Shield className="w-4 h-4 text-gold-primary" />
-                </div>
-                <span className="text-sm text-gray-300">Quality</span>
+          {/* Desktop Bottom Bar */}
+          <div className="border-t border-gray-800 pt-3 md:pt-4 mt-4 md:mt-5">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+              <div className="text-center md:text-left">
+                <p className="text-[10px] text-gray-400">
+                  © {currentYear} {t.header.title}. All rights reserved.
+                </p>
               </div>
-              <div className="flex items-center space-x-3 p-3 bg-gray-900/30 rounded-lg">
-                <div className="p-2 bg-gold-primary/10 rounded-lg">
-                  <Globe className="w-4 h-4 text-gold-primary" />
-                </div>
-                <span className="text-sm text-gray-300">Global Shipping</span>
-              </div>
-              <div className="flex items-center space-x-3 p-3 bg-gray-900/30 rounded-lg">
-                <div className="p-2 bg-gold-primary/10 rounded-lg">
-                  <Clock className="w-4 h-4 text-gold-primary" />
-                </div>
-                <span className="text-sm text-gray-300">24/7 Support</span>
-              </div>
-              <div className="flex items-center space-x-3 p-3 bg-gray-900/30 rounded-lg">
-                <div className="p-2 bg-gold-primary/10 rounded-lg">
-                  <MapPin className="w-4 h-4 text-gold-primary" />
-                </div>
-                <span className="text-sm text-gray-300 truncate">
-                  {t.common.address.split(",")[0]}
+              
+              <div className="hidden md:flex items-center space-x-2">
+                <span className="text-[10px] text-gray-400">
+                  Language:
                 </span>
+                <LanguageSwitcher
+                  className="text-white text-xs"
+                  arrowIcon={<ChevronUp className="w-3 h-3" />}
+                  variant="footer"
+                />
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar - Language switcher hidden on mobile only */}
-        <div className="border-t border-gray-800 pt-6 md:pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © {currentYear} {t.header.title}. All rights reserved.
-            </p>
-            {/* Hidden on mobile, visible on medium screens and up */}
-            <div className="hidden md:flex items-center space-x-6 mt-0">
-              <span className="text-sm text-gray-400">Languages:</span>
-              <LanguageSwitcher />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Add CSS for scrollbar hiding */}
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+      {/* Mobile version - redesigned with requested order */}
+      <div className="md:hidden">
+        <div className="px-4 py-4">
+          {/* Mobile Header - Just Company Info */}
+          <div className="flex items-start mb-4">
+            {/* Logo and Company Name */}
+            <div className="flex items-start space-x-2">
+              <div className="w-10 h-10 rounded-lg border border-gold-primary/30 flex items-center justify-center flex-shrink-0">
+                <div className="relative w-6 h-6">
+                  <Image
+                    src="/favicon.ico"
+                    alt="Da Qin Logo"
+                    fill
+                    className="object-contain"
+                    sizes="24px"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-white">{t.header.title}</h3>
+                <p className="text-xs text-gray-400 mt-0.5">{t.header.company}</p>
+                <div className="flex items-center space-x-1 mt-1">
+                  <MapPin className="w-2.5 h-2.5 text-gold-primary" />
+                  <p className="text-[9px] text-gray-400">Xi'an, China</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Accordion Sections - REORDERED */}
+          <div className="space-y-2 mb-4">
+            {/* A. Contact Details (First) */}
+            <div className="bg-gray-800/30 rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleSection('contact')}
+                className="w-full px-3 py-2.5 flex items-center justify-between"
+              >
+                <div className="flex items-center space-x-2">
+                  <div className="w-6 h-6 rounded bg-green-500/10 flex items-center justify-center">
+                    <Phone className="w-3 h-3 text-green-400" />
+                  </div>
+                  <span className="text-sm font-medium">Contact Details</span>
+                </div>
+                <ChevronDown 
+                  className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                    expandedSection === 'contact' ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              
+              {expandedSection === 'contact' && (
+                <div className="px-3 pb-3 pt-1">
+                  <div className="space-y-3">
+                    {/* Full Address */}
+                    <div className="flex items-start space-x-2 p-2 bg-gray-900/30 rounded">
+                      <MapPin className="w-4 h-4 text-gold-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-xs text-gray-300">
+                          Xi'an, Shaanxi Province, China
+                        </p>
+                        <p className="text-[10px] text-gray-400">Headquarters</p>
+                      </div>
+                    </div>
+                    
+                    {/* Contact Methods with Labels */}
+                    <div className="space-y-2">
+                      <p className="text-xs text-gray-400 px-1">Contact via:</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {contactMethods.map((method) => {
+                          const Icon = method.icon;
+                          return (
+                            <a
+                              key={method.id}
+                              href={method.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`p-2 rounded-lg ${method.bgColor} flex items-center space-x-2`}
+                            >
+                              <Icon className={`w-4 h-4 ${method.color}`} />
+                              <span className="text-xs text-gray-300">{method.title}</span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* B. Quick Links (Second) */}
+            <div className="bg-gray-800/30 rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleSection('quickLinks')}
+                className="w-full px-3 py-2.5 flex items-center justify-between"
+              >
+                <div className="flex items-center space-x-2">
+                  <div className="w-6 h-6 rounded bg-gold-primary/10 flex items-center justify-center">
+                    <Home className="w-3 h-3 text-gold-primary" />
+                  </div>
+                  <span className="text-sm font-medium">Quick Links</span>
+                </div>
+                <ChevronDown 
+                  className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                    expandedSection === 'quickLinks' ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              
+              {expandedSection === 'quickLinks' && (
+                <div className="px-3 pb-3 pt-1">
+                  <div className="grid grid-cols-2 gap-2">
+                    {quickLinks.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="text-xs text-gray-300 hover:text-gold-primary transition-colors py-1.5 px-2 hover:bg-gray-800/30 rounded flex items-center space-x-2"
+                      >
+                        {item.icon && <item.icon className="w-3 h-3" />}
+                        <span>{item.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* C. Why Choose Us (Third) */}
+            <div className="bg-gray-800/30 rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleSection('features')}
+                className="w-full px-3 py-2.5 flex items-center justify-between"
+              >
+                <div className="flex items-center space-x-2">
+                  <div className="w-6 h-6 rounded bg-blue-500/10 flex items-center justify-center">
+                    <Shield className="w-3 h-3 text-blue-400" />
+                  </div>
+                  <span className="text-sm font-medium">Why Choose Us</span>
+                </div>
+                <ChevronDown 
+                  className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                    expandedSection === 'features' ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              
+              {expandedSection === 'features' && (
+                <div className="px-3 pb-3 pt-1">
+                  <div className="space-y-2">
+                    {features.map((feature) => {
+                      const Icon = feature.icon;
+                      return (
+                        <div 
+                          key={feature.id} 
+                          className="flex items-center space-x-3 px-2 py-2 bg-gray-900/30 rounded"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center">
+                            <Icon className="w-4 h-4 text-gold-primary" />
+                          </div>
+                          <span className="text-xs text-gray-300">{feature.title}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Bottom Bar - Super Compact */}
+          <div className="border-t border-gray-800 pt-3">
+            <div className="flex flex-col space-y-2">
+              {/* Language Switcher */}
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-gray-400">Language:</span>
+                <LanguageSwitcher
+                  className="text-white text-xs"
+                  arrowIcon={<ChevronUp className="w-3 h-3" />}
+                  variant="footer"
+                />
+              </div>
+              
+              {/* Copyright */}
+              <div className="text-center">
+                <p className="text-[9px] text-gray-400">
+                  © {currentYear} {t.header.title}. All rights reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }

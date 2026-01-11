@@ -8,7 +8,7 @@ import {
   Home,
   Users,
   Briefcase,
-  MessageSquare,
+  Mail, // Changed from MessageSquare to Mail
   Shield,
   Car,
   ChevronDown,
@@ -39,7 +39,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Show/hide utility title based on scroll direction
       if (currentScrollY > 100) {
         if (currentScrollY > lastScrollY.current) {
@@ -52,7 +52,7 @@ export default function Header() {
       } else {
         setUtilityVisible(true);
       }
-      
+
       // Update scrolled state for header background
       setScrolled(currentScrollY > 10);
       lastScrollY.current = currentScrollY;
@@ -104,7 +104,7 @@ export default function Header() {
       id: "contact",
       name: t.header.nav.contact,
       href: "/contact",
-      icon: MessageSquare,
+      icon: Mail, // Changed to Mail icon
     },
     {
       id: "brands",
@@ -151,9 +151,9 @@ export default function Header() {
   return (
     <>
       {/* Top Utility Bar */}
-      <div 
+      <div
         className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-black to-gray-900 text-white transition-all duration-300 ${
-          utilityVisible ? 'translate-y-0' : '-translate-y-full'
+          utilityVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6">
@@ -183,14 +183,14 @@ export default function Header() {
       <header
         className={`
           fixed left-0 right-0 z-40 transition-all duration-300 bg-gold-primary
-          ${scrolled ? 'top-0 shadow-xl' : 'top-12 md:top-10'}
+          ${scrolled ? "top-0 shadow-xl" : "top-12 md:top-10"}
         `}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
 
         <nav className="container mx-auto px-4 sm:px-6 relative">
           <div className="flex items-center justify-between h-16 md:h-18">
-            {/* Logo with Company Name - Larger and moved left */}
+            {/* Logo with Company Name - Significantly larger */}
             <div className="flex-1 md:flex-none">
               <Link
                 href="/"
@@ -200,93 +200,155 @@ export default function Header() {
                 <div className="relative">
                   <Image
                     src="/images/daqin-logo.png"
-                    alt="Daqin Auto - Premium Chinese Vehicle Exporter"
-                    width={220}
-                    height={70}
-                    className="h-14 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:h-12"
+                    alt="Daqin Auto "
+                    width={280} // Increased from 240 to 280
+                    height={90} // Increased from 80 to 90
+                    className="h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:h-16" // Increased from h-16 and md:h-14
                     priority
+                    quality={100} // Added for better quality
+                    style={{
+                      filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))", // Added shadow for better visibility
+                    }}
                   />
                 </div>
-                {/* Company name visible on both mobile and desktop */}
-                <div className="flex flex-col">
-                  <span className="text-white font-bold text-base md:text-lg leading-tight tracking-tight">
-                    Xi'an Daqin Daorui
+                {/* Company name - desktop only shows "Daqin Auto" */}
+                <div className="hidden md:flex flex-col">
+                  <span className="text-white font-bold text-2xl md:text-3xl leading-tight tracking-tight">
+                    Daqin Auto
                   </span>
-                  <span className="text-white/80 text-xs md:text-xs font-medium hidden sm:block">
-                    International Trade
+                </div>
+                {/* Mobile still shows full name */}
+                <div className="md:hidden flex flex-col">
+                  <span className="text-white font-bold text-lg md:text-xl leading-tight tracking-tight">
+                    Daqin Auto
                   </span>
                 </div>
               </Link>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-0.5">
-              {navigation.map((item) => (
-                <div
-                  key={item.id}
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown(item.id)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <Link
-                    href={item.href}
-                    className={`
-                      flex items-center gap-1.5 px-3 py-2.5 rounded-lg
-                      transition-all duration-200
-                      text-white hover:text-gray-900 hover:bg-white/20
-                      ${activeDropdown === item.id ? "bg-white/15" : ""}
-                    `}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span className="text-sm font-medium tracking-wide">
-                      {item.name}
-                    </span>
-                    {item.dropdown && (
-                      <ChevronDown
-                        className={`w-3 h-3 transition-transform duration-200 ${
-                          activeDropdown === item.id ? "rotate-180" : ""
-                        }`}
-                      />
-                    )}
-                  </Link>
+            {/* Desktop Navigation - Icons only for specific items */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navigation.map((item) => {
+                // Determine if we should show only icon
+                const showIconOnly = ["home", "contact", "brands"].includes(
+                  item.id
+                );
 
-                  {item.dropdown && activeDropdown === item.id && (
-                    <div className="absolute top-full left-0 mt-1.5 w-56 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn">
-                      <div className="py-1.5">
-                        {item.dropdown.map((dropdownItem, idx) => (
-                          <Link
-                            key={idx}
-                            href={dropdownItem.href}
-                            className="flex items-center gap-3 px-4 py-2.5 hover:bg-gold-primary/10 transition-colors group"
-                          >
-                            <div className="w-1 h-1 rounded-full bg-gray-300 group-hover:bg-gold-primary transition-all duration-200 group-hover:w-2" />
-                            <span className="text-sm font-medium text-gray-800 group-hover:text-gold-primary transition-colors">
-                              {dropdownItem.name}
-                            </span>
-                          </Link>
-                        ))}
+                return (
+                  <div
+                    key={item.id}
+                    className="relative"
+                    onMouseEnter={() => setActiveDropdown(item.id)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`
+                        flex items-center gap-1.5 px-3 py-2.5 rounded-lg
+                        transition-all duration-200
+                        text-white hover:text-gray-900 hover:bg-white/20
+                        ${activeDropdown === item.id ? "bg-white/15" : ""}
+                        ${showIconOnly ? "px-2.5" : ""}
+                      `}
+                      title={showIconOnly ? item.name : ""} // Add title for icon-only items
+                    >
+                      <item.icon className="w-5 h-5" />
+                      {!showIconOnly && (
+                        <span className="text-sm font-medium tracking-wide">
+                          {item.name}
+                        </span>
+                      )}
+                      {item.dropdown && (
+                        <ChevronDown
+                          className={`w-3 h-3 transition-transform duration-200 ${
+                            activeDropdown === item.id ? "rotate-180" : ""
+                          } ${showIconOnly ? "hidden" : ""}`}
+                        />
+                      )}
+                    </Link>
+
+                    {item.dropdown && activeDropdown === item.id && (
+                      <div className="absolute top-full left-0 mt-1.5 w-56 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 overflow-hidden animate-fadeIn">
+                        <div className="py-1.5">
+                          {item.dropdown.map((dropdownItem, idx) => (
+                            <Link
+                              key={idx}
+                              href={dropdownItem.href}
+                              className="flex items-center gap-3 px-4 py-2.5 hover:bg-gold-primary/10 transition-colors group"
+                            >
+                              <div className="w-1 h-1 rounded-full bg-gray-300 group-hover:bg-gold-primary transition-all duration-200 group-hover:w-2" />
+                              <span className="text-sm font-medium text-gray-800 group-hover:text-gold-primary transition-colors">
+                                {dropdownItem.name}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+
+              {/* Search Icon Only Button */}
+              <div className="relative">
+                <button
+                  onClick={() => setSearchOpen(!searchOpen)}
+                  className="flex items-center gap-2 px-2.5 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
+                  aria-label="Search"
+                  title="Search"
+                >
+                  <Search className="w-5 h-5 text-white" />
+                </button>
+
+                {/* Search dropdown */}
+                {searchOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-4 animate-fadeIn z-50">
+                    <div className="relative">
+                      <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="Search vehicles, brands, models..."
+                        className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
+                        autoFocus
+                      />
+                      <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors">
+                        Enter
+                      </button>
+                    </div>
+                    <div className="mt-3">
+                      <span className="text-xs text-gray-500 font-medium px-1">
+                        Quick Links:
+                      </span>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        <Link
+                          href="/models?category=electric"
+                          className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
+                        >
+                          Electric
+                        </Link>
+                        <Link
+                          href="/models?status=new"
+                          className="px-3 py-1.5 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
+                        >
+                          New
+                        </Link>
+                        <Link
+                          href="/brands"
+                          className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                          Brands
+                        </Link>
                       </div>
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Right Actions */}
             <div className="flex items-center gap-2">
-              {/* Search with mobile icon button */}
-              <div className="relative" ref={searchRef}>
-                {/* Desktop search button */}
-                <button
-                  onClick={() => setSearchOpen(!searchOpen)}
-                  className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
-                  aria-label="Search"
-                >
-                  <Search className="w-4 h-4 text-white" />
-                  <span className="text-sm font-medium text-white">Search</span>
-                </button>
-
-                {/* Mobile search icon button */}
+              {/* Search - only for mobile now */}
+              <div className="relative lg:hidden" ref={searchRef}>
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
                   className="md:hidden p-2.5 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
@@ -295,7 +357,6 @@ export default function Header() {
                   <Search className="w-5 h-5 text-white" />
                 </button>
 
-                {/* Search dropdown */}
                 {searchOpen && (
                   <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-4 animate-fadeIn z-50">
                     <div className="relative">
@@ -444,17 +505,18 @@ export default function Header() {
                     <Image
                       src="/images/daqin-logo.png"
                       alt="Daqin Auto"
-                      width={180}
-                      height={55}
-                      className="h-11 w-auto"
+                      width={200} // Increased for mobile
+                      height={65}
+                      className="h-14 w-auto object-contain" // Increased from h-11
+                      quality={100}
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-bold text-lg leading-tight">
-                      Xi'an Daqin Daorui
+                    <span className="text-white font-bold text-xl leading-tight">
+                      Daqin Auto
                     </span>
                     <span className="text-white/80 text-xs">
-                      International Trade
+                      Premium Vehicle Exporter
                     </span>
                   </div>
                 </div>
@@ -603,7 +665,9 @@ export default function Header() {
                               className="flex items-center gap-2 py-3 text-white/80 hover:text-white transition-colors text-sm"
                             >
                               <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
-                              <span className="font-medium">{dropdownItem.name}</span>
+                              <span className="font-medium">
+                                {dropdownItem.name}
+                              </span>
                             </Link>
                           ))}
                         </div>
@@ -618,9 +682,11 @@ export default function Header() {
       )}
 
       {/* Spacer */}
-      <div className={`h-20 md:h-20 transition-all duration-300 ${
-        utilityVisible ? '' : 'mt-0'
-      }`} />
+      <div
+        className={`h-20 md:h-20 transition-all duration-300 ${
+          utilityVisible ? "" : "mt-0"
+        }`}
+      />
 
       {/* Styles */}
       <style jsx global>{`
@@ -682,7 +748,7 @@ export default function Header() {
         }
 
         /* Mobile-optimized touch targets */
-        button, 
+        button,
         a {
           touch-action: manipulation;
         }
