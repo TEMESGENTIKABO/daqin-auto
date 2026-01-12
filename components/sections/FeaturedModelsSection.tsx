@@ -21,22 +21,13 @@ export default function FeaturedModelsSection() {
 
   const featuredModels = getFeaturedModels();
 
-  // Filter models based on active filter
-  const filteredModels = featuredModels.filter((model) => {
-    if (activeFilter === "all") return true;
-    if (activeFilter === "new") return model.status === "New";
-    if (activeFilter === "stock") return model.status === "In Stock";
-    if (activeFilter === "coming") return model.status === "Coming Soon";
-    return true;
-  });
-
   // Status badge configuration
   const statusConfig = {
     New: {
       bgColor: "bg-green-100",
       textColor: "text-green-800",
       icon: <Zap className="w-3 h-3" />,
-      label: "New Arrival",
+      label: "New",
     },
     "In Stock": {
       bgColor: "bg-blue-100",
@@ -54,9 +45,36 @@ export default function FeaturedModelsSection() {
       bgColor: "bg-red-100",
       textColor: "text-red-800",
       icon: <Zap className="w-3 h-3" />,
-      label: "Limited Edition",
+      label: "Limited",
+    },
+    "Best Seller": {
+      bgColor: "bg-orange-100",
+      textColor: "text-orange-800",
+      icon: <Star className="w-3 h-3" />,
+      label: "Best Seller",
     },
   };
+
+  // Filter models based on active filter
+  const getFilteredModels = () => {
+    const filtered = featuredModels.filter((model) => {
+      if (activeFilter === "all") return true;
+      if (activeFilter === "new") return model.status === "New";
+      if (activeFilter === "stock") return model.status === "In Stock";
+      if (activeFilter === "coming") return model.status === "Coming Soon";
+      return true;
+    });
+
+    // If filter is "all", show only 6 models initially
+    // If user selects specific filter, show ALL models in that category
+    if (activeFilter === "all") {
+      return filtered.slice(0, 6);
+    }
+    
+    return filtered;
+  };
+
+  const filteredModels = getFilteredModels();
 
   const toggleCompare = (modelId: string) => {
     if (compareList.includes(modelId)) {
@@ -68,84 +86,75 @@ export default function FeaturedModelsSection() {
 
   return (
     <>
-      <section id="models" className="py-8 md:py-16 bg-gray-light">
+      <section id="models" className="py-8 md:py-12 bg-gray-light">
         <div className="section-container px-4">
-          {/* Header with title left and button right - Always horizontal */}
-          <div className="flex justify-between items-center mb-6 md:mb-8 gap-3 md:gap-4">
-            {/* Left side: Title with icon */}
-            <div className="flex items-center gap-2 md:gap-3 flex-1">
-              <div className="p-1.5 md:p-2 bg-gold-primary/10 rounded-lg">
-                <Star className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-gold-primary" />
+          {/* Header */}
+          <div className="flex justify-between items-center mb-8 md:mb-10">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-gold-primary/10 rounded-lg">
+                <Star className="w-5 h-5 lg:w-6 lg:h-6 text-gold-primary" />
               </div>
-              <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-gold-primary">
-                Featured Elite Models
-              </h2>
+              <div>
+                <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
+                  Featured Models
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  Premium selection from our inventory
+                </p>
+              </div>
             </div>
 
-            {/* Right side: View All Models button */}
-            <div className="flex-shrink-0">
-              <a
-                href="/models"
-                className="flex items-center justify-center gap-1 md:gap-2 px-2.5 py-1.5 md:px-4 md:py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors whitespace-nowrap text-xs md:text-sm font-medium shadow-sm"
-              >
-                <span className="hidden sm:inline">View All Models</span>
-                <span className="sm:hidden">All</span>
-                <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
-              </a>
-            </div>
+            {/* View All Models Link */}
+            <a
+              href="/models"
+              className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors text-sm font-medium"
+            >
+              View All Models
+              <ChevronRight className="w-4 h-4" />
+            </a>
           </div>
 
-          {/* Filter Tabs - Horizontal scroll on mobile */}
+          {/* Filter Tabs */}
           <div className="mb-8 md:mb-10">
-            <div className="flex md:flex-wrap gap-1.5 md:gap-2 overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
-              <button
-                onClick={() => setActiveFilter("all")}
-                className={`px-3 md:px-5 py-1.5 rounded-lg text-xs md:text-sm transition-all whitespace-nowrap flex-shrink-0 ${
-                  activeFilter === "all"
-                    ? "bg-gold-primary text-white"
-                    : "bg-white text-gray-700 border border-gray-300 hover:border-gold-primary hover:text-gold-primary"
-                }`}
-              >
-                All Models
-              </button>
+            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
               <button
                 onClick={() => setActiveFilter("new")}
-                className={`px-3 md:px-5 py-1.5 rounded-lg text-xs md:text-sm transition-all whitespace-nowrap flex items-center space-x-1 md:space-x-1.5 flex-shrink-0 ${
+                className={`px-4 py-2 rounded-lg text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
                   activeFilter === "new"
                     ? "bg-green-600 text-white"
                     : "bg-white text-gray-700 border border-gray-300 hover:border-green-500 hover:text-green-600"
                 }`}
               >
-                <Zap className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                <Zap className="w-3.5 h-3.5" />
                 <span>New Arrivals</span>
               </button>
               <button
                 onClick={() => setActiveFilter("stock")}
-                className={`px-3 md:px-5 py-1.5 rounded-lg text-xs md:text-sm transition-all whitespace-nowrap flex items-center space-x-1 md:space-x-1.5 flex-shrink-0 ${
+                className={`px-4 py-2 rounded-lg text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
                   activeFilter === "stock"
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-700 border border-gray-300 hover:border-blue-500 hover:text-blue-600"
                 }`}
               >
-                <CheckCircle className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                <CheckCircle className="w-3.5 h-3.5" />
                 <span>In Stock</span>
               </button>
               <button
                 onClick={() => setActiveFilter("coming")}
-                className={`px-3 md:px-5 py-1.5 rounded-lg text-xs md:text-sm transition-all whitespace-nowrap flex items-center space-x-1 md:space-x-1.5 flex-shrink-0 ${
+                className={`px-4 py-2 rounded-lg text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
                   activeFilter === "coming"
                     ? "bg-purple-600 text-white"
                     : "bg-white text-gray-700 border border-gray-300 hover:border-purple-500 hover:text-purple-600"
                 }`}
               >
-                <Clock className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                <Clock className="w-3.5 h-3.5" />
                 <span>Coming Soon</span>
               </button>
             </div>
           </div>
 
-          {/* Models Grid - Smaller cards on mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {/* Models Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {filteredModels.map((model) => {
               const status =
                 statusConfig[model.status as keyof typeof statusConfig] ||
@@ -154,10 +163,10 @@ export default function FeaturedModelsSection() {
               return (
                 <div
                   key={model.id}
-                  className="group bg-white rounded-lg md:rounded-xl overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-md md:hover:shadow-lg transition-all duration-300"
+                  className="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-lg transition-all duration-300"
                 >
-                  {/* Image Section - Smaller on mobile */}
-                  <div className="relative h-44 sm:h-48 md:h-52 overflow-hidden">
+                  {/* Image Section */}
+                  <div className="relative h-52 md:h-56 overflow-hidden">
                     <Image
                       src={model.images[0] || "/images/placeholder.jpg"}
                       alt={`${model.brand} ${model.model}`}
@@ -166,66 +175,65 @@ export default function FeaturedModelsSection() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
 
-                    {/* Status Badge - Smaller on mobile */}
-                    <div className="absolute top-2 left-2 md:top-3 md:left-3">
+                    {/* Status Badge */}
+                    <div className="absolute top-3 left-3">
                       <div
-                        className={`flex items-center space-x-1 px-2 py-1 md:px-2.5 md:py-1 rounded-full ${status.bgColor} ${status.textColor} text-xs font-medium`}
+                        className={`flex items-center gap-1 px-2.5 py-1 rounded-full ${status.bgColor} ${status.textColor} text-xs font-medium`}
                       >
-                        <span className="hidden sm:inline">{status.icon}</span>
-                        <span className="text-xs">{status.label}</span>
+                        {status.icon}
+                        <span>{status.label}</span>
                       </div>
                     </div>
 
-                    {/* Price Tag - Smaller on mobile */}
-                    <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-black/80 text-white px-2 py-1 md:px-3 md:py-1.5 rounded-lg backdrop-blur-sm">
-                      <div className="text-base md:text-lg font-bold">
+                    {/* Price Tag */}
+                    <div className="absolute bottom-3 right-3 bg-black/90 text-white px-3 py-1.5 rounded-lg">
+                      <div className="text-lg font-bold">
                         ${model.priceUSD.toLocaleString()}
                       </div>
-                      <div className="text-xs opacity-80">FOB China</div>
+                      <div className="text-xs opacity-90">FOB China</div>
                     </div>
 
-                    {/* Category Badge - Smaller on mobile */}
-                    <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-white/90 backdrop-blur-sm text-gray-800 px-2 py-1 rounded-full text-xs">
+                    {/* Category Badge */}
+                    <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-full text-xs font-medium">
                       {model.category}
                     </div>
                   </div>
 
-                  {/* Content Section - Smaller padding on mobile */}
-                  <div className="p-3 md:p-4 lg:p-5">
-                    <div className="mb-3 md:mb-4">
-                      <div className="flex items-baseline justify-between mb-1 md:mb-2">
-                        <h3 className="text-base md:text-lg font-bold text-black truncate">
+                  {/* Content Section - Minimal */}
+                  <div className="p-4">
+                    {/* Brand & Model Name Only */}
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h3 className="text-base font-bold text-gray-900 truncate">
                           {model.brand} {model.model}
                         </h3>
-                        <span className="text-xs md:text-sm text-gray-500 flex-shrink-0 ml-2">
-                          {model.year}
-                        </span>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-sm text-gray-600">
+                            {model.year}
+                          </span>
+                          <span className="text-xs text-gray-400">•</span>
+                          <span className="text-sm text-gray-600">
+                            {model.specs.fuelType}
+                          </span>
+                        </div>
                       </div>
-
-                      <p className="text-gold-primary text-xs md:text-sm font-medium mb-2 md:mb-3 line-clamp-1">
-                        {model.tagline}
-                      </p>
-
-                      <p className="text-gray-dark text-xs md:text-sm line-clamp-2 mb-3 md:mb-4">
-                        {model.description}
-                      </p>
                     </div>
 
-                    {/* Action Buttons - Both buttons same size now */}
-                    <div className="flex space-x-1.5 md:space-x-2">
+                    {/* Action Buttons */}
+                    <div className="flex gap-2">
                       <button
                         onClick={() => setSelectedModel(model)}
-                        className="flex-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors flex items-center justify-center space-x-1 md:space-x-1.5 text-xs md:text-sm"
+                        className="flex-1 px-3 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
                       >
-                        <span>Details</span>
+                        View Details
                       </button>
                       <a
                         href={`https://wa.me/+8615594634955?text=Interested in ${model.brand} ${model.model}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-1 md:space-x-1.5 text-xs md:text-sm"
+                        className="flex-1 px-3 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
                       >
-                        <FaWhatsapp className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <FaWhatsapp className="w-4 h-4" />
                         <span>Inquire</span>
                       </a>
                     </div>
@@ -233,6 +241,38 @@ export default function FeaturedModelsSection() {
                 </div>
               );
             })}
+          </div>
+
+          {/* No Results Message */}
+          {filteredModels.length === 0 && (
+            <div className="text-center py-16">
+              <div className="text-gray-300 mb-4">
+                <Zap className="w-12 h-12 mx-auto" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                No Models Found
+              </h3>
+              <p className="text-gray-600 mb-4">
+                No featured models match your current filter.
+              </p>
+              <button
+                onClick={() => setActiveFilter("all")}
+                className="px-5 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors text-sm font-medium"
+              >
+                Show All Models
+              </button>
+            </div>
+          )}
+
+          {/* Mobile View All Button */}
+          <div className="mt-8 md:hidden text-center">
+            <a
+              href="/models"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors text-sm font-medium"
+            >
+              View All Models
+              <ChevronRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </section>
@@ -247,7 +287,7 @@ export default function FeaturedModelsSection() {
         />
       )}
 
-      {/* Add CSS for scrollbar hiding on mobile filters */}
+      {/* CSS */}
       <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {
           display: none;

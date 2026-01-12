@@ -20,7 +20,7 @@ import {
   DollarSign,
   Clock,
   Star,
-  Check
+  Check,
 } from "lucide-react";
 
 // Import the shared VehicleModel type from the appropriate location
@@ -34,7 +34,14 @@ type VehicleModel = SharedVehicleModel & {
 };
 
 type ViewMode = "grid" | "list";
-type SortOption = "default" | "price-low" | "price-high" | "year-new" | "year-old" | "name-a" | "name-z";
+type SortOption =
+  | "default"
+  | "price-low"
+  | "price-high"
+  | "year-new"
+  | "year-old"
+  | "name-a"
+  | "name-z";
 type PricePreset = "all" | "under-30k" | "30k-60k" | "60k-100k" | "100k-plus";
 
 interface ModelsUIProps {
@@ -42,7 +49,10 @@ interface ModelsUIProps {
   initialBrands: string[];
 }
 
-export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps) {
+export default function ModelsUI({
+  initialModels,
+  initialBrands,
+}: ModelsUIProps) {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -67,18 +77,41 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   // Price presets - Fixed: use tuple type [number, number] instead of number[]
-  const pricePresets = useMemo(() => [
-    { id: "all" as PricePreset, label: "All Prices", range: [0, 200000] as [number, number] },
-    { id: "under-30k" as PricePreset, label: "Under $30k", range: [0, 30000] as [number, number] },
-    { id: "30k-60k" as PricePreset, label: "$30k - $60k", range: [30000, 60000] as [number, number] },
-    { id: "60k-100k" as PricePreset, label: "$60k - $100k", range: [60000, 100000] as [number, number] },
-    { id: "100k-plus" as PricePreset, label: "$100k+", range: [100000, 200000] as [number, number] },
-  ], []);
+  const pricePresets = useMemo(
+    () => [
+      {
+        id: "all" as PricePreset,
+        label: "All Prices",
+        range: [0, 200000] as [number, number],
+      },
+      {
+        id: "under-30k" as PricePreset,
+        label: "Under $30k",
+        range: [0, 30000] as [number, number],
+      },
+      {
+        id: "30k-60k" as PricePreset,
+        label: "$30k - $60k",
+        range: [30000, 60000] as [number, number],
+      },
+      {
+        id: "60k-100k" as PricePreset,
+        label: "$60k - $100k",
+        range: [60000, 100000] as [number, number],
+      },
+      {
+        id: "100k-plus" as PricePreset,
+        label: "$100k+",
+        range: [100000, 200000] as [number, number],
+      },
+    ],
+    []
+  );
 
   // Handle price preset changes
   const handlePricePreset = useCallback((preset: PricePreset) => {
     setPricePreset(preset);
-    switch(preset) {
+    switch (preset) {
       case "under-30k":
         setPriceRange([0, 30000]);
         break;
@@ -121,17 +154,19 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
           model.brand.toLowerCase().includes(query) ||
           model.model.toLowerCase().includes(query) ||
           model.description?.toLowerCase().includes(query) ||
-          model.features?.some(f => f.toLowerCase().includes(query))
+          model.features?.some((f) => f.toLowerCase().includes(query))
       );
     }
 
     // Filter by category
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(model => model.category === selectedCategory);
+      filtered = filtered.filter(
+        (model) => model.category === selectedCategory
+      );
     }
 
     // Filter by price range with safe access
-    filtered = filtered.filter(model => {
+    filtered = filtered.filter((model) => {
       const price = model.price || 0;
       return price >= priceRange[0] && price <= priceRange[1];
     });
@@ -157,40 +192,48 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
     });
 
     return filtered;
-  }, [initialModels, selectedBrands, searchQuery, selectedCategory, priceRange, sortBy]);
+  }, [
+    initialModels,
+    selectedBrands,
+    searchQuery,
+    selectedCategory,
+    priceRange,
+    sortBy,
+  ]);
 
   // Stats with safe calculations
   const stats = useMemo(() => {
-    const prices = filteredModels.map(m => m.price || 0);
+    const prices = filteredModels.map((m) => m.price || 0);
     const total = initialModels.length;
     const showing = filteredModels.length;
     const brandsCount = selectedBrands.length;
-    
-    const validPrices = prices.filter(p => p > 0);
+
+    const validPrices = prices.filter((p) => p > 0);
     const minPrice = validPrices.length > 0 ? Math.min(...validPrices) : 0;
     const maxPrice = validPrices.length > 0 ? Math.max(...validPrices) : 0;
-    const averagePrice = validPrices.length > 0 
-      ? Math.round(validPrices.reduce((sum, p) => sum + p, 0) / validPrices.length)
-      : 0;
+    const averagePrice =
+      validPrices.length > 0
+        ? Math.round(
+            validPrices.reduce((sum, p) => sum + p, 0) / validPrices.length
+          )
+        : 0;
 
     return { total, showing, brandsCount, minPrice, maxPrice, averagePrice };
   }, [filteredModels, selectedBrands, initialModels.length]);
 
   // Toggle functions
   const toggleCompare = useCallback((modelId: string) => {
-    setCompareList(prev => {
+    setCompareList((prev) => {
       if (prev.includes(modelId)) {
-        return prev.filter(id => id !== modelId);
+        return prev.filter((id) => id !== modelId);
       }
       return prev.length < 4 ? [...prev, modelId] : prev;
     });
   }, []);
 
   const toggleBrand = useCallback((brand: string) => {
-    setSelectedBrands(prev => 
-      prev.includes(brand) 
-        ? prev.filter(b => b !== brand)
-        : [...prev, brand]
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   }, []);
 
@@ -218,57 +261,62 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
   }, [brandParam]);
 
   // Mobile Sort Sheet Component
-  const MobileSortSheet = useCallback(() => (
-    <div className="fixed inset-0 z-50 lg:hidden">
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={() => setShowSortSheet(false)}
-      />
-      <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl animate-slideUp">
-        <div className="pt-4 px-4">
-          <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto"></div>
-        </div>
-        <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900">Sort By</h2>
-            <button
-              onClick={() => setShowSortSheet(false)}
-              className="p-2 hover:bg-gray-100 rounded-lg"
-            >
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
+  const MobileSortSheet = useCallback(
+    () => (
+      <div className="fixed inset-0 z-50 lg:hidden">
+        <div
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          onClick={() => setShowSortSheet(false)}
+        />
+        <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl animate-slideUp">
+          <div className="pt-4 px-4">
+            <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto"></div>
+          </div>
+          <div className="p-4 border-b border-gray-200">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-gray-900">Sort By</h2>
+              <button
+                onClick={() => setShowSortSheet(false)}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+          </div>
+          <div className="p-4 space-y-2">
+            {[
+              { id: "default" as SortOption, label: "Recommended" },
+              { id: "price-low" as SortOption, label: "Price: Low to High" },
+              { id: "price-high" as SortOption, label: "Price: High to Low" },
+              { id: "year-new" as SortOption, label: "Newest First" },
+              { id: "year-old" as SortOption, label: "Oldest First" },
+              { id: "name-a" as SortOption, label: "Name: A to Z" },
+              { id: "name-z" as SortOption, label: "Name: Z to A" },
+            ].map((option) => (
+              <button
+                key={option.id}
+                onClick={() => {
+                  setSortBy(option.id);
+                  setShowSortSheet(false);
+                }}
+                className={`w-full p-3 rounded-lg flex items-center justify-between ${
+                  sortBy === option.id
+                    ? "bg-gold-primary/10 text-gold-primary"
+                    : "hover:bg-gray-100"
+                }`}
+              >
+                <span className="font-medium">{option.label}</span>
+                {sortBy === option.id && (
+                  <Check className="w-5 h-5 text-gold-primary" />
+                )}
+              </button>
+            ))}
           </div>
         </div>
-        <div className="p-4 space-y-2">
-          {[
-            { id: "default" as SortOption, label: "Recommended" },
-            { id: "price-low" as SortOption, label: "Price: Low to High" },
-            { id: "price-high" as SortOption, label: "Price: High to Low" },
-            { id: "year-new" as SortOption, label: "Newest First" },
-            { id: "year-old" as SortOption, label: "Oldest First" },
-            { id: "name-a" as SortOption, label: "Name: A to Z" },
-            { id: "name-z" as SortOption, label: "Name: Z to A" },
-          ].map((option) => (
-            <button
-              key={option.id}
-              onClick={() => {
-                setSortBy(option.id);
-                setShowSortSheet(false);
-              }}
-              className={`w-full p-3 rounded-lg flex items-center justify-between ${
-                sortBy === option.id
-                  ? "bg-gold-primary/10 text-gold-primary"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <span className="font-medium">{option.label}</span>
-              {sortBy === option.id && <Check className="w-5 h-5 text-gold-primary" />}
-            </button>
-          ))}
-        </div>
       </div>
-    </div>
-  ), [sortBy]);
+    ),
+    [sortBy]
+  );
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -280,17 +328,22 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
               <h1 className="text-xl font-bold text-gray-900">
                 {brandParam ? `${brandParam} Models` : "Vehicles"}
               </h1>
-              <p className="text-sm text-gray-600">{filteredModels.length} vehicles</p>
+              <p className="text-sm text-gray-600">
+                {filteredModels.length} vehicles
+              </p>
             </div>
             <div className="flex items-center gap-2">
               <button
-                onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
+                onClick={() =>
+                  setViewMode(viewMode === "grid" ? "list" : "grid")
+                }
                 className="p-2.5 rounded-lg bg-gray-100"
               >
-                {viewMode === "grid" ? 
-                  <List className="w-5 h-5 text-gray-600" /> : 
+                {viewMode === "grid" ? (
+                  <List className="w-5 h-5 text-gray-600" />
+                ) : (
                   <Grid className="w-5 h-5 text-gray-600" />
-                }
+                )}
               </button>
             </div>
           </div>
@@ -326,7 +379,9 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {brandParam ? `${brandParam} Vehicle Models` : "Vehicle Catalog"}
+                {brandParam
+                  ? `${brandParam} Vehicle Models`
+                  : "Vehicle Catalog"}
               </h1>
               <p className="text-gray-600">
                 Browse {filteredModels.length} vehicles from our collection
@@ -335,13 +390,21 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-2 rounded-lg ${viewMode === "grid" ? "bg-gold-primary text-white" : "bg-gray-100"}`}
+                className={`p-2 rounded-lg ${
+                  viewMode === "grid"
+                    ? "bg-gold-primary text-white"
+                    : "bg-gray-100"
+                }`}
               >
                 <Grid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-2 rounded-lg ${viewMode === "list" ? "bg-gold-primary text-white" : "bg-gray-100"}`}
+                className={`p-2 rounded-lg ${
+                  viewMode === "list"
+                    ? "bg-gold-primary text-white"
+                    : "bg-gray-100"
+                }`}
               >
                 <List className="w-5 h-5" />
               </button>
@@ -394,7 +457,9 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
               >
                 <Filter className="w-4 h-4" />
                 <span className="font-medium">Filters</span>
-                {(selectedBrands.length > 0 || selectedCategory !== "all" || pricePreset !== "all") && (
+                {(selectedBrands.length > 0 ||
+                  selectedCategory !== "all" ||
+                  pricePreset !== "all") && (
                   <span className="w-5 h-5 bg-gold-primary text-white text-xs rounded-full flex items-center justify-center">
                     !
                   </span>
@@ -410,15 +475,18 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
             </div>
 
             {/* Active Filters */}
-            {(selectedBrands.length > 0 || selectedCategory !== "all" || pricePreset !== "all") && (
+            {(selectedBrands.length > 0 ||
+              selectedCategory !== "all" ||
+              pricePreset !== "all") && (
               <div className="mb-4 p-3 bg-white rounded-lg border border-gray-200">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-sm text-gray-600">Active:</span>
-                  
+
                   {selectedCategory !== "all" && (
                     <div className="flex items-center gap-1 px-3 py-1 bg-gold-primary/10 rounded-full">
                       <span className="text-sm text-gold-primary">
-                        {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
+                        {selectedCategory.charAt(0).toUpperCase() +
+                          selectedCategory.slice(1)}
                       </span>
                       <button
                         onClick={() => setSelectedCategory("all")}
@@ -428,9 +496,12 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
                       </button>
                     </div>
                   )}
-                  
+
                   {selectedBrands.map((brand) => (
-                    <div key={brand} className="flex items-center gap-1 px-3 py-1 bg-gold-primary/10 rounded-full">
+                    <div
+                      key={brand}
+                      className="flex items-center gap-1 px-3 py-1 bg-gold-primary/10 rounded-full"
+                    >
                       <span className="text-sm text-gold-primary">{brand}</span>
                       <button
                         onClick={() => toggleBrand(brand)}
@@ -440,11 +511,11 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
                       </button>
                     </div>
                   ))}
-                  
+
                   {pricePreset !== "all" && (
                     <div className="flex items-center gap-1 px-3 py-1 bg-gold-primary/10 rounded-full">
                       <span className="text-sm text-gold-primary">
-                        {pricePresets.find(p => p.id === pricePreset)?.label}
+                        {pricePresets.find((p) => p.id === pricePreset)?.label}
                       </span>
                       <button
                         onClick={() => handlePricePreset("all")}
@@ -454,7 +525,7 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
                       </button>
                     </div>
                   )}
-                  
+
                   <button
                     onClick={resetFilters}
                     className="ml-auto text-sm text-red-500 hover:text-red-700"
@@ -472,7 +543,8 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
                   {filteredModels.length} Vehicles
                 </h2>
                 <div className="text-sm text-gray-600">
-                  {stats.averagePrice > 0 && `Avg: $${stats.averagePrice.toLocaleString()}`}
+                  {stats.averagePrice > 0 &&
+                    `Avg: $${stats.averagePrice.toLocaleString()}`}
                 </div>
               </div>
             </div>
@@ -504,7 +576,9 @@ export default function ModelsUI({ initialModels, initialBrands }: ModelsUIProps
                 <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
                   <Search className="w-8 h-8 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">No vehicles found</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  No vehicles found
+                </h3>
                 <p className="text-gray-600 mb-4">
                   Try adjusting your filters or search terms
                 </p>
