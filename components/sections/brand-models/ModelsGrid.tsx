@@ -2,10 +2,9 @@
 
 "use client";
 
-import Image from "next/image";
-import { Check, GitCompare } from "lucide-react";
-import { VehicleModel, ViewMode } from "./types";
 import VehicleCard from "./VehicleCard";
+import { VehicleModel } from "@/data/models"; // Import from data/models
+import { ViewMode } from "./types"; // Only import ViewMode from types
 
 interface ModelsGridProps {
   vehicles: VehicleModel[];

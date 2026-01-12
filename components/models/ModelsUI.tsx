@@ -9,17 +9,13 @@ import VehicleDetailModal from "@/components/sections/brand-models/VehicleDetail
 import VehicleCompare from "@/components/sections/brand-models/VehicleCompare";
 import { Search, Car } from "lucide-react";
 
-import type { VehicleModel as SharedVehicleModel } from "@/components/sections/brand-models/types";
-
-type VehicleModel = SharedVehicleModel & {
-  price?: number;
-  priceUSD?: number;
-};
+// Import your actual VehicleModel type from data/models
+import type { VehicleModel } from "@/data/models";
 
 type ViewMode = "grid" | "list";
 
 interface ModelsUIProps {
-  initialModels: VehicleModel[];
+  initialModels: VehicleModel[];  // Use the actual type
   initialBrands: string[];
 }
 
@@ -190,7 +186,7 @@ export default function ModelsUI({
           onToggleCompare={toggleCompare}
           onSelectModel={setSelectedModel}
           onClearCompare={() => setCompareList([])}
-          onWhatsApp={function (vehicle: SharedVehicleModel): void {
+          onWhatsApp={function (vehicle: VehicleModel): void {
             throw new Error("Function not implemented.");
           }}
         />

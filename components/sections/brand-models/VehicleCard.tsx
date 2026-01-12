@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { VehicleModel, ViewMode } from "./types";
-import { FaWhatsapp } from "react-icons/fa";
 
+import { FaWhatsapp } from "react-icons/fa";
+import type { VehicleModel } from "@/data/models";
+import { ViewMode } from "./types";
 interface VehicleCardProps {
   vehicle: VehicleModel;
   viewMode: ViewMode;
