@@ -7,6 +7,9 @@ export type SortOption = 'price-low' | 'price-high' | 'year-new' | 'year-old' | 
 export type ViewMode = 'grid' | 'list';
 
 export interface VehicleModel {
+  isElectric: any;
+  rating: any;
+  originalPrice: number;
   id: string;
   brand: string;
   model: string;

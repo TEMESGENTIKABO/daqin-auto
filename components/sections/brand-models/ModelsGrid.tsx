@@ -14,6 +14,7 @@ interface ModelsGridProps {
   onToggleCompare: (modelId: string) => void;
   onSelectModel: (modelId: string) => void;
   onClearCompare: () => void;
+  onWhatsApp: (vehicle: VehicleModel) => void;
 }
 
 export default function ModelsGrid({
@@ -23,6 +24,7 @@ export default function ModelsGrid({
   onToggleCompare,
   onSelectModel,
   onClearCompare,
+  onWhatsApp,
 }: ModelsGridProps) {
   if (vehicles.length === 0) {
     return (
@@ -76,6 +78,7 @@ export default function ModelsGrid({
               isCompareFull={isCompareFull}
               onToggleCompare={onToggleCompare}
               onSelectModel={onSelectModel}
+              onWhatsApp={onWhatsApp}
             />
           );
         })}

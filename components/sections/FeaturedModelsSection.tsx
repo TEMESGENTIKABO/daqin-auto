@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { getFeaturedModels } from "@/data/models";
-import { Clock, CheckCircle, Zap, Star, ChevronRight } from "lucide-react";
+import { Clock, CheckCircle, Zap, Star } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 import VehicleDetailModal from "./brand-models/VehicleDetailModal";
@@ -21,37 +21,37 @@ export default function FeaturedModelsSection() {
 
   const featuredModels = getFeaturedModels();
 
-  // Status badge configuration
+  // Status badge configuration - Compact
   const statusConfig = {
     New: {
       bgColor: "bg-green-100",
       textColor: "text-green-800",
-      icon: <Zap className="w-3 h-3" />,
+      icon: <Zap className="w-2.5 h-2.5" />,
       label: "New",
     },
     "In Stock": {
       bgColor: "bg-blue-100",
       textColor: "text-blue-800",
-      icon: <CheckCircle className="w-3 h-3" />,
+      icon: <CheckCircle className="w-2.5 h-2.5" />,
       label: "In Stock",
     },
     "Coming Soon": {
       bgColor: "bg-purple-100",
       textColor: "text-purple-800",
-      icon: <Clock className="w-3 h-3" />,
-      label: "Coming Soon",
+      icon: <Clock className="w-2.5 h-2.5" />,
+      label: "Soon",
     },
     "Limited Edition": {
       bgColor: "bg-red-100",
       textColor: "text-red-800",
-      icon: <Zap className="w-3 h-3" />,
+      icon: <Zap className="w-2.5 h-2.5" />,
       label: "Limited",
     },
     "Best Seller": {
       bgColor: "bg-orange-100",
       textColor: "text-orange-800",
-      icon: <Star className="w-3 h-3" />,
-      label: "Best Seller",
+      icon: <Star className="w-2.5 h-2.5" />,
+      label: "Best",
     },
   };
 
@@ -65,12 +65,10 @@ export default function FeaturedModelsSection() {
       return true;
     });
 
-    // If filter is "all", show only 6 models initially
-    // If user selects specific filter, show ALL models in that category
     if (activeFilter === "all") {
       return filtered.slice(0, 6);
     }
-    
+
     return filtered;
   };
 
@@ -86,75 +84,98 @@ export default function FeaturedModelsSection() {
 
   return (
     <>
-      <section id="models" className="py-8 md:py-12 bg-gray-light">
-        <div className="section-container px-4">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8 md:mb-10">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-gold-primary/10 rounded-lg">
-                <Star className="w-5 h-5 lg:w-6 lg:h-6 text-gold-primary" />
+      <section id="models" className="py-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Compact Header */}
+          <div className="flex justify-between items-center mb-4">
+            <div className="relative mb-4">
+              {/* Floating Badge with Title */}
+              <div className="relative pl-12 pb-4">
+                <div className="absolute left-0 top-0">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gold-primary/20 rounded-full animate-ping"></div>
+                    <div className="relative w-10 h-10 bg-gradient-to-br from-gold-primary to-yellow-400 rounded-full flex items-center justify-center shadow-md">
+                      <Star className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Title and Subtitle */}
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-gold-primary">
+                    Featured Models
+                  </h2>
+                  <p className="text-xs text-gray-600 mt-0.5 flex items-center gap-1">
+                    <span className="w-2 h-2 bg-gold-primary rounded-full"></span>
+                    Premium selection from inventory
+                  </p>
+                </div>
               </div>
-              <div>
-                <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
-                  Featured Models
-                </h2>
-                <p className="text-sm text-gray-600 mt-1">
-                  Premium selection from our inventory
-                </p>
-              </div>
+
+              {/* Thicker solid line across screen */}
+              <div className="w-screen ml-[calc(-50vw+50%)] border-t-2 border-gray-300"></div>
             </div>
 
-            {/* View All Models Link */}
+            {/* View All Models Link - Compact */}
             <a
               href="/models"
-              className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors text-sm font-medium"
+              className="hidden md:flex items-center gap-1 px-3 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors text-xs font-medium"
             >
-              View All Models
-              <ChevronRight className="w-4 h-4" />
+              All Models
             </a>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="mb-8 md:mb-10">
-            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+          {/* Compact Filter Tabs */}
+          <div className="mb-4">
+            <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+              <button
+                onClick={() => setActiveFilter("all")}
+                className={`px-2.5 py-1.5 rounded-md text-xs transition-all whitespace-nowrap ${
+                  activeFilter === "all"
+                    ? "bg-gold-primary text-white"
+                    : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                All
+              </button>
               <button
                 onClick={() => setActiveFilter("new")}
-                className={`px-4 py-2 rounded-lg text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
+                className={`px-2.5 py-1.5 rounded-md text-xs transition-all whitespace-nowrap flex items-center gap-1 ${
                   activeFilter === "new"
                     ? "bg-green-600 text-white"
                     : "bg-white text-gray-700 border border-gray-300 hover:border-green-500 hover:text-green-600"
                 }`}
               >
-                <Zap className="w-3.5 h-3.5" />
-                <span>New Arrivals</span>
+                <Zap className="w-3 h-3" />
+                <span>New</span>
               </button>
               <button
                 onClick={() => setActiveFilter("stock")}
-                className={`px-4 py-2 rounded-lg text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
+                className={`px-2.5 py-1.5 rounded-md text-xs transition-all whitespace-nowrap flex items-center gap-1 ${
                   activeFilter === "stock"
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-700 border border-gray-300 hover:border-blue-500 hover:text-blue-600"
                 }`}
               >
-                <CheckCircle className="w-3.5 h-3.5" />
+                <CheckCircle className="w-3 h-3" />
                 <span>In Stock</span>
               </button>
               <button
                 onClick={() => setActiveFilter("coming")}
-                className={`px-4 py-2 rounded-lg text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
+                className={`px-2.5 py-1.5 rounded-md text-xs transition-all whitespace-nowrap flex items-center gap-1 ${
                   activeFilter === "coming"
                     ? "bg-purple-600 text-white"
                     : "bg-white text-gray-700 border border-gray-300 hover:border-purple-500 hover:text-purple-600"
                 }`}
               >
-                <Clock className="w-3.5 h-3.5" />
-                <span>Coming Soon</span>
+                <Clock className="w-3 h-3" />
+                <span>Soon</span>
               </button>
             </div>
           </div>
 
-          {/* Models Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {/* Models Grid - Compact */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredModels.map((model) => {
               const status =
                 statusConfig[model.status as keyof typeof statusConfig] ||
@@ -163,77 +184,77 @@ export default function FeaturedModelsSection() {
               return (
                 <div
                   key={model.id}
-                  className="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-lg transition-all duration-300"
+                  className="group bg-white rounded-md overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200"
                 >
-                  {/* Image Section */}
+                  {/* Image Section - Keep original size */}
                   <div className="relative h-52 md:h-56 overflow-hidden">
                     <Image
                       src={model.images[0] || "/images/placeholder.jpg"}
                       alt={`${model.brand} ${model.model}`}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-102 transition-transform duration-300"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
 
-                    {/* Status Badge */}
-                    <div className="absolute top-3 left-3">
+                    {/* Status Badge - Compact */}
+                    <div className="absolute top-2 left-2">
                       <div
-                        className={`flex items-center gap-1 px-2.5 py-1 rounded-full ${status.bgColor} ${status.textColor} text-xs font-medium`}
+                        className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded-full ${status.bgColor} ${status.textColor} text-[11px] font-medium`}
                       >
                         {status.icon}
                         <span>{status.label}</span>
                       </div>
                     </div>
 
-                    {/* Price Tag */}
-                    <div className="absolute bottom-3 right-3 bg-black/90 text-white px-3 py-1.5 rounded-lg">
-                      <div className="text-lg font-bold">
+                    {/* Price Tag - Compact */}
+                    <div className="absolute bottom-2 right-2 bg-black/90 text-white px-2 py-1 rounded-md">
+                      <div className="text-sm font-bold">
                         ${model.priceUSD.toLocaleString()}
                       </div>
-                      <div className="text-xs opacity-90">FOB China</div>
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-full text-xs font-medium">
-                      {model.category}
+                      <div className="text-[10px] opacity-90">FOB China</div>
                     </div>
                   </div>
 
-                  {/* Content Section - Minimal */}
-                  <div className="p-4">
-                    {/* Brand & Model Name Only */}
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-base font-bold text-gray-900 truncate">
-                          {model.brand} {model.model}
-                        </h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-sm text-gray-600">
-                            {model.year}
-                          </span>
-                          <span className="text-xs text-gray-400">•</span>
-                          <span className="text-sm text-gray-600">
-                            {model.specs.fuelType}
-                          </span>
-                        </div>
+                  {/* Content Section - Compact */}
+                  <div className="p-3">
+                    {/* Brand & Model Name - Compact */}
+                    <div className="mb-2">
+                      <h3 className="text-sm font-bold text-gray-900 truncate">
+                        {model.brand} {model.model}
+                      </h3>
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <span className="text-xs text-gray-600">
+                          {model.year}
+                        </span>
+                        <span className="text-[10px] text-gray-400">•</span>
+                        <span className="text-xs text-gray-600">
+                          {model.specs.fuelType}
+                        </span>
+                      </div>
+
+                      {/* Category - Compact */}
+                      <div className="mt-1.5">
+                        <span className="inline-block px-1.5 py-0.5 bg-gray-100 text-gray-700 text-[11px] rounded">
+                          {model.category}
+                        </span>
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-2">
+                    {/* Action Buttons - Compact */}
+                    <div className="flex gap-1.5">
                       <button
                         onClick={() => setSelectedModel(model)}
-                        className="flex-1 px-3 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
+                        className="flex-1 px-2 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors flex items-center justify-center gap-1 text-xs font-medium"
                       >
-                        View Details
+                        Details
                       </button>
                       <a
                         href={`https://wa.me/+8615594634955?text=Interested in ${model.brand} ${model.model}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 px-3 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
+                        className="flex-1 px-2 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors flex items-center justify-center gap-1 text-xs font-medium"
                       >
-                        <FaWhatsapp className="w-4 h-4" />
+                        <FaWhatsapp className="w-3 h-3" />
                         <span>Inquire</span>
                       </a>
                     </div>
@@ -243,35 +264,33 @@ export default function FeaturedModelsSection() {
             })}
           </div>
 
-          {/* No Results Message */}
+          {/* No Results Message - Compact */}
           {filteredModels.length === 0 && (
-            <div className="text-center py-16">
-              <div className="text-gray-300 mb-4">
-                <Zap className="w-12 h-12 mx-auto" />
+            <div className="text-center py-8">
+              <div className="text-gray-300 mb-3">
+                <Zap className="w-8 h-8 mx-auto" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+              <h3 className="text-base font-semibold text-gray-700 mb-1">
                 No Models Found
               </h3>
-              <p className="text-gray-600 mb-4">
-                No featured models match your current filter.
+              <p className="text-gray-600 text-sm mb-3">
+                No models match current filter.
               </p>
               <button
                 onClick={() => setActiveFilter("all")}
-                className="px-5 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors text-sm font-medium"
+                className="px-3 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors text-xs font-medium"
               >
                 Show All Models
               </button>
             </div>
           )}
-
-          {/* Mobile View All Button */}
-          <div className="mt-8 md:hidden text-center">
+          {/* Mobile View All Button - Compact */}
+          <div className="mt-4 text-center">
             <a
               href="/models"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary text-white rounded-lg hover:bg-gold-primary/90 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors text-xs font-medium"
             >
               View All Models
-              <ChevronRight className="w-4 h-4" />
             </a>
           </div>
         </div>
