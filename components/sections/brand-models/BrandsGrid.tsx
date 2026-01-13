@@ -5,8 +5,8 @@ import { brands } from "@/data/brands";
 import Link from "next/link";
 
 export default function BrandsGrid() {
-  // Combine Chinese and International brands into one array
-  const allBrands = [...brands.chinese, ...brands.international];
+  // Use all brands as a single array (16 brands from your image)
+  const allBrands = brands;
 
   // Sort alphabetically
   const sortedBrands = allBrands.sort((a, b) => a.name.localeCompare(b.name));
@@ -22,17 +22,6 @@ export default function BrandsGrid() {
             className="group relative bg-white p-2 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-28 sm:h-32"
             aria-label={`View ${brand.name} models`}
           >
-            {/* Category Badge - Smaller */}
-            <div
-              className={`absolute top-1 right-1 px-1 py-0.5 rounded text-[10px] font-medium ${
-                brands.chinese.includes(brand)
-                  ? "bg-red-50 text-red-600 border border-red-100"
-                  : "bg-blue-50 text-blue-600 border border-blue-100"
-              }`}
-            >
-              {brands.chinese.includes(brand) ? "CN" : "INT"}
-            </div>
-
             {/* Logo Container - ENLARGED */}
             <div className="h-12 w-12 sm:h-14 sm:w-14 mb-1.5 flex items-center justify-center">
               <div className="relative w-full h-full">
