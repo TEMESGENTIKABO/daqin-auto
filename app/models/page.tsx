@@ -18,10 +18,7 @@ export default async function ModelsPage() {
 
   return (
     <Suspense fallback={<ModelsLoading />}>
-      <ModelsUI 
-        initialModels={data.models}
-        initialBrands={data.brands}
-      />
+      <ModelsUI initialModels={data.models} />
     </Suspense>
   );
 }
