@@ -8,7 +8,7 @@ import {
   Home,
   Users,
   Briefcase,
-  Mail, // Changed from MessageSquare to Mail
+  Mail,
   Shield,
   Car,
   ChevronDown,
@@ -22,17 +22,21 @@ import {
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const { t, language, setLanguage } = useLanguage();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [languagePopupOpen, setLanguagePopupOpen] = useState(false);
   const [utilityVisible, setUtilityVisible] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const searchRef = useRef<HTMLDivElement>(null);
   const languageRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const lastScrollY = useRef(0);
 
   // Handle scroll for utility title hide/show
@@ -62,6 +66,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle click outside for search and language popups
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -80,6 +85,15 @@ export default function Header() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Focus search input when search opens
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
+  }, [searchOpen]);
 
   const navigation = [
     {
@@ -104,7 +118,7 @@ export default function Header() {
       id: "contact",
       name: t.header.nav.contact,
       href: "/contact",
-      icon: Mail, // Changed to Mail icon
+      icon: Mail,
     },
     {
       id: "brands",
@@ -148,6 +162,60 @@ export default function Header() {
     (lang) => lang.code === language
   );
 
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Navigate to models page with search parameter
+      router.push(`/models?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery("");
+      if (mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    }
+  };
+
+  // Clear search
+  const clearSearch = () => {
+    setSearchQuery("");
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
+
+  // Handle quick search link click
+  const handleQuickSearch = (query: string) => {
+    router.push(`/models?search=${encodeURIComponent(query)}`);
+    setSearchOpen(false);
+    setSearchQuery("");
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  // Handle Enter key press for search
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      handleSearchSubmit(e as any);
+    }
+  };
+
+  // Toggle search open state
+  const toggleSearch = () => {
+    setSearchOpen(!searchOpen);
+    if (!searchOpen) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
+  };
+
   return (
     <>
       {/* Top Utility Bar */}
@@ -190,7 +258,7 @@ export default function Header() {
 
         <nav className="container mx-auto px-4 sm:px-6 relative">
           <div className="flex items-center justify-between h-16 md:h-18">
-            {/* Logo with Company Name - Significantly larger */}
+            {/* Logo with Company Name */}
             <div className="flex-1 md:flex-none">
               <Link
                 href="/"
@@ -201,23 +269,21 @@ export default function Header() {
                   <Image
                     src="/images/daqin-logo.png"
                     alt="Daqin Auto "
-                    width={280} // Increased from 240 to 280
-                    height={90} // Increased from 80 to 90
-                    className="h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:h-16" // Increased from h-16 and md:h-14
+                    width={280}
+                    height={90}
+                    className="h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:h-16"
                     priority
-                    quality={100} // Added for better quality
+                    quality={100}
                     style={{
-                      filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))", // Added shadow for better visibility
+                      filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
                     }}
                   />
                 </div>
-                {/* Company name - desktop only shows "Daqin Auto" */}
                 <div className="hidden md:flex flex-col">
                   <span className="text-white font-bold text-2xl md:text-3xl leading-tight tracking-tight">
                     Daqin Auto
                   </span>
                 </div>
-                {/* Mobile still shows full name */}
                 <div className="md:hidden flex flex-col">
                   <span className="text-white font-bold text-lg md:text-xl leading-tight tracking-tight">
                     Daqin Auto
@@ -226,10 +292,9 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* Desktop Navigation - Icons only for specific items */}
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => {
-                // Determine if we should show only icon
                 const showIconOnly = ["home", "contact", "brands"].includes(
                   item.id
                 );
@@ -250,7 +315,7 @@ export default function Header() {
                         ${activeDropdown === item.id ? "bg-white/15" : ""}
                         ${showIconOnly ? "px-2.5" : ""}
                       `}
-                      title={showIconOnly ? item.name : ""} // Add title for icon-only items
+                      title={showIconOnly ? item.name : ""}
                     >
                       <item.icon className="w-5 h-5" />
                       {!showIconOnly && (
@@ -290,9 +355,9 @@ export default function Header() {
               })}
 
               {/* Search Icon Only Button */}
-              <div className="relative">
+              <div className="relative" ref={searchRef}>
                 <button
-                  onClick={() => setSearchOpen(!searchOpen)}
+                  onClick={toggleSearch}
                   className="flex items-center gap-2 px-2.5 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
                   aria-label="Search"
                   title="Search"
@@ -303,41 +368,70 @@ export default function Header() {
                 {/* Search dropdown */}
                 {searchOpen && (
                   <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-4 animate-fadeIn z-50">
-                    <div className="relative">
-                      <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <input
-                        type="text"
-                        placeholder="Search vehicles, brands, models..."
-                        className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
-                        autoFocus
-                      />
-                      <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors">
-                        Enter
-                      </button>
-                    </div>
+                    <form onSubmit={handleSearchSubmit}>
+                      <div className="relative">
+                        <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input
+                          ref={searchInputRef}
+                          type="text"
+                          value={searchQuery}
+                          onChange={handleSearchChange}
+                          onKeyPress={handleKeyPress}
+                          placeholder="Search vehicles, brands, models..."
+                          className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
+                          autoFocus
+                        />
+                        {searchQuery && (
+                          <button
+                            type="button"
+                            onClick={clearSearch}
+                            className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            aria-label="Clear search"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
+                        <button
+                          type="submit"
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors"
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
                     <div className="mt-3">
                       <span className="text-xs text-gray-500 font-medium px-1">
-                        Quick Links:
+                        Quick Searches:
                       </span>
                       <div className="flex flex-wrap gap-2 mt-2">
-                        <Link
-                          href="/models?category=electric"
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("electric")}
                           className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
                         >
-                          Electric
-                        </Link>
-                        <Link
-                          href="/models?status=new"
+                          Electric Vehicles
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("SUV")}
                           className="px-3 py-1.5 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
                         >
-                          New
-                        </Link>
-                        <Link
-                          href="/brands"
-                          className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                          SUVs
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("BYD")}
+                          className="px-3 py-1.5 bg-green-50 text-green-600 text-sm font-medium rounded-lg hover:bg-green-100 transition-colors"
                         >
-                          Brands
-                        </Link>
+                          BYD
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("Tesla")}
+                          className="px-3 py-1.5 bg-red-50 text-red-600 text-sm font-medium rounded-lg hover:bg-red-100 transition-colors"
+                        >
+                          Tesla
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -347,53 +441,76 @@ export default function Header() {
 
             {/* Right Actions */}
             <div className="flex items-center gap-2">
-              {/* Search - only for mobile now */}
+              {/* Search - Mobile */}
               <div className="relative lg:hidden" ref={searchRef}>
                 <button
-                  onClick={() => setSearchOpen(!searchOpen)}
+                  onClick={toggleSearch}
                   className="md:hidden p-2.5 rounded-lg transition-all duration-200 hover:bg-white/20 active:scale-95"
                   aria-label="Search"
                 >
                   <Search className="w-5 h-5 text-white" />
                 </button>
 
+                {/* Search dropdown for mobile */}
                 {searchOpen && (
                   <div className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-4 animate-fadeIn z-50">
-                    <div className="relative">
-                      <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <input
-                        type="text"
-                        placeholder="Search vehicles, brands, models..."
-                        className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
-                        autoFocus
-                      />
-                      <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors">
-                        Enter
-                      </button>
-                    </div>
+                    <form onSubmit={handleSearchSubmit}>
+                      <div className="relative">
+                        <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input
+                          ref={searchInputRef}
+                          type="text"
+                          value={searchQuery}
+                          onChange={handleSearchChange}
+                          onKeyPress={handleKeyPress}
+                          placeholder="Search vehicles, brands, models..."
+                          className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
+                          autoFocus
+                        />
+                        {searchQuery && (
+                          <button
+                            type="button"
+                            onClick={clearSearch}
+                            className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            aria-label="Clear search"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
+                        <button
+                          type="submit"
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors"
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
                     <div className="mt-3">
                       <span className="text-xs text-gray-500 font-medium px-1">
-                        Quick Links:
+                        Quick Searches:
                       </span>
                       <div className="flex flex-wrap gap-2 mt-2">
-                        <Link
-                          href="/models?category=electric"
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("electric")}
                           className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
                         >
                           Electric
-                        </Link>
-                        <Link
-                          href="/models?status=new"
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("SUV")}
                           className="px-3 py-1.5 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
                         >
-                          New
-                        </Link>
-                        <Link
-                          href="/brands"
-                          className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                          SUVs
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickSearch("BYD")}
+                          className="px-3 py-1.5 bg-green-50 text-green-600 text-sm font-medium rounded-lg hover:bg-green-100 transition-colors"
                         >
-                          Brands
-                        </Link>
+                          BYD
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -495,7 +612,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          {/* Side Panel - Restored gold-primary background */}
+          {/* Side Panel */}
           <div className="absolute right-0 top-0 h-full w-full max-w-md bg-gold-primary shadow-2xl animate-slideInRight overflow-hidden">
             {/* Panel Header */}
             <div className="sticky top-0 z-10 bg-gold-primary p-5">
@@ -505,9 +622,9 @@ export default function Header() {
                     <Image
                       src="/images/daqin-logo.png"
                       alt="Daqin Auto"
-                      width={200} // Increased for mobile
+                      width={200}
                       height={65}
-                      className="h-14 w-auto object-contain" // Increased from h-11
+                      className="h-14 w-auto object-contain"
                       quality={100}
                     />
                   </div>
@@ -527,10 +644,44 @@ export default function Header() {
                   <X className="w-6 h-6 text-white" />
                 </button>
               </div>
+
+              {/* Mobile Search in Menu */}
+              <div className="mt-4">
+                <form onSubmit={handleSearchSubmit}>
+                  <div className="relative">
+                    <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      onKeyPress={handleKeyPress}
+                      placeholder="Search vehicles, brands..."
+                      className="w-full pl-11 pr-12 py-3 bg-white rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary focus:border-transparent text-sm"
+                    />
+                    {searchQuery && (
+                      <button
+                        type="button"
+                        onClick={clearSearch}
+                        className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        aria-label="Clear search"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                    <button
+                      type="submit"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white p-1.5 rounded-md"
+                      aria-label="Search"
+                    >
+                      <Search className="w-4 h-4" />
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
 
-            {/* Navigation Content - Gold Primary Background */}
-            <div className="overflow-y-auto h-[calc(100vh-80px)] bg-gold-primary">
+            {/* Navigation Content */}
+            <div className="overflow-y-auto h-[calc(100vh-200px)] bg-gold-primary">
               <div className="p-5">
                 <div className="space-y-1">
                   {/* Home, Services, About, Contact */}
@@ -553,7 +704,7 @@ export default function Header() {
                     </div>
                   ))}
 
-                  {/* Language Switcher - Above Brands Section */}
+                  {/* Language Switcher */}
                   <div className="my-4 pt-4 border-t border-white/20">
                     <div className="relative" ref={languageRef}>
                       <button
@@ -718,7 +869,6 @@ export default function Header() {
           animation: slideInRight 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Improved responsive typography */
         html {
           font-size: 16px;
         }
@@ -747,13 +897,11 @@ export default function Header() {
           }
         }
 
-        /* Mobile-optimized touch targets */
         button,
         a {
           touch-action: manipulation;
         }
 
-        /* Prevent zoom on mobile inputs */
         @media (max-width: 768px) {
           input,
           textarea,
@@ -762,7 +910,6 @@ export default function Header() {
           }
         }
 
-        /* Enhanced logo visibility on mobile */
         @media (max-width: 768px) {
           header .logo-container {
             min-width: 180px;

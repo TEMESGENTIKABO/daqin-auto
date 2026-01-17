@@ -9,6 +9,19 @@ import { useState } from "react";
 import VehicleDetailModal from "./brand-models/VehicleDetailModal";
 import { VehicleModel as VehicleModelType } from "@/data/models";
 
+// Price formatting helper function
+const formatPrice = (priceUSD: number): string => {
+  if (priceUSD === 0) {
+    return "Negotiable";
+  }
+  return `$${priceUSD.toLocaleString()}`;
+};
+
+// Check if price is negotiable
+const isNegotiablePrice = (priceUSD: number): boolean => {
+  return priceUSD === 0;
+};
+
 export default function FeaturedModelsSection() {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<
@@ -17,7 +30,6 @@ export default function FeaturedModelsSection() {
   const [selectedModel, setSelectedModel] = useState<VehicleModelType | null>(
     null
   );
-  const [compareList, setCompareList] = useState<string[]>([]);
 
   const featuredModels = getFeaturedModels();
 
@@ -53,6 +65,18 @@ export default function FeaturedModelsSection() {
       icon: <Star className="w-2.5 h-2.5" />,
       label: "Best",
     },
+    "Pre-Order": {
+      bgColor: "bg-indigo-100",
+      textColor: "text-indigo-800",
+      icon: <Clock className="w-2.5 h-2.5" />,
+      label: "Pre-Order",
+    },
+    "Special Edition": {
+      bgColor: "bg-pink-100",
+      textColor: "text-pink-800",
+      icon: <Star className="w-2.5 h-2.5" />,
+      label: "Special",
+    },
   };
 
   // Filter models based on active filter
@@ -73,14 +97,6 @@ export default function FeaturedModelsSection() {
   };
 
   const filteredModels = getFilteredModels();
-
-  const toggleCompare = (modelId: string) => {
-    if (compareList.includes(modelId)) {
-      setCompareList(compareList.filter((id) => id !== modelId));
-    } else if (compareList.length < 4) {
-      setCompareList([...compareList, modelId]);
-    }
-  };
 
   return (
     <>
@@ -180,11 +196,14 @@ export default function FeaturedModelsSection() {
               const status =
                 statusConfig[model.status as keyof typeof statusConfig] ||
                 statusConfig["In Stock"];
+              
+              const isNegotiable = isNegotiablePrice(model.priceUSD);
 
               return (
                 <div
                   key={model.id}
-                  className="group bg-white rounded-md overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200"
+                  className="group bg-white rounded-md overflow-hidden border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 cursor-pointer"
+                  onClick={() => setSelectedModel(model)}
                 >
                   {/* Image Section - Keep original size */}
                   <div className="relative h-52 md:h-56 overflow-hidden">
@@ -206,13 +225,33 @@ export default function FeaturedModelsSection() {
                       </div>
                     </div>
 
-                    {/* Price Tag - Compact */}
-                    <div className="absolute bottom-2 right-2 bg-black/90 text-white px-2 py-1 rounded-md">
-                      <div className="text-sm font-bold">
-                        ${model.priceUSD.toLocaleString()}
+                    {/* Price Tag - Professional Style */}
+                    <div className={`absolute bottom-2 right-2 px-2 py-1.5 rounded-md border ${
+                      isNegotiable 
+                        ? "bg-white/95 border-gray-300 text-gray-800 shadow-sm" 
+                        : "bg-black/90 text-white border-transparent"
+                    }`}>
+                      <div className={`text-sm font-bold ${isNegotiable ? "text-gray-900" : ""}`}>
+                        {formatPrice(model.priceUSD)}
                       </div>
-                      <div className="text-[10px] opacity-90">FOB China</div>
+                      <div className={`text-[10px] ${isNegotiable ? "text-gray-600" : "opacity-90"}`}>
+                        {isNegotiable ? "Contact for quote" : "FOB China"}
+                      </div>
                     </div>
+
+                    {/* Discount Badge if available */}
+                    {model.discount && model.discount > 0 && !isNegotiable && (
+                      <div className="absolute top-2 left-12 bg-red-600 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">
+                        -{model.discount}%
+                      </div>
+                    )}
+
+                    {/* Featured Badge */}
+                    {model.featured && (
+                      <div className="absolute top-2 right-2 bg-gold-primary text-white px-2 py-0.5 rounded-md text-[10px] font-bold">
+                        Featured
+                      </div>
+                    )}
                   </div>
 
                   {/* Content Section - Compact */}
@@ -230,32 +269,69 @@ export default function FeaturedModelsSection() {
                         <span className="text-xs text-gray-600">
                           {model.specs.fuelType}
                         </span>
+                        {model.rating && (
+                          <>
+                            <span className="text-[10px] text-gray-400">•</span>
+                            <span className="flex items-center text-xs text-amber-600">
+                              ★ {model.rating.toFixed(1)}
+                            </span>
+                          </>
+                        )}
                       </div>
 
-                      {/* Category - Compact */}
-                      <div className="mt-1.5">
-                        <span className="inline-block px-1.5 py-0.5 bg-gray-100 text-gray-700 text-[11px] rounded">
+                      {/* Category & Features - Compact */}
+                      <div className="mt-1.5 flex flex-wrap gap-1">
+                        <span className="inline-block px-2 py-0.5 bg-gray-100 text-gray-700 text-[11px] rounded">
                           {model.category}
                         </span>
+                        
+                        {/* Show key feature if available */}
+                        {model.features && model.features.length > 0 && (
+                          <span className="inline-block px-2 py-0.5 bg-blue-50 text-blue-700 text-[11px] rounded truncate max-w-[120px]">
+                            {model.features[0]}
+                          </span>
+                        )}
                       </div>
+
+                      {/* Promotional message for negotiable prices */}
+                      {isNegotiable && model.promotion && (
+                        <div className="mt-1.5 text-[11px] text-gray-600 italic truncate">
+                          {model.promotion}
+                        </div>
+                      )}
+
+                      {/* Tagline if available */}
+                      {model.tagline && !isNegotiable && (
+                        <div className="mt-1 text-xs text-gray-600 truncate">
+                          {model.tagline}
+                        </div>
+                      )}
                     </div>
 
                     {/* Action Buttons - Compact */}
                     <div className="flex gap-1.5">
                       <button
-                        onClick={() => setSelectedModel(model)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedModel(model);
+                        }}
                         className="flex-1 px-2 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors flex items-center justify-center gap-1 text-xs font-medium"
                       >
                         Details
                       </button>
                       <a
-                        href={`https://wa.me/+8615594634955?text=Interested in ${model.brand} ${model.model}`}
+                        href={`https://wa.me/+8615594634955?text=Hi, I'm interested in the ${model.brand} ${model.model} (${model.year}). ${isNegotiable ? 'Please provide pricing details.' : 'Can you tell me more about this model?'}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 px-2 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors flex items-center justify-center gap-1 text-xs font-medium"
+                        onClick={(e) => e.stopPropagation()}
+                        className={`flex-1 px-2 py-1.5 rounded-md hover:opacity-90 transition-colors flex items-center justify-center gap-1 text-xs font-medium ${
+                          isNegotiable 
+                            ? "bg-gray-800 text-white hover:bg-gray-900" 
+                            : "bg-green-600 text-white hover:bg-green-700"
+                        }`}
                       >
                         <FaWhatsapp className="w-3 h-3" />
-                        <span>Inquire</span>
+                        <span>{isNegotiable ? "Get Quote" : "Inquire"}</span>
                       </a>
                     </div>
                   </div>
@@ -284,6 +360,7 @@ export default function FeaturedModelsSection() {
               </button>
             </div>
           )}
+
           {/* Mobile View All Button - Compact */}
           <div className="mt-4 text-center">
             <a
@@ -301,8 +378,6 @@ export default function FeaturedModelsSection() {
         <VehicleDetailModal
           vehicle={selectedModel}
           onClose={() => setSelectedModel(null)}
-          compareList={compareList}
-          onToggleCompare={toggleCompare}
         />
       )}
 
@@ -314,6 +389,22 @@ export default function FeaturedModelsSection() {
         .no-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+        
+        /* Custom hover scale */
+        .group-hover\\:scale-102:hover {
+          transform: scale(1.02);
+        }
+        
+        /* Animation for ping effect */
+        @keyframes ping {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        .animate-ping {
+          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
       `}</style>
     </>

@@ -11,25 +11,39 @@ import {
   Cog,
   Battery,
   Zap,
+  Calendar,
+  Gauge,
+  Shield,
+  Package,
 } from "lucide-react";
 import { VehicleModel } from "@/data/models";
 import { useLanguage } from "@/context/LanguageContext";
 import { FaWhatsapp } from "react-icons/fa";
 
+// Price formatting helper function
+const formatPrice = (priceUSD: number): string => {
+  if (priceUSD === 0) {
+    return "Negotiable";
+  }
+  return `$${priceUSD.toLocaleString()}`;
+};
+
+// Check if price is negotiable
+const isNegotiablePrice = (priceUSD: number): boolean => {
+  return priceUSD === 0;
+};
+
 interface VehicleDetailModalProps {
   vehicle: VehicleModel;
   onClose: () => void;
-  compareList: string[]; // Keep this if you still need it for other components
-  onToggleCompare: (modelId: string) => void;
 }
 
 export default function VehicleDetailModal({
   vehicle,
   onClose,
-  compareList,
-  onToggleCompare,
 }: VehicleDetailModalProps) {
   const { t } = useLanguage();
+  const isNegotiable = isNegotiablePrice(vehicle.priceUSD);
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-1 md:p-2">
@@ -74,11 +88,17 @@ export default function VehicleDetailModal({
                         ? "bg-blue-100 text-blue-800"
                         : vehicle.status === "Coming Soon"
                         ? "bg-purple-100 text-purple-800"
-                        : "bg-red-100 text-red-800"
+                        : vehicle.status === "Best Seller"
+                        ? "bg-orange-100 text-orange-800"
+                        : vehicle.status === "Limited Edition"
+                        ? "bg-red-100 text-red-800"
+                        : "bg-gray-100 text-gray-800"
                     }`}
                   >
                     {vehicle.status === "Limited Edition"
                       ? "Limited"
+                      : vehicle.status === "Coming Soon"
+                      ? "Soon"
                       : vehicle.status}
                   </span>
                 )}
@@ -127,13 +147,33 @@ export default function VehicleDetailModal({
           )}
 
           {/* Price Display - Compact */}
-          <div className="mb-4 p-3 bg-gray-50 rounded-md">
+          <div className={`mb-4 p-3 rounded-md border ${
+            isNegotiable 
+              ? "bg-white border-gray-200" 
+              : "bg-gray-50 border-transparent"
+          }`}>
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-xs text-gray-600 mb-1">FOB Price</p>
-                <p className="text-xl font-bold text-gold-primary">
-                  ${vehicle.priceUSD.toLocaleString()}
+                <p className="text-xs text-gray-600 mb-1">
+                  {isNegotiable ? "Price" : "FOB Price"}
                 </p>
+                <div className="flex items-center gap-2">
+                  <p className={`text-xl font-bold ${
+                    isNegotiable ? "text-gray-900" : "text-gold-primary"
+                  }`}>
+                    {formatPrice(vehicle.priceUSD)}
+                  </p>
+                  {vehicle.discount && vehicle.discount > 0 && !isNegotiable && (
+                    <span className="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs font-medium">
+                      -{vehicle.discount}%
+                    </span>
+                  )}
+                </div>
+                {isNegotiable && vehicle.promotion && (
+                  <p className="text-xs text-gray-600 mt-1 italic">
+                    {vehicle.promotion}
+                  </p>
+                )}
               </div>
               <div
                 className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -147,22 +187,6 @@ export default function VehicleDetailModal({
             </div>
           </div>
 
-          {/* Compare Button - Compact */}
-          <div className="mb-4">
-            <button
-              onClick={() => onToggleCompare(vehicle.id)}
-              className={`w-full py-2 rounded-md text-sm font-medium transition-colors ${
-                compareList.includes(vehicle.id)
-                  ? "bg-gold-primary text-white hover:bg-gold-primary/90"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {compareList.includes(vehicle.id)
-                ? "✓ Added to Compare"
-                : "Add to Compare"}
-            </button>
-          </div>
-
           {/* Details Grid - Compact */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {/* Specifications */}
@@ -172,6 +196,15 @@ export default function VehicleDetailModal({
                 Specifications
               </h3>
               <div className="space-y-2">
+                <div className="flex justify-between py-1.5 border-b border-gray-100">
+                  <span className="text-xs text-gray-600 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5" />
+                    Year
+                  </span>
+                  <span className="text-sm font-medium truncate ml-2 max-w-[140px]">
+                    {vehicle.year}
+                  </span>
+                </div>
                 <div className="flex justify-between py-1.5 border-b border-gray-100">
                   <span className="text-xs text-gray-600 flex items-center gap-1.5">
                     <Car className="w-3.5 h-3.5" />
@@ -190,6 +223,17 @@ export default function VehicleDetailModal({
                     {vehicle.specs.power}
                   </span>
                 </div>
+                {vehicle.specs.torque && (
+                  <div className="flex justify-between py-1.5 border-b border-gray-100">
+                    <span className="text-xs text-gray-600 flex items-center gap-1.5">
+                      <Gauge className="w-3.5 h-3.5" />
+                      Torque
+                    </span>
+                    <span className="text-sm font-medium truncate ml-2 max-w-[140px]">
+                      {vehicle.specs.torque}
+                    </span>
+                  </div>
+                )}
                 <div className="flex justify-between py-1.5 border-b border-gray-100">
                   <span className="text-xs text-gray-600 flex items-center gap-1.5">
                     <Cog className="w-3.5 h-3.5" />
@@ -238,6 +282,28 @@ export default function VehicleDetailModal({
                     </span>
                   </div>
                 )}
+                {vehicle.specs.warranty && (
+                  <div className="flex justify-between py-1.5 border-b border-gray-100">
+                    <span className="text-xs text-gray-600 flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5" />
+                      Warranty
+                    </span>
+                    <span className="text-sm font-medium truncate ml-2 max-w-[140px]">
+                      {vehicle.specs.warranty}
+                    </span>
+                  </div>
+                )}
+                {vehicle.specs.payload && (
+                  <div className="flex justify-between py-1.5 border-b border-gray-100">
+                    <span className="text-xs text-gray-600 flex items-center gap-1.5">
+                      <Package className="w-3.5 h-3.5" />
+                      Payload
+                    </span>
+                    <span className="text-sm font-medium truncate ml-2 max-w-[140px]">
+                      {vehicle.specs.payload}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -247,7 +313,7 @@ export default function VehicleDetailModal({
                 Key Features
               </h3>
               <div className="flex flex-wrap gap-1.5 mb-4">
-                {vehicle.features.slice(0, 6).map((feature, index) => (
+                {vehicle.features.slice(0, 8).map((feature, index) => (
                   <span
                     key={index}
                     className="px-2 py-1 bg-gray-50 text-gray-700 rounded text-xs"
@@ -255,9 +321,9 @@ export default function VehicleDetailModal({
                     {feature}
                   </span>
                 ))}
-                {vehicle.features.length > 6 && (
+                {vehicle.features.length > 8 && (
                   <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">
-                    +{vehicle.features.length - 6} more
+                    +{vehicle.features.length - 8} more
                   </span>
                 )}
               </div>
@@ -268,31 +334,63 @@ export default function VehicleDetailModal({
               <p className="text-gray-600 text-sm line-clamp-5">
                 {vehicle.description}
               </p>
+
+              {/* Additional Info - Only colors remain */}
+              <div className="mt-4">
+                {vehicle.colors && vehicle.colors.length > 0 && (
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-xs text-gray-600">Available colors:</span>
+                    <div className="flex gap-1">
+                      {vehicle.colors.slice(0, 3).map((color, index) => (
+                        <div
+                          key={index}
+                          className="w-4 h-4 rounded-full border border-gray-300"
+                          style={{ backgroundColor: color.toLowerCase() === 'white' ? '#ffffff' : color.toLowerCase() }}
+                          title={color}
+                        />
+                      ))}
+                      {vehicle.colors.length > 3 && (
+                        <span className="text-xs text-gray-500">
+                          +{vehicle.colors.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Contact CTA - Compact */}
           <div className="mt-4 bg-gradient-to-r from-gold-primary/5 to-transparent rounded-lg p-3">
             <h4 className="font-semibold text-black mb-2 text-sm">
-              Interested in this vehicle?
+              {isNegotiable ? "Request Custom Quote" : "Interested in this vehicle?"}
             </h4>
             <p className="text-gray-600 mb-3 text-xs">
-              Contact us for pricing, availability, and shipping details.
+              {isNegotiable 
+                ? "Contact us for custom pricing, configurations, and bulk order discounts."
+                : "Contact us for pricing, availability, and shipping details."}
             </p>
 
             {/* Mobile Action Buttons */}
             <div className="md:hidden flex flex-col gap-2">
               <a
-                href={`https://wa.me/+8615594634955?text=Hi, I'm interested in the ${vehicle.brand} ${vehicle.model} (${vehicle.year}). Please send me more details.`}
+                href={`https://wa.me/+8615594634955?text=Hi, I'm interested in the ${vehicle.brand} ${vehicle.model} (${vehicle.year}). ${isNegotiable ? 'Please provide pricing details and available configurations.' : 'Please send me more details.'}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm"
+                className={`flex items-center justify-center gap-2 px-3 py-2 rounded-md hover:opacity-90 transition-colors text-sm ${
+                  isNegotiable 
+                    ? "bg-gray-800 text-white hover:bg-gray-900" 
+                    : "bg-green-600 text-white hover:bg-green-700"
+                }`}
               >
                 <FaWhatsapp className="w-4 h-4" />
-                <span className="font-medium">WhatsApp</span>
+                <span className="font-medium">
+                  {isNegotiable ? "Get Quote" : "WhatsApp"}
+                </span>
               </a>
               <a
-                href={`tel:${t.common.phone}`}
+                href={`tel:+8615594634955`}
                 className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
@@ -303,16 +401,22 @@ export default function VehicleDetailModal({
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex flex-col sm:flex-row gap-2">
               <a
-                href={`https://wa.me/+8615594634955?text=Hi, I'm interested in the ${vehicle.brand} ${vehicle.model} (${vehicle.year}). Please send me more details.`}
+                href={`https://wa.me/+8615594634955?text=Hi, I'm interested in the ${vehicle.brand} ${vehicle.model} (${vehicle.year}). ${isNegotiable ? 'Please provide pricing details and available configurations.' : 'Please send me more details.'}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm"
+                className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md hover:opacity-90 transition-colors text-sm ${
+                  isNegotiable 
+                    ? "bg-gray-800 text-white hover:bg-gray-900" 
+                    : "bg-green-600 text-white hover:bg-green-700"
+                }`}
               >
                 <FaWhatsapp className="w-4 h-4" />
-                <span className="font-medium">WhatsApp</span>
+                <span className="font-medium">
+                  {isNegotiable ? "Get Custom Quote" : "WhatsApp Inquiry"}
+                </span>
               </a>
               <a
-                href={`tel:${t.common.phone}`}
+                href={`tel:+8615594634955`}
                 className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
@@ -323,7 +427,7 @@ export default function VehicleDetailModal({
                 className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition-colors text-sm"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span className="font-medium">Email</span>
+                <span className="font-medium">Email Inquiry</span>
               </a>
             </div>
           </div>
