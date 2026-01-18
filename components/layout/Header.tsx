@@ -159,7 +159,7 @@ export default function Header() {
   ];
 
   const currentLanguage = languageOptions.find(
-    (lang) => lang.code === language
+    (lang) => lang.code === language,
   );
 
   // Handle search input change
@@ -296,7 +296,7 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => {
                 const showIconOnly = ["home", "contact", "brands"].includes(
-                  item.id
+                  item.id,
                 );
 
                 return (

@@ -1,9 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-
 export default function Hero() {
   const { t } = useLanguage();
 
