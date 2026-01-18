@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  // You can use t from useLanguage if needed, or hardcode content
   return (
     <main className="min-h-screen">
       {/* Breadcrumb */}
@@ -37,14 +36,28 @@ export default function AboutPage() {
       </section>
 
       {/* Company Overview */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="section-container px-4">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        {/* Background Image with Subtle Blur */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+          style={{
+            backgroundImage: 'url("/images/about.png")', // Change this to your image path
+          }}
+        >
+          {/* Light overlay for better text contrast */}
+          <div className="absolute inset-0 bg-black/20"></div>
+          
+          {/* Very subtle blur to soften the image */}
+          <div className="absolute inset-0 backdrop-blur-[1px]"></div>
+        </div>
+
+        <div className="section-container px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6 drop-shadow-sm">
                 Our Story
               </h2>
-              <p className="text-xl text-gray-dark mb-8">
+              <p className="text-xl text-gray-800 mb-8 backdrop-blur-sm bg-white/40 rounded-lg py-3 px-6 border border-white/50">
                 Daqin Auto, under Xi'an Daqin Daorui International Trade Co.,
                 Ltd., is an independent automobile supplier and exporter based
                 in China.
@@ -53,42 +66,42 @@ export default function AboutPage() {
 
             {/* Mission, Vision, Values Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-gradient-to-br from-gray-light to-white p-8 rounded-2xl border border-gray-200 hover:border-gold-primary transition-all hover:shadow-xl">
-                <div className="inline-flex items-center justify-center p-3 bg-gold-primary/10 rounded-xl mb-4">
+              <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl border border-white/50 hover:border-gold-primary transition-all hover:shadow-xl">
+                <div className="inline-flex items-center justify-center p-3 bg-gold-primary/10 rounded-xl mb-4 backdrop-blur-sm border border-gold-primary/20">
                   <Target className="w-8 h-8 text-gold-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-4">
+                <h3 className="text-2xl font-bold text-black mb-4 drop-shadow-sm">
                   Our Mission
                 </h3>
-                <p className="text-gray-dark text-lg">
+                <p className="text-gray-800 text-lg">
                   To provide quality vehicles at competitive prices with
                   exceptional service, making automotive exports from China
                   accessible and reliable for partners worldwide.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-light to-white p-8 rounded-2xl border border-gray-200 hover:border-gold-primary transition-all hover:shadow-xl">
-                <div className="inline-flex items-center justify-center p-3 bg-gold-primary/10 rounded-xl mb-4">
+              <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl border border-white/50 hover:border-gold-primary transition-all hover:shadow-xl">
+                <div className="inline-flex items-center justify-center p-3 bg-gold-primary/10 rounded-xl mb-4 backdrop-blur-sm border border-gold-primary/20">
                   <Globe className="w-8 h-8 text-gold-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-4">
+                <h3 className="text-2xl font-bold text-black mb-4 drop-shadow-sm">
                   Our Vision
                 </h3>
-                <p className="text-gray-dark text-lg">
+                <p className="text-gray-800 text-lg">
                   To become the most trusted and innovative automotive export
                   partner from China, recognized globally for quality,
                   integrity, and customer satisfaction.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-light to-white p-8 rounded-2xl border border-gray-200 hover:border-gold-primary transition-all hover:shadow-xl">
-                <div className="inline-flex items-center justify-center p-3 bg-gold-primary/10 rounded-xl mb-4">
+              <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl border border-white/50 hover:border-gold-primary transition-all hover:shadow-xl">
+                <div className="inline-flex items-center justify-center p-3 bg-gold-primary/10 rounded-xl mb-4 backdrop-blur-sm border border-gold-primary/20">
                   <Heart className="w-8 h-8 text-gold-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-4">
+                <h3 className="text-2xl font-bold text-black mb-4 drop-shadow-sm">
                   Our Values
                 </h3>
-                <p className="text-gray-dark text-lg">
+                <p className="text-gray-800 text-lg">
                   Integrity, quality assurance, customer focus, continuous
                   improvement, and sustainable partnerships built on trust and
                   mutual success.
@@ -99,34 +112,34 @@ export default function AboutPage() {
             {/* Additional Content Sections */}
             <div className="space-y-16">
               {/* Why Choose Us */}
-              <div className="bg-gray-light rounded-2xl p-8 md:p-12">
-                <h2 className="text-3xl font-bold text-black mb-8 text-center">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/50">
+                <h2 className="text-3xl font-bold text-black mb-8 text-center drop-shadow-sm">
                   Why Choose Daqin Auto
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg">
+                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg backdrop-blur-sm border border-gold-primary/20">
                       <Award className="w-6 h-6 text-gold-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-black mb-2">
+                      <h3 className="text-xl font-bold text-black mb-2 drop-shadow-sm">
                         Experience
                       </h3>
-                      <p className="text-gray-dark">
+                      <p className="text-gray-800">
                         Over 10 years of expertise in automotive exports,
                         understanding market needs across different regions.
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg">
+                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg backdrop-blur-sm border border-gold-primary/20">
                       <Shield className="w-6 h-6 text-gold-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-black mb-2">
+                      <h3 className="text-xl font-bold text-black mb-2 drop-shadow-sm">
                         Quality Assurance
                       </h3>
-                      <p className="text-gray-dark">
+                      <p className="text-gray-800">
                         Rigorous vehicle inspection and quality control
                         processes to ensure only the best vehicles reach our
                         clients.
@@ -134,28 +147,28 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg">
+                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg backdrop-blur-sm border border-gold-primary/20">
                       <Globe className="w-6 h-6 text-gold-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-black mb-2">
+                      <h3 className="text-xl font-bold text-black mb-2 drop-shadow-sm">
                         Global Reach
                       </h3>
-                      <p className="text-gray-dark">
+                      <p className="text-gray-800">
                         Established logistics network and partnerships for
                         seamless shipping to destinations worldwide.
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg">
+                    <div className="flex-shrink-0 p-3 bg-gold-primary/10 rounded-lg backdrop-blur-sm border border-gold-primary/20">
                       <Users className="w-6 h-6 text-gold-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-black mb-2">
+                      <h3 className="text-xl font-bold text-black mb-2 drop-shadow-sm">
                         Customer Support
                       </h3>
-                      <p className="text-gray-dark">
+                      <p className="text-gray-800">
                         24/7 multilingual support team dedicated to assisting
                         clients throughout the entire process.
                       </p>
