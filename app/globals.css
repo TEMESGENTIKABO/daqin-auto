@@ -48,3 +48,26 @@
     @apply bg-gradient-to-r from-gold-primary to-gold-dark bg-clip-text text-transparent;
   }
 }
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+.border-gray-150 {
+  border-color: rgba(229, 231, 235, 0.8);
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

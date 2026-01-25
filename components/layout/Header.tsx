@@ -281,12 +281,12 @@ export default function Header() {
                 </div>
                 <div className="hidden md:flex flex-col">
                   <span className="text-white font-bold text-2xl md:text-3xl leading-tight tracking-tight">
-                    Daqin Auto
+                    DAQIN AUTO
                   </span>
                 </div>
                 <div className="md:hidden flex flex-col">
                   <span className="text-white font-bold text-lg md:text-xl leading-tight tracking-tight">
-                    Daqin Auto
+                    DAQIN AUTO
                   </span>
                 </div>
               </Link>
