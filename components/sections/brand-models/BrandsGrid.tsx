@@ -5,45 +5,69 @@ import { brands } from "@/data/brands";
 import Link from "next/link";
 
 export default function BrandsGrid() {
-  // Use all brands as a single array (16 brands from your image)
-  const allBrands = brands;
-
-  // Sort alphabetically
-  const sortedBrands = allBrands.sort((a, b) => a.name.localeCompare(b.name));
+  // Define priority order - Chinese brands first, then famous international brands
+  const priorityOrder = [
+    'BYD','Xiaomi',  'BMW','Mercedes-Benz','Nissan', 'NIO', 'Xpeng', 'Volkswagen', 'Toyota',  'ZEEKR', 'Foton', 'MG', 'Lynk & Co',
+      'Tesla',  'Honda', 'Avatr','AITO','Li Auto'
+  ];
+  const allBrands = [...brands];
+  
+  const sortedBrands = allBrands.sort((a, b) => {
+    const aPriorityIndex = priorityOrder.indexOf(a.name);
+    const bPriorityIndex = priorityOrder.indexOf(b.name);
+    
+    // If both are in priority order, sort by that order
+    if (aPriorityIndex !== -1 && bPriorityIndex !== -1) {
+      return aPriorityIndex - bPriorityIndex;
+    }
+    
+    // If only A is in priority order, it comes first
+    if (aPriorityIndex !== -1) {
+      return -1;
+    }
+    
+    // If only B is in priority order, it comes first
+    if (bPriorityIndex !== -1) {
+      return 1;
+    }
+    
+    // If neither is in priority order, sort alphabetically
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <>
-      {/* Brands Grid - More compact */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-2">
+      {/* Brands Grid - 8 columns on large screens with larger items */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
         {sortedBrands.map((brand) => (
           <Link
             key={brand.name}
             href={`/models?brand=${encodeURIComponent(brand.name)}`}
-            className="group relative bg-white p-2 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-28 sm:h-32"
+            className="group relative bg-white p-4 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-40"
             aria-label={`View ${brand.name} models`}
           >
-            {/* Logo Container - ENLARGED */}
-            <div className="h-12 w-12 sm:h-14 sm:w-14 mb-1.5 flex items-center justify-center">
+            {/* Logo Container - MUCH LARGER */}
+            <div className="h-20 w-20 mb-3 flex items-center justify-center">
               <div className="relative w-full h-full">
                 <Image
                   src={brand.logo}
                   alt={brand.name}
                   fill
                   className="object-contain group-hover:scale-110 transition-transform duration-200"
-                  sizes="(max-width: 640px) 48px, 56px"
+                  sizes="(max-width: 640px) 80px, 80px"
                   priority={sortedBrands.indexOf(brand) < 16}
                 />
               </div>
             </div>
 
-            {/* Brand Name - Compact */}
-            <h4 className="text-xs sm:text-sm font-medium text-black text-center line-clamp-2 px-0.5">
+            {/* Brand Name - Larger */}
+            <h4 className="text-sm font-medium text-black text-center line-clamp-2 px-1">
               {brand.name}
             </h4>
 
-            {/* Year Established - Smaller */}
+            {/* Year Established */}
             {(brand as any).yearEstablished && (
-              <div className="text-[10px] text-gray-500 mt-0.5">
+              <div className="text-xs text-gray-500 mt-1">
                 Est. {(brand as any).yearEstablished}
               </div>
             )}
@@ -51,7 +75,7 @@ export default function BrandsGrid() {
         ))}
       </div>
 
-      {/* Empty State - Compact */}
+      {/* Empty State */}
       {sortedBrands.length === 0 && (
         <div className="text-center py-6">
           <div className="w-12 h-12 mx-auto mb-2 bg-gray-100 rounded-full flex items-center justify-center">
