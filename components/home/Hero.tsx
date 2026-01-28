@@ -36,14 +36,14 @@ export default function HomePage() {
       </section>
 
       {/* Premium Stats Section - Gold Theme */}
-      <section className="py-4 bg-gradient-to-b from-gray-950 to-black relative -mt-2 z-20">
+      <section className="py-6 md:py-4 bg-gradient-to-b from-gray-950 to-black relative -mt-2 z-20">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#D4AF37_1px,transparent_0)] bg-[length:60px_60px]"></div>
         </div>
 
         {/* Title in Left Corner - Single Line */}
-        <div className="px-4 mb-3">
+        <div className="px-4 md:px-6 mb-4 md:mb-3">
           <div className="flex items-center gap-2">
             <div className="relative">
               <Trophy className="w-5 h-5 text-[#D4AF37]" />
@@ -60,15 +60,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Mobile: Horizontal Scroll for Stats */}
+        {/* Mobile: Improved Horizontal Scroll for Stats */}
         <div className="md:hidden">
           <div className="px-4">
-            <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex space-x-3 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
               {/* Stat 1 - Quality */}
-              <div className="flex-shrink-0 w-40 p-3 bg-gradient-to-br from-gray-900 to-black rounded-lg border border-[#D4AF37]/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
-                  <div className="text-lg font-bold text-[#D4AF37]">100%</div>
+              <div className="flex-shrink-0 w-44 p-4 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-[#D4AF37]/20 snap-start">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
+                    <ShieldCheck className="w-4 h-4 text-black" />
+                  </div>
+                  <div className="text-xl font-bold text-[#D4AF37]">100%</div>
                 </div>
                 <div className="text-xs text-[#F4D03F]/90 leading-tight font-medium">
                   Rigorous QC: 100% Pre-shipment
@@ -76,10 +78,12 @@ export default function HomePage() {
               </div>
 
               {/* Stat 2 - Supply */}
-              <div className="flex-shrink-0 w-40 p-3 bg-gradient-to-br from-gray-900 to-black rounded-lg border border-[#D4AF37]/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <Package className="w-4 h-4 text-[#D4AF37]" />
-                  <div className="text-lg font-bold text-[#D4AF37]">10,000+</div>
+              <div className="flex-shrink-0 w-44 p-4 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-[#D4AF37]/20 snap-start">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
+                    <Package className="w-4 h-4 text-black" />
+                  </div>
+                  <div className="text-xl font-bold text-[#D4AF37]">10,000+</div>
                 </div>
                 <div className="text-xs text-[#F4D03F]/90 leading-tight font-medium">
                   Stable Supply: Bulk Orders Welcome
@@ -87,10 +91,12 @@ export default function HomePage() {
               </div>
 
               {/* Stat 3 - Team */}
-              <div className="flex-shrink-0 w-40 p-3 bg-gradient-to-br from-gray-900 to-black rounded-lg border border-[#D4AF37]/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <Users className="w-4 h-4 text-[#D4AF37]" />
-                  <div className="text-lg font-bold text-[#D4AF37]">50,000+</div>
+              <div className="flex-shrink-0 w-44 p-4 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-[#D4AF37]/20 snap-start">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
+                    <Users className="w-4 h-4 text-black" />
+                  </div>
+                  <div className="text-xl font-bold text-[#D4AF37]">50,000+</div>
                 </div>
                 <div className="text-xs text-[#F4D03F]/90 leading-tight font-medium">
                   Expert Team: Trusted Export Experience
@@ -98,10 +104,12 @@ export default function HomePage() {
               </div>
 
               {/* Stat 4 - Logistics */}
-              <div className="flex-shrink-0 w-40 p-3 bg-gradient-to-br from-gray-900 to-black rounded-lg border border-[#D4AF37]/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <Globe className="w-4 h-4 text-[#D4AF37]" />
-                  <div className="text-lg font-bold text-[#D4AF37]">20+</div>
+              <div className="flex-shrink-0 w-44 p-4 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-[#D4AF37]/20 snap-start">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
+                    <Globe className="w-4 h-4 text-black" />
+                  </div>
+                  <div className="text-xl font-bold text-[#D4AF37]">20+</div>
                 </div>
                 <div className="text-xs text-[#F4D03F]/90 leading-tight font-medium">
                   Global Logistics: Door-to-Door
@@ -109,22 +117,35 @@ export default function HomePage() {
               </div>
 
               {/* Stat 5 - Support */}
-              <div className="flex-shrink-0 w-40 p-3 bg-gradient-to-br from-gray-900 to-black rounded-lg border border-[#D4AF37]/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock className="w-4 h-4 text-[#D4AF37]" />
-                  <div className="text-lg font-bold text-[#D4AF37]">24/7</div>
+              <div className="flex-shrink-0 w-44 p-4 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-[#D4AF37]/20 snap-start">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
+                    <Clock className="w-4 h-4 text-black" />
+                  </div>
+                  <div className="text-xl font-bold text-[#D4AF37]">24/7</div>
                 </div>
                 <div className="text-xs text-[#F4D03F]/90 leading-tight font-medium">
                   Global Support: Dedicated Assistance
                 </div>
               </div>
             </div>
+            
+            {/* Scroll indicator for mobile */}
+            <div className="flex justify-center mt-4">
+              <div className="flex space-x-2">
+                <div className="w-2 h-2 rounded-full bg-[#D4AF37]/50"></div>
+                <div className="w-2 h-2 rounded-full bg-[#D4AF37]/50"></div>
+                <div className="w-2 h-2 rounded-full bg-[#D4AF37]"></div>
+                <div className="w-2 h-2 rounded-full bg-[#D4AF37]/50"></div>
+                <div className="w-2 h-2 rounded-full bg-[#D4AF37]/50"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Desktop: Grid Layout */}
-        <div className="hidden md:block px-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl">
+        <div className="hidden md:block px-6">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl mx-auto">
             {/* Stat 1 - Quality */}
             <div className="group relative p-4 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(212,175,55,0.1)]">
               <div className="absolute -top-2 -left-2 w-6 h-6 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
@@ -213,7 +234,7 @@ export default function HomePage() {
         </div>
 
         {/* Decorative gold line */}
-        <div className="px-4 mt-3">
+        <div className="px-4 md:px-6 mt-6 md:mt-3">
           <div className="h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"></div>
         </div>
       </section>
