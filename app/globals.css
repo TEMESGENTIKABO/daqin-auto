@@ -56,7 +56,14 @@
     transform: rotate(360deg);
   }
 }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
 }
@@ -70,4 +77,13 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Snap scrolling */
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
 }

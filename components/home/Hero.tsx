@@ -19,7 +19,7 @@ export default function HomePage() {
       <section className="relative min-h-screen">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url("/images/bg5.png")' }}
+          style={{ backgroundImage: 'url("/images/bg5.jpg")' }}
         />
         <div className="absolute inset-0 bg-black/40"></div>
         
