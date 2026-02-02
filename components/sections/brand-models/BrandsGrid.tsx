@@ -7,30 +7,46 @@ import Link from "next/link";
 export default function BrandsGrid() {
   // Define priority order - Chinese brands first, then famous international brands
   const priorityOrder = [
-    'BYD','Xiaomi',  'BMW','Mercedes-Benz','Nissan', 'NIO', 'Xpeng', 'Volkswagen', 'Toyota',  'ZEEKR', 'Foton', 'MG', 'Lynk & Co',
-      'Tesla',  'Honda', 'Avatr','AITO','Li Auto'
+    "Xiaomi",
+    "BYD",
+    "Xpeng",
+    "ZEEKR",
+    "BMW",
+    "Mercedes-Benz",
+    "Nissan",
+    "NIO",
+    "Volkswagen",
+    "Toyota",
+    "Foton",
+    "MG",
+    "Lynk & Co",
+    "Tesla",
+    "Honda",
+    "Avatr",
+    "AITO",
+    "Li Auto",
   ];
   const allBrands = [...brands];
-  
+
   const sortedBrands = allBrands.sort((a, b) => {
     const aPriorityIndex = priorityOrder.indexOf(a.name);
     const bPriorityIndex = priorityOrder.indexOf(b.name);
-    
+
     // If both are in priority order, sort by that order
     if (aPriorityIndex !== -1 && bPriorityIndex !== -1) {
       return aPriorityIndex - bPriorityIndex;
     }
-    
+
     // If only A is in priority order, it comes first
     if (aPriorityIndex !== -1) {
       return -1;
     }
-    
+
     // If only B is in priority order, it comes first
     if (bPriorityIndex !== -1) {
       return 1;
     }
-    
+
     // If neither is in priority order, sort alphabetically
     return a.name.localeCompare(b.name);
   });

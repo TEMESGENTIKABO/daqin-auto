@@ -14,7 +14,7 @@ export interface VehicleModel {
     | "Sports"
     | "Minivan";
   year: number;
-  priceUSD: number;
+  priceUSD: number; // 0 indicates negotiable price
   images: string[];
   specs: {
     engine: string;
@@ -28,6 +28,7 @@ export interface VehicleModel {
       | "Hybrid"
       | "PHEV"
       | "CNG"
+      | "REEV"
       | "Hydrogen";
     seats: number;
     doors: number;
@@ -69,14 +70,472 @@ export interface VehicleModel {
 }
 
 export const vehicleModels: VehicleModel[] = [
-  // ========== FOTON COMMERCIAL VEHICLES (Featured Models with Negotiable Prices) ==========
+{
+  id: "zeekr-9x",
+  brand: "Zeekr",
+  model: "9X",
+  category: "SUV",
+  year: 2025,
+  priceUSD: 0,
+  images: [
+     "/images/models/zeekr/9x-3.jpg",
+    "/images/models/zeekr/9x-2.jpg",
+    "/images/models/zeekr/9x-1.jpg",
+  ],
+  specs: {
+    engine: "2.0L Turbo + Electric Motors",
+    power: "≈1400 hp (combined)",
+    torque: "Manufacturer not specified",
+    transmission: "Hybrid DHT",
+    fuelType: "PHEV",
+    seats: 6,
+    doors: 5,
+    length: "5239 mm",
+    width: "2029 mm",
+    height: "1819 mm",
+    wheelbase: "3169 mm",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "Hybrid",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in 3.1 s",
+  },
+  features: [
+    "High-voltage Hybrid Platform",
+    "Luxury Interior",
+    "Advanced Driver Assistance",
+  ],
+  description:
+    "Zeekr 9X is a flagship plug-in hybrid SUV combining extreme performance with electric efficiency.",
+  available: true,
+  featured: true,
+  status: "New",
+  tagline: "Luxury Hybrid Performance",
+  promotion: "Pre-order available",
+  detailsLink: "/models/zeekr-9x",
+  rating: 0,
+  reviewCount: 0,
+  colors: ["Black", "Silver"],
+},
+{
+  id: "yangwang-u8",
+  brand: "YANGWANG",
+  model: "U8",
+  category: "SUV",
+  year: 2024,
+  priceUSD: 0,
+  images: [
+    "/images/models/yangwang/u8-1.jpg",
+    "/images/models/yangwang/u8-2.jpg",
+  ],
+  specs: {
+    engine: "2.0L Turbo Range Extender",
+    power: "880 kW (~1180 hp)",
+    torque: "1280 Nm (wheel-side)",
+    transmission: "Quad-Motor Electric Drive",
+    fuelType: "REEV",
+    seats: 5,
+    doors: 5,
+    length: "5319 mm",
+    width: "2050 mm",
+    height: "1930 mm",
+    wheelbase: "3050 mm",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "Electric + range extender",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in 3.6 s",
+  },
+  features: [
+    "e⁴ Independent Wheel Drive",
+    "Extreme Off-road Capability",
+    "Emergency Floating Mode",
+  ],
+  description:
+    "Yangwang U8 is a luxury range-extended electric SUV engineered for extreme performance and off-road capability.",
+  available: true,
+  featured: true,
+  status: "In Stock",
+  tagline: "Extreme Power. Extreme Control.",
+  promotion: "Contact dealer for availability",
+  detailsLink: "/models/yangwang-u8",
+  rating: 4.8,
+  reviewCount: 0,
+  colors: ["Black", "Green"],
+},
+{
+  id: "yangwang-u8l",
+  brand: "YANGWANG",
+  model: "U8L",
+  category: "SUV",
+  year: 2025,
+  priceUSD: 0,
+  images: [
+    "/images/models/yangwang/u8l-1.jpg",
+    "/images/models/yangwang/u8l-2.jpg",
+  ],
+  specs: {
+    engine: "2.0L Turbo Range Extender",
+    power: "880 kW (~1180 hp)",
+    torque: "1280 Nm (wheel-side)",
+    transmission: "Quad-Motor Electric Drive",
+    fuelType: "REEV",
+    seats: 5,
+    doors: 5,
+    length: "5400 mm",
+    width: "2050 mm",
+    height: "1930 mm",
+    wheelbase: "3250 mm",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "Electric + range extender",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in 3.6 s",
+  },
+  features: [
+    "Extended Wheelbase",
+    "Luxury Rear Seating",
+    "Advanced Suspension System",
+  ],
+  description:
+    "Yangwang U8L is the long-wheelbase luxury variant of the U8, offering enhanced rear comfort with the same extreme performance.",
+  available: true,
+  featured: true,
+  status: "New",
+  tagline: "Extended Luxury Capability",
+  promotion: "Contact dealer for availability",
+  detailsLink: "/models/yangwang-u8l",
+  rating: 4.8,
+  reviewCount: 0,
+  colors: ["Black", "Dark Green"],
+},
+{
+  id: "huawei-maextro-s800",
+  brand: "Huawei",
+  model: "Maextro S800",
+  category: "Sedan",
+  year: 2025,
+  priceUSD: 0,
+  images: [
+    "/images/models/huawei/maextro-s800-1.jpg",
+    "/images/models/huawei/maextro-s800-2.jpg",
+  ],
+  specs: {
+    engine: "Electric Motors with Range Extender",
+    power: "390–635 kW",
+    torque: "Manufacturer not specified",
+    transmission: "Electric Drive",
+    fuelType: "REEV",
+    seats: 5,
+    doors: 4,
+    length: "5480 mm",
+    width: "2000 mm",
+    height: "1542 mm",
+    wheelbase: "3370 mm",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "Electric + range extender",
+    payload: "Not applicable",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in 4.3–4.9 s",
+  },
+  features: [
+    "Huawei ADS Intelligent Driving",
+    "Luxury Smart Cockpit",
+  ],
+  description:
+    "Huawei Maextro S800 is a flagship luxury sedan offering advanced intelligent driving and extended-range electric capability.",
+  available: true,
+  featured: true,
+  status: "In Stock",
+  tagline: "Flagship Intelligent Luxury",
+  promotion: "Contact dealer for pricing",
+  detailsLink: "/models/huawei-maextro-s800",
+  rating: 4.8,
+  reviewCount: 0,
+  colors: ["White", "Black"],
+},
+{
+  id: "xiaomi-yu7",
+  brand: "Xiaomi",
+  model: "YU7",
+  category: "SUV",
+  year: 2025,
+  priceUSD: 0,
+  images: [
+    "/images/models/xiaomi/yu7-1.jpg",
+     "/images/models/xiaomi/yu7-2.jpg",
+  ],
+  specs: {
+    engine: "Dual Electric Motors",
+    power: "Up to 690 hp",
+    torque: "Manufacturer not specified",
+    transmission: "Single-speed automatic",
+    fuelType: "Electric",
+    seats: 5,
+    doors: 5,
+    length: "4999 mm",
+    width: "1996 mm",
+    height: "1608 mm",
+    wheelbase: "3000 mm",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "Electric",
+    payload: "Not applicable",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in 3.23 s",
+  },
+  features: [
+    "800V Architecture",
+    "Advanced Autonomous Driving",
+  ],
+  description:
+    "Xiaomi YU7 is a high-performance electric SUV designed with advanced computing and long-range capability.",
+  available: true,
+  featured: true,
+  status: "New",
+  tagline: "Smart Performance Electric SUV",
+  promotion: "Launch details pending",
+  detailsLink: "/models/xiaomi-yu7",
+  rating: 0,
+  reviewCount: 0,
+  colors: ["Green", "Silver"],
+},
+{
+  id: "leopard-7",
+  brand: "Leopard",
+  model: "7",
+  category: "SUV",
+  year: 2025,
+  priceUSD: 0,
+  images: [
+    "/images/models/leopard/7-1.jpg",
+  ],
+  specs: {
+    engine: "Plug-in Hybrid System",
+    power: "Manufacturer not specified",
+    torque: "Manufacturer not specified",
+    transmission: "Automatic",
+    fuelType: "PHEV",
+    seats: 5,
+    doors: 5,
+    length: "Not officially specified",
+    width: "Not officially specified",
+    height: "Not officially specified",
+    wheelbase: "Not officially specified",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "Hybrid",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "Manufacturer not specified",
+  },
+  features: [
+    "Advanced PHEV Powertrain",
+    "Modern SUV Platform",
+  ],
+  description:
+    "Leopard 7 is a plug-in hybrid SUV focusing on efficiency, performance, and modern utility.",
+  available: true,
+  featured: false,
+  status: "Coming Soon",
+  tagline: "Hybrid Efficiency Meets Utility",
+  promotion: "Contact dealer for details",
+  detailsLink: "/models/leopard-7",
+  rating: 0,
+  reviewCount: 0,
+  colors: ["Black", "White"],
+},
+  {
+  id: "byd-seagull",
+  brand: "BYD",
+  model: "Seagull",
+  category: "Hatchback",
+  year: 2024,
+  priceUSD: 0,
+  images: [
+    "/images/models/byd/seagull-05-1.jpg",
+    "/images/models/byd/seagull-2025-1.jpg",
+  ],
+  specs: {
+    engine: "Single Electric Motor",
+    power: "55 kW (75 hp)",
+    torque: "135 Nm",
+    transmission: "Single-speed automatic",
+    fuelType: "Electric",
+    seats: 4,
+    doors: 5,
+    length: "3780 mm",
+    width: "1715 mm",
+    height: "1540 mm",
+    wheelbase: "2500 mm",
+    cargoVolume: "930 L",
+    fuelConsumption: "9.6 kWh/100 km",
+    payload: "Not applicable",
+    warranty: "Manufacturer standard",
+    acceleration: "0–50 km/h in 4.9 s",
+  },
+  features: [
+    "Blade Battery Technology",
+    "DC Fast Charging",
+    "Compact Urban Design",
+    "Advanced Safety Systems",
+  ],
+  description:
+    "BYD Seagull is a compact battery-electric hatchback designed for efficient urban mobility with modern EV technology.",
+  available: true,
+  featured: true,
+  status: "New",
+  tagline: "Smart Electric City Car",
+  promotion: "Contact dealer for pricing",
+  detailsLink: "/models/byd-seagull",
+  rating: 4.5,
+  reviewCount: 156,
+  colors: ["White", "Blue", "Silver"],
+},
+  {
+  id: "geely-coolray",
+  brand: "Geely",
+  model: "Coolray",
+  category: "SUV",
+  year: 2024,
+  priceUSD: 0,
+  images: [
+    "/images/models/geely/coolray-1.jpg",
+    "/images/models/geely/coolray-2.jpg",
+  ],
+  specs: {
+    engine: "1.5L Turbocharged Gasoline",
+    power: "177 hp",
+    torque: "255 Nm",
+    transmission: "7-speed DCT",
+    fuelType: "Petrol",
+    seats: 5,
+    doors: 5,
+    length: "4380 mm",
+    width: "1810 mm",
+    height: "1615 mm",
+    wheelbase: "2600 mm",
+    cargoVolume: "330 L",
+    fuelConsumption: "6.4 L/100 km",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in 7.6 s",
+  },
+  features: [
+    "Turbocharged Engine",
+    "Sporty SUV Design",
+    "Advanced Driver Assistance",
+  ],
+  description:
+    "Geely Coolray is a compact gasoline-powered SUV offering sporty performance and modern connectivity.",
+  available: true,
+  featured: true,
+  status: "Best Seller",
+  tagline: "Power Meets Style",
+  promotion: "Regional pricing available",
+  detailsLink: "/models/geely-coolray",
+  rating: 4.6,
+  reviewCount: 234,
+  colors: ["Red", "Black", "White"],
+},
+{
+  id: "livan-x3-pro",
+  brand: "Livan",
+  model: "X3 Pro",
+  category: "SUV",
+  year: 2024,
+  priceUSD: 0,
+  images: [
+    "/images/models/livan/x3-pro-1.jpg",
+    "/images/models/livan/x3-pro-2.jpg",
+  ],
+  specs: {
+    engine: "1.5L Naturally Aspirated Gasoline",
+    power: "113 hp",
+    torque: "143 Nm",
+    transmission: "5MT / CVT",
+    fuelType: "Petrol",
+    seats: 5,
+    doors: 5,
+    length: "4005 mm",
+    width: "1760 mm",
+    height: "1575 mm",
+    wheelbase: "2480 mm",
+    cargoVolume: "400 L",
+    fuelConsumption: "6.8 L/100 km",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "Manufacturer not specified",
+  },
+  features: [
+    "Compact SUV Platform",
+    "Fuel Efficient Engine",
+    "Urban-Friendly Size",
+  ],
+  description:
+    "Livan X3 Pro is a compact gasoline SUV focused on affordability and everyday practicality.",
+  available: true,
+  featured: true,
+  status: "New",
+  tagline: "Practical Urban SUV",
+  promotion: "Dealer pricing available",
+  detailsLink: "/models/livan-x3-pro",
+  rating: 4.2,
+  reviewCount: 98,
+  colors: ["Silver", "Blue", "White"],
+},
+{
+  id: "geely-boyue-l",
+  brand: "Geely",
+  model: "Boyue L",
+  category: "SUV",
+  year: 2024,
+  priceUSD: 0,
+  images: [
+    "/images/models/geely/boyue-l-1.jpg",
+    "/images/models/geely/boyue-l-2.jpg",
+  ],
+  specs: {
+    engine: "1.5L / 2.0L Turbocharged Gasoline",
+    power: "181 hp",
+    torque: "290 Nm",
+    transmission: "7-speed DCT",
+    fuelType: "Petrol",
+    seats: 5,
+    doors: 5,
+    length: "4670 mm",
+    width: "1900 mm",
+    height: "1705 mm",
+    wheelbase: "2777 mm",
+    cargoVolume: "Not officially specified",
+    fuelConsumption: "6.3 L/100 km",
+    payload: "Manufacturer not specified",
+    warranty: "Manufacturer standard",
+    acceleration: "0–100 km/h in ~7.9 s",
+  },
+  features: [
+    "Mid-size SUV Comfort",
+    "Advanced Infotainment",
+    "Turbo Performance",
+  ],
+  description:
+    "Geely Boyue L is a mid-size gasoline SUV offering comfort, performance, and advanced technology.",
+  available: true,
+  featured: true,
+  status: "In Stock",
+  tagline: "Comfort Meets Technology",
+  promotion: "Dealer pricing available",
+  detailsLink: "/models/geely-boyue-l",
+  rating: 4.6,
+  reviewCount: 187,
+  colors: ["Black", "Grey", "White"],
+},
+// ========== FOTON COMMERCIAL VEHICLES ==========
   {
     id: "foton-bus-series-guide",
     brand: "Foton",
     model: "Bus Series",
     category: "Commercial",
     year: 2025,
-    priceUSD: 0, // Negotiable price - will be handled specially
+    priceUSD: 0, // Negotiable price
     images: [
       "/images/models/foton/bus-series-1.jpg",
       "/images/models/foton/bus-series-2.jpg",
@@ -115,7 +574,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Foton Bus Series offers comprehensive commercial bus solutions with advanced technologies and customizable configurations for transit, tourism, and shuttle services. Featuring the latest in safety, comfort, and efficiency technologies.",
     available: true,
-    featured: true,
+    featured: false,
     status: "Special Edition",
     tagline: "Comprehensive Guide to Models and Technologies",
     promotion: "Custom pricing available - Contact for quote",
@@ -171,7 +630,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Your ultimate guide to the powerful Foton TUNLAND Series - comprehensive lineup of reliable pickup trucks designed for both demanding work environments and adventurous lifestyles with superior off-road capability.",
     available: true,
-    featured: true,
+    featured: false,
     status: "Best Seller",
     tagline: "Your Ultimate Guide to Models & Features",
     promotion: "Custom configuration pricing available",
@@ -226,7 +685,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Comprehensive guide to Foton VIEW Series smart commercial vehicles featuring advanced technologies for modern logistics operations with optimized efficiency and practical business solutions.",
     available: true,
-    featured: true,
+    featured: false,
     status: "New",
     tagline: "Comprehensive Guide to Smart Commercial Vehicles",
     promotion: "Business fleet pricing available",
@@ -278,7 +737,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Your ultimate guide to Foton's versatile Tuyaano Series van lineup - perfect for urban delivery, small business operations, and customized commercial applications with excellent maneuverability.",
     available: true,
-    featured: true,
+    featured: false,
     status: "In Stock",
     tagline: "Your Ultimate Guide to Foton's Versatile Van Lineup",
     promotion: "Small business special pricing",
@@ -330,7 +789,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "A complete guide to the smart and efficient Foton WONDER Series light trucks, designed for modern logistics operations with advanced technologies and optimized performance for business efficiency.",
     available: true,
-    featured: true,
+    featured: false,
     status: "In Stock",
     tagline: "A Complete Guide to the Smart & Efficient Light Truck",
     promotion: "Logistics fleet pricing available",
@@ -385,7 +844,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Expert review and comprehensive guide explaining why Foton AUMARK Trucks dominate urban logistics with unmatched reliability, performance, and optimized design for city delivery operations.",
     available: true,
-    featured: true,
+    featured: false,
     status: "Best Seller",
     tagline:
       "Why Foton AUMARK Trucks Dominate Urban Logistics: An Expert Review",
@@ -438,7 +897,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Detailed guide highlighting the 5 key reasons why Foton AUMARK S Series is the top choice for urban logistics operations, featuring optimized design for city delivery efficiency.",
     available: true,
-    featured: true,
+    featured: false,
     status: "Best Seller",
     tagline: "5 Key Reasons It's the Top Choice for Urban Logistics",
     promotion: "Top choice for delivery businesses",
@@ -447,7 +906,6 @@ export const vehicleModels: VehicleModel[] = [
     reviewCount: 267,
     colors: ["White", "Grey"],
   },
-
   {
     id: "foton-auman-truck-guide",
     brand: "Foton",
@@ -493,7 +951,7 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "Official Foton Auman truck models and features guide - comprehensive range of heavy-duty trucks for various commercial applications with official specifications and support.",
     available: true,
-    featured: true,
+    featured: false,
     status: "Special Edition",
     tagline: "Models & Features | Foton Auman Official",
     promotion: "Official dealer pricing available",
@@ -510,7 +968,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Han DM-i",
     category: "Sedan",
     year: 2025,
-    priceUSD: 28500,
+    priceUSD: 0, // Negotiable price
     images: [
       "/images/models/byd/han-dmi-1.jpg",
       "/images/models/byd/han-dmi-2.jpg",
@@ -551,9 +1009,10 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "2025 BYD Han DM-i Long Range Intelligent Driving Edition 245KM Premium - Entry-level PHEV luxury sedan with advanced hybrid technology and intelligent features.",
     available: true,
-    featured: true,
+    featured:false,
     status: "New",
     tagline: "Intelligent Hybrid Luxury",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 156,
     colors: ["Arctic Blue", "Crystal White", "Space Grey"],
@@ -565,7 +1024,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Seagull 05 DM-i",
     category: "Hatchback",
     year: 2026,
-    priceUSD: 13400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/seagull-05-1.jpg"],
     specs: {
       engine: "1.5L DM-i Hybrid",
@@ -604,6 +1063,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 89,
     colors: ["Ocean Blue", "Sunset Orange", "Mint Green"],
@@ -616,7 +1076,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Ti7",
     category: "SUV",
     year: 2025,
-    priceUSD: 35000,
+    priceUSD: 0, // Negotiable price
     images: [
       "/images/models/fang-cheng-bao/ti7-1.jpg",
       "/images/models/fang-cheng-bao/ti7-2.jpg",
@@ -656,9 +1116,10 @@ export const vehicleModels: VehicleModel[] = [
     description:
       "2025 FANG CHENG BAO Ti7 190km AWD Ultra Edition - Top trim electric SUV with AWD performance and advanced off-road capabilities.",
     available: true,
-    featured: true,
+    featured: false,
     status: "New",
     tagline: "Ultimate Electric Off-road",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
     colors: ["Desert Gold", "Mountain Grey", "Forest Green"],
@@ -671,7 +1132,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Galaxy Xingyuan",
     category: "SUV",
     year: 2026,
-    priceUSD: 13800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/geely/galaxy-xingyuan-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -710,6 +1171,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 34,
     colors: ["Galaxy Silver", "Freedom Blue", "Urban Grey"],
@@ -722,7 +1184,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Frontlander",
     category: "SUV",
     year: 2026,
-    priceUSD: 28500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/frontlander-1.jpg"],
     specs: {
       engine: "2.0L Intelligent Hybrid",
@@ -761,6 +1223,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Intelligent Hybrid Excellence",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 78,
     colors: ["Elite White", "Premium Grey", "Luxury Blue"],
@@ -773,7 +1236,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Bingo S",
     category: "Hatchback",
     year: 2025,
-    priceUSD: 10700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/wuling/bingo-s-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -812,6 +1275,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.2,
     reviewCount: 112,
     colors: ["Bingo Blue", "Sunny Yellow", "Mint Green"],
@@ -824,7 +1288,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i6",
     category: "SUV",
     year: 2025,
-    priceUSD: 45300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/li-auto/i6-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -864,6 +1328,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Premium Electric Family SUV",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
     colors: ["Family Silver", "Executive Grey", "Luxury Blue"],
@@ -875,7 +1340,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Han DM-i Long Range",
     category: "Sedan",
     year: 2025,
-    priceUSD: 28500,
+    priceUSD: 0, // Negotiable price
     images: [
       "/images/models/byd/han-dmi-1.jpg",
       "/images/models/byd/han-dmi-2.jpg",
@@ -916,6 +1381,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Luxury Hybrid Sedan",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 156,
   },
@@ -926,7 +1392,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Seagull 05 DM-i",
     category: "Hatchback",
     year: 2026,
-    priceUSD: 13400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/seagull-05-1.jpg"],
     specs: {
       engine: "1.5L DM-i Hybrid",
@@ -961,6 +1427,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 89,
   },
@@ -971,7 +1438,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Tang DM-i",
     category: "SUV",
     year: 2025,
-    priceUSD: 28500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/tang-dmi-1.jpg"],
     specs: {
       engine: "1.5T DM-i Hybrid",
@@ -1006,6 +1473,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 134,
   },
@@ -1016,7 +1484,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Seal 07 DM-i",
     category: "Sedan",
     year: 2026,
-    priceUSD: 28500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/seal-07-1.jpg"],
     specs: {
       engine: "1.5L DM-i Hybrid",
@@ -1050,6 +1518,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 78,
   },
@@ -1060,7 +1529,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Qin PLUS DM-i",
     category: "Sedan",
     year: 2025,
-    priceUSD: 13500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/qin-plus-1.jpg"],
     specs: {
       engine: "1.5L DM-i Hybrid",
@@ -1094,6 +1563,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     discount: 5,
     rating: 4.5,
     reviewCount: 234,
@@ -1105,7 +1575,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Qin PLUS EV",
     category: "Sedan",
     year: 2025,
-    priceUSD: 16700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/qin-plus-ev-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1137,6 +1607,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 189,
   },
@@ -1147,7 +1618,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Qin L EV",
     category: "Sedan",
     year: 2025,
-    priceUSD: 21000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/qin-l-ev-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1178,6 +1649,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 67,
   },
@@ -1188,7 +1660,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Seal 06 DM-i Wagon",
     category: "Hatchback",
     year: 2025,
-    priceUSD: 17000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/seal-06-1.jpg"],
     specs: {
       engine: "1.5L DM-i Hybrid",
@@ -1222,6 +1694,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 45,
   },
@@ -1232,7 +1705,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Seagull",
     category: "Hatchback",
     year: 2025,
-    priceUSD: 13900,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/seagull-2025-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1264,6 +1737,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Best Seller",
     tagline: "Smart Urban Mobility",
+    promotion: "Contact for pricing",
     discount: 8,
     rating: 4.5,
     reviewCount: 312,
@@ -1275,7 +1749,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Yangwang U7 EV",
     category: "Sedan",
     year: 2025,
-    priceUSD: 105000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/yangwang-u7-1.jpg"],
     specs: {
       engine: "Quad Motor AWD",
@@ -1307,6 +1781,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Limited Edition",
     tagline: "Ultimate Electric Luxury",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 34,
   },
@@ -1317,7 +1792,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Yangwang U7 Flagship",
     category: "Sedan",
     year: 2025,
-    priceUSD: 118000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/yangwang-u7-flagship-1.jpg"],
     specs: {
       engine: "Quad Motor AWD",
@@ -1348,6 +1823,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "Limited Edition",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 12,
   },
@@ -1358,7 +1834,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Yangwang U8L",
     category: "SUV",
     year: 2025,
-    priceUSD: 210000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/yangwang-u8l-1.jpg"],
     specs: {
       engine: "Quad Motor AWD",
@@ -1390,6 +1866,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Limited Edition",
     tagline: "Ultimate Luxury SUV",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 23,
   },
@@ -1400,7 +1877,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Yangwang U9",
     category: "Sports",
     year: 2024,
-    priceUSD: 280000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/byd/yangwang-u9-1.jpg"],
     specs: {
       engine: "Quad Motor AWD",
@@ -1432,6 +1909,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Limited Edition",
     tagline: "Electric Hypercar",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 8,
   },
@@ -1442,7 +1920,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Ti7",
     category: "SUV",
     year: 2025,
-    priceUSD: 35000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/fang-cheng-bao/ti7-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -1473,6 +1951,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -1483,7 +1962,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "T3",
     category: "SUV",
     year: 2025,
-    priceUSD: 22400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/fang-cheng-bao/t3-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1514,6 +1993,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 34,
   },
@@ -1524,7 +2004,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "BAO5",
     category: "SUV",
     year: 2025,
-    priceUSD: 47000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/fang-cheng-bao/bao5-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -1555,6 +2035,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 45,
   },
@@ -1565,7 +2046,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "BAO8",
     category: "SUV",
     year: 2025,
-    priceUSD: 76000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/fang-cheng-bao/bao8-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -1596,6 +2077,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 28,
   },
@@ -1607,7 +2089,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Galaxy A7",
     category: "Sedan",
     year: 2025,
-    priceUSD: 19000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/geely/galaxy-a7-1.jpg"],
     specs: {
       engine: "1.5L Hybrid",
@@ -1637,6 +2119,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 45,
   },
@@ -1648,7 +2131,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Frontlander",
     category: "SUV",
     year: 2026,
-    priceUSD: 28500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/frontlander-1.jpg"],
     specs: {
       engine: "2.0L Hybrid",
@@ -1677,6 +2160,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 67,
   },
@@ -1687,7 +2171,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "BZ4X",
     category: "SUV",
     year: 2025,
-    priceUSD: 31800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/bz4x-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1717,6 +2201,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 89,
   },
@@ -1727,7 +2212,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "BZ3X",
     category: "SUV",
     year: 2025,
-    priceUSD: 26800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/bz3x-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1757,6 +2242,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 56,
   },
@@ -1767,7 +2253,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Corolla Cross",
     category: "SUV",
     year: 2024,
-    priceUSD: 17900,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/corolla-cross-1.jpg"],
     specs: {
       engine: "2.0L Petrol",
@@ -1795,6 +2281,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.2,
     reviewCount: 123,
   },
@@ -1805,7 +2292,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Corolla",
     category: "Sedan",
     year: 2024,
-    priceUSD: 16200,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/corolla-1.jpg"],
     specs: {
       engine: "1.2L Turbo",
@@ -1833,6 +2320,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 456,
   },
@@ -1843,7 +2331,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Levin",
     category: "Sedan",
     year: 2024,
-    priceUSD: 22500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/levin-1.jpg"],
     specs: {
       engine: "1.8L Hybrid",
@@ -1871,6 +2359,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 234,
   },
@@ -1881,7 +2370,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "RAV4",
     category: "SUV",
     year: 2024,
-    priceUSD: 30000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/toyota/rav4-1.jpg"],
     specs: {
       engine: "2.0L Petrol",
@@ -1910,6 +2399,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 567,
   },
@@ -1921,7 +2411,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Bingo S",
     category: "Hatchback",
     year: 2025,
-    priceUSD: 10700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/wuling/bingo-s-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -1951,6 +2441,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.1,
     reviewCount: 89,
   },
@@ -1962,7 +2453,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i6",
     category: "SUV",
     year: 2025,
-    priceUSD: 45300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/li-auto/i6-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -1992,6 +2483,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 78,
   },
@@ -2002,7 +2494,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "L9 Ultra",
     category: "SUV",
     year: 2025,
-    priceUSD: 73800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/li-auto/l9-ultra-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -2033,6 +2525,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Pre-Order",
     tagline: "Ultimate Family SUV",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 156,
   },
@@ -2043,7 +2536,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "L8 Ultra",
     category: "SUV",
     year: 2025,
-    priceUSD: 63800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/li-auto/l8-ultra-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -2073,6 +2566,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 134,
   },
@@ -2083,7 +2577,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "L7 Ultra",
     category: "SUV",
     year: 2025,
-    priceUSD: 60400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/li-auto/l7-ultra-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -2113,6 +2607,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 112,
   },
@@ -2123,7 +2618,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "L6 Max",
     category: "SUV",
     year: 2025,
-    priceUSD: 47000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/li-auto/l6-max-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -2153,6 +2648,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 89,
   },
@@ -2164,7 +2660,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Qiyuan A07",
     category: "Sedan",
     year: 2026,
-    priceUSD: 21800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/changan/qiyuan-a07-1.jpg"],
     specs: {
       engine: "1.5L Range Extender + Electric Motor",
@@ -2194,6 +2690,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 34,
   },
@@ -2204,7 +2701,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Eado 4th Gen",
     category: "Sedan",
     year: 2026,
-    priceUSD: 16000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/changan/eado-2026-1.jpg"],
     specs: {
       engine: "1.5T Turbo",
@@ -2232,6 +2729,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.2,
     reviewCount: 23,
   },
@@ -2243,7 +2741,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "RX 300",
     category: "SUV",
     year: 2026,
-    priceUSD: 68600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lexus/rx-300-1.jpg"],
     specs: {
       engine: "2.4L Turbo",
@@ -2272,6 +2770,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -2283,7 +2782,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "CR-V",
     category: "SUV",
     year: 2026,
-    priceUSD: 35300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/honda/crv-2026-1.jpg"],
     specs: {
       engine: "2.0L Hybrid",
@@ -2312,6 +2811,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 112,
   },
@@ -2322,7 +2822,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Odyssey",
     category: "MPV",
     year: 2026,
-    priceUSD: 36800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/honda/odyssey-1.jpg"],
     specs: {
       engine: "2.0L Hybrid",
@@ -2350,6 +2850,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 78,
   },
@@ -2360,7 +2861,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Elysion",
     category: "MPV",
     year: 2026,
-    priceUSD: 54000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/honda/elysion-1.jpg"],
     specs: {
       engine: "2.0L Hybrid",
@@ -2388,6 +2889,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -2399,7 +2901,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "RT",
     category: "SUV",
     year: 2026,
-    priceUSD: 20700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/aion/rt-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -2429,6 +2931,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 56,
   },
@@ -2439,7 +2942,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "V",
     category: "SUV",
     year: 2026,
-    priceUSD: 18000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/aion/v-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -2469,6 +2972,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 34,
   },
@@ -2479,7 +2983,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "S Plus",
     category: "Sedan",
     year: 2026,
-    priceUSD: 25000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/aion/s-plus-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -2509,6 +3013,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 67,
   },
@@ -2520,7 +3025,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Jetour Zongheng G700",
     category: "SUV",
     year: 2025,
-    priceUSD: 56000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/chery/jetour-g700-1.jpg"],
     specs: {
       engine: "2.0T PHEV",
@@ -2550,6 +3055,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 45,
   },
@@ -2560,7 +3066,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "iCAR Super V23",
     category: "SUV",
     year: 2026,
-    priceUSD: 29300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/chery/icar-v23-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2590,6 +3096,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 34,
   },
@@ -2600,7 +3107,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Jetour L7",
     category: "SUV",
     year: 2025,
-    priceUSD: 24000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/chery/jetour-l7-1.jpg"],
     specs: {
       engine: "1.5T PHEV",
@@ -2630,6 +3137,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 56,
   },
@@ -2640,7 +3148,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Luxeed S7",
     category: "Sedan",
     year: 2026,
-    priceUSD: 41000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/chery/luxeed-s7-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -2670,6 +3178,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 28,
   },
@@ -2680,7 +3189,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Luxeed R7",
     category: "SUV",
     year: 2026,
-    priceUSD: 52000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/chery/luxeed-r7-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2711,6 +3220,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Ultimate Performance SUV",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 16,
   },
@@ -2722,7 +3232,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ES8",
     category: "SUV",
     year: 2026,
-    priceUSD: 50000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/es8-2026-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2752,6 +3262,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -2762,7 +3273,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ET9",
     category: "Sedan",
     year: 2025,
-    priceUSD: 119000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/et9-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2793,6 +3304,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Limited Edition",
     tagline: "The Ultimate Electric Sedan",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 23,
   },
@@ -2803,7 +3315,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ET9 102kWh",
     category: "Sedan",
     year: 2025,
-    priceUSD: 110800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/et9-102kwh-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2833,6 +3345,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -2843,7 +3356,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EC7",
     category: "SUV",
     year: 2024,
-    priceUSD: 64120,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/ec7-2024-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2873,6 +3386,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 67,
   },
@@ -2883,7 +3397,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ES7",
     category: "SUV",
     year: 2024,
-    priceUSD: 61800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/es7-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2913,6 +3427,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -2923,7 +3438,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EC6",
     category: "SUV",
     year: 2025,
-    priceUSD: 48300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/ec6-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2953,6 +3468,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 56,
   },
@@ -2963,7 +3479,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ES6",
     category: "SUV",
     year: 2025,
-    priceUSD: 45000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/es6-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -2993,6 +3509,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 112,
   },
@@ -3003,7 +3520,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ET7",
     category: "Sedan",
     year: 2024,
-    priceUSD: 65000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/et7-2024-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -3033,6 +3550,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 78,
   },
@@ -3043,7 +3561,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ET5T",
     category: "Hatchback",
     year: 2025,
-    priceUSD: 38300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/et5t-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -3073,6 +3591,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 45,
   },
@@ -3083,7 +3602,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ET5",
     category: "Sedan",
     year: 2025,
-    priceUSD: 38300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nio/et5-2025-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -3113,6 +3632,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 134,
   },
@@ -3124,7 +3644,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "S07",
     category: "SUV",
     year: 2026,
-    priceUSD: 28700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/deepal/s07-1.jpg"],
     specs: {
       engine: "1.5L Range Extender + Electric Motor",
@@ -3154,6 +3674,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 34,
   },
@@ -3164,7 +3685,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "G318",
     category: "SUV",
     year: 2025,
-    priceUSD: 37000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/deepal/g318-1.jpg"],
     specs: {
       engine: "1.5T PHEV",
@@ -3194,6 +3715,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 45,
   },
@@ -3204,7 +3726,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "G318 Highland",
     category: "SUV",
     year: 2025,
-    priceUSD: 31900,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/deepal/g318-highland-1.jpg"],
     specs: {
       engine: "1.5T PHEV",
@@ -3234,6 +3756,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 34,
   },
@@ -3244,7 +3767,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "G318 Wilderness",
     category: "SUV",
     year: 2025,
-    priceUSD: 29000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/deepal/g318-wilderness-1.jpg"],
     specs: {
       engine: "1.5T PHEV",
@@ -3274,6 +3797,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 23,
   },
@@ -3285,7 +3809,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "ID.3",
     category: "Hatchback",
     year: 2026,
-    priceUSD: 21300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/volkswagen/id3-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -3315,6 +3839,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 89,
   },
@@ -3325,7 +3850,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Tiguan L",
     category: "SUV",
     year: 2025,
-    priceUSD: 28000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/volkswagen/tiguan-l-1.jpg"],
     specs: {
       engine: "1.5T Turbo",
@@ -3354,6 +3879,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 112,
   },
@@ -3364,7 +3890,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Tavendor",
     category: "SUV",
     year: 2025,
-    priceUSD: 48000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/volkswagen/tavendor-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -3393,6 +3919,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 67,
   },
@@ -3403,7 +3930,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Passat Pro",
     category: "Sedan",
     year: 2025,
-    priceUSD: 31000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/volkswagen/passat-pro-1.jpg"],
     specs: {
       engine: "1.5T Turbo",
@@ -3431,6 +3958,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 89,
   },
@@ -3441,7 +3969,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Lamando L",
     category: "Sedan",
     year: 2026,
-    priceUSD: 30500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/volkswagen/lamando-l-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -3469,6 +3997,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "Pre-Order",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 23,
   },
@@ -3480,7 +4009,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "N9",
     category: "SUV",
     year: 2026,
-    priceUSD: 75000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/denza/n9-1.jpg"],
     specs: {
       engine: "DM-p PHEV",
@@ -3511,6 +4040,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Ultimate Luxury PHEV",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -3521,7 +4051,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "D9 DM-i",
     category: "MPV",
     year: 2025,
-    priceUSD: 52000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/denza/d9-dmi-1.jpg"],
     specs: {
       engine: "DM-i Hybrid System",
@@ -3551,6 +4081,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -3561,7 +4092,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "D9 EV",
     category: "MPV",
     year: 2025,
-    priceUSD: 57000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/denza/d9-ev-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -3591,6 +4122,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -3602,7 +4134,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Haval Big Dog Plus",
     category: "SUV",
     year: 2026,
-    priceUSD: 26500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/gwm/big-dog-1.jpg"],
     specs: {
       engine: "1.5T PHEV",
@@ -3632,6 +4164,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 45,
   },
@@ -3642,7 +4175,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Tank 500 Hi4-T",
     category: "SUV",
     year: 2026,
-    priceUSD: 58000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/gwm/tank-500-hi4t-1.jpg"],
     specs: {
       engine: "3.0T PHEV",
@@ -3673,6 +4206,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Ultimate Off-road PHEV",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 34,
   },
@@ -3683,7 +4217,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Tank 500 Hi4-Z",
     category: "SUV",
     year: 2026,
-    priceUSD: 62000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/gwm/tank-500-hi4z-1.jpg"],
     specs: {
       engine: "3.0T PHEV",
@@ -3713,6 +4247,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 23,
   },
@@ -3724,7 +4259,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "HS3 PHEV",
     category: "SUV",
     year: 2025,
-    priceUSD: 22000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/hongqi/hs3-1.jpg"],
     specs: {
       engine: "1.5T PHEV",
@@ -3754,6 +4289,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 56,
   },
@@ -3764,7 +4300,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "HS7",
     category: "SUV",
     year: 2025,
-    priceUSD: 48000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/hongqi/hs7-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -3793,6 +4329,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -3803,7 +4340,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "HS5",
     category: "SUV",
     year: 2025,
-    priceUSD: 33600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/hongqi/hs5-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -3832,6 +4369,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 67,
   },
@@ -3842,7 +4380,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "H9",
     category: "Sedan",
     year: 2025,
-    priceUSD: 54000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/hongqi/h9-2025-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -3870,6 +4408,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -3881,7 +4420,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "#1",
     category: "SUV",
     year: 2026,
-    priceUSD: 26000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/smart/1-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -3911,6 +4450,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 45,
   },
@@ -3922,7 +4462,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Courage",
     category: "SUV",
     year: 2025,
-    priceUSD: 37000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/voyah/courage-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -3952,6 +4492,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 56,
   },
@@ -3963,7 +4504,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "MG4",
     category: "Hatchback",
     year: 2026,
-    priceUSD: 13000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mg/mg4-2026-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -3993,6 +4534,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 67,
   },
@@ -4003,7 +4545,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "MG7",
     category: "Sedan",
     year: 2025,
-    priceUSD: 31000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mg/mg7-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -4031,6 +4573,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 45,
   },
@@ -4041,7 +4584,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Cyberster",
     category: "Sports",
     year: 2026,
-    priceUSD: 60400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mg/cyberster-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4072,6 +4615,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Electric Sports Convertible",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 23,
   },
@@ -4083,7 +4627,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "C200L",
     category: "Sedan",
     year: 2025,
-    priceUSD: 38000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/c200l-1.jpg"],
     specs: {
       engine: "1.5T Mild Hybrid",
@@ -4111,6 +4655,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 112,
   },
@@ -4121,7 +4666,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "C260L",
     category: "Sedan",
     year: 2025,
-    priceUSD: 42300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/c260l-1.jpg"],
     specs: {
       engine: "1.5T Mild Hybrid",
@@ -4149,6 +4694,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -4159,7 +4705,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "C260L 4MATIC",
     category: "Sedan",
     year: 2025,
-    priceUSD: 46200,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/c260l-4matic-1.jpg"],
     specs: {
       engine: "1.5T Mild Hybrid",
@@ -4188,6 +4734,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 67,
   },
@@ -4198,7 +4745,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "E260L",
     category: "Sedan",
     year: 2025,
-    priceUSD: 63000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/e260l-1.jpg"],
     specs: {
       engine: "2.0T Mild Hybrid",
@@ -4226,6 +4773,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 78,
   },
@@ -4236,7 +4784,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "E300L",
     category: "Sedan",
     year: 2025,
-    priceUSD: 72400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/e300l-1.jpg"],
     specs: {
       engine: "2.0T Mild Hybrid",
@@ -4265,6 +4813,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "In Stock",
     tagline: "Executive Luxury",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 56,
   },
@@ -4275,7 +4824,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "E260L 4MATIC",
     category: "Sedan",
     year: 2025,
-    priceUSD: 68000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/e260l-4matic-1.jpg"],
     specs: {
       engine: "2.0T Mild Hybrid",
@@ -4304,6 +4853,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 45,
   },
@@ -4314,7 +4864,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "GLA200",
     category: "SUV",
     year: 2025,
-    priceUSD: 29400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/gla200-1.jpg"],
     specs: {
       engine: "1.3T Turbo",
@@ -4342,6 +4892,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 89,
   },
@@ -4352,7 +4903,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "GLA220",
     category: "SUV",
     year: 2025,
-    priceUSD: 31500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/gla220-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -4380,6 +4931,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 67,
   },
@@ -4390,7 +4942,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "GLB200",
     category: "SUV",
     year: 2025,
-    priceUSD: 36600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/glb200-1.jpg"],
     specs: {
       engine: "1.3T Turbo",
@@ -4418,6 +4970,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 78,
   },
@@ -4428,7 +4981,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "GLB220",
     category: "SUV",
     year: 2025,
-    priceUSD: 42120,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/glb220-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -4456,6 +5009,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -4466,7 +5020,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "GLC260L",
     category: "SUV",
     year: 2025,
-    priceUSD: 53460,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/glc260l-1.jpg"],
     specs: {
       engine: "2.0T Mild Hybrid",
@@ -4495,6 +5049,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -4505,7 +5060,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "GLC300L",
     category: "SUV",
     year: 2025,
-    priceUSD: 63500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/glc300l-1.jpg"],
     specs: {
       engine: "2.0T Mild Hybrid",
@@ -4535,6 +5090,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Ultimate Luxury SUV",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 67,
   },
@@ -4545,7 +5101,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQA260",
     category: "SUV",
     year: 2025,
-    priceUSD: 27050,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqa260-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -4575,6 +5131,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 56,
   },
@@ -4585,7 +5142,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQB260",
     category: "SUV",
     year: 2025,
-    priceUSD: 31900,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqb260-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -4615,6 +5172,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 45,
   },
@@ -4625,7 +5183,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQB300 4MATIC",
     category: "SUV",
     year: 2025,
-    priceUSD: 44600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqb300-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4655,6 +5213,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 34,
   },
@@ -4665,7 +5224,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQE500 4MATIC",
     category: "Sedan",
     year: 2025,
-    priceUSD: 47200,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqe500-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4695,6 +5254,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -4705,7 +5265,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQE500 4MATIC Luxury",
     category: "Sedan",
     year: 2025,
-    priceUSD: 50000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqe500-luxury-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4735,6 +5295,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -4745,7 +5306,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQE500 4MATIC Special",
     category: "Sedan",
     year: 2025,
-    priceUSD: 78000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqe500-special-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4776,6 +5337,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Exclusive Electric",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 12,
   },
@@ -4786,7 +5348,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQE SUV 500 4MATIC",
     category: "SUV",
     year: 2025,
-    priceUSD: 54000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqe-suv-500-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4816,6 +5378,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -4826,7 +5389,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQE SUV 500 4MATIC Luxury",
     category: "SUV",
     year: 2025,
-    priceUSD: 58300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqe-suv-500-luxury-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4856,6 +5419,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -4866,7 +5430,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQE SUV 500 4MATIC Special",
     category: "SUV",
     year: 2025,
-    priceUSD: 78600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqe-suv-500-special-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -4897,6 +5461,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "In Stock",
     tagline: "Exclusive Electric SUV",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 16,
   },
@@ -4907,7 +5472,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQS450+",
     category: "Sedan",
     year: 2023,
-    priceUSD: 75300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqs450-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -4937,6 +5502,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 89,
   },
@@ -4947,7 +5513,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQS450+ Luxury",
     category: "Sedan",
     year: 2023,
-    priceUSD: 94000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqs450-luxury-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -4978,6 +5544,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Ultimate Electric Luxury",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 45,
   },
@@ -4988,7 +5555,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQS450+ SUV",
     category: "SUV",
     year: 2023,
-    priceUSD: 80000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqs450-suv-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5018,6 +5585,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 67,
   },
@@ -5028,7 +5596,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "EQS450+ 4MATIC SUV",
     category: "SUV",
     year: 2023,
-    priceUSD: 80000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/mercedes-benz/eqs450-4matic-suv-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -5058,6 +5626,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 56,
   },
@@ -5069,7 +5638,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "iX1",
     category: "SUV",
     year: 2024,
-    priceUSD: 27000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/ix1-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5099,6 +5668,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 89,
   },
@@ -5109,7 +5679,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "iX3",
     category: "SUV",
     year: 2024,
-    priceUSD: 41600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/ix3-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5139,6 +5709,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 67,
   },
@@ -5149,7 +5720,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "iX3 Pioneer",
     category: "SUV",
     year: 2024,
-    priceUSD: 45600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/ix3-pioneer-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5179,6 +5750,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -5189,7 +5761,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i3",
     category: "Sedan",
     year: 2025,
-    priceUSD: 37000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i3-2025-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5219,6 +5791,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -5229,7 +5802,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i3 Night",
     category: "Sedan",
     year: 2025,
-    priceUSD: 36700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i3-night-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5259,6 +5832,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 34,
   },
@@ -5269,7 +5843,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i3 Night Sport",
     category: "Sedan",
     year: 2025,
-    priceUSD: 39900,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i3-night-sport-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5299,6 +5873,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 23,
   },
@@ -5309,7 +5884,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i4",
     category: "Sedan",
     year: 2025,
-    priceUSD: 47000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i4-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5339,6 +5914,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -5349,7 +5925,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i4 eDrive40",
     category: "Sedan",
     year: 2025,
-    priceUSD: 52000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i4-edrive40-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5379,6 +5955,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -5389,7 +5966,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i4 M60",
     category: "Sports",
     year: 2025,
-    priceUSD: 72000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i4-m60-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -5420,6 +5997,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "Pre-Order",
     tagline: "Ultimate Electric Performance",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 23,
   },
@@ -5430,7 +6008,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i5",
     category: "Sedan",
     year: 2025,
-    priceUSD: 48500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i5-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5460,6 +6038,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -5470,7 +6049,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i5 eDrive40",
     category: "Sedan",
     year: 2025,
-    priceUSD: 58800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i5-edrive40-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5500,6 +6079,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -5510,7 +6090,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i5 eDrive50",
     category: "Sedan",
     year: 2025,
-    priceUSD: 67700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i5-edrive50-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5541,6 +6121,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "In Stock",
     tagline: "Ultimate Electric Executive",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 23,
   },
@@ -5551,7 +6132,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "i5 Luxury",
     category: "Sedan",
     year: 2024,
-    priceUSD: 47500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/i5-luxury-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -5581,6 +6162,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -5591,7 +6173,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "X1 M35Li",
     category: "SUV",
     year: 2024,
-    priceUSD: 50960,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/x1-m35li-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -5620,6 +6202,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 34,
   },
@@ -5630,7 +6213,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "X3",
     category: "SUV",
     year: 2025,
-    priceUSD: 56000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/x3-2025-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -5659,6 +6242,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -5669,7 +6253,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "X3 Leading",
     category: "SUV",
     year: 2025,
-    priceUSD: 63700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/x3-leading-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -5698,6 +6282,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -5708,7 +6293,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "X5",
     category: "SUV",
     year: 2024,
-    priceUSD: 56200,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/bmw/x5-2024-1.jpg"],
     specs: {
       engine: "3.0T Turbo",
@@ -5737,6 +6322,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 78,
   },
@@ -5748,7 +6334,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "M8",
     category: "MPV",
     year: 2025,
-    priceUSD: 75000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/aito/m8-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -5779,6 +6365,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "New",
     tagline: "Tech Luxury MPV",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 45,
   },
@@ -5789,7 +6376,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "M8 5-Seater",
     category: "SUV",
     year: 2025,
-    priceUSD: 72000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/aito/m8-5seater-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -5819,6 +6406,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -5829,7 +6417,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "M5",
     category: "SUV",
     year: 2025,
-    priceUSD: 42000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/aito/m5-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Dual Motor",
@@ -5859,6 +6447,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -5870,7 +6459,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "A3",
     category: "Sedan",
     year: 2025,
-    priceUSD: 24200,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/audi/a3-1.jpg"],
     specs: {
       engine: "1.4T Turbo",
@@ -5898,6 +6487,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 89,
   },
@@ -5908,7 +6498,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "A4L",
     category: "Sedan",
     year: 2025,
-    priceUSD: 37300,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/audi/a4l-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -5936,6 +6526,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 67,
   },
@@ -5946,7 +6537,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "A6L",
     category: "Sedan",
     year: 2025,
-    priceUSD: 66700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/audi/a6l-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -5975,6 +6566,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 56,
   },
@@ -5985,7 +6577,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Q4 e-tron",
     category: "SUV",
     year: 2024,
-    priceUSD: 32600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/audi/q4-etron-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -6015,6 +6607,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 45,
   },
@@ -6025,7 +6618,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Q4 e-tron quattro",
     category: "SUV",
     year: 2024,
-    priceUSD: 37400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/audi/q4-etron-quattro-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6055,6 +6648,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 34,
   },
@@ -6065,7 +6659,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Q5L",
     category: "SUV",
     year: 2025,
-    priceUSD: 57990,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/audi/q5l-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -6094,6 +6688,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -6105,7 +6700,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Model 3",
     category: "Sedan",
     year: 2025,
-    priceUSD: 48000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/tesla/model3-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6135,6 +6730,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 456,
   },
@@ -6145,7 +6741,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Model Y",
     category: "SUV",
     year: 2025,
-    priceUSD: 52650,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/tesla/modely-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6175,6 +6771,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 389,
   },
@@ -6186,7 +6783,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "N7",
     category: "SUV",
     year: 2025,
-    priceUSD: 25180,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nissan/n7-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -6216,6 +6813,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 56,
   },
@@ -6226,7 +6824,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Teana",
     category: "Sedan",
     year: 2025,
-    priceUSD: 26800,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/nissan/teana-1.jpg"],
     specs: {
       engine: "2.0L Naturally Aspirated",
@@ -6254,6 +6852,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.3,
     reviewCount: 78,
   },
@@ -6265,7 +6864,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "XT5",
     category: "SUV",
     year: 2025,
-    priceUSD: 45000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/cadillac/xt5-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -6294,6 +6893,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 45,
   },
@@ -6305,7 +6905,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "YU7",
     category: "Sedan",
     year: 2025,
-    priceUSD: 42500,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xiaomi/yu7-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -6335,6 +6935,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "Pre-Order",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 23,
   },
@@ -6345,7 +6946,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "SU7",
     category: "Sedan",
     year: 2024,
-    priceUSD: 36000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xiaomi/su7-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -6375,6 +6976,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 89,
   },
@@ -6385,7 +6987,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "SU7 Ultra",
     category: "Sedan",
     year: 2025,
-    priceUSD: 89000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xiaomi/su7-ultra-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6416,6 +7018,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "In Stock",
     tagline: "Ultimate Electric Performance",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 34,
   },
@@ -6427,7 +7030,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "P5",
     category: "Sedan",
     year: 2024,
-    priceUSD: 26000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xpeng/p5-2024-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -6457,6 +7060,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 112,
   },
@@ -6467,7 +7071,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "Mona M03",
     category: "Sedan",
     year: 2025,
-    priceUSD: 23400,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xpeng/mona-m03-1.jpg"],
     specs: {
       engine: "Electric Motor",
@@ -6497,6 +7101,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.4,
     reviewCount: 45,
   },
@@ -6507,7 +7112,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "G9",
     category: "SUV",
     year: 2025,
-    priceUSD: 40000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xpeng/g9-2025-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6537,6 +7142,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 89,
   },
@@ -6547,7 +7153,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "G9 680Max",
     category: "SUV",
     year: 2025,
-    priceUSD: 45000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xpeng/g9-680max-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6577,6 +7183,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 67,
   },
@@ -6587,7 +7194,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "G7",
     category: "SUV",
     year: 2025,
-    priceUSD: 37000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xpeng/g7-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6617,6 +7224,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -6627,7 +7235,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "X9",
     category: "MPV",
     year: 2025,
-    priceUSD: 60000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/xpeng/x9-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6657,6 +7265,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -6668,7 +7277,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "06",
     category: "SUV",
     year: 2025,
-    priceUSD: 37000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/avatr/06-1.jpg"],
     specs: {
       engine: "1.5T Range Extender + Electric Motor",
@@ -6698,6 +7307,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "Pre-Order",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 23,
   },
@@ -6708,7 +7318,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "12",
     category: "Sedan",
     year: 2025,
-    priceUSD: 60000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/avatr/12-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6738,6 +7348,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
@@ -6748,7 +7359,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "12 Royal",
     category: "Sedan",
     year: 2025,
-    priceUSD: 70000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/avatr/12-royal-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -6779,6 +7390,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "In Stock",
     tagline: "Ultimate Electric Luxury",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 16,
   },
@@ -6790,7 +7402,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "900",
     category: "SUV",
     year: 2025,
-    priceUSD: 66600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/900-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -6819,6 +7431,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -6829,7 +7442,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "900 Ultra",
     category: "SUV",
     year: 2025,
-    priceUSD: 58000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/900-ultra-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -6858,6 +7471,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 34,
   },
@@ -6868,7 +7482,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "900 Halo",
     category: "SUV",
     year: 2025,
-    priceUSD: 48700,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/900-halo-1.jpg"],
     specs: {
       engine: "1.5T Turbo",
@@ -6897,6 +7511,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 56,
   },
@@ -6907,7 +7522,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "06",
     category: "SUV",
     year: 2025,
-    priceUSD: 21000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/06-1.jpg"],
     specs: {
       engine: "1.5T Turbo",
@@ -6935,6 +7550,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 89,
   },
@@ -6945,7 +7561,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "06 Halo",
     category: "SUV",
     year: 2025,
-    priceUSD: 21600,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/06-halo-1.jpg"],
     specs: {
       engine: "1.5T Turbo",
@@ -6973,6 +7589,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.5,
     reviewCount: 67,
   },
@@ -6983,7 +7600,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "09",
     category: "SUV",
     year: 2024,
-    priceUSD: 45000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/09-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -7012,6 +7629,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "New",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -7022,7 +7640,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "09 Sport",
     category: "SUV",
     year: 2024,
-    priceUSD: 44000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/lynk-co/09-sport-1.jpg"],
     specs: {
       engine: "2.0T Turbo",
@@ -7051,6 +7669,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -7062,7 +7681,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "MIX",
     category: "MPV",
     year: 2025,
-    priceUSD: 50000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/mix-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7092,6 +7711,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 45,
   },
@@ -7102,7 +7722,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "MIX 76kWh",
     category: "MPV",
     year: 2025,
-    priceUSD: 47000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/mix-76kwh-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7132,6 +7752,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.6,
     reviewCount: 34,
   },
@@ -7142,7 +7763,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "001",
     category: "Electric",
     year: 2025,
-    priceUSD: 55000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/001-2025-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7172,6 +7793,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 89,
   },
@@ -7182,7 +7804,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "001 ME",
     category: "Electric",
     year: 2025,
-    priceUSD: 50000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/001-me-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7212,6 +7834,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 67,
   },
@@ -7222,7 +7845,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "001 WE",
     category: "Electric",
     year: 2025,
-    priceUSD: 45000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/001-we-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7252,6 +7875,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.7,
     reviewCount: 56,
   },
@@ -7262,7 +7886,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "009",
     category: "MPV",
     year: 2024,
-    priceUSD: 85000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/009-2024-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7293,6 +7917,7 @@ export const vehicleModels: VehicleModel[] = [
     featured: true,
     status: "In Stock",
     tagline: "Ultimate Electric MPV",
+    promotion: "Contact for pricing",
     rating: 4.9,
     reviewCount: 45,
   },
@@ -7303,7 +7928,7 @@ export const vehicleModels: VehicleModel[] = [
     model: "009 Executive",
     category: "MPV",
     year: 2024,
-    priceUSD: 78000,
+    priceUSD: 0, // Negotiable price
     images: ["/images/models/zeekr/009-executive-1.jpg"],
     specs: {
       engine: "Dual Motor AWD",
@@ -7333,12 +7958,36 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "In Stock",
+    promotion: "Contact for pricing",
     rating: 4.8,
     reviewCount: 34,
   },
 ];
 
-// Helper function to get models with negotiable prices (priceUSD = 0)
+// ========== PRICE UTILITY FUNCTIONS ==========
+
+export const formatPrice = (priceUSD: number): string => {
+  if (priceUSD === 0) {
+    return "Negotiable";
+  }
+  return `$${priceUSD.toLocaleString()}`;
+};
+
+export const isNegotiablePrice = (priceUSD: number): boolean => {
+  return priceUSD === 0;
+};
+
+export const getModelsByPriceType = (
+  type: "fixed" | "negotiable",
+): VehicleModel[] => {
+  if (type === "negotiable") {
+    return vehicleModels.filter((model) => model.priceUSD === 0);
+  }
+  // Since all prices are now negotiable, return empty array for fixed prices
+  return [];
+};
+
+// Helper function to get models with negotiable prices (all models now)
 export const getNegotiableModels = (): VehicleModel[] => {
   return vehicleModels.filter((model) => model.priceUSD === 0);
 };
@@ -7351,7 +8000,7 @@ export const getFeaturedModels = (limit?: number): VehicleModel[] => {
 
 // Helper function to get models by status
 export const getModelsByStatus = (
-  status: VehicleModel["status"]
+  status: VehicleModel["status"],
 ): VehicleModel[] => {
   return vehicleModels.filter((model) => model.status === status);
 };
@@ -7359,7 +8008,7 @@ export const getModelsByStatus = (
 // Helper function to get models by brand
 export const getModelsByBrand = (brand: string): VehicleModel[] => {
   return vehicleModels.filter(
-    (model) => model.brand.toLowerCase() === brand.toLowerCase()
+    (model) => model.brand.toLowerCase() === brand.toLowerCase(),
   );
 };
 
@@ -7368,30 +8017,28 @@ export const getModelsByCategory = (category: string): VehicleModel[] => {
   if (category === "all") return vehicleModels;
   if (category === "commercial") {
     return vehicleModels.filter(
-      (model) => model.category === "Commercial" || model.category === "Pickup"
+      (model) => model.category === "Commercial" || model.category === "Pickup",
     );
   }
   return vehicleModels.filter(
-    (model) => model.category.toLowerCase() === category.toLowerCase()
+    (model) => model.category.toLowerCase() === category.toLowerCase(),
   );
 };
 
-// Helper function to get models by price range (excluding negotiable prices)
+// Updated helper function to get models by price range (all are negotiable now)
 export const getModelsByPriceRange = (
   min: number,
-  max: number
+  max: number,
 ): VehicleModel[] => {
-  return vehicleModels.filter(
-    (model) =>
-      model.priceUSD > 0 && model.priceUSD >= min && model.priceUSD <= max
-  );
+  // Since all prices are negotiable, return empty array for fixed price ranges
+  return [];
 };
 
 // Helper function to get models by fuel type
 export const getModelsByFuelType = (fuelType: string): VehicleModel[] => {
   if (fuelType === "all") return vehicleModels;
   return vehicleModels.filter(
-    (model) => model.specs.fuelType.toLowerCase() === fuelType.toLowerCase()
+    (model) => model.specs.fuelType.toLowerCase() === fuelType.toLowerCase(),
   );
 };
 
@@ -7400,25 +8047,24 @@ export const getNewestModels = (limit: number = 6): VehicleModel[] => {
   return [...vehicleModels].sort((a, b) => b.year - a.year).slice(0, limit);
 };
 
-// Helper function to get best value models (price/features ratio)
+// Updated helper function to get best value models (all are negotiable now)
 export const getBestValueModels = (limit: number = 4): VehicleModel[] => {
+  // Return featured models or highly rated models
   return vehicleModels
-    .filter(
-      (model) =>
-        model.priceUSD > 0 &&
-        model.priceUSD <= 30000 &&
-        model.rating &&
-        model.rating >= 4.0
-    )
+    .filter((model) => model.rating && model.rating >= 4.0)
     .sort((a, b) => (b.rating || 0) - (a.rating || 0))
     .slice(0, limit);
 };
 
-// Helper function to get premium models
+// Updated helper function to get premium models (all are negotiable now)
 export const getPremiumModels = (limit: number = 4): VehicleModel[] => {
+  // Return models with luxury status or high ratings
   return vehicleModels
-    .filter((model) => model.priceUSD >= 50000)
-    .sort((a, b) => b.priceUSD - a.priceUSD)
+    .filter(
+      (model) =>
+        model.status === "Limited Edition" ||
+        (model.rating && model.rating >= 4.7),
+    )
     .slice(0, limit);
 };
 
@@ -7436,7 +8082,7 @@ export const searchModels = (query: string): VehicleModel[] => {
       model.model.toLowerCase().includes(searchTerm) ||
       model.description.toLowerCase().includes(searchTerm) ||
       model.category.toLowerCase().includes(searchTerm) ||
-      model.tagline?.toLowerCase().includes(searchTerm)
+      model.tagline?.toLowerCase().includes(searchTerm),
   );
 };
 
@@ -7463,27 +8109,24 @@ export const getModelById = (id: string): VehicleModel | undefined => {
 // Helper function to get similar models (by category or brand)
 export const getSimilarModels = (
   currentModel: VehicleModel,
-  limit: number = 4
+  limit: number = 4,
 ): VehicleModel[] => {
   return vehicleModels
     .filter(
       (model) =>
         model.id !== currentModel.id &&
         (model.category === currentModel.category ||
-          model.brand === currentModel.brand)
+          model.brand === currentModel.brand),
     )
     .slice(0, limit);
 };
 
-// Helper function to get models sorted by price (asc/desc) - excludes negotiable
+// Updated helper function to get models sorted by price (all are negotiable now)
 export const getModelsSortedByPrice = (
-  order: "asc" | "desc" = "asc"
+  order: "asc" | "desc" = "asc",
 ): VehicleModel[] => {
-  return [...vehicleModels]
-    .filter((model) => model.priceUSD > 0)
-    .sort((a, b) =>
-      order === "asc" ? a.priceUSD - b.priceUSD : b.priceUSD - a.priceUSD
-    );
+  // Since all prices are 0, return sorted by another criteria like year or rating
+  return [...vehicleModels].sort((a, b) => b.year - a.year);
 };
 
 // Helper function to get models sorted by rating
@@ -7497,7 +8140,7 @@ export const getLongRangeEVs = (): VehicleModel[] => {
     (model) =>
       model.specs.fuelType === "Electric" &&
       model.specs.range &&
-      parseInt(model.specs.range.split(" ")[0]) > 500
+      parseInt(model.specs.range.split(" ")[0]) > 500,
   );
 };
 
@@ -7511,7 +8154,7 @@ export const getSportModels = (): VehicleModel[] => {
   return vehicleModels.filter(
     (model) =>
       model.specs.acceleration &&
-      parseFloat(model.specs.acceleration.split("s")[0]) < 6
+      parseFloat(model.specs.acceleration.split("s")[0]) < 6,
   );
 };
 
@@ -7534,10 +8177,8 @@ export const getLimitedEditionModels = (): VehicleModel[] => {
 export const getTotalModelsCount = (): number => vehicleModels.length;
 
 export const getAveragePrice = (): number => {
-  const pricedModels = vehicleModels.filter((model) => model.priceUSD > 0);
-  if (pricedModels.length === 0) return 0;
-  const total = pricedModels.reduce((sum, model) => sum + model.priceUSD, 0);
-  return Math.round(total / pricedModels.length);
+  // Since all prices are negotiable, return 0
+  return 0;
 };
 
 export const getAvailableModelsCount = (): number => {
@@ -7552,7 +8193,7 @@ export const getEVCount = (): number => {
 export const getHybridCount = (): number => {
   return vehicleModels.filter(
     (model) =>
-      model.specs.fuelType === "Hybrid" || model.specs.fuelType === "PHEV"
+      model.specs.fuelType === "Hybrid" || model.specs.fuelType === "PHEV",
   ).length;
 };
 
@@ -7645,55 +8286,14 @@ export const brandsList = [
   "Foton",
 ];
 
+// Updated price ranges to reflect all prices are negotiable
 export const priceRanges = [
-  {
-    id: "budget",
-    name: "Under $20,000",
-    min: 0,
-    max: 20000,
-    count: vehicleModels.filter((m) => m.priceUSD > 0 && m.priceUSD <= 20000)
-      .length,
-  },
-  {
-    id: "economy",
-    name: "$20,000 - $30,000",
-    min: 20000,
-    max: 30000,
-    count: vehicleModels.filter(
-      (m) => m.priceUSD > 20000 && m.priceUSD <= 30000
-    ).length,
-  },
-  {
-    id: "mid",
-    name: "$30,000 - $50,000",
-    min: 30000,
-    max: 50000,
-    count: vehicleModels.filter(
-      (m) => m.priceUSD > 30000 && m.priceUSD <= 50000
-    ).length,
-  },
-  {
-    id: "premium",
-    name: "$50,000 - $80,000",
-    min: 50000,
-    max: 80000,
-    count: vehicleModels.filter(
-      (m) => m.priceUSD > 50000 && m.priceUSD <= 80000
-    ).length,
-  },
-  {
-    id: "luxury",
-    name: "Over $80,000",
-    min: 80000,
-    max: 1000000,
-    count: vehicleModels.filter((m) => m.priceUSD > 80000).length,
-  },
   {
     id: "negotiable",
     name: "Price Negotiable",
     min: 0,
     max: 0,
-    count: vehicleModels.filter((m) => m.priceUSD === 0).length,
+    count: vehicleModels.length, // All models are negotiable
   },
 ];
 
@@ -7725,26 +8325,3 @@ export const fuelTypes = [
     count: vehicleModels.filter((m) => m.specs.fuelType === "Diesel").length,
   },
 ];
-// Add at the end of your existing vehicleModels.ts file
-
-// ========== PRICE UTILITY FUNCTIONS ==========
-
-export const formatPrice = (priceUSD: number): string => {
-  if (priceUSD === 0) {
-    return "Negotiable";
-  }
-  return `$${priceUSD.toLocaleString()}`;
-};
-
-export const isNegotiablePrice = (priceUSD: number): boolean => {
-  return priceUSD === 0;
-};
-
-export const getModelsByPriceType = (
-  type: "fixed" | "negotiable"
-): VehicleModel[] => {
-  if (type === "negotiable") {
-    return vehicleModels.filter((model) => model.priceUSD === 0);
-  }
-  return vehicleModels.filter((model) => model.priceUSD > 0);
-};

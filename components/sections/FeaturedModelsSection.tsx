@@ -90,7 +90,7 @@ export default function FeaturedModelsSection() {
     });
 
     if (activeFilter === "all") {
-      return filtered.slice(0, 6);
+      return filtered.slice(0, 9);
     }
 
     return filtered;
