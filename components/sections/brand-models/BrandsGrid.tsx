@@ -11,6 +11,10 @@ export default function BrandsGrid() {
     "BYD",
     "Xpeng",
     "ZEEKR",
+    "Avatr",
+    "AITO",
+    "Li Auto",
+    "Lynk & Co",
     "BMW",
     "Mercedes-Benz",
     "Nissan",
@@ -19,12 +23,9 @@ export default function BrandsGrid() {
     "Toyota",
     "Foton",
     "MG",
-    "Lynk & Co",
+
     "Tesla",
     "Honda",
-    "Avatr",
-    "AITO",
-    "Li Auto",
   ];
   const allBrands = [...brands];
 
