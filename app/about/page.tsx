@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-
 import Breadcrumb from "@/components/Breadcrumb";
 import { Award, Globe, Users, Shield, Target, Heart } from "lucide-react";
 
@@ -38,7 +37,7 @@ export default function AboutPage() {
       {/* Company Overview */}
       <section className="py-16 md:py-24 relative overflow-hidden">
         {/* Background Image with Subtle Blur */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
           style={{
             backgroundImage: 'url("/images/about.png")', // Change this to your image path
@@ -46,7 +45,7 @@ export default function AboutPage() {
         >
           {/* Light overlay for better text contrast */}
           <div className="absolute inset-0 bg-black/20"></div>
-          
+
           {/* Very subtle blur to soften the image */}
           <div className="absolute inset-0 backdrop-blur-[1px]"></div>
         </div>

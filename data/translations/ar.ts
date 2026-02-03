@@ -33,7 +33,31 @@ const arTranslations = {
       quality: "ضمان الجودة",
       shipping: "شحن عالمي",
       support: "دعم متخصص"
-    }
+    },
+    // NEW: Additional translations for the component
+    statsTitles: {
+      quality: "جودة",
+      supply: "توريد",
+      team: "فريق",
+      logistics: "لوجستيات",
+      support24: "دعم"
+    },
+    statsDescriptions: {
+      quality: "فحوصات صارمة: 100% قبل الشحن",
+      supply: "إمداد مستقر: مرحب بالطلبات الكبيرة",
+      team: "فريق خبير: خبرة تصدير موثوقة",
+      logistics: "لوجستيات عالمية: من الباب إلى الباب",
+      support24: "دعم عالمي: مساعدة مخصصة على مدار الساعة"
+    },
+    statsNumbers: {
+      quality: "100%",
+      supply: "10,000+",
+      team: "50,000+",
+      logistics: "20+",
+      support24: "24/7"
+    },
+    premiumExport: "تصدير سيارات فاخرة",
+    years: "سنوات"
   },
   
   // About
@@ -63,5 +87,4 @@ const arTranslations = {
     learnMore: "المزيد →"
   }
 };
-
 export { arTranslations };
