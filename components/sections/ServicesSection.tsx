@@ -57,17 +57,15 @@ export default function ServicesSection() {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block px-3 py-1 text-sm font-semibold text-gold-primary bg-gold-primary/10 rounded-full mb-4">
-            {t.common?.services || "Our Services"}
+            {t.common.services}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            {t.services?.title || "Comprehensive Export Solutions"}
+            {t.services.title}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-            {t.services?.subtitle ||
-              "Streamlined vehicle export process from sourcing to delivery"}
+            {t.services.subtitle}
           </p>
         </div>
-
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredServices.map((service, index) => (
@@ -93,12 +91,11 @@ export default function ServicesSection() {
 
               {/* Content */}
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 group-hover:text-gold-primary transition-colors duration-300">
-                {(t.services?.items?.[index]?.title as string) || service.title}
+                {t.services.items[index].title}
               </h3>
 
               <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
-                {(t.services?.items?.[index]?.description as string) ||
-                  service.description}
+                {t.services.items[index].description}
               </p>
 
               {/* CTA */}
@@ -111,7 +108,7 @@ export default function ServicesSection() {
                     console.log(`Learn more about ${service.title}`);
                   }}
                 >
-                  <span>{t.common?.learnMore || "Learn more"}</span>
+                  <span>{t.common.learnMore}</span>
                   <svg
                     className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"

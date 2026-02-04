@@ -15,88 +15,45 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Vehicle types data
-const vehicleTypes = [
+// Vehicle types data - now using translations
+const getVehicleTypes = (t: any) => [
   {
     id: "ev",
-    name: "EV",
-    fullName: "Electric Vehicle",
-    description:
-      "Fully electric vehicles with zero emissions and advanced technology",
-    features: [
-      "Zero tailpipe emissions",
-      "Instant torque delivery",
-      "Low operating costs",
-      "Advanced connectivity",
-      "Fast charging capability",
-    ],
-    specifications: [
-      { label: "Range", value: "300-500 km" },
-      { label: "Charge Time", value: "30-45 min (DC)" },
-      { label: "Battery Life", value: "8-10 years" },
-    ],
+    name: t.vehicles.ev.name,
+    fullName: t.vehicles.ev.fullName,
+    description: t.vehicles.ev.description,
+    features: t.vehicles.ev.features,
+    specifications: t.vehicles.ev.specifications,
     icon: Zap,
     color: "emerald",
   },
   {
     id: "phev",
-    name: "PHEV",
-    fullName: "Plug-in Hybrid",
-    description:
-      "Combines electric motor with petrol engine for maximum flexibility",
-    features: [
-      "Electric-only city driving",
-      "Extended total range",
-      "Flexible charging options",
-      "Government incentives",
-      "Reduced fuel consumption",
-    ],
-    specifications: [
-      { label: "Electric Range", value: "50-80 km" },
-      { label: "Total Range", value: "600-800 km" },
-      { label: "Fuel Economy", value: "1.5-2.0L/100km" },
-    ],
+    name: t.vehicles.phev.name,
+    fullName: t.vehicles.phev.fullName,
+    description: t.vehicles.phev.description,
+    features: t.vehicles.phev.features,
+    specifications: t.vehicles.phev.specifications,
     icon: Battery,
     color: "blue",
   },
   {
     id: "reev",
-    name: "REEV",
-    fullName: "Range Extended EV",
-    description:
-      "Electric drive with onboard generator for extended range capabilities",
-    features: [
-      "Pure electric driving experience",
-      "No range anxiety",
-      "Lower battery cost",
-      "Flexible power sources",
-      "Smooth operation",
-    ],
-    specifications: [
-      { label: "Battery Range", value: "150-200 km" },
-      { label: "Extended Range", value: "500-700 km" },
-      { label: "Generator Type", value: "Petrol/CNG" },
-    ],
+    name: t.vehicles.reev.name,
+    fullName: t.vehicles.reev.fullName,
+    description: t.vehicles.reev.description,
+    features: t.vehicles.reev.features,
+    specifications: t.vehicles.reev.specifications,
     icon: Fuel,
     color: "amber",
   },
   {
     id: "petrol",
-    name: "ICE",
-    fullName: "Internal Combustion",
-    description: "Traditional petrol/diesel vehicles with proven reliability",
-    features: [
-      "Proven reliability",
-      "Widespread service network",
-      "Quick refueling",
-      "Lower initial cost",
-      "Global infrastructure",
-    ],
-    specifications: [
-      { label: "Fuel Types", value: "Petrol/Diesel/CNG" },
-      { label: "Efficiency", value: "15-25 km/L" },
-      { label: "Power Output", value: "100-300 HP" },
-    ],
+    name: t.vehicles.petrol.name,
+    fullName: t.vehicles.petrol.fullName,
+    description: t.vehicles.petrol.description,
+    features: t.vehicles.petrol.features,
+    specifications: t.vehicles.petrol.specifications,
     icon: Settings,
     color: "gray",
   },
@@ -138,6 +95,8 @@ export default function VehiclesSection() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [showMobileDetails, setShowMobileDetails] = useState(false);
   const detailsPanelRef = useRef<HTMLDivElement>(null);
+
+  const vehicleTypes = getVehicleTypes(t);
 
   // Handle mobile details panel
   useEffect(() => {
@@ -183,18 +142,17 @@ export default function VehiclesSection() {
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-6 bg-gradient-to-r from-transparent to-gold-primary"></div>
             <span className="text-sm font-medium text-gold-primary uppercase tracking-wider">
-              Portfolio
+              {t.vehicles.portfolio}
             </span>
             <div className="h-px w-6 bg-gradient-to-l from-transparent to-gold-primary"></div>
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            {t.vehicles?.title || "Vehicle Types"}
+            {t.vehicles.title}
           </h1>
 
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            {t.vehicles?.subtitle ||
-              "Comprehensive range of vehicle technologies for diverse market needs"}
+            {t.vehicles.subtitle}
           </p>
         </div>
 
@@ -267,43 +225,47 @@ export default function VehiclesSection() {
                   {/* Specifications */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      Key Specifications
+                      {t.vehicles.keySpecifications}
                     </h3>
                     <div className="grid grid-cols-2 gap-3">
-                      {selectedVehicle.specifications.map((spec, index) => (
-                        <div
-                          key={index}
-                          className="bg-gray-50 rounded-lg p-3 text-center"
-                        >
-                          <div className="text-xs font-medium text-gray-500 mb-1">
-                            {spec.label}
+                      {selectedVehicle.specifications.map(
+                        (spec: any, index: number) => (
+                          <div
+                            key={index}
+                            className="bg-gray-50 rounded-lg p-3 text-center"
+                          >
+                            <div className="text-xs font-medium text-gray-500 mb-1">
+                              {spec.label}
+                            </div>
+                            <div className="text-sm font-bold text-gray-900">
+                              {spec.value}
+                            </div>
                           </div>
-                          <div className="text-sm font-bold text-gray-900">
-                            {spec.value}
-                          </div>
-                        </div>
-                      ))}
+                        ),
+                      )}
                     </div>
                   </div>
 
                   {/* Features */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      Main Features
+                      {t.vehicles.mainFeatures}
                     </h3>
                     <ul className="space-y-2.5">
-                      {selectedVehicle.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <div
-                            className={`flex-shrink-0 w-6 h-6 rounded-full ${colors?.light} flex items-center justify-center mt-0.5`}
-                          >
-                            <Check className={`w-3 h-3 ${colors?.text}`} />
-                          </div>
-                          <span className="text-gray-700 text-sm leading-relaxed">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
+                      {selectedVehicle.features.map(
+                        (feature: string, index: number) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <div
+                              className={`flex-shrink-0 w-6 h-6 rounded-full ${colors?.light} flex items-center justify-center mt-0.5`}
+                            >
+                              <Check className={`w-3 h-3 ${colors?.text}`} />
+                            </div>
+                            <span className="text-gray-700 text-sm leading-relaxed">
+                              {feature}
+                            </span>
+                          </li>
+                        ),
+                      )}
                     </ul>
                   </div>
 
@@ -317,7 +279,10 @@ export default function VehiclesSection() {
                       }}
                       aria-label={`Inquire about ${selectedVehicle.fullName}`}
                     >
-                      Request {selectedVehicle.name} Details
+                      {t.vehicles.requestDetails.replace(
+                        "{name}",
+                        selectedVehicle.name,
+                      )}
                     </button>
 
                     <button
@@ -327,7 +292,7 @@ export default function VehiclesSection() {
                         setActiveId(null);
                       }}
                     >
-                      View All Vehicles
+                      {t.vehicles.viewAllVehicles}
                     </button>
                   </div>
                 </div>
@@ -410,17 +375,19 @@ export default function VehiclesSection() {
 
                       {/* Quick Specs (Mobile) */}
                       <div className="mt-3 flex flex-wrap gap-2 sm:hidden">
-                        {vehicle.specifications.slice(0, 2).map((spec, idx) => (
-                          <div
-                            key={idx}
-                            className="px-2 py-1 bg-gray-100 rounded-md"
-                          >
-                            <span className="text-xs font-medium text-gray-600">
-                              {spec.label}:{" "}
-                              <span className="font-bold">{spec.value}</span>
-                            </span>
-                          </div>
-                        ))}
+                        {vehicle.specifications
+                          .slice(0, 2)
+                          .map((spec: any, idx: number) => (
+                            <div
+                              key={idx}
+                              className="px-2 py-1 bg-gray-100 rounded-md"
+                            >
+                              <span className="text-xs font-medium text-gray-600">
+                                {spec.label}:{" "}
+                                <span className="font-bold">{spec.value}</span>
+                              </span>
+                            </div>
+                          ))}
                       </div>
 
                       {/* Desktop Quick View */}
@@ -482,7 +449,7 @@ export default function VehiclesSection() {
                       }
                       aria-label={`Inquire about ${selectedVehicle.fullName}`}
                     >
-                      Request Quote
+                      {t.vehicles.requestQuote}
                     </button>
                   </div>
 
@@ -493,22 +460,24 @@ export default function VehiclesSection() {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                           <Sparkles className="w-5 h-5 text-gold-primary" />
-                          Key Specifications
+                          {t.vehicles.keySpecifications}
                         </h3>
                         <div className="space-y-4">
-                          {selectedVehicle.specifications.map((spec, index) => (
-                            <div
-                              key={index}
-                              className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
-                            >
-                              <span className="text-gray-600">
-                                {spec.label}
-                              </span>
-                              <span className="font-semibold text-gray-900">
-                                {spec.value}
-                              </span>
-                            </div>
-                          ))}
+                          {selectedVehicle.specifications.map(
+                            (spec: any, index: number) => (
+                              <div
+                                key={index}
+                                className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                              >
+                                <span className="text-gray-600">
+                                  {spec.label}
+                                </span>
+                                <span className="font-semibold text-gray-900">
+                                  {spec.value}
+                                </span>
+                              </div>
+                            ),
+                          )}
                         </div>
                       </div>
 
@@ -516,19 +485,26 @@ export default function VehiclesSection() {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                           <Check className="w-5 h-5 text-gold-primary" />
-                          Main Features
+                          {t.vehicles.mainFeatures}
                         </h3>
                         <ul className="space-y-3">
-                          {selectedVehicle.features.map((feature, index) => (
-                            <li key={index} className="flex items-start gap-3">
-                              <div
-                                className={`flex-shrink-0 w-6 h-6 rounded-full ${colors?.light} flex items-center justify-center mt-0.5`}
+                          {selectedVehicle.features.map(
+                            (feature: string, index: number) => (
+                              <li
+                                key={index}
+                                className="flex items-start gap-3"
                               >
-                                <Check className={`w-3 h-3 ${colors?.text}`} />
-                              </div>
-                              <span className="text-gray-700">{feature}</span>
-                            </li>
-                          ))}
+                                <div
+                                  className={`flex-shrink-0 w-6 h-6 rounded-full ${colors?.light} flex items-center justify-center mt-0.5`}
+                                >
+                                  <Check
+                                    className={`w-3 h-3 ${colors?.text}`}
+                                  />
+                                </div>
+                                <span className="text-gray-700">{feature}</span>
+                              </li>
+                            ),
+                          )}
                         </ul>
                       </div>
                     </div>
@@ -543,8 +519,7 @@ export default function VehiclesSection() {
         {!showMobileDetails && (
           <div className="mt-6 text-center lg:hidden">
             <p className="text-sm text-gray-500 px-4">
-              Tap on any vehicle card to view detailed specifications and
-              features
+              {t.vehicles.mobileInstructions}
             </p>
           </div>
         )}

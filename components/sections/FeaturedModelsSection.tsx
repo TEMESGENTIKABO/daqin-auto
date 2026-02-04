@@ -10,7 +10,7 @@ import VehicleDetailModal from "./brand-models/VehicleDetailModal";
 import { VehicleModel as VehicleModelType } from "@/data/models";
 
 // Price formatting helper function
-const formatPrice = (priceUSD: number): string => {
+const formatPrice = (priceUSD: number, t: any): string => {
   if (priceUSD === 0) {
     return "Negotiable";
   }
@@ -39,43 +39,43 @@ export default function FeaturedModelsSection() {
       bgColor: "bg-green-100",
       textColor: "text-green-800",
       icon: <Zap className="w-2.5 h-2.5" />,
-      label: "New",
+      label: t.featuredModels.statusNew,
     },
     "In Stock": {
       bgColor: "bg-blue-100",
       textColor: "text-blue-800",
       icon: <CheckCircle className="w-2.5 h-2.5" />,
-      label: "In Stock",
+      label: t.featuredModels.statusInStock,
     },
     "Coming Soon": {
       bgColor: "bg-purple-100",
       textColor: "text-purple-800",
       icon: <Clock className="w-2.5 h-2.5" />,
-      label: "Soon",
+      label: t.featuredModels.statusSoon,
     },
     "Limited Edition": {
       bgColor: "bg-red-100",
       textColor: "text-red-800",
       icon: <Zap className="w-2.5 h-2.5" />,
-      label: "Limited",
+      label: t.featuredModels.statusLimited,
     },
     "Best Seller": {
       bgColor: "bg-orange-100",
       textColor: "text-orange-800",
       icon: <Star className="w-2.5 h-2.5" />,
-      label: "Best",
+      label: t.featuredModels.statusBest,
     },
     "Pre-Order": {
       bgColor: "bg-indigo-100",
       textColor: "text-indigo-800",
       icon: <Clock className="w-2.5 h-2.5" />,
-      label: "Pre-Order",
+      label: t.featuredModels.statusPreOrder,
     },
     "Special Edition": {
       bgColor: "bg-pink-100",
       textColor: "text-pink-800",
       icon: <Star className="w-2.5 h-2.5" />,
-      label: "Special",
+      label: t.featuredModels.statusSpecial,
     },
   };
 
@@ -119,11 +119,11 @@ export default function FeaturedModelsSection() {
                 {/* Title and Subtitle */}
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-gold-primary">
-                    Featured Models
+                    {t.featuredModels.title}
                   </h2>
                   <p className="text-xs text-gray-600 mt-0.5 flex items-center gap-1">
                     <span className="w-2 h-2 bg-gold-primary rounded-full"></span>
-                    Premium selection from inventory
+                    {t.featuredModels.subtitle}
                   </p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function FeaturedModelsSection() {
               href="/models"
               className="hidden md:flex items-center gap-1 px-3 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors text-xs font-medium"
             >
-              All Models
+              {t.featuredModels.viewAllModels}
             </a>
           </div>
 
@@ -152,7 +152,7 @@ export default function FeaturedModelsSection() {
                     : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
                 }`}
               >
-                All
+                {t.featuredModels.filterAll}
               </button>
               <button
                 onClick={() => setActiveFilter("new")}
@@ -163,7 +163,7 @@ export default function FeaturedModelsSection() {
                 }`}
               >
                 <Zap className="w-3 h-3" />
-                <span>New</span>
+                <span>{t.featuredModels.filterNew}</span>
               </button>
               <button
                 onClick={() => setActiveFilter("stock")}
@@ -174,7 +174,7 @@ export default function FeaturedModelsSection() {
                 }`}
               >
                 <CheckCircle className="w-3 h-3" />
-                <span>In Stock</span>
+                <span>{t.featuredModels.filterInStock}</span>
               </button>
               <button
                 onClick={() => setActiveFilter("coming")}
@@ -185,7 +185,7 @@ export default function FeaturedModelsSection() {
                 }`}
               >
                 <Clock className="w-3 h-3" />
-                <span>Soon</span>
+                <span>{t.featuredModels.filterSoon}</span>
               </button>
             </div>
           </div>
@@ -232,10 +232,10 @@ export default function FeaturedModelsSection() {
                         : "bg-black/90 text-white border-transparent"
                     }`}>
                       <div className={`text-sm font-bold ${isNegotiable ? "text-gray-900" : ""}`}>
-                        {formatPrice(model.priceUSD)}
+                        {formatPrice(model.priceUSD, t)}
                       </div>
                       <div className={`text-[10px] ${isNegotiable ? "text-gray-600" : "opacity-90"}`}>
-                        {isNegotiable ? "Contact for quote" : "FOB China"}
+                        {isNegotiable ? t.featuredModels.contactForQuote : t.featuredModels.fobChina}
                       </div>
                     </div>
 
@@ -249,7 +249,7 @@ export default function FeaturedModelsSection() {
                     {/* Featured Badge */}
                     {model.featured && (
                       <div className="absolute top-2 right-2 bg-gold-primary text-white px-2 py-0.5 rounded-md text-[10px] font-bold">
-                        Featured
+                        {t.featuredModels.featured}
                       </div>
                     )}
                   </div>
@@ -317,7 +317,7 @@ export default function FeaturedModelsSection() {
                         }}
                         className="flex-1 px-2 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors flex items-center justify-center gap-1 text-xs font-medium"
                       >
-                        Details
+                        {t.featuredModels.details}
                       </button>
                       <a
                         href={`https://wa.me/+8615594634955?text=Hi, I'm interested in the ${model.brand} ${model.model} (${model.year}). ${isNegotiable ? 'Please provide pricing details.' : 'Can you tell me more about this model?'}`}
@@ -331,7 +331,7 @@ export default function FeaturedModelsSection() {
                         }`}
                       >
                         <FaWhatsapp className="w-3 h-3" />
-                        <span>{isNegotiable ? "Get Quote" : "Inquire"}</span>
+                        <span>{isNegotiable ? t.featuredModels.getQuote : t.featuredModels.inquire}</span>
                       </a>
                     </div>
                   </div>
@@ -347,16 +347,16 @@ export default function FeaturedModelsSection() {
                 <Zap className="w-8 h-8 mx-auto" />
               </div>
               <h3 className="text-base font-semibold text-gray-700 mb-1">
-                No Models Found
+                {t.featuredModels.noModelsFound}
               </h3>
               <p className="text-gray-600 text-sm mb-3">
-                No models match current filter.
+                {t.featuredModels.noModelsMatch}
               </p>
               <button
                 onClick={() => setActiveFilter("all")}
                 className="px-3 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors text-xs font-medium"
               >
-                Show All Models
+                {t.featuredModels.showAllModels}
               </button>
             </div>
           )}
@@ -367,7 +367,7 @@ export default function FeaturedModelsSection() {
               href="/models"
               className="inline-flex items-center gap-1 px-3 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors text-xs font-medium"
             >
-              View All Models
+              {t.featuredModels.viewAllModels}
             </a>
           </div>
         </div>

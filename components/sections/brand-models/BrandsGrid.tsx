@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { brands } from "@/data/brands";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BrandsGrid() {
-  // Define priority order - Chinese brands first, then famous international brands
+  const { language } = useLanguage();
+
+  // Define priority order using English names for sorting
   const priorityOrder = [
     "Xiaomi",
     "BYD",
@@ -18,20 +21,19 @@ export default function BrandsGrid() {
     "BMW",
     "Mercedes-Benz",
     "Nissan",
-    "NIO",
     "Volkswagen",
     "Toyota",
     "Foton",
     "MG",
 
-    "Tesla",
     "Honda",
   ];
+
   const allBrands = [...brands];
 
   const sortedBrands = allBrands.sort((a, b) => {
-    const aPriorityIndex = priorityOrder.indexOf(a.name);
-    const bPriorityIndex = priorityOrder.indexOf(b.name);
+    const aPriorityIndex = priorityOrder.indexOf(a.name.en);
+    const bPriorityIndex = priorityOrder.indexOf(b.name.en);
 
     // If both are in priority order, sort by that order
     if (aPriorityIndex !== -1 && bPriorityIndex !== -1) {
@@ -48,48 +50,57 @@ export default function BrandsGrid() {
       return 1;
     }
 
-    // If neither is in priority order, sort alphabetically
-    return a.name.localeCompare(b.name);
+    // If neither is in priority order, sort alphabetically by current language
+    const aName = a.name[language] || a.name.en;
+    const bName = b.name[language] || b.name.en;
+    return aName.localeCompare(bName);
   });
 
   return (
     <>
       {/* Brands Grid - 8 columns on large screens with larger items */}
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-        {sortedBrands.map((brand) => (
-          <Link
-            key={brand.name}
-            href={`/models?brand=${encodeURIComponent(brand.name)}`}
-            className="group relative bg-white p-4 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-40"
-            aria-label={`View ${brand.name} models`}
-          >
-            {/* Logo Container - MUCH LARGER */}
-            <div className="h-20 w-20 mb-3 flex items-center justify-center">
-              <div className="relative w-full h-full">
-                <Image
-                  src={brand.logo}
-                  alt={brand.name}
-                  fill
-                  className="object-contain group-hover:scale-110 transition-transform duration-200"
-                  sizes="(max-width: 640px) 80px, 80px"
-                  priority={sortedBrands.indexOf(brand) < 16}
-                />
-              </div>
-            </div>
+        {sortedBrands.map((brand) => {
+          const brandName = brand.name[language] || brand.name.en;
+          const brandDescription =
+            brand.description[language] || brand.description.en;
 
-            {/* Brand Name - Larger */}
-            <h4 className="text-sm font-medium text-black text-center line-clamp-2 px-1">
-              {brand.name}
-            </h4>
-
-            {/* Year Established */}
-            {(brand as any).yearEstablished && (
-              <div className="text-xs text-gray-500 mt-1">
-                Est. {(brand as any).yearEstablished}
+          return (
+            <Link
+              key={brand.name.en}
+              href={`/models?brand=${encodeURIComponent(brandName)}`}
+              className="group relative bg-white p-4 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-40"
+              aria-label={`View ${brandName} models`}
+              title={brandDescription}
+            >
+              {/* Logo Container - MUCH LARGER */}
+              <div className="h-20 w-20 mb-3 flex items-center justify-center">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={brand.logo}
+                    alt={brandName}
+                    fill
+                    className="object-contain group-hover:scale-110 transition-transform duration-200"
+                    sizes="(max-width: 640px) 80px, 80px"
+                    priority={sortedBrands.indexOf(brand) < 16}
+                  />
+                </div>
               </div>
-            )}
-          </Link>
-        ))}
+
+              {/* Brand Name - Larger */}
+              <h4 className="text-sm font-medium text-black text-center line-clamp-2 px-1">
+                {brandName}
+              </h4>
+
+              {/* Year Established */}
+              {(brand as any).yearEstablished && (
+                <div className="text-xs text-gray-500 mt-1">
+                  Est. {(brand as any).yearEstablished}
+                </div>
+              )}
+            </Link>
+          );
+        })}
       </div>
 
       {/* Empty State */}

@@ -69,12 +69,12 @@ export default function Footer() {
 
   // Quick Links - Two columns (2x3)
   const quickLinks = [
-    { label: "Home", href: "/", icon: Home },
-    { label: "About Us", href: "/about", icon: Users },
-    { label: "Brands", href: "/brands", icon: Building },
-    { label: "Vehicles", href: "/models", icon: Car },
-    { label: "Services", href: "/services", icon: Server },
-    { label: "Contact", href: "/contact", icon: Phone },
+    { label: t.header.nav.home, href: "/", icon: Home },
+    { label: t.header.nav.about, href: "/about", icon: Users },
+    { label: t.header.nav.brands, href: "/brands", icon: Building },
+    { label: t.header.nav.vehicles, href: "/models", icon: Car },
+    { label: t.header.nav.services, href: "/services", icon: Server },
+    { label: t.header.nav.contact, href: "/contact", icon: Phone },
   ];
 
   // Why Choose Us features
@@ -82,22 +82,22 @@ export default function Footer() {
     {
       id: "quality",
       icon: Shield,
-      title: "Quality Assurance",
+      title: t.footer.qualityAssurance,
     },
     {
       id: "shipping",
       icon: Truck,
-      title: "Global Shipping",
+      title: t.footer.globalShipping,
     },
     {
       id: "support",
       icon: Clock,
-      title: "24/7 Support",
+      title: t.footer.support24_7,
     },
     {
       id: "experience",
       icon: Globe,
-      title: "10+ Years",
+      title: t.footer.yearsExperience,
     },
   ];
 
@@ -129,16 +129,16 @@ export default function Footer() {
               </div>
 
               <p className="text-xs text-gray-300 leading-relaxed mb-2">
-                Your trusted partner for Chinese automotive exports.
+                {t.footer.companyTagline}
               </p>
 
               <div className="flex items-start space-x-1">
                 <MapPin className="w-3 h-3 text-gold-primary mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-[10px] text-gray-400">
-                    Xi'an, Shaanxi Province, China
+                    {t.common.address}
                   </p>
-                  <p className="text-[9px] text-gray-500">Headquarters</p>
+                  <p className="text-[9px] text-gray-500">{t.footer.headquarters}</p>
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@ export default function Footer() {
             {/* Contact Info */}
             <div>
               <h4 className="text-sm font-semibold text-gold-primary mb-3">
-                Contact Us
+                {t.header.nav.contact}
               </h4>
               
               <div className="space-y-2">
@@ -168,7 +168,7 @@ export default function Footer() {
                   })}
                 </div>
                 <p className="text-[10px] text-gray-500">
-                  Click any icon to contact instantly
+                  {t.footer.clickToContact}
                 </p>
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function Footer() {
             {/* Quick Links - Two Columns */}
             <div>
               <h4 className="text-sm font-semibold text-gold-primary mb-3">
-                Quick Links
+                {t.footer.quickLinks}
               </h4>
               
               <div className="grid grid-cols-2 gap-x-3 gap-y-1">
@@ -196,7 +196,7 @@ export default function Footer() {
             {/* Features */}
             <div>
               <h4 className="text-sm font-semibold text-gold-primary mb-3">
-                Why Choose Us
+                {t.footer.whyChooseUs}
               </h4>
               
               <div className="space-y-2">
@@ -218,13 +218,13 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
               <div className="text-center md:text-left">
                 <p className="text-[10px] text-gray-400">
-                  © {currentYear} {t.header.title}. All rights reserved.
+                  © {currentYear} {t.header.title}. {t.footer.copyright}
                 </p>
               </div>
               
               <div className="hidden md:flex items-center space-x-2">
                 <span className="text-[10px] text-gray-400">
-                  Language:
+                  {t.footer.language}
                 </span>
                 <LanguageSwitcher
                   className="text-white text-xs"
@@ -260,7 +260,7 @@ export default function Footer() {
                 <p className="text-xs text-gray-400 mt-0.5">{t.header.company}</p>
                 <div className="flex items-center space-x-1 mt-1">
                   <MapPin className="w-2.5 h-2.5 text-gold-primary" />
-                  <p className="text-[9px] text-gray-400">Xi'an, China</p>
+                  <p className="text-[9px] text-gray-400">{t.common.address}</p>
                 </div>
               </div>
             </div>
@@ -278,7 +278,7 @@ export default function Footer() {
                   <div className="w-6 h-6 rounded bg-green-500/10 flex items-center justify-center">
                     <Phone className="w-3 h-3 text-green-400" />
                   </div>
-                  <span className="text-sm font-medium">Contact Details</span>
+                  <span className="text-sm font-medium">{t.footer.contactDetails}</span>
                 </div>
                 <ChevronDown 
                   className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
@@ -295,15 +295,15 @@ export default function Footer() {
                       <MapPin className="w-4 h-4 text-gold-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-xs text-gray-300">
-                          Xi'an, Shaanxi Province, China
+                          {t.common.address}
                         </p>
-                        <p className="text-[10px] text-gray-400">Headquarters</p>
+                        <p className="text-[10px] text-gray-400">{t.footer.headquarters}</p>
                       </div>
                     </div>
                     
                     {/* Contact Methods with Labels */}
                     <div className="space-y-2">
-                      <p className="text-xs text-gray-400 px-1">Contact via:</p>
+                      <p className="text-xs text-gray-400 px-1">{t.footer.contactVia}</p>
                       <div className="grid grid-cols-2 gap-2">
                         {contactMethods.map((method) => {
                           const Icon = method.icon;
@@ -337,7 +337,7 @@ export default function Footer() {
                   <div className="w-6 h-6 rounded bg-gold-primary/10 flex items-center justify-center">
                     <Home className="w-3 h-3 text-gold-primary" />
                   </div>
-                  <span className="text-sm font-medium">Quick Links</span>
+                  <span className="text-sm font-medium">{t.footer.quickLinks}</span>
                 </div>
                 <ChevronDown 
                   className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
@@ -374,7 +374,7 @@ export default function Footer() {
                   <div className="w-6 h-6 rounded bg-blue-500/10 flex items-center justify-center">
                     <Shield className="w-3 h-3 text-blue-400" />
                   </div>
-                  <span className="text-sm font-medium">Why Choose Us</span>
+                  <span className="text-sm font-medium">{t.footer.whyChooseUs}</span>
                 </div>
                 <ChevronDown 
                   className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
@@ -411,7 +411,7 @@ export default function Footer() {
             <div className="flex flex-col space-y-2">
               {/* Language Switcher */}
               <div className="flex items-center justify-between">
-                <span className="text-[10px] text-gray-400">Language:</span>
+                <span className="text-[10px] text-gray-400">{t.footer.language}</span>
                 <LanguageSwitcher
                   className="text-white text-xs"
                   arrowIcon={<ChevronUp className="w-3 h-3" />}
@@ -422,7 +422,7 @@ export default function Footer() {
               {/* Copyright */}
               <div className="text-center">
                 <p className="text-[9px] text-gray-400">
-                  © {currentYear} {t.header.title}. All rights reserved.
+                  © {currentYear} {t.header.title}. {t.footer.copyright}
                 </p>
               </div>
             </div>

@@ -126,10 +126,16 @@ export default function Header() {
       href: "/brands",
       icon: Shield,
       dropdown: [
-        { name: "All Brands", href: "/brands" },
-        { name: "Chinese Brands", href: "/brands#chinese" },
-        { name: "International Brands", href: "/brands#international" },
-        { name: "Featured Models", href: "/models?featured=true" },
+        { name: t.dropdowns.brands.allBrands, href: "/brands" },
+        { name: t.dropdowns.brands.chineseBrands, href: "/brands#chinese" },
+        {
+          name: t.dropdowns.brands.internationalBrands,
+          href: "/brands#international",
+        },
+        {
+          name: t.dropdowns.brands.featuredModels,
+          href: "/models?featured=true",
+        },
       ],
     },
     {
@@ -138,11 +144,14 @@ export default function Header() {
       href: "/models",
       icon: Car,
       dropdown: [
-        { name: "All Models", href: "/models" },
-        { name: "New Arrivals", href: "/models?status=new" },
-        { name: "Electric Vehicles", href: "/models?category=electric" },
-        { name: "SUVs", href: "/models?category=suv" },
-        { name: "Sedans", href: "/models?category=sedan" },
+        { name: t.dropdowns.models.allModels, href: "/models" },
+        { name: t.dropdowns.models.newArrivals, href: "/models?status=new" },
+        {
+          name: t.dropdowns.models.electricVehicles,
+          href: "/models?category=electric",
+        },
+        { name: t.dropdowns.models.suvs, href: "/models?category=suv" },
+        { name: t.dropdowns.models.sedans, href: "/models?category=sedan" },
       ],
     },
   ];
@@ -230,7 +239,7 @@ export default function Header() {
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gold-primary/20 rounded-full">
                 <CheckCircle className="w-4 h-4 text-gold-primary flex-shrink-0" />
                 <span className="text-sm font-medium opacity-90 truncate text-base sm:text-sm">
-                  Xi'an Daqin Daorui International Trade Co., Ltd.
+                  {t.header.companyFull}
                 </span>
               </div>
             </div>
@@ -279,16 +288,9 @@ export default function Header() {
                     }}
                   />
                 </div>
-                <div className="hidden md:flex flex-col">
-                  <span className="text-white font-bold text-2xl md:text-3xl leading-tight tracking-tight">
-                    DAQIN AUTO
-                  </span>
-                </div>
-                <div className="md:hidden flex flex-col">
-                  <span className="text-white font-bold text-lg md:text-xl leading-tight tracking-tight">
-                    DAQIN AUTO
-                  </span>
-                </div>
+                <span className="text-white font-bold text-2xl md:text-3xl leading-tight tracking-tight">
+                  {t.header.brandTitle}
+                </span>
               </Link>
             </div>
 
@@ -377,7 +379,7 @@ export default function Header() {
                           value={searchQuery}
                           onChange={handleSearchChange}
                           onKeyPress={handleKeyPress}
-                          placeholder="Search vehicles, brands, models..."
+                          placeholder={t.header.searchPlaceholder}
                           className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
                           autoFocus
                         />
@@ -386,7 +388,7 @@ export default function Header() {
                             type="button"
                             onClick={clearSearch}
                             className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                            aria-label="Clear search"
+                            aria-label={t.header.clearSearch}
                           >
                             <X className="w-4 h-4" />
                           </button>
@@ -395,13 +397,13 @@ export default function Header() {
                           type="submit"
                           className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors"
                         >
-                          Search
+                          {t.header.searchButton}
                         </button>
                       </div>
                     </form>
                     <div className="mt-3">
                       <span className="text-xs text-gray-500 font-medium px-1">
-                        Quick Searches:
+                        {t.hero.quickSearches}
                       </span>
                       <div className="flex flex-wrap gap-2 mt-2">
                         <button
@@ -409,28 +411,28 @@ export default function Header() {
                           onClick={() => handleQuickSearch("electric")}
                           className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
                         >
-                          Electric Vehicles
+                          {t.dropdowns.quickSearch.electricVehicles}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleQuickSearch("SUV")}
                           className="px-3 py-1.5 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
                         >
-                          SUVs
+                          {t.dropdowns.quickSearch.suvs}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleQuickSearch("BYD")}
                           className="px-3 py-1.5 bg-green-50 text-green-600 text-sm font-medium rounded-lg hover:bg-green-100 transition-colors"
                         >
-                          BYD
+                          {t.dropdowns.quickSearch.byd}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleQuickSearch("Tesla")}
                           className="px-3 py-1.5 bg-red-50 text-red-600 text-sm font-medium rounded-lg hover:bg-red-100 transition-colors"
                         >
-                          Tesla
+                          {t.dropdowns.quickSearch.tesla}
                         </button>
                       </div>
                     </div>
@@ -463,7 +465,7 @@ export default function Header() {
                           value={searchQuery}
                           onChange={handleSearchChange}
                           onKeyPress={handleKeyPress}
-                          placeholder="Search vehicles, brands, models..."
+                          placeholder={t.header.searchPlaceholder}
                           className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 focus:border-transparent text-sm sm:text-base"
                           autoFocus
                         />
@@ -472,7 +474,7 @@ export default function Header() {
                             type="button"
                             onClick={clearSearch}
                             className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                            aria-label="Clear search"
+                            aria-label={t.header.clearSearch}
                           >
                             <X className="w-4 h-4" />
                           </button>
@@ -481,13 +483,13 @@ export default function Header() {
                           type="submit"
                           className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-gold-primary/90 transition-colors"
                         >
-                          Search
+                          {t.header.searchButton}
                         </button>
                       </div>
                     </form>
                     <div className="mt-3">
                       <span className="text-xs text-gray-500 font-medium px-1">
-                        Quick Searches:
+                        {t.hero.quickSearches}
                       </span>
                       <div className="flex flex-wrap gap-2 mt-2">
                         <button
@@ -495,21 +497,21 @@ export default function Header() {
                           onClick={() => handleQuickSearch("electric")}
                           className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
                         >
-                          Electric
+                          {t.dropdowns.quickSearch.electricVehicles}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleQuickSearch("SUV")}
                           className="px-3 py-1.5 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
                         >
-                          SUVs
+                          {t.dropdowns.quickSearch.suvs}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleQuickSearch("BYD")}
                           className="px-3 py-1.5 bg-green-50 text-green-600 text-sm font-medium rounded-lg hover:bg-green-100 transition-colors"
                         >
-                          BYD
+                          {t.dropdowns.quickSearch.byd}
                         </button>
                       </div>
                     </div>
@@ -629,11 +631,11 @@ export default function Header() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-bold text-xl leading-tight">
-                      Daqin Auto
+                    <span className="text-white font-bold text-lg md:text-xl leading-tight tracking-tight">
+                      {t.header.brandTitle}
                     </span>
                     <span className="text-white/80 text-xs">
-                      Premium Vehicle Exporter
+                      {t.header.premiumVehicleExporter}
                     </span>
                   </div>
                 </div>
@@ -655,7 +657,7 @@ export default function Header() {
                       value={searchQuery}
                       onChange={handleSearchChange}
                       onKeyPress={handleKeyPress}
-                      placeholder="Search vehicles, brands..."
+                      placeholder={t.header.searchPlaceholder}
                       className="w-full pl-11 pr-12 py-3 bg-white rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary focus:border-transparent text-sm"
                     />
                     {searchQuery && (
@@ -663,7 +665,7 @@ export default function Header() {
                         type="button"
                         onClick={clearSearch}
                         className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        aria-label="Clear search"
+                        aria-label={t.header.clearSearch}
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -715,7 +717,7 @@ export default function Header() {
                           <Globe className="w-6 h-6 text-white" />
                           <div className="flex flex-col items-start">
                             <span className="font-bold text-white text-base">
-                              Language
+                              {t.header.language}
                             </span>
                             <span className="text-sm text-white/80">
                               {currentLanguage?.name}
