@@ -23,7 +23,7 @@ const defaultSteps = [
   },
   {
     title: "Shipping & Delivery",
-    description: "Door-to-door delivery with customs clearance support",
+    description: "Door-to-door delivery",
     icon: <Globe className="w-7 h-7" />,
   },
 ];

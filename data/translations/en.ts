@@ -120,7 +120,7 @@ const enTranslations = {
       },
       {
         title: "Shipping & Delivery",
-        description: "Door-to-door delivery with customs clearance support",
+        description: "Door-to-door delivery",
       },
     ],
   },

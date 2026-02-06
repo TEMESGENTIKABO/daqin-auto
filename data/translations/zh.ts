@@ -335,7 +335,7 @@ const zhTranslations = {
       },
       {
         title: "运输与交付",
-        description: "门到门交付，提供清关支持",
+        description: "门到门交付",
       },
     ],
   },
