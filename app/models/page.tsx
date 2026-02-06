@@ -1,15 +1,17 @@
 // app/models/page.tsx - SERVER COMPONENT
 import { Suspense } from "react";
-import ModelsUI from "@/components/models/ModelsUI";
-import { vehicleModels, brandsList } from "@/data/models";
+import ModelsUI from "@/components/models/ModelsUI"; // Updated component without props
 
-// Fetch data or perform server-side operations here
+// You can still fetch data for SEO or initial props if needed
 async function getInitialData() {
-  // You can fetch data from your database/API here
-  // For now, we'll use the static data
+  // You can fetch data from your database/API here for SEO purposes
+  // This will only be used for initial server-side rendering
+  // The client-side context will take over for language switching
+  
   return {
-    models: vehicleModels,
-    brands: brandsList,
+    // This data is not used by ModelsUI anymore, but you can keep it for other purposes
+    seoTitle: "Vehicle Models",
+    seoDescription: "Browse our collection of vehicles",
   };
 }
 
@@ -18,7 +20,8 @@ export default async function ModelsPage() {
 
   return (
     <Suspense fallback={<ModelsLoading />}>
-      <ModelsUI initialModels={data.models} />
+      {/* ModelsUI now uses context internally, no props needed */}
+      <ModelsUI />
     </Suspense>
   );
 }

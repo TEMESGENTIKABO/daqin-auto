@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ModelProvider } from '@/data/Models/ModelProvider';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Header from '@/components/layout/Header'; // Import Header
 import Footer from '@/components/layout/Footer'; // Import Footer if you have one
@@ -26,8 +27,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <LanguageProvider>
           <Header />
+            <ModelProvider>
           <main>{children}</main>
           <Footer /> 
+</ModelProvider>
         </LanguageProvider>
       </body>
     </html>

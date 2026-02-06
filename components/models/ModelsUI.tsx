@@ -2,6 +2,7 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
+import { useModels } from "@/data/Models/ModelProvider"; // Import useModels from your models context file
 import ModelsGrid from "@/components/sections/brand-models/ModelsGrid";
 import VehicleDetailModal from "@/components/sections/brand-models/VehicleDetailModal";
 import {
@@ -12,50 +13,49 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
-import type { VehicleModel } from "@/data/models";
 
-interface ModelsUIProps {
-  initialModels: VehicleModel[];
-}
-
-export default function ModelsUI({ initialModels }: ModelsUIProps) {
+export default function ModelsUI() {
+  // Remove the props
   const { t } = useLanguage();
+  const { models } = useModels(); // Get models from your context
   const searchParams = useSearchParams();
   const router = useRouter();
   const brandParam = searchParams.get("brand");
   const searchQueryParam = searchParams.get("search");
 
   // State Management
-  const [selectedBrand, setSelectedBrand] = useState<string>("All Vehicles");
+  const [selectedBrand, setSelectedBrand] = useState<string>(
+    t.models.allBrands,
+  );
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [brandError, setBrandError] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(12);
   const [searchQuery, setSearchQuery] = useState<string>(
-    searchQueryParam || ""
+    searchQueryParam || "",
   );
   const [isSearching, setIsSearching] = useState<boolean>(!!searchQueryParam);
 
   // Get ALL unique brands from the actual vehicle data
   const allModelBrands = useMemo(() => {
-    return Array.from(new Set(initialModels.map((model) => model.brand))).sort(
-      (a, b) => a.localeCompare(b)
+    return Array.from(new Set(models.map((model) => model.brand))).sort(
+      (a, b) => a.localeCompare(b),
     );
-  }, [initialModels]);
+  }, [models]); // Changed to use models from context
 
   // Initialize selected brand from URL parameter
   useEffect(() => {
     if (brandParam) {
       // Check if the brand exists in our vehicle data (case-insensitive)
       const brandExists = allModelBrands.some(
-        (brand) => brand.toLowerCase() === brandParam.toLowerCase()
+        (brand) => brand.toLowerCase() === brandParam.toLowerCase(),
       );
 
       if (brandExists) {
         // Find the exact brand name (case-sensitive match)
         const exactBrand =
           allModelBrands.find(
-            (brand) => brand.toLowerCase() === brandParam.toLowerCase()
+            (brand) => brand.toLowerCase() === brandParam.toLowerCase(),
           ) || brandParam;
 
         setSelectedBrand(exactBrand);
@@ -63,10 +63,8 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
         setCurrentPage(1);
       } else {
         // Brand doesn't exist in vehicle data
-        setSelectedBrand("All Vehicles");
-        setBrandError(
-          `No vehicles found for brand "${brandParam}". Showing all vehicles instead.`
-        );
+        setSelectedBrand(t.models.allBrands);
+        setBrandError(t.models.brandError.replace("{brand}", brandParam));
         setCurrentPage(1);
 
         // Optional: Remove the invalid brand from URL
@@ -75,30 +73,30 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
         }, 3000);
       }
     } else {
-      setSelectedBrand("All Vehicles");
+      setSelectedBrand(t.models.allBrands);
       setBrandError("");
       setCurrentPage(1);
     }
-  }, [brandParam, allModelBrands, router]);
+  }, [brandParam, allModelBrands, router, t]);
 
   // Initialize search from URL parameter
   useEffect(() => {
     if (searchQueryParam) {
       setSearchQuery(searchQueryParam);
       setIsSearching(true);
-      setSelectedBrand("All Vehicles");
+      setSelectedBrand(t.models.allBrands);
     } else {
       setSearchQuery("");
       setIsSearching(false);
     }
-  }, [searchQueryParam]);
+  }, [searchQueryParam, t]);
 
   // Filter models based on selected brand AND search query
   const filteredModels = useMemo(() => {
-    let filtered = initialModels;
+    let filtered = models; // Changed to use models from context
 
     // Apply brand filter
-    if (selectedBrand !== "All Vehicles") {
+    if (selectedBrand !== t.models.allBrands) {
       filtered = filtered.filter((model) => model.brand === selectedBrand);
     }
 
@@ -114,7 +112,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
           model.tagline?.toLowerCase().includes(query) ||
           model.specs.fuelType.toLowerCase().includes(query) ||
           model.features.some((feature) =>
-            feature.toLowerCase().includes(query)
+            feature.toLowerCase().includes(query),
           )
         );
       });
@@ -124,16 +122,17 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     }
 
     return filtered;
-  }, [initialModels, selectedBrand, searchQuery]);
+  }, [models, selectedBrand, searchQuery, t]); // Changed to use models from context
 
   // Get count of vehicles per brand for display
   const brandCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    initialModels.forEach((model) => {
+    models.forEach((model) => {
+      // Changed to use models from context
       counts[model.brand] = (counts[model.brand] || 0) + 1;
     });
     return counts;
-  }, [initialModels]);
+  }, [models]); // Changed to use models from context
 
   // Pagination logic
   const totalItems = filteredModels.length;
@@ -142,7 +141,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
   // Calculate paginated models
   const paginatedModels = useMemo(() => {
     // For single brand view with no search, show all models (no pagination)
-    if (selectedBrand !== "All Vehicles" && !isSearching) {
+    if (selectedBrand !== t.models.allBrands && !isSearching) {
       return filteredModels;
     }
 
@@ -150,7 +149,14 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return filteredModels.slice(startIndex, endIndex);
-  }, [filteredModels, currentPage, itemsPerPage, selectedBrand, isSearching]);
+  }, [
+    filteredModels,
+    currentPage,
+    itemsPerPage,
+    selectedBrand,
+    isSearching,
+    t,
+  ]);
 
   // Reset to page 1 when brand changes or search changes
   useEffect(() => {
@@ -167,7 +173,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     // Update URL with brand parameter
     const params = new URLSearchParams(searchParams.toString());
 
-    if (brand === "All Vehicles") {
+    if (brand === t.models.allBrands) {
       params.delete("brand");
     } else {
       params.set("brand", brand);
@@ -190,7 +196,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     } else {
       params.delete("search");
       // If a brand was previously selected, restore it
-      if (selectedBrand !== "All Vehicles") {
+      if (selectedBrand !== t.models.allBrands) {
         params.set("brand", selectedBrand);
       }
     }
@@ -207,7 +213,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     params.delete("search");
 
     // If a brand is selected, keep it in the URL
-    if (selectedBrand !== "All Vehicles") {
+    if (selectedBrand !== t.models.allBrands) {
       params.set("brand", selectedBrand);
     }
 
@@ -222,26 +228,49 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     }
   };
 
-  // WhatsApp handler
-  const handleWhatsApp = useCallback((vehicle: VehicleModel) => {
-    // Format the message
-    const message = `Hello! I'm interested in the ${vehicle.brand} ${vehicle.model} (${vehicle.year}).\n\nPrice: ${vehicle.priceUSD === 0 ? "Negotiable" : `$${vehicle.priceUSD.toLocaleString()}`}\n\nCould you provide more details?`;
+  // WhatsApp handler - FIXED VERSION
+  const handleWhatsApp = useCallback(
+    (vehicle: any) => {
+      // WhatsApp phone number - hardcoded as requested
+      const whatsappNumber = "+8615594634955";
 
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(message);
+      // Get negotiable text with fallback
+      const negotiableText =
+        t?.models?.price?.negotiable ||
+        t?.featuredModels?.negotiable ||
+        "Negotiable Price";
 
-    // WhatsApp phone number
-    const phoneNumber = "+8615594634955";
+      // Format the price text
+      const priceText =
+        vehicle.priceUSD === 0
+          ? negotiableText
+          : `$${vehicle.priceUSD.toLocaleString()}`;
 
-    // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      // Format the message with fallback
+      const messageTemplate =
+        t?.models?.whatsappMessage ||
+        "Hello! I'm interested in the {brand} {model} ({year}). Price: {price}. Could you provide more details?";
 
-    // Open WhatsApp in new tab
-    window.open(whatsappUrl, "_blank");
-  }, []);
+      const message = messageTemplate
+        .replace("{brand}", vehicle.brand)
+        .replace("{model}", vehicle.model)
+        .replace("{year}", vehicle.year.toString())
+        .replace("{price}", priceText);
+
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(message);
+
+      // Create WhatsApp URL with the hardcoded number
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Open WhatsApp in new tab
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    },
+    [t],
+  );
 
   const selectedVehicle = selectedModel
-    ? initialModels.find((model) => model.id === selectedModel)
+    ? models.find((model) => model.id === selectedModel) // Changed to use models from context
     : null;
 
   // Page change handlers
@@ -296,11 +325,11 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
     if (!isSearching) return null;
 
     if (filteredModels.length === 0) {
-      return `No results found for "${searchQuery}"`;
+      return t.models.noSearchResults.replace("{query}", searchQuery);
     } else {
-      return `${filteredModels.length} result${
-        filteredModels.length !== 1 ? "s" : ""
-      } found for "${searchQuery}"`;
+      return t.models.searchResultsFound
+        .replace("{count}", filteredModels.length.toString())
+        .replace("{query}", searchQuery);
     }
   };
 
@@ -320,10 +349,10 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
         <div className="max-w-7xl mx-auto px-4 py-10 md:py-12">
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Quality Vehicles
+              {t.models.heroTitle}
             </h1>
             <p className="text-white/90 max-w-2xl mx-auto text-sm md:text-base mb-6">
-              Explore luxury vehicles for exceptional driving
+              {t.models.heroSubtitle}
             </p>
           </div>
 
@@ -337,7 +366,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}
-                placeholder="Search by brand, model, category, features..."
+                placeholder={t.models.searchPlaceholder}
                 className="block w-full pl-9 pr-10 py-2.5 border-0 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent text-sm shadow-lg"
               />
               {searchQuery && (
@@ -345,7 +374,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                   type="button"
                   onClick={clearSearch}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
-                  aria-label="Clear search"
+                  aria-label={t.models.clearSearch}
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -353,7 +382,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
             </form>
             {isSearching && (
               <p className="text-white text-xs mt-2 text-center">
-                Search across brands, models, categories, and features
+                {t.models.searchHint}
               </p>
             )}
           </div>
@@ -375,13 +404,17 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                 onClick={clearSearch}
                 className="text-sm text-blue-600 hover:text-blue-800 font-medium"
               >
-                Clear Search
+                {t.models.clearSearch}
               </button>
             </div>
             {filteredModels.length > 0 && (
               <p className="text-blue-600 text-sm mt-1">
-                Showing {Math.min(paginatedModels.length, itemsPerPage)} of{" "}
-                {filteredModels.length} matching vehicles
+                {t.models.showingResults
+                  .replace(
+                    "{current}",
+                    Math.min(paginatedModels.length, itemsPerPage).toString(),
+                  )
+                  .replace("{total}", filteredModels.length.toString())}
               </p>
             )}
           </div>
@@ -408,7 +441,10 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
             <div className="flex items-center mb-3">
               <Car className="w-5 h-5 text-gold-primary mr-2" />
               <h2 className="text-lg font-bold text-gold-primary">
-                Vehicle Brands ({allModelBrands.length})
+                {t.models.vehicleBrandsTitle.replace(
+                  "{count}",
+                  allModelBrands.length.toString(),
+                )}
               </h2>
             </div>
 
@@ -416,20 +452,22 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
             <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-9 lg:grid-cols-11 xl:grid-cols-13 gap-1.5">
               <button
                 key="All Vehicles"
-                onClick={() => handleBrandSelect("All Vehicles")}
+                onClick={() => handleBrandSelect(t.models.allBrands)}
                 className={`
                   px-2 py-1.5 rounded-md text-xs font-medium transition-all duration-200 
                   whitespace-nowrap overflow-hidden text-ellipsis text-center 
                   transform hover:scale-[1.02] active:scale-[0.98]
                   ${
-                    selectedBrand === "All Vehicles"
+                    selectedBrand === t.models.allBrands
                       ? "bg-gold-primary text-white shadow-md ring-2 ring-gold-primary/30"
                       : "bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-gray-300"
                   }
                 `}
-                title="All Vehicles"
+                title={t.models.allBrands}
               >
-                <span className="block truncate">All Brands</span>
+                <span className="block truncate">
+                  {t.models.allBrandsShort}
+                </span>
               </button>
 
               {allModelBrands.map((brand) => (
@@ -446,7 +484,9 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                         : "bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-gray-300"
                     }
                   `}
-                  title={`${brand} (${brandCounts[brand] || 0} models)`}
+                  title={t.models.brandTitle
+                    .replace("{brand}", brand)
+                    .replace("{count}", (brandCounts[brand] || 0).toString())}
                 >
                   <span className="block truncate">{brand}</span>
                 </button>
@@ -464,28 +504,51 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
             <div>
               <h3 className="text-lg font-bold text-gray-900">
                 {isSearching
-                  ? `Search Results (${totalItems})`
-                  : selectedBrand === "All Vehicles"
-                    ? `All Vehicle Models (${totalItems})`
-                    : `${selectedBrand} (${filteredModels.length} Models)`}
+                  ? t.models.searchResultsTitle.replace(
+                      "{count}",
+                      totalItems.toString(),
+                    )
+                  : selectedBrand === t.models.allBrands
+                    ? t.models.allModelsTitle.replace(
+                        "{count}",
+                        totalItems.toString(),
+                      )
+                    : t.models.brandModelsTitle
+                        .replace("{brand}", selectedBrand)
+                        .replace("{count}", filteredModels.length.toString())}
               </h3>
 
               {/* Additional info line */}
-              {(selectedBrand === "All Vehicles" || isSearching) &&
+              {(selectedBrand === t.models.allBrands || isSearching) &&
                 totalPages > 1 && (
                   <p className="text-sm text-gray-600 mt-1">
                     {isSearching
-                      ? `Page ${currentPage} of ${totalPages} • Showing ${paginatedModels.length} matching vehicles`
-                      : `Page ${currentPage} of ${totalPages} • Showing ${paginatedModels.length} of ${totalItems} vehicles`}
+                      ? t.models.searchPaginationInfo
+                          .replace("{current}", currentPage.toString())
+                          .replace("{total}", totalPages.toString())
+                          .replace(
+                            "{showing}",
+                            paginatedModels.length.toString(),
+                          )
+                      : t.models.paginationInfo
+                          .replace("{current}", currentPage.toString())
+                          .replace("{total}", totalPages.toString())
+                          .replace(
+                            "{showing}",
+                            paginatedModels.length.toString(),
+                          )
+                          .replace("{totalItems}", totalItems.toString())}
                   </p>
                 )}
             </div>
 
             {/* Items Per Page Selector (for All Brands view or search) */}
-            {(selectedBrand === "All Vehicles" || isSearching) &&
+            {(selectedBrand === t.models.allBrands || isSearching) &&
               totalItems > 12 && (
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600">Show:</span>
+                  <span className="text-sm text-gray-600">
+                    {t.models.show}:
+                  </span>
                   <select
                     value={itemsPerPage}
                     onChange={(e) => {
@@ -514,19 +577,20 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
         />
 
         {/* Pagination - Show for All Brands view OR search results with multiple pages */}
-        {(selectedBrand === "All Vehicles" || isSearching) &&
+        {(selectedBrand === t.models.allBrands || isSearching) &&
           totalPages > 1 && (
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-sm text-gray-600">
-                Showing{" "}
-                <span className="font-medium">
-                  {(currentPage - 1) * itemsPerPage + 1}
-                </span>{" "}
-                to{" "}
-                <span className="font-medium">
-                  {Math.min(currentPage * itemsPerPage, totalItems)}
-                </span>{" "}
-                of <span className="font-medium">{totalItems}</span> vehicles
+                {t.models.showingPagination
+                  .replace(
+                    "{start}",
+                    ((currentPage - 1) * itemsPerPage + 1).toString(),
+                  )
+                  .replace(
+                    "{end}",
+                    Math.min(currentPage * itemsPerPage, totalItems).toString(),
+                  )
+                  .replace("{total}", totalItems.toString())}
               </div>
 
               <div className="flex items-center space-x-2">
@@ -539,7 +603,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                       ? "bg-gray-100 text-gray-400 border-gray-300 cursor-not-allowed"
                       : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gold-primary"
                   }`}
-                  aria-label="Previous page"
+                  aria-label={t.models.previousPage}
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -589,7 +653,7 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                       ? "bg-gray-100 text-gray-400 border-gray-300 cursor-not-allowed"
                       : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gold-primary"
                   }`}
-                  aria-label="Next page"
+                  aria-label={t.models.nextPage}
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -604,14 +668,19 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
               <Car className="w-6 h-6 text-gray-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              {isSearching ? "No search results found" : "No vehicles found"}
+              {isSearching
+                ? t.models.noSearchResultsTitle
+                : t.models.noVehiclesFound}
             </h3>
             <p className="text-gray-600 text-sm mb-3">
               {isSearching
-                ? `No vehicles found for "${searchQuery}". Try different keywords.`
-                : selectedBrand === "All Vehicles"
-                  ? "No vehicles available at the moment."
-                  : `No ${selectedBrand} vehicles available.`}
+                ? t.models.noSearchResultsDescription.replace(
+                    "{query}",
+                    searchQuery,
+                  )
+                : selectedBrand === t.models.allBrands
+                  ? t.models.noVehiclesAvailable
+                  : t.models.noBrandVehicles.replace("{brand}", selectedBrand)}
             </p>
             <div className="flex gap-2 justify-center">
               {isSearching && (
@@ -619,15 +688,15 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
                   onClick={clearSearch}
                   className="px-3 py-1.5 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition-colors text-sm"
                 >
-                  Clear Search
+                  {t.models.clearSearch}
                 </button>
               )}
-              {selectedBrand !== "All Vehicles" && !isSearching && (
+              {selectedBrand !== t.models.allBrands && !isSearching && (
                 <button
-                  onClick={() => handleBrandSelect("All Vehicles")}
+                  onClick={() => handleBrandSelect(t.models.allBrands)}
                   className="px-3 py-1.5 bg-gold-primary text-white font-medium rounded-md hover:bg-gold-primary/90 transition-colors text-sm"
                 >
-                  View All Brands
+                  {t.models.viewAllBrands}
                 </button>
               )}
             </div>
@@ -635,12 +704,15 @@ export default function ModelsUI({ initialModels }: ModelsUIProps) {
         )}
 
         {/* Brands Summary (when viewing all vehicles and not searching) */}
-        {selectedBrand === "All Vehicles" &&
+        {selectedBrand === t.models.allBrands &&
           !isSearching &&
           filteredModels.length > 0 && (
             <div className="mt-8 bg-white rounded-lg border border-gray-200 p-4">
               <h4 className="font-semibold text-gray-900 mb-3">
-                Brands Available ({allModelBrands.length})
+                {t.models.brandsAvailableTitle.replace(
+                  "{count}",
+                  allModelBrands.length.toString(),
+                )}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {allModelBrands.map((brand) => (

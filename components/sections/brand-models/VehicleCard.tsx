@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
-import type { VehicleModel } from "@/data/models";
+import type { VehicleModel } from "@/data/Models/ModelProvider";
 import { ViewMode } from "./types";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface VehicleCardProps {
   vehicle: VehicleModel;
@@ -13,9 +14,9 @@ interface VehicleCardProps {
 }
 
 // Price formatting helper function
-const formatPrice = (priceUSD: number): string => {
+const formatPrice = (priceUSD: number, t: any): string => {
   if (priceUSD === 0) {
-    return "Negotiable";
+    return t.featuredModels.negotiable || t.models.negotiable || "Negotiable";
   }
   return `$${priceUSD.toLocaleString()}`;
 };
@@ -31,6 +32,7 @@ export default function VehicleCard({
   onSelectModel,
   onWhatsApp,
 }: VehicleCardProps) {
+  const { t } = useLanguage();
   const isGrid = viewMode === "grid";
   const isNegotiable = isNegotiablePrice(vehicle.priceUSD);
 
@@ -44,42 +46,42 @@ export default function VehicleCard({
     onSelectModel(vehicle.id);
   };
 
-  // Status badge configuration
+  // Status badge configuration with translations
   const statusConfig = {
     New: {
       bgColor: "bg-green-100",
       textColor: "text-green-800",
-      label: "New",
+      label: t.featuredModels.statusNew || "New",
     },
     "In Stock": {
       bgColor: "bg-blue-100",
       textColor: "text-blue-800",
-      label: "In Stock",
+      label: t.featuredModels.statusInStock || "In Stock",
     },
     "Coming Soon": {
       bgColor: "bg-purple-100",
       textColor: "text-purple-800",
-      label: "Soon",
+      label: t.featuredModels.statusSoon || "Soon",
     },
     "Limited Edition": {
       bgColor: "bg-red-100",
       textColor: "text-red-800",
-      label: "Limited",
+      label: t.featuredModels.statusLimited || "Limited",
     },
     "Best Seller": {
       bgColor: "bg-orange-100",
       textColor: "text-orange-800",
-      label: "Best",
+      label: t.featuredModels.statusBest || "Best",
     },
     "Pre-Order": {
       bgColor: "bg-indigo-100",
       textColor: "text-indigo-800",
-      label: "Pre-Order",
+      label: t.featuredModels.statusPreOrder || "Pre-Order",
     },
     "Special Edition": {
       bgColor: "bg-pink-100",
       textColor: "text-pink-800",
-      label: "Special",
+      label: t.featuredModels.statusSpecial || "Special",
     },
   };
 
@@ -116,10 +118,12 @@ export default function VehicleCard({
             : "bg-black/90 text-white border-transparent"
         }`}>
           <div className={`text-sm font-bold ${isNegotiable ? "text-gray-900" : ""}`}>
-            {formatPrice(vehicle.priceUSD)}
+            {formatPrice(vehicle.priceUSD, t)}
           </div>
           <div className={`text-[10px] ${isNegotiable ? "text-gray-600" : "opacity-90"}`}>
-            {isNegotiable ? "Contact for quote" : "FOB China"}
+            {isNegotiable 
+              ? t.featuredModels.contactForQuote || "Contact for quote" 
+              : t.featuredModels.fobChina || "FOB China"}
           </div>
         </div>
 
@@ -133,7 +137,7 @@ export default function VehicleCard({
         {/* Featured Badge for featured models */}
         {vehicle.featured && (
           <div className="absolute top-2 right-2 bg-gold-primary text-white px-2 py-0.5 rounded-md text-[10px] font-bold">
-            Featured
+            {t.featuredModels.featured || "Featured"}
           </div>
         )}
       </div>
@@ -151,7 +155,7 @@ export default function VehicleCard({
             </span>
             <span className="text-[10px] text-gray-400">•</span>
             <span className="text-xs text-gray-600">
-              {vehicle.specs?.fuelType || "Petrol"}
+              {vehicle.specs?.fuelType || t.vehicles.petrol.fullName || "Petrol"}
             </span>
             {vehicle.rating && (
               <>
@@ -198,7 +202,7 @@ export default function VehicleCard({
             onClick={handleDetails}
             className="flex-1 px-2 py-1.5 bg-gold-primary text-white rounded-md hover:bg-gold-primary/90 transition-colors flex items-center justify-center gap-1 text-xs font-medium"
           >
-            Details
+            {t.featuredModels.details || "Details"}
           </button>
           <button
             onClick={handleWhatsApp}
@@ -209,7 +213,10 @@ export default function VehicleCard({
             }`}
           >
             <FaWhatsapp className="w-3 h-3" />
-            <span>{isNegotiable ? "Get Quote" : "Inquire"}</span>
+            <span>{isNegotiable 
+              ? t.featuredModels.getQuote || "Get Quote" 
+              : t.featuredModels.inquire || "Inquire"}
+            </span>
           </button>
         </div>
 
@@ -217,16 +224,16 @@ export default function VehicleCard({
         {!isGrid && vehicle.specs && (
           <div className="mt-2 pt-2 border-t border-gray-100 grid grid-cols-2 gap-1 text-[11px] text-gray-600">
             <div className="truncate">
-              <span className="font-medium">Engine:</span> {vehicle.specs.engine?.split(" ")[0] || "N/A"}
+              <span className="font-medium">{t.vehicles.keySpecifications || "Engine"}:</span> {vehicle.specs.engine?.split(" ")[0] || "N/A"}
             </div>
             <div className="truncate">
-              <span className="font-medium">Power:</span> {vehicle.specs.power || "N/A"}
+              <span className="font-medium">{t.vehicles.keySpecifications || "Power"}:</span> {vehicle.specs.power || "N/A"}
             </div>
             <div className="truncate">
-              <span className="font-medium">Seats:</span> {vehicle.specs.seats || "N/A"}
+              <span className="font-medium">{t.vehicles.keySpecifications || "Seats"}:</span> {vehicle.specs.seats || "N/A"}
             </div>
             <div className="truncate">
-              <span className="font-medium">Trans:</span> {vehicle.specs.transmission?.substring(0, 4) || "N/A"}
+              <span className="font-medium">{t.vehicles.keySpecifications || "Trans"}:</span> {vehicle.specs.transmission?.substring(0, 4) || "N/A"}
             </div>
           </div>
         )}

@@ -10,12 +10,11 @@ export default function ContactSection() {
   // Social media links
   const socialLinks = {
     whatsapp: "https://wa.me/+8615594634955",
-    wechat: "weixin://dl/chat?daqinauto",
+    wechat: "weixin://dl/chat?daqin_auto",
     telegram: "https://t.me/+8615594634955",
     phone: "tel:+8615594634955",
-    email: "mailto:contact@daqinauto.com",
+    email: "mailto:mamushjebessa@gmail.com",
   };
-
   // Contact methods data
   const contactMethods = [
     {

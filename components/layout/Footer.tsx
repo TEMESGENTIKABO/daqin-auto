@@ -53,7 +53,7 @@ export default function Footer() {
       id: "wechat",
       icon: FaWeixin,
       title: "WeChat",
-      href: "weixin://dl/chat?daqinauto",
+      href: "weixin://dl/chat?daqin_auto",
       color: "text-emerald-400",
       bgColor: "bg-emerald-900/20",
     },
@@ -61,7 +61,7 @@ export default function Footer() {
       id: "email",
       icon: Mail,
       title: "Email",
-      href: "mailto:contact@daqinauto.com",
+      href: "mailto:mamushjebessa@gmail.com",
       color: "text-gold-primary",
       bgColor: "bg-yellow-900/20",
     },
@@ -73,7 +73,7 @@ export default function Footer() {
     { label: t.header.nav.about, href: "/about", icon: Users },
     { label: t.header.nav.brands, href: "/brands", icon: Building },
     { label: t.header.nav.vehicles, href: "/models", icon: Car },
-    { label: t.header.nav.services, href: "/services", icon: Server },
+    { label: t.header.nav.services, href: "#services", icon: Server },
     { label: t.header.nav.contact, href: "/contact", icon: Phone },
   ];
 

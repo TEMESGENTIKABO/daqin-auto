@@ -2,17 +2,17 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
-import { getFeaturedModels } from "@/data/models";
+import { useModels } from "@/data/Models/ModelProvider"; // Import useModels instead of getFeaturedModels
 import { Clock, CheckCircle, Zap, Star } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 import VehicleDetailModal from "./brand-models/VehicleDetailModal";
-import { VehicleModel as VehicleModelType } from "@/data/models";
+import { VehicleModel as VehicleModelType } from "@/data/Models/ModelProvider";
 
 // Price formatting helper function
 const formatPrice = (priceUSD: number, t: any): string => {
   if (priceUSD === 0) {
-    return "Negotiable";
+    return t.featuredModels.priceNegotiable || "Negotiable";
   }
   return `$${priceUSD.toLocaleString()}`;
 };
@@ -22,8 +22,37 @@ const isNegotiablePrice = (priceUSD: number): boolean => {
   return priceUSD === 0;
 };
 
+// Status mapping to handle different languages
+const getStatusKey = (status: string | undefined): string => {
+  if (!status) return "In Stock";
+  
+  // Map Arabic/Russian/Chinese statuses to English keys for consistent styling
+  const statusMap: Record<string, string> = {
+    // English
+    "New": "New",
+    "In Stock": "In Stock", 
+    "Coming Soon": "Coming Soon",
+    "Limited Edition": "Limited Edition",
+    "Best Seller": "Best Seller",
+    "Pre-Order": "Pre-Order",
+    "Special Edition": "Special Edition",
+    // Arabic
+    "جديد": "New",
+    "متوفر في المخزون": "In Stock",
+    "قريباً": "Coming Soon",
+    "إصدار محدود": "Limited Edition",
+    "الأكثر مبيعاً": "Best Seller",
+    "طلب مسبق": "Pre-Order",
+    "إصدار خاص": "Special Edition",
+    // Add mappings for Russian and Chinese as needed
+  };
+  
+  return statusMap[status] || "In Stock";
+};
+
 export default function FeaturedModelsSection() {
   const { t } = useLanguage();
+  const { getFeaturedModels } = useModels(); // Use getFeaturedModels from context
   const [activeFilter, setActiveFilter] = useState<
     "all" | "new" | "stock" | "coming"
   >("all");
@@ -31,7 +60,7 @@ export default function FeaturedModelsSection() {
     null
   );
 
-  const featuredModels = getFeaturedModels();
+  const featuredModels = getFeaturedModels(); // This will now return language-specific models
 
   // Status badge configuration - Compact
   const statusConfig = {
@@ -82,10 +111,12 @@ export default function FeaturedModelsSection() {
   // Filter models based on active filter
   const getFilteredModels = () => {
     const filtered = featuredModels.filter((model) => {
+      const statusKey = getStatusKey(model.status);
+      
       if (activeFilter === "all") return true;
-      if (activeFilter === "new") return model.status === "New";
-      if (activeFilter === "stock") return model.status === "In Stock";
-      if (activeFilter === "coming") return model.status === "Coming Soon";
+      if (activeFilter === "new") return statusKey === "New";
+      if (activeFilter === "stock") return statusKey === "In Stock";
+      if (activeFilter === "coming") return statusKey === "Coming Soon";
       return true;
     });
 
@@ -193,8 +224,9 @@ export default function FeaturedModelsSection() {
           {/* Models Grid - Compact */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredModels.map((model) => {
+              const statusKey = getStatusKey(model.status);
               const status =
-                statusConfig[model.status as keyof typeof statusConfig] ||
+                statusConfig[statusKey as keyof typeof statusConfig] ||
                 statusConfig["In Stock"];
               
               const isNegotiable = isNegotiablePrice(model.priceUSD);

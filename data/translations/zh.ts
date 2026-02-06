@@ -140,7 +140,105 @@ const zhTranslations = {
     ctaDescription: "加入全球数百个信赖大秦汽车满足其汽车需求的满意合作伙伴。",
     viewModels: "查看我们的车型",
   },
+  //Filters
+  filters: {
+    title: "筛选器",
+    clear: "清除",
+    selectAll: "全选",
+    clearAll: "清除全部",
+    showResults: "显示结果",
+    showMore: "显示更多",
+    showLess: "显示更少",
+    all: "全部",
+    resetAll: "重置所有筛选器",
+    searchPlaceholder: "搜索品牌...",
 
+    tabs: {
+      brands: "品牌",
+      type: "类型",
+      price: "价格",
+      sort: "排序",
+    },
+
+    sections: {
+      brands: "品牌",
+      type: "类型",
+      price: "价格",
+      sort: "排序",
+      vehicleType: "车辆类型",
+      priceRange: "价格范围",
+      sortBy: "排序方式",
+    },
+
+    categories: {
+      all: "全部",
+      electric: "电动",
+      hybrid: "混合动力",
+      suv: "SUV",
+      sedan: "轿车",
+    },
+
+    sortOptions: {
+      default: "推荐",
+      priceLow: "价格: 低到高",
+      priceHigh: "价格: 高到低",
+      yearNew: "最新优先",
+      yearOld: "最旧优先",
+      nameA: "名称: A到Z",
+      nameZ: "名称: Z到A",
+    },
+  },
+  models: {
+    // New keys for ModelsUI
+    heroTitle: "优质车辆",
+    heroSubtitle: "探索豪华车辆，享受卓越驾驶体验",
+    searchPlaceholder: "按品牌、型号、类别、功能搜索...",
+    searchHint: "跨品牌、型号、类别和功能搜索",
+    clearSearch: "清除搜索",
+    vehicleBrandsTitle: "车辆品牌 ({count})",
+    allBrands: "所有车辆",
+    allBrandsShort: "所有品牌",
+    brandTitle: "{brand} ({count} 款车型)",
+    searchResultsTitle: "搜索结果 ({count})",
+    allModelsTitle: "所有车辆型号 ({count})",
+    brandModelsTitle: "{brand} ({count} 款车型)",
+    searchPaginationInfo:
+      "第 {current} 页，共 {total} 页 • 显示 {showing} 辆匹配车辆",
+    paginationInfo:
+      "第 {current} 页，共 {total} 页 • 显示 {showing} 辆，共 {totalItems} 辆车辆",
+    show: "显示",
+    previousPage: "上一页",
+    nextPage: "下一页",
+    showingPagination: "显示第 {start} 至 {end} 辆，共 {total} 辆车辆",
+    noSearchResultsTitle: "未找到搜索结果",
+    noVehiclesFound: "未找到车辆",
+    noSearchResultsDescription:
+      '未找到符合"{query}"的车辆。请尝试不同的关键词。',
+    noVehiclesAvailable: "目前没有可用的车辆。",
+    noBrandVehicles: "没有可用的{brand}车辆。",
+    viewAllBrands: "查看所有品牌",
+    brandsAvailableTitle: "可用品牌 ({count})",
+    brandError: '未找到品牌"{brand}"的车辆。改为显示所有车辆。',
+    noSearchResults: '未找到符合"{query}"的结果',
+    searchResultsFound: '找到 {count} 个符合"{query}"的结果',
+    showingResults: "显示 {current} 辆，共 {total} 辆匹配车辆",
+    whatsappMessage:
+      "您好！我对{brand} {model} ({year})感兴趣。\n\n价格：{price}\n\n您能提供更多详情吗？",
+    specs: {
+      engine: "发动机",
+      power: "功率",
+      seats: "座位",
+      transmission: "变速箱",
+      year: "年份",
+      fuelType: "燃料类型",
+      torque: "扭矩",
+      fuelConsumption: "油耗",
+      range: "续航",
+      warranty: "保修",
+      payload: "载重",
+      colors: "可选颜色",
+    },
+  },
   // Common
   common: {
     phone: "+86-15594634955",
@@ -214,6 +312,7 @@ const zhTranslations = {
     statusBest: "畅销",
     statusPreOrder: "预购",
     statusSpecial: "特别版",
+    negotiable: "价格面议",
   },
   // Process
   process: {

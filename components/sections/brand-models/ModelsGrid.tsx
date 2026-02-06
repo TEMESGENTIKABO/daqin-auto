@@ -1,7 +1,7 @@
 "use client";
 
 import VehicleCard from "./VehicleCard";
-import { VehicleModel } from "@/data/models";
+import { VehicleModel } from "@/data/Models/ModelProvider";
 import { ViewMode } from "./types";
 
 interface ModelsGridProps {

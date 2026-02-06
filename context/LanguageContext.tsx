@@ -10,6 +10,7 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   t: any;
   dir: 'ltr' | 'rtl';
+  isInitialized: boolean; // Add this
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -47,14 +48,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   
   const t = translations[language];
   const dir = language === 'ar' ? 'rtl' : 'ltr';
-  
-  // Don't render children until initialized to avoid hydration mismatch
-  if (!isInitialized) {
-    return null;
-  }
 
+  // Instead of returning null, render children but include initialization state
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, dir }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, dir, isInitialized }}>
       {children}
     </LanguageContext.Provider>
   );

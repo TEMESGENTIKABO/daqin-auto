@@ -308,6 +308,8 @@ export const vehicleModels: VehicleModel[] = [
   priceUSD: 0,
   images: [
     "/images/models/leopard/7-1.jpg",
+    "/images/models/leopard/7-2.jpg",
+    "/images/models/leopard/7-3.jpg",
   ],
   specs: {
     engine: "Plug-in Hybrid System",

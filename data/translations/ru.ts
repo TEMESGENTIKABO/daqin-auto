@@ -172,7 +172,8 @@ const ruTranslations = {
     statusLimited: "Лимитированный",
     statusBest: "Бестселлер",
     statusPreOrder: "Предзаказ",
-    statusSpecial: "Специальный"
+    statusSpecial: "Специальный",
+       negotiable: "Договорная",
   },
    // Contact details (keeping international format)
   contactDetails: {
@@ -315,6 +316,101 @@ const ruTranslations = {
         { label: "Мощность", value: "100-300 л.с." }
       ]
     }
+  },
+  //Filters
+   filters: {
+    title: "Фильтры",
+    clear: "Очистить",
+    selectAll: "Выбрать все",
+    clearAll: "Очистить все",
+    showResults: "Показать результаты",
+    showMore: "Показать больше",
+    showLess: "Показать меньше",
+    all: "Все",
+    resetAll: "Сбросить все фильтры",
+    searchPlaceholder: "Поиск брендов...",
+    
+    tabs: {
+      brands: "Бренды",
+      type: "Тип",
+      price: "Цена",
+      sort: "Сортировка"
+    },
+    
+    sections: {
+      brands: "Бренды",
+      type: "Тип",
+      price: "Цена",
+      sort: "Сортировка",
+      vehicleType: "Тип автомобиля",
+      priceRange: "Ценовой диапазон",
+      sortBy: "Сортировать по"
+    },
+    
+    categories: {
+      all: "Все",
+      electric: "Электрические",
+      hybrid: "Гибридные",
+      suv: "Внедорожники",
+      sedan: "Седаны"
+    },
+    
+    sortOptions: {
+      default: "Рекомендованные",
+      priceLow: "Цена: от низкой к высокой",
+      priceHigh: "Цена: от высокой к низкой",
+      yearNew: "Сначала новые",
+      yearOld: "Сначала старые",
+      nameA: "Название: А-Я",
+      nameZ: "Название: Я-А"
+    }
+  },
+  models: { 
+    // New keys for ModelsUI
+    heroTitle: "Качественные автомобили",
+    heroSubtitle: "Исследуйте роскошные автомобили для исключительного вождения",
+    searchPlaceholder: "Поиск по бренду, модели, категории, функциям...",
+    searchHint: "Поиск по брендам, моделям, категориям и функциям",
+    clearSearch: "Очистить поиск",
+    vehicleBrandsTitle: "Бренды автомобилей ({count})",
+    allBrands: "Все автомобили",
+    allBrandsShort: "Все бренды",
+    brandTitle: "{brand} ({count} моделей)",
+    searchResultsTitle: "Результаты поиска ({count})",
+    allModelsTitle: "Все модели автомобилей ({count})",
+    brandModelsTitle: "{brand} ({count} моделей)",
+    searchPaginationInfo: "Страница {current} из {total} • Показано {showing} подходящих автомобилей",
+    paginationInfo: "Страница {current} из {total} • Показано {showing} из {totalItems} автомобилей",
+    show: "Показать",
+    previousPage: "Предыдущая страница",
+    nextPage: "Следующая страница",
+    showingPagination: "Показано {start} по {end} из {total} автомобилей",
+    noSearchResultsTitle: "Результаты поиска не найдены",
+    noVehiclesFound: "Автомобили не найдены",
+    noSearchResultsDescription: 'Автомобили по запросу "{query}" не найдены. Попробуйте другие ключевые слова.',
+    noVehiclesAvailable: "В данный момент автомобили недоступны.",
+    noBrandVehicles: "Автомобили {brand} недоступны.",
+    viewAllBrands: "Посмотреть все бренды",
+    brandsAvailableTitle: "Доступные бренды ({count})",
+    brandError: 'Автомобили бренда "{brand}" не найдены. Показаны все автомобили.',
+    noSearchResults: 'По запросу "{query}" ничего не найдено',
+    searchResultsFound: '{count} результат{count !== "1" ? "ов" : ""} найдено по запросу "{query}"',
+    showingResults: "Показано {current} из {total} подходящих автомобилей",
+    whatsappMessage: "Здравствуйте! Я заинтересован в автомобиле {brand} {model} ({year}).\n\nЦена: {price}\n\nНе могли бы вы предоставить более подробную информацию?"
+  ,specs: {
+      engine: "Двигатель",
+      power: "Мощность",
+      seats: "Места",
+      transmission: "КПП",
+      year: "Год",
+      fuelType: "Тип топлива",
+      torque: "Крутящий момент",
+      fuelConsumption: "Расход топлива",
+      range: "Запас хода",
+      warranty: "Гарантия",
+      payload: "Грузоподъемность",
+      colors: "Доступные цвета",
+    },
   },
   // Footer 
   footer: {
