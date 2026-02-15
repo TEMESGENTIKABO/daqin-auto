@@ -30,19 +30,155 @@ export const brands = [
       ar: "ماركة سيارات ألمانية فاخرة",
     },
   },
+  
   {
     name: {
-      en: "Foton",
-      zh: "福田",
-      ru: "Фотон",
-      ar: "فوتون",
+      en: "Geely",
+      zh: "吉利汽车",
+      ru: "Джили",
+      ar: "جيلي",
     },
-    logo: "/images/brands/foton.png",
+    logo: "/images/brands/geely.png",
     description: {
-      en: "Chinese commercial vehicle manufacturer",
-      zh: "中国商用车制造商",
-      ru: "Китайский производитель коммерческих автомобилей",
-      ar: "شركة صينية لتصنيع المركبات التجارية",
+      en: "Chinese automotive giant with multiple premium brands",
+      zh: "拥有多个高端品牌的中国汽车巨头",
+      ru: "Китайский автомобильный гигант с несколькими премиальными брендами",
+      ar: "عملاق سيارات صيني يمتلك عدة علامات تجارية فاخرة",
+    },
+  },
+  {
+    name: {
+      en: "Chery",
+      zh: "奇瑞",
+      ru: "Чери",
+      ar: "شيري",
+    },
+    logo: "/images/brands/chery.png",
+    description: {
+      en: "Chinese automotive manufacturer",
+      zh: "中国汽车制造商",
+      ru: "Китайский производитель автомобилей",
+      ar: "شركة صينية لتصنيع السيارات",
+    },
+  },
+  {
+    name: {
+      en: "Changan",
+      zh: "长安汽车",
+      ru: "Чанган",
+      ar: "تشانغان",
+    },
+    logo: "/images/brands/changan.png",
+    description: {
+      en: "Chinese state-owned automotive manufacturer",
+      zh: "中国国有汽车制造商",
+      ru: "Китайский государственный производитель автомобилей",
+      ar: "شركة صينية مملوكة للدولة لتصنيع السيارات",
+    },
+  },
+  {
+    name: {
+      en: "FANG CHENG BAO",
+      zh: "方程豹",
+      ru: "Фанчэнбао",
+      ar: "فانغ تشنغ باو",
+    },
+    logo: "/images/brands/fangchengbao.png",
+    description: {
+      en: "BYD's professional off-road new energy vehicle brand",
+      zh: "比亚迪专业个性化新能源越野品牌",
+      ru: "Профессиональный внедорожный бренд новых энергетических автомобилей BYD",
+      ar: "علامة BYD المتخصصة في سيارات الدفع الرباعي الجديدة للطاقة",
+    },
+  },
+  {
+    name: {
+      en: "Deepal",
+      zh: "深蓝汽车",
+      ru: "Дипал",
+      ar: "ديبال",
+    },
+    logo: "/images/brands/deepal.png",
+    description: {
+      en: "Changan's new energy vehicle brand",
+      zh: "长安汽车旗下新能源汽车品牌",
+      ru: "Бренд новых энергетических автомобилей Changan",
+      ar: "علامة تشانغان للسيارات الجديدة للطاقة",
+    },
+  },
+  {
+    name: {
+      en: "Wuling",
+      zh: "五菱",
+      ru: "Вулинг",
+      ar: "وولينغ",
+    },
+    logo: "/images/brands/wuling.png",
+    description: {
+      en: "SGMW brand known for affordable vehicles",
+      zh: "上汽通用五菱品牌，以经济型汽车闻名",
+      ru: "Бренд SGMW, известный доступными автомобилями",
+      ar: "علامة تجارية لشركة SGMW معروفة بمركباتها الاقتصادية",
+    },
+  },
+  {
+    name: {
+      en: "Yangwang",
+      zh: "仰望",
+      ru: "Янван",
+      ar: "يانغ وانغ",
+    },
+    logo: "/images/brands/yangwang.png",
+    description: {
+      en: "BYD's premium new energy vehicle brand",
+      zh: "比亚迪旗下高端新能源汽车品牌",
+      ru: "Премиальный бренд новых энергетических автомобилей BYD",
+      ar: "علامة BYD الفاخرة للسيارات الجديدة للطاقة",
+    },
+  },
+  {
+    name: {
+      en: "MG",
+      zh: "名爵",
+      ru: "МГ",
+      ar: "إم جي",
+    },
+    logo: "/images/brands/mg.png",
+    description: {
+      en: "British-born, now Chinese-owned automotive brand",
+      zh: "英国起源，现中国拥有的汽车品牌",
+      ru: "Британский бренд, теперь принадлежащий китайцам",
+      ar: "ماركة سيارات بريطانية الأصل مملوكة الآن للصين",
+    },
+  },
+  {
+    name: {
+      en: "Nio",
+      zh: "蔚来",
+      ru: "Нио",
+      ar: "نيو",
+    },
+    logo: "/images/brands/nio.png",
+    description: {
+      en: "Chinese premium electric vehicle manufacturer",
+      zh: "中国高端电动汽车制造商",
+      ru: "Китайский производитель премиальных электромобилей",
+      ar: "شركة صينية لتصنيع السيارات الكهربائية الفاخرة",
+    },
+  },
+  {
+    name: {
+      en: "Voyah",
+      zh: "岚图",
+      ru: "Войя",
+      ar: "فويا",
+    },
+    logo: "/images/brands/voyah.png",
+    description: {
+      en: "Dongfeng's premium new energy vehicle brand",
+      zh: "东风汽车旗下高端新能源汽车品牌",
+      ru: "Премиальный бренд новых энергетических автомобилей Dongfeng",
+      ar: "علامة دونغفنغ الفاخرة للسيارات الجديدة للطاقة",
     },
   },
   {
@@ -167,21 +303,6 @@ export const brands = [
   },
   {
     name: {
-      en: "MG",
-      zh: "名爵",
-      ru: "МГ",
-      ar: "إم جي",
-    },
-    logo: "/images/brands/mg.png",
-    description: {
-      en: "British-born, now Chinese-owned automotive brand",
-      zh: "英国起源，现中国拥有的汽车品牌",
-      ru: "Британский бренд, теперь принадлежащий китайцам",
-      ar: "ماركة سيارات بريطانية الأصل مملوكة الآن للصين",
-    },
-  },
-  {
-    name: {
       en: "Li Auto",
       zh: "理想汽车",
       ru: "Ли Ауто",
@@ -240,7 +361,6 @@ export const brands = [
       ar: "العلامة التجارية الفاخرة لجيلي",
     },
   },
-  // Additional brands that might be in your priority order
 ];
 
 export type Brand = {

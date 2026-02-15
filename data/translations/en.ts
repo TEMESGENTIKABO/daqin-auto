@@ -5,7 +5,7 @@ const enTranslations = {
     company: "Xi'an Da Qin Dao Rui International Trade Co., Ltd.",
     companyFull: "Xi'an Da Qin Dao Rui International Trade Co., Ltd.", // Same as company
     contactBtn: "+86-15594634955",
-    brandTitle: "DAQIN AUTO", // Add this
+    brandTitle: "DAQIN AUTO EXPORT", // Add this
     nav: {
       home: "Home",
       about: "About",

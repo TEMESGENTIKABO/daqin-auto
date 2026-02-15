@@ -5,7 +5,7 @@ import { ModelProvider } from '@/data/Models/ModelProvider';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Header from '@/components/layout/Header'; // Import Header
 import Footer from '@/components/layout/Footer'; // Import Footer if you have one
-
+import FloatingContact from "@/components/FloatingContact";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -29,6 +29,7 @@ export default function RootLayout({
           <Header />
             <ModelProvider>
           <main>{children}</main>
+           <FloatingContact position="right" />
           <Footer /> 
 </ModelProvider>
         </LanguageProvider>

@@ -8,8 +8,8 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function BrandsGrid() {
   const { language } = useLanguage();
 
-  // Define priority order using English names for sorting
-  const priorityOrder = [
+  // Define Chinese brands list
+  const chineseBrands = [
     "Xiaomi",
     "BYD",
     "Xpeng",
@@ -18,16 +18,31 @@ export default function BrandsGrid() {
     "AITO",
     "Li Auto",
     "Lynk & Co",
+    "Geely",
+    "Chery",
+    "Changan",
+    "FANG CHENG BAO",
+    "Deepal",
+    "Wuling",
+    "Yangwang",
+    "MG",
+    "Nio",
+    "Voyah",
+    "Foton",
+  ];
+
+  // Define non-Chinese brands in desired order
+  const nonChineseBrands = [
     "BMW",
     "Mercedes-Benz",
     "Nissan",
     "Volkswagen",
     "Toyota",
-    "Foton",
-    "MG",
-
     "Honda",
   ];
+
+  // Combine the lists - Chinese brands first, then non-Chinese
+  const priorityOrder = [...chineseBrands, ...nonChineseBrands];
 
   const allBrands = [...brands];
 
@@ -58,8 +73,8 @@ export default function BrandsGrid() {
 
   return (
     <>
-      {/* Brands Grid - 8 columns on large screens with larger items */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+      {/* Brands Grid - 8 columns on large screens */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
         {sortedBrands.map((brand) => {
           const brandName = brand.name[language] || brand.name.en;
           const brandDescription =
@@ -69,26 +84,26 @@ export default function BrandsGrid() {
             <Link
               key={brand.name.en}
               href={`/models?brand=${encodeURIComponent(brandName)}`}
-              className="group relative bg-white p-4 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-40"
+              className="group relative bg-white p-3 rounded-lg border border-gray-200 hover:border-gold-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center h-32"
               aria-label={`View ${brandName} models`}
               title={brandDescription}
             >
-              {/* Logo Container - MUCH LARGER */}
-              <div className="h-20 w-20 mb-3 flex items-center justify-center">
+              {/* Logo Container */}
+              <div className="h-12 w-12 mb-2 flex items-center justify-center">
                 <div className="relative w-full h-full">
                   <Image
                     src={brand.logo}
                     alt={brandName}
                     fill
                     className="object-contain group-hover:scale-110 transition-transform duration-200"
-                    sizes="(max-width: 640px) 80px, 80px"
+                    sizes="(max-width: 640px) 48px, 48px"
                     priority={sortedBrands.indexOf(brand) < 16}
                   />
                 </div>
               </div>
 
-              {/* Brand Name - Larger */}
-              <h4 className="text-sm font-medium text-black text-center line-clamp-2 px-1">
+              {/* Brand Name */}
+              <h4 className="text-xs font-medium text-black text-center line-clamp-2 px-1">
                 {brandName}
               </h4>
 
