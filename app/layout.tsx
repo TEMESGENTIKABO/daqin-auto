@@ -29,7 +29,7 @@ export default function RootLayout({
           <Header />
             <ModelProvider>
           <main>{children}</main>
-           <FloatingContact position="right" />
+           <FloatingContact />
           <Footer /> 
 </ModelProvider>
         </LanguageProvider>
