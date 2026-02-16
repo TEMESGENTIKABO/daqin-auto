@@ -21,13 +21,13 @@ export default function BrandsGrid() {
     "Geely",
     "Chery",
     "Changan",
-    "fangchengbao",
+    "FANG CHENG BAO",
     "Deepal",
     "Wuling",
     "Yangwang",
     "MG",
     "Nio",
-    "voyah",
+    "Voyah",
     "Foton",
   ];
 

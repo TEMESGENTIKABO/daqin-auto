@@ -78,7 +78,7 @@ export const brands = [
   },
   {
     name: {
-      en: "fangchengbao",
+      en: "FANG CHENG BAO",
       zh: "方程豹",
       ru: "Фанчэнбао",
       ar: "فانغ تشنغ باو",
