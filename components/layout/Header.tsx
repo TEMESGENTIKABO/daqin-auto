@@ -145,8 +145,7 @@ export default function Header() {
   };
 
   // Calculate header height for proper positioning
-  const topBarHeight = 48; // h-12 = 48px on mobile, h-10 = 40px on desktop
-  const mainHeaderHeight = 64; // h-16 = 64px on mobile, h-18 = 72px on desktop
+  const topBarHeight = 48; // h-12 = 48px
 
   return (
     <>
@@ -157,23 +156,28 @@ export default function Header() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-12 md:h-10">
-            <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gold-primary/20 rounded-full">
-                <CheckCircle className="w-4 h-4 text-gold-primary flex-shrink-0" />
-                <span className="text-sm font-medium opacity-90 truncate text-base sm:text-sm">
+          <div className="flex items-center justify-between h-12">
+            {/* Company name - mobile optimized */}
+            <div className="flex items-center gap-2 overflow-hidden">
+              <div className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 bg-gold-primary/20 rounded-full">
+                <CheckCircle className="w-3.5 h-3.5 text-gold-primary flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-medium opacity-90 truncate max-w-[150px] sm:max-w-none">
                   {t.header.companyFull}
                 </span>
               </div>
             </div>
 
-            <div className="hidden md:flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-gold-primary flex-shrink-0" />
-                <span className="text-sm font-medium opacity-90 whitespace-nowrap">
-                  {t.common.phone}
-                </span>
-              </div>
+            {/* Phone - hidden on mobile, visible on tablet+ */}
+            <div className="hidden sm:flex items-center gap-2">
+              <Phone className="w-3.5 h-3.5 text-gold-primary flex-shrink-0" />
+              <span className="text-xs sm:text-sm font-medium opacity-90 whitespace-nowrap">
+                {t.common.phone}
+              </span>
+            </div>
+
+            {/* Mobile phone icon - visible only on smallest screens */}
+            <div className="sm:hidden">
+              <Phone className="w-4 h-4 text-gold-primary" />
             </div>
           </div>
         </div>
@@ -184,26 +188,26 @@ export default function Header() {
         className={`
           fixed left-0 right-0 z-40 transition-all duration-300 bg-gold-primary
           ${scrolled ? "shadow-xl" : ""}
-          ${isVisible ? "top-12 md:top-10" : "top-0"}
+          ${isVisible ? "top-12" : "top-0"}
         `}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
 
-        <nav className="container mx-auto px-4 sm:px-6 relative">
-          <div className="flex items-center justify-between h-16 md:h-18">
-            {/* Logo with Company Name */}
+        <nav className="container mx-auto px-3 sm:px-6 relative">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo with Company Name - mobile optimized */}
             <Link
               href="/"
-              className="flex items-center gap-2 md:gap-3 group z-10 flex-shrink-0"
+              className="flex items-center gap-1 sm:gap-2 md:gap-3 group z-10 flex-shrink-0 max-w-[60%] sm:max-w-none"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <Image
                   src="/images/daqin-logo.png"
                   alt="Daqin Auto Export"
-                  width={280}
-                  height={90}
-                  className="h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:h-16"
+                  width={200}
+                  height={65}
+                  className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
                   priority
                   quality={100}
                   style={{
@@ -211,12 +215,12 @@ export default function Header() {
                   }}
                 />
               </div>
-              <span className="text-white font-bold text-xl md:text-2xl leading-tight tracking-tight">
+              <span className="text-white font-bold text-sm sm:text-base md:text-xl lg:text-2xl leading-tight tracking-tight truncate">
                 {t.header.brandTitle}
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - hidden on mobile/tablet */}
             <div className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
                 <Link
@@ -230,23 +234,23 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Right Actions */}
-            <div className="flex items-center gap-2">
+            {/* Right Actions - mobile optimized */}
+            <div className="flex items-center gap-1 sm:gap-2">
               {/* Search Button */}
               <button
                 ref={searchButtonRef}
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="p-2.5 rounded-lg text-white hover:bg-white/20 transition-all duration-200 active:scale-95 relative z-50"
+                className="p-2 sm:p-2.5 rounded-lg text-white hover:bg-white/20 transition-all duration-200 active:scale-95 relative z-50 touch-manipulation"
                 aria-label="Search"
               >
-                <Search className="w-5 h-5" />
+                <Search className="w-5 h-5 sm:w-5 sm:h-5" />
               </button>
 
               {/* Language Button - Desktop */}
               <div className="relative hidden md:block" ref={languageRef}>
                 <button
                   onClick={() => setLanguageOpen(!languageOpen)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:bg-white/20 transition-all duration-200"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:bg-white/20 transition-all duration-200 touch-manipulation"
                   aria-label="Select language"
                 >
                   <Globe className="w-4 h-4" />
@@ -265,7 +269,7 @@ export default function Header() {
                             setLanguageOpen(false);
                           }}
                           className={`
-                            flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors
+                            flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors touch-manipulation
                             ${language === lang.code 
                               ? "bg-gold-primary/10 text-gold-primary" 
                               : "text-gray-700 hover:bg-gray-50"
@@ -292,20 +296,20 @@ export default function Header() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-2.5 rounded-lg text-white hover:bg-white/20 transition-all duration-200 active:scale-95"
+                className="lg:hidden p-2 sm:p-2.5 rounded-lg text-white hover:bg-white/20 transition-all duration-200 active:scale-95 touch-manipulation"
                 aria-label="Open menu"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-6 h-6 sm:w-6 sm:h-6" />
               </button>
             </div>
           </div>
         </nav>
 
-        {/* Search Dropdown - IMPROVED POPUP POSITIONING */}
+        {/* Search Dropdown - mobile optimized */}
         {searchOpen && (
           <div 
             ref={searchRef}
-            className="absolute left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-2xl mt-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-4 animate-fadeIn z-[100]"
+            className="absolute left-1/2 transform -translate-x-1/2 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-2xl mt-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 p-3 sm:p-4 animate-fadeIn z-[100]"
             style={{ 
               top: 'calc(100% + 0.5rem)',
             }}
@@ -313,18 +317,18 @@ export default function Header() {
           >
             <form onSubmit={handleSearchSubmit}>
               <div className="relative">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   ref={searchInputRef}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={t.header?.searchPlaceholder || "Search vehicles..."}
-                  className="w-full pl-11 pr-14 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 text-sm"
+                  className="w-full pl-10 pr-20 py-2.5 sm:py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary/50 text-sm"
                 />
                 <button
                   type="submit"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md text-sm font-medium hover:bg-gold-primary/90 transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gold-primary text-white px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium hover:bg-gold-primary/90 transition-colors touch-manipulation"
                 >
                   {t.header?.searchButton || "Search"}
                 </button>
@@ -336,12 +340,12 @@ export default function Header() {
               <span className="text-xs text-gray-500 font-medium px-1">
                 {t.hero?.quickSearches || "Quick searches"}
               </span>
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
                 {["electric", "SUV", "BYD", "Tesla"].map((term) => (
                   <button
                     key={term}
                     onClick={() => handleQuickSearch(term)}
-                    className="px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors"
+                    className="px-2.5 sm:px-3 py-1.5 bg-gold-primary/10 text-gold-primary text-xs sm:text-sm font-medium rounded-lg hover:bg-gold-primary/20 transition-colors touch-manipulation"
                   >
                     {term}
                   </button>
@@ -352,7 +356,7 @@ export default function Header() {
         )}
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - improved for touch */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[60] lg:hidden">
           {/* Backdrop */}
@@ -362,23 +366,23 @@ export default function Header() {
           />
 
           {/* Panel */}
-          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-gold-primary shadow-2xl animate-slideInRight overflow-hidden">
+          <div className="absolute right-0 top-0 h-full w-full max-w-sm sm:max-w-md bg-gold-primary shadow-2xl animate-slideInRight overflow-hidden">
             {/* Header */}
-            <div className="sticky top-0 z-10 bg-gold-primary p-5">
+            <div className="sticky top-0 z-10 bg-gold-primary p-4 sm:p-5">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="relative">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="relative flex-shrink-0">
                     <Image
                       src="/images/daqin-logo.png"
                       alt="Daqin Auto"
-                      width={200}
-                      height={65}
-                      className="h-14 w-auto object-contain"
+                      width={160}
+                      height={52}
+                      className="h-10 sm:h-12 w-auto object-contain"
                       quality={100}
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-bold text-base md:text-lg leading-tight tracking-tight">
+                    <span className="text-white font-bold text-sm sm:text-base md:text-lg leading-tight tracking-tight">
                       {t.header.brandTitle}
                     </span>
                     <span className="text-white/80 text-xs">
@@ -388,36 +392,37 @@ export default function Header() {
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2.5 rounded-lg hover:bg-white/20 transition-colors"
+                  className="p-2 sm:p-2.5 rounded-lg hover:bg-white/20 transition-colors touch-manipulation"
+                  aria-label="Close menu"
                 >
-                  <X className="w-6 h-6 text-white" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </button>
               </div>
 
               {/* Search in Menu */}
-              <div className="mt-4">
+              <div className="mt-3 sm:mt-4">
                 <form onSubmit={handleSearchSubmit}>
                   <div className="relative">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={t.header?.searchPlaceholder || "Search vehicles..."}
-                      className="w-full pl-11 pr-12 py-3 bg-white rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary text-sm"
+                      className="w-full pl-10 pr-12 py-2.5 sm:py-3 bg-white rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-primary text-sm"
                     />
                     {searchQuery && (
                       <button
                         type="button"
                         onClick={() => setSearchQuery("")}
-                        className="absolute right-12 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-12 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 touch-manipulation"
                       >
                         <X className="w-4 h-4" />
                       </button>
                     )}
                     <button
                       type="submit"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-gold-primary text-white p-1.5 rounded-md"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-gold-primary text-white p-1.5 rounded-md touch-manipulation"
                     >
                       <Search className="w-4 h-4" />
                     </button>
@@ -426,26 +431,26 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Navigation Links */}
-            <div className="overflow-y-auto h-[calc(100vh-200px)] bg-gold-primary">
-              <div className="p-5">
+            {/* Navigation Links - scrollable area */}
+            <div className="overflow-y-auto h-[calc(100vh-140px)] sm:h-[calc(100vh-160px)] bg-gold-primary">
+              <div className="p-4 sm:p-5">
                 {navigation.map((item) => (
                   <Link
                     key={item.id}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-4 rounded-xl text-white hover:bg-white/20 transition-colors mb-1"
+                    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl text-white hover:bg-white/20 transition-colors mb-1 touch-manipulation active:bg-white/30"
                   >
                     <div className="p-2 bg-white/20 rounded-lg">
                       <item.icon className="w-5 h-5" />
                     </div>
-                    <span className="font-medium text-base">{item.name}</span>
+                    <span className="font-medium text-sm sm:text-base">{item.name}</span>
                   </Link>
                 ))}
 
                 {/* Language Selector */}
                 <div className="mt-4 pt-4 border-t border-white/20">
-                  <span className="text-white/80 text-sm font-medium px-4 block mb-2">
+                  <span className="text-white/80 text-xs sm:text-sm font-medium px-4 block mb-2">
                     {t.header.language}
                   </span>
                   <div className="space-y-1">
@@ -457,22 +462,22 @@ export default function Header() {
                           setMobileMenuOpen(false);
                         }}
                         className={`
-                          flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors
+                          flex items-center justify-between w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition-colors touch-manipulation
                           ${language === lang.code 
                             ? "bg-white/20 text-white" 
-                            : "text-white/80 hover:bg-white/10"
+                            : "text-white/80 hover:bg-white/10 active:bg-white/20"
                           }
                         `}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{lang.flag}</span>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <span className="text-xl sm:text-2xl">{lang.flag}</span>
                           <div className="flex flex-col items-start">
-                            <span className="font-medium text-base">{lang.name}</span>
+                            <span className="font-medium text-sm sm:text-base">{lang.name}</span>
                             <span className="text-xs text-white/60">{lang.code.toUpperCase()}</span>
                           </div>
                         </div>
                         {language === lang.code && (
-                          <CheckCircle className="w-5 h-5" />
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                         )}
                       </button>
                     ))}
@@ -483,8 +488,6 @@ export default function Header() {
           </div>
         </div>
       )}
-
-      {/* REMOVED SPACER - No more extra space between header and hero */}
 
       {/* Animations */}
       <style jsx global>{`
@@ -498,6 +501,12 @@ export default function Header() {
         }
         .animate-fadeIn { animation: fadeIn 0.15s ease-out; }
         .animate-slideInRight { animation: slideInRight 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* Touch-friendly tap targets */
+        .touch-manipulation {
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }
         
         /* Ensure hero section starts directly below header */
         main, .hero-section, [class*="hero"] {
