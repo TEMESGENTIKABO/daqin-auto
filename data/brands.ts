@@ -83,7 +83,7 @@ export const brands = [
       ru: "Фанчэнбао",
       ar: "فانغ تشنغ باو",
     },
-    logo: "/images/brands/fangchengbao.png",
+    logo: "/images/brands/FangChengBao.png",
     description: {
       en: "BYD's professional off-road new energy vehicle brand",
       zh: "比亚迪专业个性化新能源越野品牌",
@@ -173,7 +173,7 @@ export const brands = [
       ru: "Войя",
       ar: "فويا",
     },
-    logo: "/images/brands/voyah.png",
+    logo: "/images/brands/Voyah.png",
     description: {
       en: "Dongfeng's premium new energy vehicle brand",
       zh: "东风汽车旗下高端新能源汽车品牌",
