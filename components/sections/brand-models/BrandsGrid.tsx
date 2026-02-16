@@ -21,7 +21,7 @@ export default function BrandsGrid() {
     "Geely",
     "Chery",
     "Changan",
-    "FANG CHENG BAO",
+    "Fangchengbao",
     "Deepal",
     "Wuling",
     "Yangwang",
