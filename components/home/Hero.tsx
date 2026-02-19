@@ -88,15 +88,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Premium Stats Section - With INCREASED gap */}
-      <section className="py-8 md:py-6 bg-gradient-to-b from-gray-950 to-black relative mt-8 md:mt-12 z-20">
+      {/* Premium Stats Section */}
+      <section className="py-6 md:py-4 bg-gradient-to-b from-gray-950 to-black relative -mt-2 z-20">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#D4AF37_1px,transparent_0)] bg-[length:60px_60px]"></div>
         </div>
 
         {/* Title */}
-        <div className="px-4 md:px-6 mb-6 md:mb-4 relative">
+        <div className="px-4 md:px-6 mb-4 md:mb-3 relative">
           <div className="flex items-center gap-2">
             <Trophy className="w-5 h-5 text-[#D4AF37]" />
             <div className="flex items-center gap-2">
@@ -283,7 +283,7 @@ export default function HomePage() {
         </div>
 
         {/* Decorative line */}
-        <div className="px-4 md:px-6 mt-8 md:mt-6">
+        <div className="px-4 md:px-6 mt-6 md:mt-3">
           <div className="h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"></div>
         </div>
       </section>
