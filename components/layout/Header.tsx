@@ -145,9 +145,7 @@ export default function Header() {
   };
 
   // Calculate header height for proper positioning
-  const topBarHeight = 48; // h-12 = 48px
-  const mainHeaderHeight = 64; // h-16 = 64px
-  const totalHeaderHeight = topBarHeight + mainHeaderHeight; // 112px
+  const topBarHeight = 50; // h-12 = 48px
 
   return (
     <>
@@ -358,17 +356,6 @@ export default function Header() {
         )}
       </header>
 
-      {/* Spacer div to create gap between header and content */}
-      <div 
-        className={`w-full transition-all duration-300 ${
-          isVisible ? `h-[${totalHeaderHeight}px]` : 'h-0'
-        }`}
-        style={{ 
-          height: isVisible ? `${totalHeaderHeight}px` : '0px',
-        }}
-        aria-hidden="true"
-      />
-
       {/* Mobile Menu - improved for touch */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[60] lg:hidden">
@@ -519,6 +506,12 @@ export default function Header() {
         .touch-manipulation {
           touch-action: manipulation;
           -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Ensure hero section starts directly below header */
+        main, .hero-section, [class*="hero"] {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
         }
       `}</style>
     </>
