@@ -1,9 +1,9 @@
 const ruTranslations = {
   // Header
   header: {
-    title: "Daqin Auto",
+    title: "ДАЦИН АВТО ЭКСПОРТ",
     company: "Сиань Дацинь Даоруй Интернэшнл Трейд Ко., Лтд.",
-     brandTitle: "ДАЦИН АВТО", // Russian transliteration in caps
+     brandTitle: "ДАЦИН АВТО ЭКСПОРТ", // Russian transliteration in caps
     nav: {
       home: "Главная",
       about: "О нас",
