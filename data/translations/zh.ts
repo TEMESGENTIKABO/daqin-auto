@@ -2,8 +2,8 @@ const zhTranslations = {
   // Header
   header: {
     title: "大秦汽车",
-    company: "西安大秦道瑞国际贸易有限公司",
-    companyFull: "西安大秦道瑞国际贸易有限公司",
+    company: "西安大秦道睿国际贸易有限公司",
+    companyFull: "西安大秦道睿国际贸易有限公司",
     brandTitle: "大秦汽车出口", // Chinese brand name
     nav: {
       home: "首页",

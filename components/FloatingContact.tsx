@@ -41,8 +41,26 @@ export default function FloatingContact() {
 
   return (
     <>
-      {/* Floating Contact Container - Right Edge */}
-      <div className="fixed right-0 bottom-6 z-50 flex flex-col items-end">
+      {/* Floating Contact Container - Top Right Edge */}
+      <div className="fixed right-0 top-6 z-50 flex flex-col items-end">
+        {/* Main Toggle Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="
+            w-9 h-9 rounded-full flex items-center justify-center shadow-xl
+            transform hover:scale-110 active:scale-95 transition-all duration-200
+            bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700
+            mr-4 mb-2
+          "
+          aria-label={isOpen ? "Close contact menu" : "Open contact menu"}
+        >
+          {isOpen ? (
+            <X className="w-4 h-4 text-white" />
+          ) : (
+            <MessageCircle className="w-4 h-4 text-white" />
+          )}
+        </button>
+
         {/* Contact Buttons */}
         <div
           className={`
@@ -154,24 +172,6 @@ export default function FloatingContact() {
             </div>
           </a>
         </div>
-
-        {/* Main Toggle Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="
-            w-9 h-9 rounded-full flex items-center justify-center shadow-xl
-            transform hover:scale-110 active:scale-95 transition-all duration-200
-            bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700
-            mr-4
-          "
-          aria-label={isOpen ? "Close contact menu" : "Open contact menu"}
-        >
-          {isOpen ? (
-            <X className="w-4 h-4 text-white" />
-          ) : (
-            <MessageCircle className="w-4 h-4 text-white" />
-          )}
-        </button>
       </div>
 
       {/* Scroll to Top Button - Left Corner */}

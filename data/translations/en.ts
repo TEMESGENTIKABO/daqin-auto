@@ -261,8 +261,8 @@ const enTranslations = {
   // Common
   common: {
     phone: "+86-15594634955",
-    email: "contact@daqinauto.com",
-    address: "Xi'an, Shanxi Province, China",
+    email: "mamushjebessa@gmail.com",
+    address: "Xi'an, Shaanxi Province, China",
     available: "Available 24/7",
     learnMore: "Learn More →",
     services: "Our Services",
@@ -300,8 +300,8 @@ const enTranslations = {
   contactDetails: {
     phone: "+86-155-9463-4955",
     phoneDisplay: "+86-155-9463-4955",
-    email: "contact@daqinauto.com",
-    address: "Xi'an, Shanxi Province, China",
+    email: "mamushjebessa@gmail.com",
+    address: "Xi'an, Shaanxi Province, China",
     wechatId: "daqin_auto",
     telegramId: "@daqinauto",
     whatsapp: "+86-155-9463-4955",
