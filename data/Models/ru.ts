@@ -1076,56 +1076,7 @@ export const vehicleModels: VehicleModel[] = [
   },
 
   // ========== TOYOTA MODELS ==========
-  {
-    id: "toyota-frontlander-2026-elite",
-    brand: "Toyota",
-    model: "Frontlander",
-    category: "SUV",
-    year: 2026,
-    priceUSD: 0, // Договорная цена
-    images: ["/images/models/toyota/frontlander-1.jpg"],
-    specs: {
-      engine: "2.0L Интеллектуальный гибрид",
-      power: "184 л.с.",
-      torque: "190 Н·м",
-      transmission: "E-CVT",
-      fuelType: "Hybrid",
-      seats: 5,
-      doors: 5,
-      length: "4460 мм",
-      width: "1825 мм",
-      height: "1620 мм",
-      wheelbase: "2690 мм",
-      fuelConsumption: "5,2 л/100 км",
-      acceleration: "8,9 с",
-      topSpeed: "180 км/ч",
-      driveType: "FWD",
-      cargoVolume: "420 л",
-      warranty: "3 года/100 000 км",
-    },
-    features: [
-      "Роскошь топ-комплектации",
-      "Эффективность HEV",
-      "Конфигурация 2WD",
-      "Toyota Safety Sense",
-      "Премиальный интерьер",
-      "Усовершенствованная информационно-развлекательная система",
-      "Функции комфорта",
-      "Системы безопасности",
-      "Гибридная технология",
-      "Надёжная производительность",
-    ],
-    description:
-      "2026 Toyota Frontlander 2.0L Intelligent Hybrid Elite Edition - Гибридный внедорожник топ-комплектации, оснащённый передовой гибридной технологией Toyota и премиальными функциями.",
-    available: true,
-    featured: true,
-    status: "New",
-    tagline: "Интеллектуальное гибридное совершенство",
-    promotion: "Свяжитесь для уточнения цены",
-    rating: 4.6,
-    reviewCount: 78,
-    colors: ["Элитный белый", "Премиальный серый", "Роскошный синий"],
-  },
+
 
   // ========== WULING MODELS ==========
   {

@@ -100,11 +100,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速 3.1 秒",
     },
-    features: [
-      "高压混合动力平台",
-      "豪华内饰",
-      "高级驾驶辅助",
-    ],
+    features: ["高压混合动力平台", "豪华内饰", "高级驾驶辅助"],
     description:
       "极氪 9X 是一款旗舰插电式混合动力 SUV，将极致性能与电力效率融为一体。",
     available: true,
@@ -146,11 +142,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速 3.6 秒",
     },
-    features: [
-      "e⁴ 独立轮边驱动",
-      "极限越野能力",
-      "应急浮水模式",
-    ],
+    features: ["e⁴ 独立轮边驱动", "极限越野能力", "应急浮水模式"],
     description:
       "仰望 U8 是一款豪华增程式电动 SUV，专为极致性能和越野能力而设计。",
     available: true,
@@ -192,11 +184,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速 3.6 秒",
     },
-    features: [
-      "加长轴距",
-      "豪华后排座椅",
-      "先进悬挂系统",
-    ],
+    features: ["加长轴距", "豪华后排座椅", "先进悬挂系统"],
     description:
       "仰望 U8L 是 U8 的长轴距豪华版，在保持极致性能的同时，提升了后排舒适性。",
     available: true,
@@ -238,10 +226,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速 4.3–4.9 秒",
     },
-    features: [
-      "华为 ADS 智能驾驶",
-      "豪华智能座舱",
-    ],
+    features: ["华为 ADS 智能驾驶", "豪华智能座舱"],
     description:
       "华为 Maextro S800 是一款旗舰级豪华轿车，提供先进的智能驾驶和增程式电动能力。",
     available: true,
@@ -283,10 +268,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速 3.23 秒",
     },
-    features: [
-      "800V 架构",
-      "高级自动驾驶",
-    ],
+    features: ["800V 架构", "高级自动驾驶"],
     description:
       "小米 YU7 是一款高性能电动 SUV，拥有先进的计算能力和长续航能力。",
     available: true,
@@ -328,12 +310,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–50 km/h 加速 4.9 秒",
     },
-    features: [
-      "刀片电池技术",
-      "直流快充",
-      "紧凑城市设计",
-      "先进安全系统",
-    ],
+    features: ["刀片电池技术", "直流快充", "紧凑城市设计", "先进安全系统"],
     description:
       "比亚迪海鸥是一款紧凑型纯电掀背车，采用现代电动汽车技术，专为高效城市出行而设计。",
     available: true,
@@ -375,11 +352,7 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速 7.6 秒",
     },
-    features: [
-      "涡轮增压发动机",
-      "运动型 SUV 设计",
-      "高级驾驶辅助",
-    ],
+    features: ["涡轮增压发动机", "运动型 SUV 设计", "高级驾驶辅助"],
     description:
       "吉利缤越是一款紧凑型汽油动力 SUV，提供运动性能和现代互联体验。",
     available: true,
@@ -421,13 +394,8 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "制造商未指定",
     },
-    features: [
-      "紧凑型 SUV 平台",
-      "燃油经济型发动机",
-      "适合城市驾驶的尺寸",
-    ],
-    description:
-      "枫叶 X3 Pro 是一款紧凑型汽油 SUV，专注于经济性和日常实用性。",
+    features: ["紧凑型 SUV 平台", "燃油经济型发动机", "适合城市驾驶的尺寸"],
+    description: "枫叶 X3 Pro 是一款紧凑型汽油 SUV，专注于经济性和日常实用性。",
     available: true,
     featured: true,
     status: "New",
@@ -467,13 +435,8 @@ export const vehicleModels: VehicleModel[] = [
       warranty: "制造商标准",
       acceleration: "0–100 km/h 加速约 7.9 秒",
     },
-    features: [
-      "中型 SUV 舒适性",
-      "高级信息娱乐",
-      "涡轮增压性能",
-    ],
-    description:
-      "吉利博越 L 是一款中型汽油 SUV，提供舒适性、性能和先进技术。",
+    features: ["中型 SUV 舒适性", "高级信息娱乐", "涡轮增压性能"],
+    description: "吉利博越 L 是一款中型汽油 SUV，提供舒适性、性能和先进技术。",
     available: true,
     featured: true,
     status: "In Stock",
@@ -802,8 +765,7 @@ export const vehicleModels: VehicleModel[] = [
     available: true,
     featured: false,
     status: "Best Seller",
-    tagline:
-      "福田奥铃卡车为何主导城市物流：专家评测",
+    tagline: "福田奥铃卡车为何主导城市物流：专家评测",
     promotion: "城市物流特惠套餐",
     detailsLink: "/models/foton-aumark-trucks",
     rating: 4.7,
@@ -1077,56 +1039,6 @@ export const vehicleModels: VehicleModel[] = [
   },
 
   // ========== 丰田车型 ==========
-  {
-    id: "toyota-frontlander-2026-elite",
-    brand: "丰田",
-    model: "锋兰达",
-    category: "SUV",
-    year: 2026,
-    priceUSD: 0, // 价格可议
-    images: ["/images/models/toyota/frontlander-1.jpg"],
-    specs: {
-      engine: "2.0L 智能混合动力",
-      power: "184 马力",
-      torque: "190 Nm",
-      transmission: "E-CVT",
-      fuelType: "Hybrid",
-      seats: 5,
-      doors: 5,
-      length: "4460 mm",
-      width: "1825 mm",
-      height: "1620 mm",
-      wheelbase: "2690 mm",
-      fuelConsumption: "5.2L/100km",
-      acceleration: "8.9 秒",
-      topSpeed: "180 km/h",
-      driveType: "FWD",
-      cargoVolume: "420L",
-      warranty: "3 年/100,000 公里",
-    },
-    features: [
-      "顶配豪华",
-      "HEV 高效",
-      "2WD 配置",
-      "丰田 Safety Sense",
-      "高级内饰",
-      "先进信息娱乐",
-      "舒适功能",
-      "安全系统",
-      "混合动力技术",
-      "可靠性能",
-    ],
-    description:
-      "2026 款丰田锋兰达 2.0L 智能混合动力精英版 - 顶配混合动力 SUV，采用丰田先进的混合动力技术和高级功能。",
-    available: true,
-    featured: true,
-    status: "New",
-    tagline: "智能混合动力卓越",
-    promotion: "请联系咨询定价",
-    rating: 4.6,
-    reviewCount: 78,
-    colors: ["精英白", "高级灰", "豪华蓝"],
-  },
 
   // ========== 五菱车型 ==========
   {
@@ -1365,8 +1277,7 @@ export const vehicleModels: VehicleModel[] = [
       "5G 互联",
       "OTA 更新",
     ],
-    description:
-      "高级混合动力轿车，采用运动型设计和先进的混合动力技术。",
+    description: "高级混合动力轿车，采用运动型设计和先进的混合动力技术。",
     available: true,
     featured: false,
     status: "New",
@@ -1410,8 +1321,7 @@ export const vehicleModels: VehicleModel[] = [
       "语音控制",
       "OTA 更新",
     ],
-    description:
-      "经济型混合动力轿车，为日常通勤提供卓越的燃油经济性。",
+    description: "经济型混合动力轿车，为日常通勤提供卓越的燃油经济性。",
     available: true,
     featured: false,
     status: "In Stock",
@@ -1454,8 +1364,7 @@ export const vehicleModels: VehicleModel[] = [
       "语音助手",
       "OTA 更新",
     ],
-    description:
-      "电动轿车，以经济实惠的价格提供令人印象深刻的续航里程。",
+    description: "电动轿车，以经济实惠的价格提供令人印象深刻的续航里程。",
     available: true,
     featured: false,
     status: "In Stock",
@@ -1496,8 +1405,7 @@ export const vehicleModels: VehicleModel[] = [
       "5G 互联",
       "先进 ADAS",
     ],
-    description:
-      "先进电动轿车，续航里程更长，功能更高级。",
+    description: "先进电动轿车，续航里程更长，功能更高级。",
     available: true,
     featured: false,
     status: "New",
@@ -1541,8 +1449,7 @@ export const vehicleModels: VehicleModel[] = [
       "智能手机集成",
       "基础 ADAS",
     ],
-    description:
-      "实用旅行车，配备 PHEV 技术，实现高效家庭出行。",
+    description: "实用旅行车，配备 PHEV 技术，实现高效家庭出行。",
     available: true,
     featured: false,
     status: "In Stock",
@@ -1582,8 +1489,7 @@ export const vehicleModels: VehicleModel[] = [
       "激光雷达 ADAS",
       "高级音响",
     ],
-    description:
-      "超豪华电动轿车，具备超跑性能和行政级舒适。",
+    description: "超豪华电动轿车，具备超跑性能和行政级舒适。",
     available: true,
     featured: true,
     status: "Limited Edition",
@@ -1625,8 +1531,7 @@ export const vehicleModels: VehicleModel[] = [
       "行政功能",
       "先进安全",
     ],
-    description:
-      "四座行政级豪华轿车，配备定制内饰和终极性能。",
+    description: "四座行政级豪华轿车，配备定制内饰和终极性能。",
     available: true,
     featured: false,
     status: "Limited Edition",
@@ -1666,8 +1571,7 @@ export const vehicleModels: VehicleModel[] = [
       "性能功能",
       "定制选项",
     ],
-    description:
-      "中国电动超跑，具备超级跑车性能和先进技术。",
+    description: "中国电动超跑，具备超级跑车性能和先进技术。",
     available: true,
     featured: true,
     status: "Limited Edition",
@@ -1709,8 +1613,7 @@ export const vehicleModels: VehicleModel[] = [
       "地形选择",
       "高级材料",
     ],
-    description:
-      "面向越野的电动 SUV，兼具高级功能和能力。",
+    description: "面向越野的电动 SUV，兼具高级功能和能力。",
     available: true,
     featured: false,
     status: "New",
@@ -1750,8 +1653,7 @@ export const vehicleModels: VehicleModel[] = [
       "应用程序连接",
       "基础 ADAS",
     ],
-    description:
-      "紧凑型电动 SUV，提供实用的城市交通。",
+    description: "紧凑型电动 SUV，提供实用的城市交通。",
     available: true,
     featured: false,
     status: "In Stock",
@@ -1792,8 +1694,7 @@ export const vehicleModels: VehicleModel[] = [
       "高级材料",
       "先进 ADAS",
     ],
-    description:
-      "中型高级电动 SUV，具有豪华功能和良好续航。",
+    description: "中型高级电动 SUV，具有豪华功能和良好续航。",
     available: true,
     featured: false,
     status: "In Stock",
@@ -1834,8 +1735,7 @@ export const vehicleModels: VehicleModel[] = [
       "先进安全",
       "豪华材料",
     ],
-    description:
-      "大型豪华电动 SUV，采用六座行政配置。",
+    description: "大型豪华电动 SUV，采用六座行政配置。",
     available: true,
     featured: false,
     status: "In Stock",
@@ -2156,8 +2056,7 @@ export const vehicleModels: VehicleModel[] = [
       "基础越野能力",
       "宽敞空间",
     ],
-    description:
-      "全球最畅销 SUV，提供可靠性和实用性。",
+    description: "全球最畅销 SUV，提供可靠性和实用性。",
     available: true,
     featured: false,
     status: "New",
@@ -2777,13 +2676,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/aito-m7-2026",
     rating: 4.8,
     reviewCount: 0,
-    colors: [
-      "陶瓷白",
-      "幻影黑",
-      "冰晶银",
-      "深海蓝",
-      "沙漠金",
-    ],
+    colors: ["陶瓷白", "幻影黑", "冰晶银", "深海蓝", "沙漠金"],
   },
 
   {
@@ -2854,13 +2747,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/aito-m9-2025",
     rating: 4.9,
     reviewCount: 0,
-    colors: [
-      "星钻蓝",
-      "曜石黑",
-      "冰川白",
-      "太空灰",
-      "森林绿",
-    ],
+    colors: ["星钻蓝", "曜石黑", "冰川白", "太空灰", "森林绿"],
   },
   {
     id: "aion-y-2025",
@@ -2921,13 +2808,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/aion-y-2025",
     rating: 4.6,
     reviewCount: 0,
-    colors: [
-      "都市灰",
-      "天空蓝",
-      "水晶白",
-      "熔岩橙",
-      "森林绿",
-    ],
+    colors: ["都市灰", "天空蓝", "水晶白", "熔岩橙", "森林绿"],
   },
 
   {
@@ -2989,13 +2870,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/aion-ut-2025",
     rating: 4.3,
     reviewCount: 0,
-    colors: [
-      "薄荷绿",
-      "日落黄",
-      "珍珠白",
-      "宇宙黑",
-      "樱桃红",
-    ],
+    colors: ["薄荷绿", "日落黄", "珍珠白", "宇宙黑", "樱桃红"],
   },
   {
     id: "aion-s-plus-2026",
@@ -3765,12 +3640,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/changan-a06-2026",
     rating: 4.6,
     reviewCount: 0,
-    colors: [
-      "电子蓝",
-      "水晶银",
-      "珍珠白",
-      "午夜黑",
-    ],
+    colors: ["电子蓝", "水晶银", "珍珠白", "午夜黑"],
   },
 
   {
@@ -3828,12 +3698,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/changan-a07-2026",
     rating: 4.8,
     reviewCount: 0,
-    colors: [
-      "奢华金",
-      "铂金银",
-      "钻石白",
-      "曜石黑",
-    ],
+    colors: ["奢华金", "铂金银", "钻石白", "曜石黑"],
   },
 
   {
@@ -3957,13 +3822,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/changan-q07-2025",
     rating: 4.8,
     reviewCount: 0,
-    colors: [
-      "水晶白",
-      "幻影黑",
-      "银灰",
-      "蔚蓝",
-      "森林绿",
-    ],
+    colors: ["水晶白", "幻影黑", "银灰", "蔚蓝", "森林绿"],
   },
   // ========== 奇瑞车型 ==========
   {
@@ -4531,12 +4390,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/geely-star-8-2025",
     rating: 4.8,
     reviewCount: 0,
-    colors: [
-      "性能蓝",
-      "石墨灰",
-      "水晶白",
-      "午夜黑",
-    ],
+    colors: ["性能蓝", "石墨灰", "水晶白", "午夜黑"],
   },
 
   {
@@ -4714,13 +4568,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/geely-galaxy-m9-2025",
     rating: 4.9,
     reviewCount: 0,
-    colors: [
-      "银河金",
-      "午夜蓝",
-      "水晶白",
-      "幻影黑",
-      "勃艮第酒红",
-    ],
+    colors: ["银河金", "午夜蓝", "水晶白", "幻影黑", "勃艮第酒红"],
   },
   {
     id: "chery-luxeed-r7-2026",
@@ -4822,13 +4670,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/mg5-2026",
     rating: 4.6,
     reviewCount: 0,
-    colors: [
-      "多佛白",
-      "卵石黑",
-      "钻石红",
-      "卢顿蓝",
-      "银霜",
-    ],
+    colors: ["多佛白", "卵石黑", "钻石红", "卢顿蓝", "银霜"],
   },
 
   // ========== 岚图车型 ==========
@@ -4894,13 +4736,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/voyah-passion-l-2026",
     rating: 4.9,
     reviewCount: 0,
-    colors: [
-      "北极白",
-      "幻影黑",
-      "量子灰",
-      "勃艮第红",
-      "蔚蓝",
-    ],
+    colors: ["北极白", "幻影黑", "量子灰", "勃艮第红", "蔚蓝"],
   },
 
   {
@@ -4965,13 +4801,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/voyah-qinshan-2026",
     rating: 4.9,
     reviewCount: 0,
-    colors: [
-      "帝王黑",
-      "铂金银",
-      "皇家蓝",
-      "水晶白",
-      "勃艮第酒红",
-    ],
+    colors: ["帝王黑", "铂金银", "皇家蓝", "水晶白", "勃艮第酒红"],
   },
 
   {
@@ -5037,13 +4867,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/voyah-dreamer-2026",
     rating: 4.9,
     reviewCount: 0,
-    colors: [
-      "曜石黑",
-      "珍珠白",
-      "钛银",
-      "深蓝",
-      "勃艮第红",
-    ],
+    colors: ["曜石黑", "珍珠白", "钛银", "深蓝", "勃艮第红"],
   },
 
   // ========== 五菱车型 ==========
@@ -5109,13 +4933,7 @@ export const vehicleModels: VehicleModel[] = [
     detailsLink: "/models/wuling-e5-2024",
     rating: 4.5,
     reviewCount: 0,
-    colors: [
-      "天空蓝",
-      "珍珠白",
-      "银灰",
-      "熔岩红",
-      "森林绿",
-    ],
+    colors: ["天空蓝", "珍珠白", "银灰", "熔岩红", "森林绿"],
   },
 
   {
