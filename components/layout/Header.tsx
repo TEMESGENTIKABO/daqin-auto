@@ -144,10 +144,8 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
-  // Calculate total header height for proper positioning
-  const topBarHeight = 48; // h-12 = 48px
-  const mainHeaderHeight = 64; // h-16 = 64px
-  const totalHeaderHeight = topBarHeight + mainHeaderHeight;
+  // Calculate header height for proper positioning
+  const topBarHeight = 50; // h-12 = 48px
 
   return (
     <>
@@ -490,14 +488,6 @@ export default function Header() {
           </div>
         </div>
       )}
-
-      {/* Spacer to prevent content from hiding behind fixed header */}
-      <div 
-        className={`transition-all duration-300 ${
-          isVisible ? `h-[${totalHeaderHeight}px]` : 'h-0'
-        }`}
-        style={{ height: isVisible ? totalHeaderHeight : 0 }}
-      />
 
       {/* Animations */}
       <style jsx global>{`

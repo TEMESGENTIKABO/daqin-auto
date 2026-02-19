@@ -1,7 +1,7 @@
 const enTranslations = {
   // Header
   header: {
-    title: "Da Qin Auto",
+    title: "DAQIN AUTO EXPORT",
     company: "Xi'an Da Qin Dao Rui International Trade Co., Ltd.",
     companyFull: "Xi'an Da Qin Dao Rui International Trade Co., Ltd.", // Same as company
     contactBtn: "+86-15594634955",
