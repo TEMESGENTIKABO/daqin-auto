@@ -52,7 +52,7 @@ export default function ServicesSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/services-bg.jpg')",
+          backgroundImage: "url('/images/services.jpg')",
         }}
       />
 
