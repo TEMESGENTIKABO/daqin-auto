@@ -23,7 +23,7 @@ export default function FloatingContact() {
     telegram: "+8615594634955",
     whatsapp: "+8615594634955",
     email: "mamushjebessa@gmail.com",
-    facebook: "daqinautoexports",
+    facebook: "https://www.facebook.com/profile.php?id=61587312085443",
     tiktok: "@daqin_auto_china",
   };
   // Handle scroll for back to top button
@@ -104,11 +104,11 @@ export default function FloatingContact() {
 
           {/* Facebook */}
           <a
-            href={`https://facebook.com/${contacts.facebook}`}
+            href={contacts.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative flex items-center justify-end"
-            title={`Facebook: ${contacts.facebook}`}
+            title={`Facebook`}
           >
             <span className="absolute right-full mr-2 bg-gray-900 text-white px-2 py-1 rounded-lg shadow-lg text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
               Facebook
